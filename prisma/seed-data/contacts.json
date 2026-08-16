@@ -1,0 +1,42 @@
+[
+  {
+    "airtableId": "rec6H7fyeLaWgZ1Ly",
+    "firstName": "Mark",
+    "lastName": "Williams",
+    "fullName": "Mark Williams",
+    "email": "mark@zerogravitymanagement.com",
+    "phone": null,
+    "contactType": ["Industry"],
+    "profession": []
+  },
+  {
+    "airtableId": "recmTKifmeEQXacD0",
+    "firstName": "Alexis",
+    "lastName": "Scheer",
+    "fullName": "Alexis Scheer",
+    "email": "alexis@offthegridtheatre.com",
+    "phone": "+1 310 601 2100",
+    "contactType": ["Talent", "Industry"],
+    "profession": ["Writer"]
+  },
+  {
+    "airtableId": "recsZpVEju68lReqs",
+    "firstName": "Jonah",
+    "lastName": "Loop",
+    "fullName": "Jonah Loop",
+    "email": "jonah@chaosloop.com",
+    "phone": null,
+    "contactType": ["Industry"],
+    "profession": []
+  },
+  {
+    "airtableId": "reczdskFj5gxXaPl0",
+    "firstName": "Cori",
+    "lastName": "Silberman",
+    "fullName": "Cori Silberman",
+    "email": "corisilberman@gmail.com",
+    "phone": null,
+    "contactType": ["Industry"],
+    "profession": ["Producer"]
+  }
+]

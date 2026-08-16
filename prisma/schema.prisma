@@ -1,0 +1,410 @@
+// ZGM Admin — production management data model.
+// Source of truth going forward; seeded from and kept in sync with the
+// Zero Gravity Media Airtable base (app1C5WNULP6I61dM).
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ---------- Auth ----------
+
+enum Role {
+  ADMIN
+  EXECUTIVE
+  PRODUCER_PM
+  DEPARTMENT_LEAD
+  CREW_STAFF
+  FINANCE
+  VENDOR_EXTERNAL
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  role          Role      @default(CREW_STAFF)
+  active        Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts        Account[]
+  sessions        Session[]
+  createdBookings Booking[] @relation("BookingCreatedBy")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ---------- Core production entities ----------
+
+enum ProjectFormat {
+  SERIES
+  FEATURE
+  LIMITED_SERIES
+  UNSCRIPTED
+  DOCUMENTARY
+  CO_PRO
+  SHORT_DIGITAL
+  OTHER
+}
+
+enum ProjectStatus {
+  IDEA
+  SUBMISSION
+  OPTIONED
+  SCRIPT
+  PACKAGING
+  FINANCING
+  GREENLIGHT_READY
+  PREP
+  PAUSED
+}
+
+enum Priority {
+  HIGH
+  MEDIUM
+  LOW
+  WATCH
+}
+
+// Mirrors Project Hub's "Project Color" single-select — drives the bright,
+// per-project color coding used across cards, badges, and the calendar.
+enum ProjectColor {
+  PINK
+  PURPLE
+  BLUE
+  GREEN
+  YELLOW
+  ORANGE
+  RED
+}
+
+model Project {
+  id         String  @id @default(cuid())
+  airtableId String? @unique
+
+  name        String
+  projectCode String? @unique
+
+  format                  ProjectFormat?
+  seasonFilm              String?
+  episodeCount            Int?
+  currentStatus           ProjectStatus?
+  priority                Priority?
+  zgmOwner                String?
+  rightsStatus            String?
+  rightsExpiration        DateTime?
+  scriptStatus            String?
+  salesDistributionStatus String?
+  salesDistributionNotes  String?        @db.Text
+  genre                   String?
+  projectColor            ProjectColor?
+  mainContactRole         String?
+
+  logline         String? @db.Text
+  whyZgm          String? @db.Text
+  audienceHook    String? @db.Text
+  biggestRisk     String? @db.Text
+  additionalNotes String? @db.Text
+  taxCreditNotes  String? @db.Text
+
+  nextDecision      String?
+  nextAction        String?
+  nextActionDueDate DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  unitProductions UnitProduction[]
+  schedulePhases  ProductionSchedulePhase[]
+  shootDays       ShootDay[]
+  bookings        Booking[]
+  contacts        ProjectContact[]
+
+  @@index([currentStatus])
+  @@index([priority])
+}
+
+enum ProjectContactRelation {
+  EXECUTIVE_OWNER
+  DAY_TO_DAY_OWNER
+  SHOWRUNNER
+  KEY_TALENT
+  KEY_CREW
+  IMPORTANT_CONTACT
+}
+
+// Generic join covering Project Hub's several Contact-List link fields
+// (Executive Owner, Day-to-Day Owner, Showrunner, Key Talent, Key Crew,
+// Important Contacts) without a separate table per relation.
+model ProjectContact {
+  id        String                 @id @default(cuid())
+  projectId String
+  personId  String
+  relation  ProjectContactRelation
+  project   Project                @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  person    Person                 @relation(fields: [personId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, personId, relation])
+}
+
+model UnitProduction {
+  id         String  @id @default(cuid())
+  airtableId String? @unique
+
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  name         String
+  season       Int?
+  episode      Int?
+  episodeTitle String?
+  scriptStatus String?
+  duration     Int?
+
+  bookedBy      String? @db.Text
+  bookingWindow String? @db.Text
+  notes         String? @db.Text
+
+  directorId String?
+  director   Person? @relation("Director", fields: [directorId], references: [id])
+  writerId   String?
+  writer     Person? @relation("Writer", fields: [writerId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  schedulePhases ProductionSchedulePhase[] @relation("SchedulePhaseUnits")
+  shootDays      ShootDay[]
+  locations      Location[]                @relation("UnitProductionLocations")
+  bookings       Booking[]
+
+  @@index([projectId])
+}
+
+model ProductionSchedulePhase {
+  id         String  @id @default(cuid())
+  airtableId String? @unique
+
+  scheduleCode String? @unique // "SCH-001"
+
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  phase        String
+  startDate    DateTime?
+  endDate      DateTime?
+  workDays     Int?
+  calendarDays Int?
+  location     String?
+  notes        String?   @db.Text
+  status       String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  unitProductions UnitProduction[] @relation("SchedulePhaseUnits")
+  shootDays       ShootDay[]
+
+  @@index([projectId])
+  @@index([startDate, endDate])
+}
+
+model ShootDay {
+  id         String  @id @default(cuid())
+  airtableId String? @unique
+
+  shootDayCode String?   @unique // "DAY-0001"
+  date         DateTime?
+
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  unitProductionId String?
+  unitProduction   UnitProduction? @relation(fields: [unitProductionId], references: [id])
+
+  parentScheduleId String?
+  parentSchedule   ProductionSchedulePhase? @relation(fields: [parentScheduleId], references: [id])
+
+  seasonShootDay Int?
+  episodeDay     Int?
+  dayOfWeek      String?
+  location       String?
+  planningNote   String? @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([projectId])
+  @@index([date])
+}
+
+model Location {
+  id         String  @id @default(cuid())
+  airtableId String? @unique
+
+  name              String
+  address           String?
+  locationType      String[]
+  agreementStatus   String?
+  nearestHospital   String?  @db.Text
+  cellService       Boolean?
+  wifiAvailable     Boolean?
+  parkingNotes      String?  @db.Text
+  accessNotes       String?  @db.Text
+  availabilityNotes String?  @db.Text
+  locationFee       Decimal? @db.Decimal(12, 2)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  unitProductions UnitProduction[] @relation("UnitProductionLocations")
+  bookings        Booking[]
+}
+
+model Equipment {
+  id       String  @id @default(cuid())
+  name     String
+  category String?
+  notes    String? @db.Text
+  active   Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  bookings Booking[]
+}
+
+model Person {
+  id         String  @id @default(cuid())
+  airtableId String? @unique
+
+  firstName   String?
+  lastName    String?
+  fullName    String
+  email       String?
+  phone       String?
+  contactType String[]
+  profession  String[]
+  isUnion     Boolean?
+  notes       String?  @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  directingUnits  UnitProduction[] @relation("Director")
+  writingUnits    UnitProduction[] @relation("Writer")
+  projectContacts ProjectContact[]
+  bookings        Booking[]
+
+  @@index([fullName])
+}
+
+enum BookingResourceType {
+  PERSON
+  LOCATION
+  EQUIPMENT
+}
+
+enum BookingStatus {
+  CONFIRMED
+  SOFT_HOLD
+  CANCELLED
+}
+
+// The flagship entity: links a bookable resource (person, location, or
+// equipment) to a project for a date range. Overlapping bookings for the
+// same resource across different projects are what conflict detection
+// checks for (see lib/conflicts.ts).
+model Booking {
+  id String @id @default(cuid())
+
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  unitProductionId String?
+  unitProduction   UnitProduction? @relation(fields: [unitProductionId], references: [id])
+
+  resourceType BookingResourceType
+
+  personId String?
+  person   Person? @relation(fields: [personId], references: [id])
+
+  locationId String?
+  location   Location? @relation(fields: [locationId], references: [id])
+
+  equipmentId String?
+  equipment   Equipment? @relation(fields: [equipmentId], references: [id])
+
+  roleOnProject String?
+  startDate     DateTime
+  endDate       DateTime
+  status        BookingStatus @default(CONFIRMED)
+
+  // Set when the creator saw a conflict warning and chose to save anyway.
+  conflictAcknowledged Boolean @default(false)
+  notes                String? @db.Text
+
+  createdById String?
+  createdBy   User?   @relation("BookingCreatedBy", fields: [createdById], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([personId, startDate, endDate])
+  @@index([locationId, startDate, endDate])
+  @@index([equipmentId, startDate, endDate])
+  @@index([projectId])
+}
+
+// ---------- Airtable sync bookkeeping ----------
+
+model SyncLog {
+  id               String    @id @default(cuid())
+  tableName        String
+  direction        String // "pull" | "push"
+  status           String // "success" | "error"
+  recordsProcessed Int       @default(0)
+  message          String?   @db.Text
+  startedAt        DateTime  @default(now())
+  finishedAt       DateTime?
+}

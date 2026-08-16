@@ -1,0 +1,28 @@
+[
+  {
+    "airtableId": "recIxOyg8Jc3O2WZF",
+    "name": "Newark Soundstage 3",
+    "locationType": [
+      "Studio"
+    ],
+    "usedOnUnitProductionIds": []
+  },
+  {
+    "airtableId": "recqqJfg8tGp3ZFeJ",
+    "name": "Newark Soundstage 1",
+    "locationType": [
+      "Studio"
+    ],
+    "usedOnUnitProductionIds": [
+      "recCmrwOrdbOy4JAj"
+    ]
+  },
+  {
+    "airtableId": "recv9KbEaBPjcv7aB",
+    "name": "Newark Soundstage 2",
+    "locationType": [
+      "Studio"
+    ],
+    "usedOnUnitProductionIds": []
+  }
+]

@@ -1,0 +1,958 @@
+[
+  {
+    "airtableId": "rec0kX3i6k5rEd31R",
+    "name": "TBIGA EP 5",
+    "season": null,
+    "episode": null,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recswcSD8xGy8Qfh9"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "rec1oj046WIq5LPWg",
+    "name": "NWAMR Episode 2",
+    "season": null,
+    "episode": null,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recF8n8GOhkf74YCQ"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "rec2vmRD5xEAViFP8",
+    "name": "GRMON Episode 5",
+    "season": 1,
+    "episode": 5,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "rec34igGiCoBpDunz",
+    "name": "EOTV Episode 7",
+    "season": 1,
+    "episode": 7,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": "Episode Draft",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "directorIds": [],
+    "writerIds": [
+      "recsZpVEju68lReqs"
+    ],
+    "locationIds": []
+  },
+  {
+    "airtableId": "rec4MKVnZHwTbiznM",
+    "name": "SPZL Episode 5",
+    "season": 1,
+    "episode": 5,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": "10 shoot days in New Jersey. Story details TBD.",
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "reclDjhyaob8O3v3f"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "rec6ws7uWgloj1K9q",
+    "name": "GRMON Episode 8",
+    "season": 1,
+    "episode": 8,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "rec84qkX98JxqhPrs",
+    "name": "TBIGA EP 6",
+    "season": null,
+    "episode": null,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recswcSD8xGy8Qfh9"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "rec8jbXBNBAsaMel2",
+    "name": "GRMON Episode 2",
+    "season": 1,
+    "episode": 2,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recA8XpfxfZOQuAfq",
+    "name": "GRMON Episode 7",
+    "season": 1,
+    "episode": 7,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recAWpwHxddun87YP",
+    "name": "GRMON Episode 6",
+    "season": 1,
+    "episode": 6,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recCmrwOrdbOy4JAj",
+    "name": "EOTV Episode 1",
+    "season": 1,
+    "episode": 1,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": "Episode Draft",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "directorIds": [
+      "recsZpVEju68lReqs"
+    ],
+    "writerIds": [
+      "recsZpVEju68lReqs"
+    ],
+    "locationIds": [
+      "recqqJfg8tGp3ZFeJ"
+    ]
+  },
+  {
+    "airtableId": "recDi2Eq78pRQu3EA",
+    "name": "PLBY Episode 4",
+    "season": 1,
+    "episode": 4,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "directorIds": [],
+    "writerIds": [
+      "recsZpVEju68lReqs"
+    ],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recEMS6UmF2hJT8gI",
+    "name": "EOTV Episode 5",
+    "season": 1,
+    "episode": 5,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": "Episode Draft",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "directorIds": [],
+    "writerIds": [
+      "recsZpVEju68lReqs"
+    ],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recFLNj7MscpooELD",
+    "name": "TBIGA EP 4",
+    "season": null,
+    "episode": null,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recswcSD8xGy8Qfh9"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recFpC33zXioBJHqU",
+    "name": "GRMON Episode 1",
+    "season": 1,
+    "episode": 1,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "directorIds": [],
+    "writerIds": [
+      "rec6H7fyeLaWgZ1Ly"
+    ],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recHfgGTUtNCrL9vI",
+    "name": "MONC Episode 3",
+    "season": null,
+    "episode": null,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": "Episode Draft",
+    "projectIds": [
+      "reczAkdCPFR9Veahb"
+    ],
+    "directorIds": [],
+    "writerIds": [
+      "rec6H7fyeLaWgZ1Ly"
+    ],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recHjcxNobtfTO3KY",
+    "name": "PLBY Episode 6",
+    "season": 1,
+    "episode": 6,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "directorIds": [],
+    "writerIds": [
+      "recsZpVEju68lReqs"
+    ],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recHvvxpd2RrLNju6",
+    "name": "PLBY Episode 8",
+    "season": 1,
+    "episode": 8,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "directorIds": [],
+    "writerIds": [
+      "recsZpVEju68lReqs"
+    ],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recIWh5nPQ5ZI94VT",
+    "name": "MONC Episode 5",
+    "season": null,
+    "episode": null,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": "Episode Draft",
+    "projectIds": [
+      "reczAkdCPFR9Veahb"
+    ],
+    "directorIds": [],
+    "writerIds": [
+      "rec6H7fyeLaWgZ1Ly"
+    ],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recM5r4IUXbH3xn5s",
+    "name": "SPZL Episode 6",
+    "season": 1,
+    "episode": 6,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": "10 shoot days in New Jersey. Story details TBD.",
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "reclDjhyaob8O3v3f"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recN7l1TTQN095XHw",
+    "name": "ODDDL Feature",
+    "season": null,
+    "episode": null,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "directorIds": [],
+    "writerIds": [
+      "recmTKifmeEQXacD0"
+    ],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recOY8Prh2F6MdOqI",
+    "name": "MONC Episode 6",
+    "season": null,
+    "episode": null,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": "Episode Draft",
+    "projectIds": [
+      "reczAkdCPFR9Veahb"
+    ],
+    "directorIds": [],
+    "writerIds": [
+      "rec6H7fyeLaWgZ1Ly"
+    ],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recPC4QcEfAZ7IlSt",
+    "name": "MONC Episode 2",
+    "season": null,
+    "episode": null,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": "Episode Draft",
+    "projectIds": [
+      "reczAkdCPFR9Veahb"
+    ],
+    "directorIds": [],
+    "writerIds": [
+      "rec6H7fyeLaWgZ1Ly"
+    ],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recPQXccd1bkhnx51",
+    "name": "EOTV Episode 6",
+    "season": 1,
+    "episode": 6,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": "Episode Draft",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "directorIds": [],
+    "writerIds": [
+      "recsZpVEju68lReqs"
+    ],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recPl9gMi6KF9KWLD",
+    "name": "SPZL Episode 3",
+    "season": 1,
+    "episode": 3,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": "10 shoot days in Europe. Story details TBD.",
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "reclDjhyaob8O3v3f"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recR1DjPLaHmoSeBI",
+    "name": "GRMON Episode 4",
+    "season": 1,
+    "episode": 4,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recRWikIdTlYww8WV",
+    "name": "SPZL Episode 8",
+    "season": 1,
+    "episode": 8,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": "10 shoot days in New Jersey. Story details TBD.",
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "reclDjhyaob8O3v3f"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recSSw4sB8L7n3C1b",
+    "name": "MONC Episode 4",
+    "season": null,
+    "episode": null,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": "Episode Draft",
+    "projectIds": [
+      "reczAkdCPFR9Veahb"
+    ],
+    "directorIds": [],
+    "writerIds": [
+      "rec6H7fyeLaWgZ1Ly"
+    ],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recTU8kbe5yyhfHTV",
+    "name": "EOTV Episode 4",
+    "season": 1,
+    "episode": 4,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": "Episode Draft",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "directorIds": [],
+    "writerIds": [
+      "recsZpVEju68lReqs"
+    ],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recW60Fq9R3d2fh8C",
+    "name": "EOTV Episode 8",
+    "season": 1,
+    "episode": 8,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": "Episode Draft",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "directorIds": [],
+    "writerIds": [
+      "recsZpVEju68lReqs"
+    ],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recW9ZbRaaTwYzQXv",
+    "name": "STLIF AFRICA",
+    "season": null,
+    "episode": null,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recWBjdNmWVItDqJN",
+    "name": "NWAMR Episode 1",
+    "season": null,
+    "episode": null,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recF8n8GOhkf74YCQ"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recWstWweAgZA5JmD",
+    "name": "TBIGA EP 1",
+    "season": null,
+    "episode": null,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recswcSD8xGy8Qfh9"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recXb3rwq5AO7gPUX",
+    "name": "SPZL Episode 1",
+    "season": 1,
+    "episode": 1,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": "Pilot script on file. Planned as Episode 1 of an 8-episode season; 10 shoot days in Europe.",
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "reclDjhyaob8O3v3f"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recYZArN19XylcgEJ",
+    "name": "TBIGA EP 2",
+    "season": null,
+    "episode": null,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recswcSD8xGy8Qfh9"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recZDocaLh3X3AKdw",
+    "name": "TBIGA EP 3",
+    "season": null,
+    "episode": null,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recswcSD8xGy8Qfh9"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recZSYcmAnVx0XNY8",
+    "name": "SPZL Episode 4",
+    "season": 1,
+    "episode": 4,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": "10 shoot days in Europe. Story details TBD.",
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "reclDjhyaob8O3v3f"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recZVxL4LtT6LEwjc",
+    "name": "PLBY Episode 7",
+    "season": 1,
+    "episode": 7,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "directorIds": [],
+    "writerIds": [
+      "recsZpVEju68lReqs"
+    ],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recdzgfL13ocW1Nsc",
+    "name": "PLBY Episode 1",
+    "season": 1,
+    "episode": 1,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "directorIds": [],
+    "writerIds": [
+      "recsZpVEju68lReqs"
+    ],
+    "locationIds": []
+  },
+  {
+    "airtableId": "rece83cE3UNDXVoVr",
+    "name": "STLIF Feature",
+    "season": null,
+    "episode": null,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": "Outline",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "directorIds": [],
+    "writerIds": [
+      "recmTKifmeEQXacD0"
+    ],
+    "locationIds": []
+  },
+  {
+    "airtableId": "receCxw3kDzekbLcH",
+    "name": "EOTV Episode 2",
+    "season": 1,
+    "episode": 2,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": "Episode Draft",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "directorIds": [
+      "recsZpVEju68lReqs"
+    ],
+    "writerIds": [
+      "recsZpVEju68lReqs"
+    ],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recmFolGzw8euO9AM",
+    "name": "SPZL Episode 2",
+    "season": 1,
+    "episode": 2,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": "10 shoot days in Europe. Story details TBD.",
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "reclDjhyaob8O3v3f"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recod6zb7DAAYxWX4",
+    "name": "GRMON Episode 3",
+    "season": 1,
+    "episode": 3,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "reconFhUcscjr2FeU",
+    "name": "SPZL Episode 7",
+    "season": 1,
+    "episode": 7,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": "10 shoot days in New Jersey. Story details TBD.",
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "reclDjhyaob8O3v3f"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recppRYgYTtmqY6dq",
+    "name": "MONC Episode 1",
+    "season": null,
+    "episode": null,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": "Pilot Draft",
+    "projectIds": [
+      "reczAkdCPFR9Veahb"
+    ],
+    "directorIds": [],
+    "writerIds": [
+      "rec6H7fyeLaWgZ1Ly"
+    ],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recrvDjQ5PDWawKJP",
+    "name": "PLBY Episode 2",
+    "season": 1,
+    "episode": 2,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "directorIds": [],
+    "writerIds": [
+      "recsZpVEju68lReqs"
+    ],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recuHuTTLiIzwfVpa",
+    "name": "EOTV Episode 3",
+    "season": 1,
+    "episode": 3,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": "Episode Draft",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "directorIds": [],
+    "writerIds": [
+      "recsZpVEju68lReqs"
+    ],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recvvqiJDhkpp9Nje",
+    "name": "PLBY Episode 5",
+    "season": 1,
+    "episode": 5,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "directorIds": [],
+    "writerIds": [
+      "recsZpVEju68lReqs"
+    ],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recxh7oVRVBl0oExD",
+    "name": "STLIF NYC",
+    "season": null,
+    "episode": null,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "directorIds": [],
+    "writerIds": [],
+    "locationIds": []
+  },
+  {
+    "airtableId": "recz372AO9qL5b7uX",
+    "name": "PLBY Episode 3",
+    "season": 1,
+    "episode": 3,
+    "episodeTitle": null,
+    "bookedBy": null,
+    "bookingWindow": null,
+    "notes": null,
+    "duration": null,
+    "scriptStatus": null,
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "directorIds": [],
+    "writerIds": [
+      "recsZpVEju68lReqs"
+    ],
+    "locationIds": []
+  }
+]

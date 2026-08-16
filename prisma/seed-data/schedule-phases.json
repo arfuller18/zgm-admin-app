@@ -1,0 +1,1042 @@
+[
+  {
+    "airtableId": "rec06kfl4VxOpPpDa",
+    "scheduleId": "SCH-002",
+    "startDate": "2026-07-27",
+    "endDate": "2026-10-26",
+    "workDays": 65,
+    "calendarDays": 92,
+    "location": "NYC / Locations",
+    "notes": "Location manager, scouting, HOD interviews, tech scouts, rehearsals and tests.",
+    "status": "Still Life calendar",
+    "parentProjectId": "PRJ-STILL-LIFE",
+    "recordType": "Phase / Episode",
+    "phase": "Prep",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": []
+  },
+  {
+    "airtableId": "rec0GksepEfDkY6Y4",
+    "scheduleId": "SCH-047",
+    "startDate": "2027-09-20",
+    "endDate": "2027-10-01",
+    "workDays": 10,
+    "calendarDays": 12,
+    "location": "Europe",
+    "notes": "Episode 3; 10 shoot days in Europe.",
+    "status": "User-requested Fall 2027 working schedule",
+    "parentProjectId": "PRJ-SPEZIAL-ADIDAS-VS-PUMA",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "reclDjhyaob8O3v3f"
+    ],
+    "unitProductionIds": [
+      "recPl9gMi6KF9KWLD"
+    ]
+  },
+  {
+    "airtableId": "rec0HH816RG08IByy",
+    "scheduleId": "SCH-045",
+    "startDate": "2027-08-23",
+    "endDate": "2027-09-03",
+    "workDays": 10,
+    "calendarDays": 12,
+    "location": "Europe",
+    "notes": "Episode 1; 10 shoot days in Europe.",
+    "status": "User-requested Fall 2027 working schedule",
+    "parentProjectId": "PRJ-SPEZIAL-ADIDAS-VS-PUMA",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "reclDjhyaob8O3v3f"
+    ],
+    "unitProductionIds": [
+      "recXb3rwq5AO7gPUX"
+    ]
+  },
+  {
+    "airtableId": "rec1mrSciZUcIbrNe",
+    "scheduleId": "SCH-021",
+    "startDate": "2026-09-28",
+    "endDate": "2026-10-09",
+    "workDays": 10,
+    "calendarDays": 12,
+    "location": "New Jersey / NYC",
+    "notes": "Episode block 2; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-THE-PLAYBOY",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recrvDjQ5PDWawKJP"
+    ]
+  },
+  {
+    "airtableId": "rec2faaHi8RjV51Kd",
+    "scheduleId": "SCH-035",
+    "startDate": "2027-06-01",
+    "endDate": "2027-06-11",
+    "workDays": 9,
+    "calendarDays": 11,
+    "location": "New Jersey",
+    "notes": "Episode block 5; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-GREASE-MONKEYS",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec2vmRD5xEAViFP8"
+    ]
+  },
+  {
+    "airtableId": "rec2giRQ6zKWDjIg2",
+    "scheduleId": "SCH-005",
+    "startDate": "2026-12-14",
+    "endDate": "2027-04-06",
+    "workDays": 70,
+    "calendarDays": 114,
+    "location": "Post",
+    "notes": "14 weeks offline; Christmas hiatus reflected.",
+    "status": "Still Life calendar",
+    "parentProjectId": "PRJ-STILL-LIFE",
+    "recordType": "Phase / Episode",
+    "phase": "Post Production",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": []
+  },
+  {
+    "airtableId": "rec2oBUj5yI0Xag5V",
+    "scheduleId": "SCH-020",
+    "startDate": "2026-09-14",
+    "endDate": "2026-09-25",
+    "workDays": 10,
+    "calendarDays": 12,
+    "location": "New Jersey / NYC",
+    "notes": "Episode block 1; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-THE-PLAYBOY",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recdzgfL13ocW1Nsc"
+    ]
+  },
+  {
+    "airtableId": "rec4MRRiGJyLDk5Pm",
+    "scheduleId": "SCH-025",
+    "startDate": "2026-11-23",
+    "endDate": "2026-12-08",
+    "workDays": 10,
+    "calendarDays": 16,
+    "location": "New Jersey / NYC",
+    "notes": "Episode block 6; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-THE-PLAYBOY",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recHjcxNobtfTO3KY"
+    ]
+  },
+  {
+    "airtableId": "rec4MrnRzeUY5dP1y",
+    "scheduleId": "SCH-038",
+    "startDate": "2027-07-13",
+    "endDate": "2027-07-26",
+    "workDays": 10,
+    "calendarDays": 14,
+    "location": "New Jersey",
+    "notes": "Episode block 8; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-GREASE-MONKEYS",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec6ws7uWgloj1K9q"
+    ]
+  },
+  {
+    "airtableId": "rec4mSoIwawecYTyU",
+    "scheduleId": "SCH-051",
+    "startDate": "2027-11-08",
+    "endDate": "2027-11-19",
+    "workDays": 10,
+    "calendarDays": 12,
+    "location": "New Jersey",
+    "notes": "Episode 6; 10 shoot days in New Jersey.",
+    "status": "User-requested Fall 2027 working schedule",
+    "parentProjectId": "PRJ-SPEZIAL-ADIDAS-VS-PUMA",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "reclDjhyaob8O3v3f"
+    ],
+    "unitProductionIds": [
+      "recM5r4IUXbH3xn5s"
+    ]
+  },
+  {
+    "airtableId": "rec4nVTNL6c7Wg8tM",
+    "scheduleId": "SCH-011",
+    "startDate": "2027-02-09",
+    "endDate": "2027-02-23",
+    "workDays": 10,
+    "calendarDays": 15,
+    "location": "Newark Stage",
+    "notes": "Episode block 3; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-ECHOES-OF-THE-VOID",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recuHuTTLiIzwfVpa"
+    ]
+  },
+  {
+    "airtableId": "rec52xyfSq1Ui1hKj",
+    "scheduleId": "SCH-041",
+    "startDate": "2027-02-01",
+    "endDate": "2027-03-29",
+    "workDays": 40,
+    "calendarDays": 57,
+    "location": "New Jersey / NYC",
+    "notes": "Spring slot; dates are planning assumptions.",
+    "status": "User requested spring placement",
+    "parentProjectId": "PRJ-OUR-DEAR-DEAD-DRUG-LORD",
+    "recordType": "Phase / Episode",
+    "phase": "Prep",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": []
+  },
+  {
+    "airtableId": "rec6DTSDqRwktYhHv",
+    "scheduleId": "SCH-013",
+    "startDate": "2027-03-10",
+    "endDate": "2027-03-22",
+    "workDays": 9,
+    "calendarDays": 13,
+    "location": "Newark Stage",
+    "notes": "Episode block 5; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-ECHOES-OF-THE-VOID",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recEMS6UmF2hJT8gI"
+    ]
+  },
+  {
+    "airtableId": "rec7sB7i8FaAzT6hT",
+    "scheduleId": "SCH-026",
+    "startDate": "2026-12-09",
+    "endDate": "2027-01-12",
+    "workDays": 10,
+    "calendarDays": 35,
+    "location": "New Jersey / NYC",
+    "notes": "Episode block 7; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-THE-PLAYBOY",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recZVxL4LtT6LEwjc"
+    ]
+  },
+  {
+    "airtableId": "rec9YJeeJFxR7qCTB",
+    "scheduleId": "SCH-053",
+    "startDate": "2027-12-08",
+    "endDate": "2027-12-21",
+    "workDays": 10,
+    "calendarDays": 14,
+    "location": "New Jersey",
+    "notes": "Episode 8; 10 shoot days in New Jersey.",
+    "status": "User-requested Fall 2027 working schedule",
+    "parentProjectId": "PRJ-SPEZIAL-ADIDAS-VS-PUMA",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "reclDjhyaob8O3v3f"
+    ],
+    "unitProductionIds": [
+      "recRWikIdTlYww8WV"
+    ]
+  },
+  {
+    "airtableId": "recArjYFMWt2rhJWw",
+    "scheduleId": "SCH-008",
+    "startDate": "2026-10-08",
+    "endDate": "2027-01-10",
+    "workDays": 50,
+    "calendarDays": 95,
+    "location": "Newark Stage",
+    "notes": "Prep aligned to revised principal photography start of Jan. 11, 2027.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-ECHOES-OF-THE-VOID",
+    "recordType": "Phase / Episode",
+    "phase": "Prep",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": []
+  },
+  {
+    "airtableId": "recBIuVPYyTasK6PQ",
+    "scheduleId": "SCH-034",
+    "startDate": "2027-05-17",
+    "endDate": "2027-05-28",
+    "workDays": 10,
+    "calendarDays": 12,
+    "location": "New Jersey",
+    "notes": "Episode block 4; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-GREASE-MONKEYS",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recR1DjPLaHmoSeBI"
+    ]
+  },
+  {
+    "airtableId": "recBicaW9ydeq3p88",
+    "scheduleId": "SCH-019",
+    "startDate": "2026-06-05",
+    "endDate": "2026-09-13",
+    "workDays": 70,
+    "calendarDays": 101,
+    "location": "New Jersey / NYC",
+    "notes": "Prep aligned to revised principal photography start of Sep. 14, 2026.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-THE-PLAYBOY",
+    "recordType": "Phase / Episode",
+    "phase": "Prep",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": []
+  },
+  {
+    "airtableId": "recDS1ek7kqDIEF0t",
+    "scheduleId": "SCH-042",
+    "startDate": "2027-03-29",
+    "endDate": "2027-05-07",
+    "workDays": 30,
+    "calendarDays": 40,
+    "location": "New Jersey / NYC",
+    "notes": "30-day shoot; weekends and listed holidays off.",
+    "status": "User requested 30-day shoot",
+    "parentProjectId": "PRJ-OUR-DEAR-DEAD-DRUG-LORD",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ]
+  },
+  {
+    "airtableId": "recDqsC6Gs9JH2B75",
+    "scheduleId": "SCH-017",
+    "startDate": "2027-05-05",
+    "endDate": "2027-05-13",
+    "workDays": 7,
+    "calendarDays": 9,
+    "location": "Newark Stage",
+    "notes": "Dedicated pickups/inserts, sound work and production wrap.",
+    "status": "Working assumption",
+    "parentProjectId": "PRJ-ECHOES-OF-THE-VOID",
+    "recordType": "Phase / Episode",
+    "phase": "Pickups / Sound / Wrap",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": []
+  },
+  {
+    "airtableId": "recFcgECITJJm5ffM",
+    "scheduleId": "SCH-014",
+    "startDate": "2027-03-23",
+    "endDate": "2027-04-06",
+    "workDays": 11,
+    "calendarDays": 15,
+    "location": "Newark Stage",
+    "notes": "Episode block 6; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-ECHOES-OF-THE-VOID",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recPQXccd1bkhnx51"
+    ]
+  },
+  {
+    "airtableId": "recGyXiLqWYazW03R",
+    "scheduleId": "SCH-016",
+    "startDate": "2027-04-21",
+    "endDate": "2027-05-04",
+    "workDays": 10,
+    "calendarDays": 14,
+    "location": "Newark Stage",
+    "notes": "Episode block 8; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-ECHOES-OF-THE-VOID",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recW60Fq9R3d2fh8C"
+    ]
+  },
+  {
+    "airtableId": "recHvVRZ92iGNdU7p",
+    "scheduleId": "SCH-030",
+    "startDate": "2027-02-05",
+    "endDate": "2027-04-04",
+    "workDays": 40,
+    "calendarDays": 59,
+    "location": "New Jersey",
+    "notes": "Prep aligned to revised principal photography start of Apr. 5, 2027.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-GREASE-MONKEYS",
+    "recordType": "Phase / Episode",
+    "phase": "Prep",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": []
+  },
+  {
+    "airtableId": "recI4n268KmEmm9QY",
+    "scheduleId": "SCH-022",
+    "startDate": "2026-10-12",
+    "endDate": "2026-10-21",
+    "workDays": 8,
+    "calendarDays": 10,
+    "location": "New Jersey / NYC",
+    "notes": "Episode block 3; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-THE-PLAYBOY",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recz372AO9qL5b7uX"
+    ]
+  },
+  {
+    "airtableId": "recI6co8puTv6mNdO",
+    "scheduleId": "SCH-007",
+    "startDate": "2027-05-31",
+    "endDate": "2027-06-07",
+    "workDays": 5,
+    "calendarDays": 8,
+    "location": "Post",
+    "notes": "Color correction week; final delivery targeted June 4.",
+    "status": "Still Life calendar",
+    "parentProjectId": "PRJ-STILL-LIFE",
+    "recordType": "Phase / Episode",
+    "phase": "Pickups / Sound / Wrap",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": []
+  },
+  {
+    "airtableId": "recIhxk0sgxouCrQK",
+    "scheduleId": "SCH-027",
+    "startDate": "2027-01-13",
+    "endDate": "2027-01-27",
+    "workDays": 10,
+    "calendarDays": 15,
+    "location": "New Jersey / NYC",
+    "notes": "Episode block 8; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-THE-PLAYBOY",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recHvvxpd2RrLNju6"
+    ]
+  },
+  {
+    "airtableId": "recIlUjiZnLCryapd",
+    "scheduleId": "SCH-033",
+    "startDate": "2027-04-30",
+    "endDate": "2027-05-14",
+    "workDays": 11,
+    "calendarDays": 15,
+    "location": "New Jersey",
+    "notes": "Episode block 3; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-GREASE-MONKEYS",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recod6zb7DAAYxWX4"
+    ]
+  },
+  {
+    "airtableId": "recJVAdiAEcqWZbL5",
+    "scheduleId": "SCH-029",
+    "startDate": "2026-10-09",
+    "endDate": "2027-05-05",
+    "workDays": 130,
+    "calendarDays": 209,
+    "location": "Post",
+    "notes": "Rolling editorial and finishing based on revised shoot dates.",
+    "status": "Working assumption",
+    "parentProjectId": "PRJ-THE-PLAYBOY",
+    "recordType": "Phase / Episode",
+    "phase": "Post Production",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": []
+  },
+  {
+    "airtableId": "recJuGHtyWyU9b3rI",
+    "scheduleId": "SCH-052",
+    "startDate": "2027-11-22",
+    "endDate": "2027-12-07",
+    "workDays": 10,
+    "calendarDays": 16,
+    "location": "New Jersey",
+    "notes": "Episode 7; 10 shoot days in New Jersey, with Thanksgiving Nov. 25-26 dark.",
+    "status": "User-requested Fall 2027 working schedule",
+    "parentProjectId": "PRJ-SPEZIAL-ADIDAS-VS-PUMA",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "reclDjhyaob8O3v3f"
+    ],
+    "unitProductionIds": [
+      "reconFhUcscjr2FeU"
+    ]
+  },
+  {
+    "airtableId": "recKReNdoTvdMgQtL",
+    "scheduleId": "SCH-015",
+    "startDate": "2027-04-07",
+    "endDate": "2027-04-20",
+    "workDays": 10,
+    "calendarDays": 14,
+    "location": "Newark Stage",
+    "notes": "Episode block 7; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-ECHOES-OF-THE-VOID",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "rec34igGiCoBpDunz"
+    ]
+  },
+  {
+    "airtableId": "recPZM1usLLLoEWTL",
+    "scheduleId": "SCH-040",
+    "startDate": "2027-04-30",
+    "endDate": "2027-09-17",
+    "workDays": 100,
+    "calendarDays": 141,
+    "location": "Post",
+    "notes": "Rolling editorial and finishing based on revised shoot dates.",
+    "status": "Working assumption",
+    "parentProjectId": "PRJ-GREASE-MONKEYS",
+    "recordType": "Phase / Episode",
+    "phase": "Post Production",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": []
+  },
+  {
+    "airtableId": "recQIMYCxSmclesbc",
+    "scheduleId": "SCH-037",
+    "startDate": "2027-06-29",
+    "endDate": "2027-07-12",
+    "workDays": 10,
+    "calendarDays": 14,
+    "location": "New Jersey",
+    "notes": "Episode block 7; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-GREASE-MONKEYS",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recA8XpfxfZOQuAfq"
+    ]
+  },
+  {
+    "airtableId": "recQnFRT8IM02zikO",
+    "scheduleId": "SCH-048",
+    "startDate": "2027-10-04",
+    "endDate": "2027-10-15",
+    "workDays": 10,
+    "calendarDays": 12,
+    "location": "Europe",
+    "notes": "Episode 4; 10 shoot days in Europe.",
+    "status": "User-requested Fall 2027 working schedule",
+    "parentProjectId": "PRJ-SPEZIAL-ADIDAS-VS-PUMA",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "reclDjhyaob8O3v3f"
+    ],
+    "unitProductionIds": [
+      "recZSYcmAnVx0XNY8"
+    ]
+  },
+  {
+    "airtableId": "recQwOShIFtlE3GHP",
+    "scheduleId": "SCH-046",
+    "startDate": "2027-09-06",
+    "endDate": "2027-09-17",
+    "workDays": 10,
+    "calendarDays": 12,
+    "location": "Europe",
+    "notes": "Episode 2; 10 shoot days in Europe.",
+    "status": "User-requested Fall 2027 working schedule",
+    "parentProjectId": "PRJ-SPEZIAL-ADIDAS-VS-PUMA",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "reclDjhyaob8O3v3f"
+    ],
+    "unitProductionIds": [
+      "recmFolGzw8euO9AM"
+    ]
+  },
+  {
+    "airtableId": "recQzG5hdLtRvznoX",
+    "scheduleId": "SCH-032",
+    "startDate": "2027-04-16",
+    "endDate": "2027-04-29",
+    "workDays": 10,
+    "calendarDays": 14,
+    "location": "New Jersey",
+    "notes": "Episode block 2; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-GREASE-MONKEYS",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec8jbXBNBAsaMel2"
+    ]
+  },
+  {
+    "airtableId": "recRsuc1nimHtf8mp",
+    "scheduleId": "SCH-050",
+    "startDate": "2027-10-25",
+    "endDate": "2027-11-05",
+    "workDays": 10,
+    "calendarDays": 12,
+    "location": "New Jersey",
+    "notes": "Episode 5; 10 shoot days in New Jersey.",
+    "status": "User-requested Fall 2027 working schedule",
+    "parentProjectId": "PRJ-SPEZIAL-ADIDAS-VS-PUMA",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "reclDjhyaob8O3v3f"
+    ],
+    "unitProductionIds": [
+      "rec4MKVnZHwTbiznM"
+    ]
+  },
+  {
+    "airtableId": "recRwOxaaU83vF6s1",
+    "scheduleId": "SCH-001",
+    "startDate": "2026-07-20",
+    "endDate": "2026-07-24",
+    "workDays": 5,
+    "calendarDays": 5,
+    "location": "NYC",
+    "notes": "Co-producer start; greenlight, insurance and signatory setup.",
+    "status": "Still Life calendar",
+    "parentProjectId": "PRJ-STILL-LIFE",
+    "recordType": "Phase / Episode",
+    "phase": "Development / Greenlight",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": []
+  },
+  {
+    "airtableId": "recSVjm7yDVYTBFGF",
+    "scheduleId": "SCH-044",
+    "startDate": "2027-06-14",
+    "endDate": "2027-08-20",
+    "workDays": 50,
+    "calendarDays": 68,
+    "location": "Europe / New Jersey",
+    "notes": "Ten-week prep for an 8-episode international production; 50% Europe / 50% New Jersey.",
+    "status": "User-requested Fall 2027 working schedule",
+    "parentProjectId": "PRJ-SPEZIAL-ADIDAS-VS-PUMA",
+    "recordType": "Phase / Episode",
+    "phase": "Prep",
+    "projectIds": [
+      "reclDjhyaob8O3v3f"
+    ],
+    "unitProductionIds": []
+  },
+  {
+    "airtableId": "recTW1nlyUOnnFdL7",
+    "scheduleId": "SCH-031",
+    "startDate": "2027-04-05",
+    "endDate": "2027-04-15",
+    "workDays": 9,
+    "calendarDays": 11,
+    "location": "New Jersey",
+    "notes": "Episode block 1; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-GREASE-MONKEYS",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recFpC33zXioBJHqU"
+    ]
+  },
+  {
+    "airtableId": "recTjZEEPsBfE5XrH",
+    "scheduleId": "SCH-006",
+    "startDate": "2027-04-05",
+    "endDate": "2027-05-28",
+    "workDays": 40,
+    "calendarDays": 54,
+    "location": "Post",
+    "notes": "Turnovers, music, VFX and sound.",
+    "status": "Still Life calendar",
+    "parentProjectId": "PRJ-STILL-LIFE",
+    "recordType": "Phase / Episode",
+    "phase": "Pickups / Sound / Wrap",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": []
+  },
+  {
+    "airtableId": "recUVSPMizlRiweMf",
+    "scheduleId": "SCH-039",
+    "startDate": "2027-07-27",
+    "endDate": "2027-08-09",
+    "workDays": 10,
+    "calendarDays": 14,
+    "location": "New Jersey",
+    "notes": "Dedicated pickups/inserts, sound work and production wrap.",
+    "status": "Working assumption",
+    "parentProjectId": "PRJ-GREASE-MONKEYS",
+    "recordType": "Phase / Episode",
+    "phase": "Stunts / Inserts / Wrap",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": []
+  },
+  {
+    "airtableId": "recVYddl2aWcFYXMM",
+    "scheduleId": "SCH-010",
+    "startDate": "2027-01-25",
+    "endDate": "2027-02-08",
+    "workDays": 11,
+    "calendarDays": 15,
+    "location": "Newark Stage",
+    "notes": "Episode block 2; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-ECHOES-OF-THE-VOID",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "receCxw3kDzekbLcH"
+    ]
+  },
+  {
+    "airtableId": "recWT1rpHzxQBG3Yp",
+    "scheduleId": "SCH-043",
+    "startDate": "2027-05-10",
+    "endDate": "2027-08-30",
+    "workDays": 80,
+    "calendarDays": 113,
+    "location": "Post",
+    "notes": "Editorial, sound, color and delivery assumption.",
+    "status": "Working assumption",
+    "parentProjectId": "PRJ-OUR-DEAR-DEAD-DRUG-LORD",
+    "recordType": "Phase / Episode",
+    "phase": "Post Production",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": []
+  },
+  {
+    "airtableId": "recXkytYQzEzqdC4r",
+    "scheduleId": "SCH-003",
+    "startDate": "2026-10-26",
+    "endDate": "2026-12-01",
+    "workDays": 25,
+    "calendarDays": 37,
+    "location": "NYC",
+    "notes": "25-day NYC shoot; Thanksgiving days off.",
+    "status": "Still Life calendar",
+    "parentProjectId": "PRJ-STILL-LIFE",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ]
+  },
+  {
+    "airtableId": "recY9Uk16HQSjFOy3",
+    "scheduleId": "SCH-054",
+    "startDate": "2027-08-30",
+    "endDate": "2028-05-12",
+    "workDays": 180,
+    "calendarDays": 257,
+    "location": "Post",
+    "notes": "Rolling editorial begins during photography; final post date is a planning assumption pending delivery requirements.",
+    "status": "Working assumption",
+    "parentProjectId": "PRJ-SPEZIAL-ADIDAS-VS-PUMA",
+    "recordType": "Phase / Episode",
+    "phase": "Post Production",
+    "projectIds": [
+      "reclDjhyaob8O3v3f"
+    ],
+    "unitProductionIds": []
+  },
+  {
+    "airtableId": "recZFdZn709rzagFA",
+    "scheduleId": "SCH-036",
+    "startDate": "2027-06-14",
+    "endDate": "2027-06-28",
+    "workDays": 11,
+    "calendarDays": 15,
+    "location": "New Jersey",
+    "notes": "Episode block 6; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-GREASE-MONKEYS",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recAWpwHxddun87YP"
+    ]
+  },
+  {
+    "airtableId": "recZku7V3Byn4UHh6",
+    "scheduleId": "SCH-049",
+    "startDate": "2027-10-18",
+    "endDate": "2027-10-22",
+    "workDays": 5,
+    "calendarDays": 5,
+    "location": "Europe \u2192 New Jersey",
+    "notes": "Dedicated company move, travel, customs and stage reset between Episode 4 and Episode 5.",
+    "status": "Working assumption",
+    "parentProjectId": "PRJ-SPEZIAL-ADIDAS-VS-PUMA",
+    "recordType": "Phase / Episode",
+    "phase": "Company Move / Atlantic Crossing",
+    "projectIds": [
+      "reclDjhyaob8O3v3f"
+    ],
+    "unitProductionIds": []
+  },
+  {
+    "airtableId": "reca42ZlfaoEgc2Ci",
+    "scheduleId": "SCH-004",
+    "startDate": "2026-12-08",
+    "endDate": "2026-12-10",
+    "workDays": 3,
+    "calendarDays": 3,
+    "location": "Africa",
+    "notes": "Three-day Africa unit; last day of principal photography Dec. 10.",
+    "status": "Still Life calendar",
+    "parentProjectId": "PRJ-STILL-LIFE",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": []
+  },
+  {
+    "airtableId": "recewE0YUp8jdjf86",
+    "scheduleId": "SCH-023",
+    "startDate": "2026-10-22",
+    "endDate": "2026-11-06",
+    "workDays": 12,
+    "calendarDays": 16,
+    "location": "New Jersey / NYC",
+    "notes": "Episode block 4; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-THE-PLAYBOY",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recDi2Eq78pRQu3EA"
+    ]
+  },
+  {
+    "airtableId": "reclbMJRD4r8RfLmP",
+    "scheduleId": "SCH-012",
+    "startDate": "2027-02-24",
+    "endDate": "2027-03-09",
+    "workDays": 10,
+    "calendarDays": 14,
+    "location": "Newark Stage",
+    "notes": "Episode block 4; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-ECHOES-OF-THE-VOID",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recTU8kbe5yyhfHTV"
+    ]
+  },
+  {
+    "airtableId": "recpwW6E5rjv3CuQg",
+    "scheduleId": "SCH-009",
+    "startDate": "2027-01-11",
+    "endDate": "2027-01-22",
+    "workDays": 9,
+    "calendarDays": 12,
+    "location": "Newark Stage",
+    "notes": "Episode block 1; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-ECHOES-OF-THE-VOID",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recCmrwOrdbOy4JAj"
+    ]
+  },
+  {
+    "airtableId": "recqGrcQ4pVfaLvV1",
+    "scheduleId": "SCH-028",
+    "startDate": "2027-01-28",
+    "endDate": "2027-02-05",
+    "workDays": 7,
+    "calendarDays": 9,
+    "location": "New Jersey / Post",
+    "notes": "Dedicated pickups/inserts, sound work and production wrap.",
+    "status": "Working assumption",
+    "parentProjectId": "PRJ-THE-PLAYBOY",
+    "recordType": "Phase / Episode",
+    "phase": "Pickups / Sound / Wrap",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": []
+  },
+  {
+    "airtableId": "reczaX7NBjOD5r82I",
+    "scheduleId": "SCH-018",
+    "startDate": "2027-02-08",
+    "endDate": "2027-07-27",
+    "workDays": 120,
+    "calendarDays": 170,
+    "location": "Post",
+    "notes": "Rolling editorial and finishing based on revised shoot dates.",
+    "status": "Working assumption",
+    "parentProjectId": "PRJ-ECHOES-OF-THE-VOID",
+    "recordType": "Phase / Episode",
+    "phase": "Post Production",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": []
+  },
+  {
+    "airtableId": "reczw5Dm6EU9z62av",
+    "scheduleId": "SCH-024",
+    "startDate": "2026-11-09",
+    "endDate": "2026-11-20",
+    "workDays": 10,
+    "calendarDays": 12,
+    "location": "New Jersey / NYC",
+    "notes": "Episode block 5; weekends, holidays and Dec. 14-Jan. 3 hiatus off.",
+    "status": "User-directed schedule revision",
+    "parentProjectId": "PRJ-THE-PLAYBOY",
+    "recordType": "Phase / Episode",
+    "phase": "Principal Photography",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recvvqiJDhkpp9Nje"
+    ]
+  }
+]

@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f7fb;
+  --surface: #ffffff;
+  --surface-muted: #f1f0fb;
+  --foreground: #16131f;
+  --muted-foreground: #635f77;
+  --border: #e6e3f5;
+
+  /* Brand — vivid violet + electric cyan, distinct from the 7 project colors */
+  --brand: #7c3aed;
+  --brand-strong: #6d28d9;
+  --brand-foreground: #ffffff;
+  --accent: #06b6d4;
+  --accent-foreground: #ffffff;
+
+  /* Status */
+  --success: #16a34a;
+  --success-bg: #dcfce7;
+  --warning: #d97706;
+  --warning-bg: #fef3c7;
+  --danger: #dc2626;
+  --danger-bg: #fee2e2;
+  --info: #2563eb;
+  --info-bg: #dbeafe;
+
+  /* ZGM Project Colors — mirrors Airtable's "Project Color" single-select */
+  --zgm-pink: #ec4899;
+  --zgm-pink-bg: #fce7f3;
+  --zgm-purple: #a855f7;
+  --zgm-purple-bg: #f3e8ff;
+  --zgm-blue: #3b82f6;
+  --zgm-blue-bg: #dbeafe;
+  --zgm-green: #22c55e;
+  --zgm-green-bg: #dcfce7;
+  --zgm-yellow: #eab308;
+  --zgm-yellow-bg: #fef9c3;
+  --zgm-orange: #f97316;
+  --zgm-orange-bg: #ffedd5;
+  --zgm-red: #ef4444;
+  --zgm-red-bg: #fee2e2;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
+  --color-warning: var(--warning);
+  --color-warning-bg: var(--warning-bg);
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--danger-bg);
+  --color-info: var(--info);
+  --color-info-bg: var(--info-bg);
+
+  --color-zgm-pink: var(--zgm-pink);
+  --color-zgm-pink-bg: var(--zgm-pink-bg);
+  --color-zgm-purple: var(--zgm-purple);
+  --color-zgm-purple-bg: var(--zgm-purple-bg);
+  --color-zgm-blue: var(--zgm-blue);
+  --color-zgm-blue-bg: var(--zgm-blue-bg);
+  --color-zgm-green: var(--zgm-green);
+  --color-zgm-green-bg: var(--zgm-green-bg);
+  --color-zgm-yellow: var(--zgm-yellow);
+  --color-zgm-yellow-bg: var(--zgm-yellow-bg);
+  --color-zgm-orange: var(--zgm-orange);
+  --color-zgm-orange-bg: var(--zgm-orange-bg);
+  --color-zgm-red: var(--zgm-red);
+  --color-zgm-red-bg: var(--zgm-red-bg);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+* {
+  border-color: var(--border);
+}
+
+::selection {
+  background: var(--brand);
+  color: var(--brand-foreground);
+}

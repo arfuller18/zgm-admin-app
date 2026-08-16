@@ -1,0 +1,5963 @@
+[
+  {
+    "airtableId": "rec0Njg1cGyM6OmVg",
+    "shootDayId": "DAY-0035",
+    "date": "2026-10-28",
+    "seasonShootDay": 3,
+    "episodeDay": 3,
+    "dayOfWeek": "Wednesday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "rec0WNYjEPw9GmMnz",
+    "shootDayId": "DAY-0070",
+    "date": "2026-11-20",
+    "seasonShootDay": 50,
+    "episodeDay": 10,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recvvqiJDhkpp9Nje"
+    ],
+    "parentScheduleIds": [
+      "reczw5Dm6EU9z62av"
+    ]
+  },
+  {
+    "airtableId": "rec0ZsTVpB46hsPXY",
+    "shootDayId": "DAY-0294",
+    "date": "2027-07-20",
+    "seasonShootDay": 76,
+    "episodeDay": 6,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec6ws7uWgloj1K9q"
+    ],
+    "parentScheduleIds": [
+      "rec4MrnRzeUY5dP1y"
+    ]
+  },
+  {
+    "airtableId": "rec0m5L7u5NVX2SDa",
+    "shootDayId": "DAY-0024",
+    "date": "2026-10-15",
+    "seasonShootDay": 24,
+    "episodeDay": 4,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recz372AO9qL5b7uX"
+    ],
+    "parentScheduleIds": [
+      "recI4n268KmEmm9QY"
+    ]
+  },
+  {
+    "airtableId": "rec0mNu15r5ynGQFd",
+    "shootDayId": "DAY-0093",
+    "date": "2027-01-05",
+    "seasonShootDay": 65,
+    "episodeDay": 5,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recZVxL4LtT6LEwjc"
+    ],
+    "parentScheduleIds": [
+      "rec7sB7i8FaAzT6hT"
+    ]
+  },
+  {
+    "airtableId": "rec0x4YZhioekHsFb",
+    "shootDayId": "DAY-0039",
+    "date": "2026-10-30",
+    "seasonShootDay": 5,
+    "episodeDay": 5,
+    "dayOfWeek": "Friday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "rec1RJJVn0hEjN7l6",
+    "shootDayId": "DAY-0273",
+    "date": "2027-06-21",
+    "seasonShootDay": 55,
+    "episodeDay": 6,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recAWpwHxddun87YP"
+    ],
+    "parentScheduleIds": [
+      "recZFdZn709rzagFA"
+    ]
+  },
+  {
+    "airtableId": "rec1xrBbOMkc7aHAS",
+    "shootDayId": "DAY-0103",
+    "date": "2027-01-14",
+    "seasonShootDay": 4,
+    "episodeDay": 4,
+    "dayOfWeek": "Thursday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recCmrwOrdbOy4JAj"
+    ],
+    "parentScheduleIds": [
+      "recpwW6E5rjv3CuQg"
+    ]
+  },
+  {
+    "airtableId": "rec2BUsCUihJ2jKTX",
+    "shootDayId": "DAY-0156",
+    "date": "2027-03-19",
+    "seasonShootDay": 48,
+    "episodeDay": 8,
+    "dayOfWeek": "Friday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recEMS6UmF2hJT8gI"
+    ],
+    "parentScheduleIds": [
+      "rec6DTSDqRwktYhHv"
+    ]
+  },
+  {
+    "airtableId": "rec2Q4fYFrwQlTfYs",
+    "shootDayId": "DAY-0124",
+    "date": "2027-02-02",
+    "seasonShootDay": 16,
+    "episodeDay": 7,
+    "dayOfWeek": "Tuesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "receCxw3kDzekbLcH"
+    ],
+    "parentScheduleIds": [
+      "recVYddl2aWcFYXMM"
+    ]
+  },
+  {
+    "airtableId": "rec2WFwmP0iQNgvka",
+    "shootDayId": "DAY-0283",
+    "date": "2027-07-05",
+    "seasonShootDay": 65,
+    "episodeDay": 5,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recA8XpfxfZOQuAfq"
+    ],
+    "parentScheduleIds": [
+      "recQIMYCxSmclesbc"
+    ]
+  },
+  {
+    "airtableId": "rec2pkbQoy4c9UzZW",
+    "shootDayId": "DAY-0038",
+    "date": "2026-10-29",
+    "seasonShootDay": 34,
+    "episodeDay": 6,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recDi2Eq78pRQu3EA"
+    ],
+    "parentScheduleIds": [
+      "recewE0YUp8jdjf86"
+    ]
+  },
+  {
+    "airtableId": "rec2sOl3HaY7SnGPE",
+    "shootDayId": "DAY-0224",
+    "date": "2027-04-28",
+    "seasonShootDay": 18,
+    "episodeDay": 9,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec8jbXBNBAsaMel2"
+    ],
+    "parentScheduleIds": [
+      "recQzG5hdLtRvznoX"
+    ]
+  },
+  {
+    "airtableId": "rec33q1Fk4Au3rwTT",
+    "shootDayId": "DAY-0192",
+    "date": "2027-04-13",
+    "seasonShootDay": 12,
+    "episodeDay": 12,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "rec34tqgvuTS3vP3v",
+    "shootDayId": "DAY-0150",
+    "date": "2027-03-11",
+    "seasonShootDay": 42,
+    "episodeDay": 2,
+    "dayOfWeek": "Thursday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recEMS6UmF2hJT8gI"
+    ],
+    "parentScheduleIds": [
+      "rec6DTSDqRwktYhHv"
+    ]
+  },
+  {
+    "airtableId": "rec399y0Qkow5MC3T",
+    "shootDayId": "DAY-0135",
+    "date": "2027-02-18",
+    "seasonShootDay": 27,
+    "episodeDay": 7,
+    "dayOfWeek": "Thursday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recuHuTTLiIzwfVpa"
+    ],
+    "parentScheduleIds": [
+      "rec4nVTNL6c7Wg8tM"
+    ]
+  },
+  {
+    "airtableId": "rec3BLkG0KjyRRUS9",
+    "shootDayId": "DAY-0036",
+    "date": "2026-10-28",
+    "seasonShootDay": 33,
+    "episodeDay": 5,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recDi2Eq78pRQu3EA"
+    ],
+    "parentScheduleIds": [
+      "recewE0YUp8jdjf86"
+    ]
+  },
+  {
+    "airtableId": "rec3EmFEYqxDrQJR9",
+    "shootDayId": "DAY-0157",
+    "date": "2027-03-22",
+    "seasonShootDay": 49,
+    "episodeDay": 9,
+    "dayOfWeek": "Monday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recEMS6UmF2hJT8gI"
+    ],
+    "parentScheduleIds": [
+      "rec6DTSDqRwktYhHv"
+    ]
+  },
+  {
+    "airtableId": "rec3GN6LoMcxHkzu2",
+    "shootDayId": "DAY-0248",
+    "date": "2027-05-14",
+    "seasonShootDay": 30,
+    "episodeDay": 11,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recod6zb7DAAYxWX4"
+    ],
+    "parentScheduleIds": [
+      "recIlUjiZnLCryapd"
+    ]
+  },
+  {
+    "airtableId": "rec3OrSYOlJkKWrzo",
+    "shootDayId": "DAY-0191",
+    "date": "2027-04-13",
+    "seasonShootDay": 7,
+    "episodeDay": 7,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recFpC33zXioBJHqU"
+    ],
+    "parentScheduleIds": [
+      "recTW1nlyUOnnFdL7"
+    ]
+  },
+  {
+    "airtableId": "rec3T8gzTWGnpjQPU",
+    "shootDayId": "DAY-0059",
+    "date": "2026-11-13",
+    "seasonShootDay": 15,
+    "episodeDay": 15,
+    "dayOfWeek": "Friday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "rec3dvXsNCSpd26Ew",
+    "shootDayId": "DAY-0215",
+    "date": "2027-04-23",
+    "seasonShootDay": 15,
+    "episodeDay": 6,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec8jbXBNBAsaMel2"
+    ],
+    "parentScheduleIds": [
+      "recQzG5hdLtRvznoX"
+    ]
+  },
+  {
+    "airtableId": "rec3kGVhPz1fthv8N",
+    "shootDayId": "DAY-0261",
+    "date": "2027-06-03",
+    "seasonShootDay": 43,
+    "episodeDay": 3,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec2vmRD5xEAViFP8"
+    ],
+    "parentScheduleIds": [
+      "rec2faaHi8RjV51Kd"
+    ]
+  },
+  {
+    "airtableId": "rec3w8o79YUXf0cfZ",
+    "shootDayId": "DAY-0055",
+    "date": "2026-11-11",
+    "seasonShootDay": 13,
+    "episodeDay": 13,
+    "dayOfWeek": "Wednesday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "rec4PdNnm5lR6dEIx",
+    "shootDayId": "DAY-0251",
+    "date": "2027-05-19",
+    "seasonShootDay": 33,
+    "episodeDay": 3,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recR1DjPLaHmoSeBI"
+    ],
+    "parentScheduleIds": [
+      "recBIuVPYyTasK6PQ"
+    ]
+  },
+  {
+    "airtableId": "rec4ReuL6jrg1itEf",
+    "shootDayId": "DAY-0193",
+    "date": "2027-04-14",
+    "seasonShootDay": 66,
+    "episodeDay": 6,
+    "dayOfWeek": "Wednesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "rec34igGiCoBpDunz"
+    ],
+    "parentScheduleIds": [
+      "recKReNdoTvdMgQtL"
+    ]
+  },
+  {
+    "airtableId": "rec4Wg6KP2p0oI4Ji",
+    "shootDayId": "DAY-0077",
+    "date": "2026-11-30",
+    "seasonShootDay": 24,
+    "episodeDay": 24,
+    "dayOfWeek": "Monday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "rec4gh6eXLjuA8C3J",
+    "shootDayId": "DAY-0221",
+    "date": "2027-04-27",
+    "seasonShootDay": 17,
+    "episodeDay": 8,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec8jbXBNBAsaMel2"
+    ],
+    "parentScheduleIds": [
+      "recQzG5hdLtRvznoX"
+    ]
+  },
+  {
+    "airtableId": "rec5ES93syuYGO17x",
+    "shootDayId": "DAY-0057",
+    "date": "2026-11-12",
+    "seasonShootDay": 14,
+    "episodeDay": 14,
+    "dayOfWeek": "Thursday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "rec5EyOTfC5BTWdYV",
+    "shootDayId": "DAY-0211",
+    "date": "2027-04-22",
+    "seasonShootDay": 72,
+    "episodeDay": 2,
+    "dayOfWeek": "Thursday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recW60Fq9R3d2fh8C"
+    ],
+    "parentScheduleIds": [
+      "recGyXiLqWYazW03R"
+    ]
+  },
+  {
+    "airtableId": "rec5Lt7fFFs3KPVU5",
+    "shootDayId": "DAY-0126",
+    "date": "2027-02-04",
+    "seasonShootDay": 18,
+    "episodeDay": 9,
+    "dayOfWeek": "Thursday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "receCxw3kDzekbLcH"
+    ],
+    "parentScheduleIds": [
+      "recVYddl2aWcFYXMM"
+    ]
+  },
+  {
+    "airtableId": "rec5SuqRNCRdJZlwb",
+    "shootDayId": "DAY-0202",
+    "date": "2027-04-19",
+    "seasonShootDay": 69,
+    "episodeDay": 9,
+    "dayOfWeek": "Monday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "rec34igGiCoBpDunz"
+    ],
+    "parentScheduleIds": [
+      "recKReNdoTvdMgQtL"
+    ]
+  },
+  {
+    "airtableId": "rec5jRW8Lk0zqRdqy",
+    "shootDayId": "DAY-0140",
+    "date": "2027-02-25",
+    "seasonShootDay": 32,
+    "episodeDay": 2,
+    "dayOfWeek": "Thursday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recTU8kbe5yyhfHTV"
+    ],
+    "parentScheduleIds": [
+      "reclbMJRD4r8RfLmP"
+    ]
+  },
+  {
+    "airtableId": "rec5zwXeEkxUVcXoy",
+    "shootDayId": "DAY-0110",
+    "date": "2027-01-20",
+    "seasonShootDay": 75,
+    "episodeDay": 5,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recHvvxpd2RrLNju6"
+    ],
+    "parentScheduleIds": [
+      "recIhxk0sgxouCrQK"
+    ]
+  },
+  {
+    "airtableId": "rec68K86QUhZAOGb5",
+    "shootDayId": "DAY-0253",
+    "date": "2027-05-21",
+    "seasonShootDay": 35,
+    "episodeDay": 5,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recR1DjPLaHmoSeBI"
+    ],
+    "parentScheduleIds": [
+      "recBIuVPYyTasK6PQ"
+    ]
+  },
+  {
+    "airtableId": "rec6Jmb6oKHip2H1p",
+    "shootDayId": "DAY-0037",
+    "date": "2026-10-29",
+    "seasonShootDay": 4,
+    "episodeDay": 4,
+    "dayOfWeek": "Thursday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "rec6hiGans0P79n0I",
+    "shootDayId": "DAY-0142",
+    "date": "2027-03-01",
+    "seasonShootDay": 34,
+    "episodeDay": 4,
+    "dayOfWeek": "Monday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recTU8kbe5yyhfHTV"
+    ],
+    "parentScheduleIds": [
+      "reclbMJRD4r8RfLmP"
+    ]
+  },
+  {
+    "airtableId": "rec6n4CYaVjL7EgW6",
+    "shootDayId": "DAY-0295",
+    "date": "2027-07-21",
+    "seasonShootDay": 77,
+    "episodeDay": 7,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec6ws7uWgloj1K9q"
+    ],
+    "parentScheduleIds": [
+      "rec4MrnRzeUY5dP1y"
+    ]
+  },
+  {
+    "airtableId": "rec6ujLOomVzhqcIr",
+    "shootDayId": "DAY-0141",
+    "date": "2027-02-26",
+    "seasonShootDay": 33,
+    "episodeDay": 3,
+    "dayOfWeek": "Friday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recTU8kbe5yyhfHTV"
+    ],
+    "parentScheduleIds": [
+      "reclbMJRD4r8RfLmP"
+    ]
+  },
+  {
+    "airtableId": "rec7CupOvFwTvHPbI",
+    "shootDayId": "DAY-0050",
+    "date": "2026-11-06",
+    "seasonShootDay": 40,
+    "episodeDay": 12,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recDi2Eq78pRQu3EA"
+    ],
+    "parentScheduleIds": [
+      "recewE0YUp8jdjf86"
+    ]
+  },
+  {
+    "airtableId": "rec7LM1OEd90GOuJ3",
+    "shootDayId": "DAY-0165",
+    "date": "2027-03-30",
+    "seasonShootDay": 2,
+    "episodeDay": 2,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "rec7XuQE7dLH1Zskz",
+    "shootDayId": "DAY-0164",
+    "date": "2027-03-30",
+    "seasonShootDay": 55,
+    "episodeDay": 6,
+    "dayOfWeek": "Tuesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recPQXccd1bkhnx51"
+    ],
+    "parentScheduleIds": [
+      "recFcgECITJJm5ffM"
+    ]
+  },
+  {
+    "airtableId": "rec7a21n2yCoEsT7n",
+    "shootDayId": "DAY-0012",
+    "date": "2026-09-29",
+    "seasonShootDay": 12,
+    "episodeDay": 2,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recrvDjQ5PDWawKJP"
+    ],
+    "parentScheduleIds": [
+      "rec1mrSciZUcIbrNe"
+    ]
+  },
+  {
+    "airtableId": "rec81FXtwuAHURFzn",
+    "shootDayId": "DAY-0003",
+    "date": "2026-09-16",
+    "seasonShootDay": 3,
+    "episodeDay": 3,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recdzgfL13ocW1Nsc"
+    ],
+    "parentScheduleIds": [
+      "rec2oBUj5yI0Xag5V"
+    ]
+  },
+  {
+    "airtableId": "rec83wIRMRtbc5mji",
+    "shootDayId": "DAY-0241",
+    "date": "2027-05-06",
+    "seasonShootDay": 29,
+    "episodeDay": 29,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "rec8Fp4MoS6gD2rx3",
+    "shootDayId": "DAY-0069",
+    "date": "2026-11-20",
+    "seasonShootDay": 20,
+    "episodeDay": 20,
+    "dayOfWeek": "Friday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "rec8HJuv3JYNmxpDG",
+    "shootDayId": "DAY-0266",
+    "date": "2027-06-10",
+    "seasonShootDay": 48,
+    "episodeDay": 8,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec2vmRD5xEAViFP8"
+    ],
+    "parentScheduleIds": [
+      "rec2faaHi8RjV51Kd"
+    ]
+  },
+  {
+    "airtableId": "rec8bTvL18Pio0vKq",
+    "shootDayId": "DAY-0106",
+    "date": "2027-01-15",
+    "seasonShootDay": 73,
+    "episodeDay": 3,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recHvvxpd2RrLNju6"
+    ],
+    "parentScheduleIds": [
+      "recIhxk0sgxouCrQK"
+    ]
+  },
+  {
+    "airtableId": "rec8rK5BZ0oPFNaZj",
+    "shootDayId": "DAY-0242",
+    "date": "2027-05-07",
+    "seasonShootDay": 25,
+    "episodeDay": 6,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recod6zb7DAAYxWX4"
+    ],
+    "parentScheduleIds": [
+      "recIlUjiZnLCryapd"
+    ]
+  },
+  {
+    "airtableId": "rec9KJpgxY4Jcv7ug",
+    "shootDayId": "DAY-0005",
+    "date": "2026-09-18",
+    "seasonShootDay": 5,
+    "episodeDay": 5,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recdzgfL13ocW1Nsc"
+    ],
+    "parentScheduleIds": [
+      "rec2oBUj5yI0Xag5V"
+    ]
+  },
+  {
+    "airtableId": "rec9MIwbWym8PpI2h",
+    "shootDayId": "DAY-0019",
+    "date": "2026-10-08",
+    "seasonShootDay": 19,
+    "episodeDay": 9,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recrvDjQ5PDWawKJP"
+    ],
+    "parentScheduleIds": [
+      "rec1mrSciZUcIbrNe"
+    ]
+  },
+  {
+    "airtableId": "rec9ezwEYaDELZNCR",
+    "shootDayId": "DAY-0031",
+    "date": "2026-10-26",
+    "seasonShootDay": 1,
+    "episodeDay": 1,
+    "dayOfWeek": "Monday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "rec9s2BLgWmZOb7qz",
+    "shootDayId": "DAY-0137",
+    "date": "2027-02-22",
+    "seasonShootDay": 29,
+    "episodeDay": 9,
+    "dayOfWeek": "Monday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recuHuTTLiIzwfVpa"
+    ],
+    "parentScheduleIds": [
+      "rec4nVTNL6c7Wg8tM"
+    ]
+  },
+  {
+    "airtableId": "recARsxG768cwW0hm",
+    "shootDayId": "DAY-0073",
+    "date": "2026-11-24",
+    "seasonShootDay": 22,
+    "episodeDay": 22,
+    "dayOfWeek": "Tuesday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "recAnxAy1Jv1tBQBJ",
+    "shootDayId": "DAY-0016",
+    "date": "2026-10-05",
+    "seasonShootDay": 16,
+    "episodeDay": 6,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recrvDjQ5PDWawKJP"
+    ],
+    "parentScheduleIds": [
+      "rec1mrSciZUcIbrNe"
+    ]
+  },
+  {
+    "airtableId": "recAwtQGOytrnYav4",
+    "shootDayId": "DAY-0159",
+    "date": "2027-03-24",
+    "seasonShootDay": 51,
+    "episodeDay": 2,
+    "dayOfWeek": "Wednesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recPQXccd1bkhnx51"
+    ],
+    "parentScheduleIds": [
+      "recFcgECITJJm5ffM"
+    ]
+  },
+  {
+    "airtableId": "recBQ12vaTg4aiUqk",
+    "shootDayId": "DAY-0247",
+    "date": "2027-05-13",
+    "seasonShootDay": 29,
+    "episodeDay": 10,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recod6zb7DAAYxWX4"
+    ],
+    "parentScheduleIds": [
+      "recIlUjiZnLCryapd"
+    ]
+  },
+  {
+    "airtableId": "recCHRVh8nWpw7DEn",
+    "shootDayId": "DAY-0042",
+    "date": "2026-11-02",
+    "seasonShootDay": 36,
+    "episodeDay": 8,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recDi2Eq78pRQu3EA"
+    ],
+    "parentScheduleIds": [
+      "recewE0YUp8jdjf86"
+    ]
+  },
+  {
+    "airtableId": "recCLOIAlbN2d1Ivt",
+    "shootDayId": "DAY-0099",
+    "date": "2027-01-12",
+    "seasonShootDay": 2,
+    "episodeDay": 2,
+    "dayOfWeek": "Tuesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recCmrwOrdbOy4JAj"
+    ],
+    "parentScheduleIds": [
+      "recpwW6E5rjv3CuQg"
+    ]
+  },
+  {
+    "airtableId": "recCSTsSTLQKEa9Sk",
+    "shootDayId": "DAY-0076",
+    "date": "2026-11-25",
+    "seasonShootDay": 53,
+    "episodeDay": 3,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recHjcxNobtfTO3KY"
+    ],
+    "parentScheduleIds": [
+      "rec4MRRiGJyLDk5Pm"
+    ]
+  },
+  {
+    "airtableId": "recCT1ye8d9SNoEOB",
+    "shootDayId": "DAY-0052",
+    "date": "2026-11-09",
+    "seasonShootDay": 41,
+    "episodeDay": 1,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recvvqiJDhkpp9Nje"
+    ],
+    "parentScheduleIds": [
+      "reczw5Dm6EU9z62av"
+    ]
+  },
+  {
+    "airtableId": "recCZSP3VYa8ElgCU",
+    "shootDayId": "DAY-0166",
+    "date": "2027-03-31",
+    "seasonShootDay": 56,
+    "episodeDay": 7,
+    "dayOfWeek": "Wednesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recPQXccd1bkhnx51"
+    ],
+    "parentScheduleIds": [
+      "recFcgECITJJm5ffM"
+    ]
+  },
+  {
+    "airtableId": "recCkxXS4g5jwmrVo",
+    "shootDayId": "DAY-0169",
+    "date": "2027-04-01",
+    "seasonShootDay": 4,
+    "episodeDay": 4,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "recDfz5t2Mk1JD5tr",
+    "shootDayId": "DAY-0236",
+    "date": "2027-05-04",
+    "seasonShootDay": 22,
+    "episodeDay": 3,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recod6zb7DAAYxWX4"
+    ],
+    "parentScheduleIds": [
+      "recIlUjiZnLCryapd"
+    ]
+  },
+  {
+    "airtableId": "recDnGinfXPKdR37W",
+    "shootDayId": "DAY-0227",
+    "date": "2027-04-29",
+    "seasonShootDay": 19,
+    "episodeDay": 10,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec8jbXBNBAsaMel2"
+    ],
+    "parentScheduleIds": [
+      "recQzG5hdLtRvznoX"
+    ]
+  },
+  {
+    "airtableId": "recDs5owyqPPgqvpO",
+    "shootDayId": "DAY-0185",
+    "date": "2027-04-09",
+    "seasonShootDay": 5,
+    "episodeDay": 5,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recFpC33zXioBJHqU"
+    ],
+    "parentScheduleIds": [
+      "recTW1nlyUOnnFdL7"
+    ]
+  },
+  {
+    "airtableId": "recDyf4qyvp5m2pyf",
+    "shootDayId": "DAY-0246",
+    "date": "2027-05-12",
+    "seasonShootDay": 28,
+    "episodeDay": 9,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recod6zb7DAAYxWX4"
+    ],
+    "parentScheduleIds": [
+      "recIlUjiZnLCryapd"
+    ]
+  },
+  {
+    "airtableId": "recE6sfUoagomEeqW",
+    "shootDayId": "DAY-0109",
+    "date": "2027-01-20",
+    "seasonShootDay": 7,
+    "episodeDay": 7,
+    "dayOfWeek": "Wednesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recCmrwOrdbOy4JAj"
+    ],
+    "parentScheduleIds": [
+      "recpwW6E5rjv3CuQg"
+    ]
+  },
+  {
+    "airtableId": "recEFx5gUUV0qGrct",
+    "shootDayId": "DAY-0262",
+    "date": "2027-06-04",
+    "seasonShootDay": 44,
+    "episodeDay": 4,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec2vmRD5xEAViFP8"
+    ],
+    "parentScheduleIds": [
+      "rec2faaHi8RjV51Kd"
+    ]
+  },
+  {
+    "airtableId": "recEfXlsXAN4kx62V",
+    "shootDayId": "DAY-0127",
+    "date": "2027-02-05",
+    "seasonShootDay": 19,
+    "episodeDay": 10,
+    "dayOfWeek": "Friday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "receCxw3kDzekbLcH"
+    ],
+    "parentScheduleIds": [
+      "recVYddl2aWcFYXMM"
+    ]
+  },
+  {
+    "airtableId": "recEtWtq7xoejYHQ3",
+    "shootDayId": "DAY-0002",
+    "date": "2026-09-15",
+    "seasonShootDay": 2,
+    "episodeDay": 2,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recdzgfL13ocW1Nsc"
+    ],
+    "parentScheduleIds": [
+      "rec2oBUj5yI0Xag5V"
+    ]
+  },
+  {
+    "airtableId": "recFuoTkhvHcqZfam",
+    "shootDayId": "DAY-0222",
+    "date": "2027-04-27",
+    "seasonShootDay": 22,
+    "episodeDay": 22,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "recGbtaXc2mPsXIsD",
+    "shootDayId": "DAY-0082",
+    "date": "2026-12-03",
+    "seasonShootDay": 57,
+    "episodeDay": 7,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recHjcxNobtfTO3KY"
+    ],
+    "parentScheduleIds": [
+      "rec4MRRiGJyLDk5Pm"
+    ]
+  },
+  {
+    "airtableId": "recH8irkIoPLjrvQd",
+    "shootDayId": "DAY-0206",
+    "date": "2027-04-20",
+    "seasonShootDay": 12,
+    "episodeDay": 3,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec8jbXBNBAsaMel2"
+    ],
+    "parentScheduleIds": [
+      "recQzG5hdLtRvznoX"
+    ]
+  },
+  {
+    "airtableId": "recHPlKoYuUEk4f8z",
+    "shootDayId": "DAY-0274",
+    "date": "2027-06-22",
+    "seasonShootDay": 56,
+    "episodeDay": 7,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recAWpwHxddun87YP"
+    ],
+    "parentScheduleIds": [
+      "recZFdZn709rzagFA"
+    ]
+  },
+  {
+    "airtableId": "recHfLLjNTerTFFAe",
+    "shootDayId": "DAY-0107",
+    "date": "2027-01-19",
+    "seasonShootDay": 6,
+    "episodeDay": 6,
+    "dayOfWeek": "Tuesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recCmrwOrdbOy4JAj"
+    ],
+    "parentScheduleIds": [
+      "recpwW6E5rjv3CuQg"
+    ]
+  },
+  {
+    "airtableId": "recI1L3r5yB6XEY6t",
+    "shootDayId": "DAY-0238",
+    "date": "2027-05-05",
+    "seasonShootDay": 23,
+    "episodeDay": 4,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recod6zb7DAAYxWX4"
+    ],
+    "parentScheduleIds": [
+      "recIlUjiZnLCryapd"
+    ]
+  },
+  {
+    "airtableId": "recI6JW09AAyB2iHN",
+    "shootDayId": "DAY-0144",
+    "date": "2027-03-03",
+    "seasonShootDay": 36,
+    "episodeDay": 6,
+    "dayOfWeek": "Wednesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recTU8kbe5yyhfHTV"
+    ],
+    "parentScheduleIds": [
+      "reclbMJRD4r8RfLmP"
+    ]
+  },
+  {
+    "airtableId": "recI9KEcvDZDPWcc7",
+    "shootDayId": "DAY-0102",
+    "date": "2027-01-13",
+    "seasonShootDay": 71,
+    "episodeDay": 1,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recHvvxpd2RrLNju6"
+    ],
+    "parentScheduleIds": [
+      "recIhxk0sgxouCrQK"
+    ]
+  },
+  {
+    "airtableId": "recIMvHbvNQugSHyw",
+    "shootDayId": "DAY-0013",
+    "date": "2026-09-30",
+    "seasonShootDay": 13,
+    "episodeDay": 3,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recrvDjQ5PDWawKJP"
+    ],
+    "parentScheduleIds": [
+      "rec1mrSciZUcIbrNe"
+    ]
+  },
+  {
+    "airtableId": "recIObc9ZkfrZDpTw",
+    "shootDayId": "DAY-0131",
+    "date": "2027-02-11",
+    "seasonShootDay": 23,
+    "episodeDay": 3,
+    "dayOfWeek": "Thursday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recuHuTTLiIzwfVpa"
+    ],
+    "parentScheduleIds": [
+      "rec4nVTNL6c7Wg8tM"
+    ]
+  },
+  {
+    "airtableId": "recIwD5SzomCSUjdp",
+    "shootDayId": "DAY-0280",
+    "date": "2027-06-30",
+    "seasonShootDay": 62,
+    "episodeDay": 2,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recA8XpfxfZOQuAfq"
+    ],
+    "parentScheduleIds": [
+      "recQIMYCxSmclesbc"
+    ]
+  },
+  {
+    "airtableId": "recIzZRDlKiZeMNCu",
+    "shootDayId": "DAY-0084",
+    "date": "2026-12-07",
+    "seasonShootDay": 59,
+    "episodeDay": 9,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recHjcxNobtfTO3KY"
+    ],
+    "parentScheduleIds": [
+      "rec4MRRiGJyLDk5Pm"
+    ]
+  },
+  {
+    "airtableId": "recJEVgoan0X7HrgA",
+    "shootDayId": "DAY-0252",
+    "date": "2027-05-20",
+    "seasonShootDay": 34,
+    "episodeDay": 4,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recR1DjPLaHmoSeBI"
+    ],
+    "parentScheduleIds": [
+      "recBIuVPYyTasK6PQ"
+    ]
+  },
+  {
+    "airtableId": "recJOodUCt74AIv8g",
+    "shootDayId": "DAY-0204",
+    "date": "2027-04-19",
+    "seasonShootDay": 16,
+    "episodeDay": 16,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "recJjaIlQhkOu3egs",
+    "shootDayId": "DAY-0287",
+    "date": "2027-07-09",
+    "seasonShootDay": 69,
+    "episodeDay": 9,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recA8XpfxfZOQuAfq"
+    ],
+    "parentScheduleIds": [
+      "recQIMYCxSmclesbc"
+    ]
+  },
+  {
+    "airtableId": "recJwOH2h4KMNIeo0",
+    "shootDayId": "DAY-0268",
+    "date": "2027-06-14",
+    "seasonShootDay": 50,
+    "episodeDay": 1,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recAWpwHxddun87YP"
+    ],
+    "parentScheduleIds": [
+      "recZFdZn709rzagFA"
+    ]
+  },
+  {
+    "airtableId": "recKBn2NzrAKOLTTS",
+    "shootDayId": "DAY-0113",
+    "date": "2027-01-22",
+    "seasonShootDay": 9,
+    "episodeDay": 9,
+    "dayOfWeek": "Friday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recCmrwOrdbOy4JAj"
+    ],
+    "parentScheduleIds": [
+      "recpwW6E5rjv3CuQg"
+    ]
+  },
+  {
+    "airtableId": "recKF7djLPd0jhm3P",
+    "shootDayId": "DAY-0088",
+    "date": "2026-12-09",
+    "seasonShootDay": 61,
+    "episodeDay": 1,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recZVxL4LtT6LEwjc"
+    ],
+    "parentScheduleIds": [
+      "rec7sB7i8FaAzT6hT"
+    ]
+  },
+  {
+    "airtableId": "recKkTXGTavrEPbz2",
+    "shootDayId": "DAY-0216",
+    "date": "2027-04-23",
+    "seasonShootDay": 20,
+    "episodeDay": 20,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "recKnmdV38dD0xLVU",
+    "shootDayId": "DAY-0201",
+    "date": "2027-04-16",
+    "seasonShootDay": 15,
+    "episodeDay": 15,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "recKohKWqdwZRNIhg",
+    "shootDayId": "DAY-0032",
+    "date": "2026-10-26",
+    "seasonShootDay": 31,
+    "episodeDay": 3,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recDi2Eq78pRQu3EA"
+    ],
+    "parentScheduleIds": [
+      "recewE0YUp8jdjf86"
+    ]
+  },
+  {
+    "airtableId": "recL7GYJsznIgciRJ",
+    "shootDayId": "DAY-0067",
+    "date": "2026-11-19",
+    "seasonShootDay": 19,
+    "episodeDay": 19,
+    "dayOfWeek": "Thursday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "recLPjXgdl9kd0DL3",
+    "shootDayId": "DAY-0116",
+    "date": "2027-01-25",
+    "seasonShootDay": 78,
+    "episodeDay": 8,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recHvvxpd2RrLNju6"
+    ],
+    "parentScheduleIds": [
+      "recIhxk0sgxouCrQK"
+    ]
+  },
+  {
+    "airtableId": "recLVUd0bKCD2HEMB",
+    "shootDayId": "DAY-0018",
+    "date": "2026-10-07",
+    "seasonShootDay": 18,
+    "episodeDay": 8,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recrvDjQ5PDWawKJP"
+    ],
+    "parentScheduleIds": [
+      "rec1mrSciZUcIbrNe"
+    ]
+  },
+  {
+    "airtableId": "recLaq5fQSfGTKLm7",
+    "shootDayId": "DAY-0200",
+    "date": "2027-04-16",
+    "seasonShootDay": 10,
+    "episodeDay": 1,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec8jbXBNBAsaMel2"
+    ],
+    "parentScheduleIds": [
+      "recQzG5hdLtRvznoX"
+    ]
+  },
+  {
+    "airtableId": "recM6cp1hafRHWcum",
+    "shootDayId": "DAY-0029",
+    "date": "2026-10-22",
+    "seasonShootDay": 29,
+    "episodeDay": 1,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recDi2Eq78pRQu3EA"
+    ],
+    "parentScheduleIds": [
+      "recewE0YUp8jdjf86"
+    ]
+  },
+  {
+    "airtableId": "recM9mUjEhcZJStkU",
+    "shootDayId": "DAY-0255",
+    "date": "2027-05-25",
+    "seasonShootDay": 37,
+    "episodeDay": 7,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recR1DjPLaHmoSeBI"
+    ],
+    "parentScheduleIds": [
+      "recBIuVPYyTasK6PQ"
+    ]
+  },
+  {
+    "airtableId": "recMEt3fwPjlnVJ6d",
+    "shootDayId": "DAY-0186",
+    "date": "2027-04-09",
+    "seasonShootDay": 10,
+    "episodeDay": 10,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "recMLcCROodgUPrB6",
+    "shootDayId": "DAY-0194",
+    "date": "2027-04-14",
+    "seasonShootDay": 8,
+    "episodeDay": 8,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recFpC33zXioBJHqU"
+    ],
+    "parentScheduleIds": [
+      "recTW1nlyUOnnFdL7"
+    ]
+  },
+  {
+    "airtableId": "recMVjvCOoVL7zZ3P",
+    "shootDayId": "DAY-0045",
+    "date": "2026-11-04",
+    "seasonShootDay": 8,
+    "episodeDay": 8,
+    "dayOfWeek": "Wednesday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "recMWcarEtYTGyk9o",
+    "shootDayId": "DAY-0289",
+    "date": "2027-07-13",
+    "seasonShootDay": 71,
+    "episodeDay": 1,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec6ws7uWgloj1K9q"
+    ],
+    "parentScheduleIds": [
+      "rec4MrnRzeUY5dP1y"
+    ]
+  },
+  {
+    "airtableId": "recMYBjbviDmefWiU",
+    "shootDayId": "DAY-0085",
+    "date": "2026-12-08",
+    "seasonShootDay": 26,
+    "episodeDay": 1,
+    "dayOfWeek": "Tuesday",
+    "location": "Africa",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr",
+      "recW9ZbRaaTwYzQXv"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "recMZ12O9IoTMxKQH",
+    "shootDayId": "DAY-0228",
+    "date": "2027-04-29",
+    "seasonShootDay": 24,
+    "episodeDay": 24,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "recMbdoe3hf3BUdfn",
+    "shootDayId": "DAY-0043",
+    "date": "2026-11-03",
+    "seasonShootDay": 7,
+    "episodeDay": 7,
+    "dayOfWeek": "Tuesday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "recMqODo116Yuq2qb",
+    "shootDayId": "DAY-0272",
+    "date": "2027-06-18",
+    "seasonShootDay": 54,
+    "episodeDay": 5,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recAWpwHxddun87YP"
+    ],
+    "parentScheduleIds": [
+      "recZFdZn709rzagFA"
+    ]
+  },
+  {
+    "airtableId": "recMwL3gFDcaKoAW3",
+    "shootDayId": "DAY-0081",
+    "date": "2026-12-02",
+    "seasonShootDay": 56,
+    "episodeDay": 6,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recHjcxNobtfTO3KY"
+    ],
+    "parentScheduleIds": [
+      "rec4MRRiGJyLDk5Pm"
+    ]
+  },
+  {
+    "airtableId": "recNEbKypRM7I8cZL",
+    "shootDayId": "DAY-0129",
+    "date": "2027-02-09",
+    "seasonShootDay": 21,
+    "episodeDay": 1,
+    "dayOfWeek": "Tuesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recuHuTTLiIzwfVpa"
+    ],
+    "parentScheduleIds": [
+      "rec4nVTNL6c7Wg8tM"
+    ]
+  },
+  {
+    "airtableId": "recNJlj7b4MVtmneu",
+    "shootDayId": "DAY-0265",
+    "date": "2027-06-09",
+    "seasonShootDay": 47,
+    "episodeDay": 7,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec2vmRD5xEAViFP8"
+    ],
+    "parentScheduleIds": [
+      "rec2faaHi8RjV51Kd"
+    ]
+  },
+  {
+    "airtableId": "recNU9ZWZoJjRHInp",
+    "shootDayId": "DAY-0058",
+    "date": "2026-11-12",
+    "seasonShootDay": 44,
+    "episodeDay": 4,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recvvqiJDhkpp9Nje"
+    ],
+    "parentScheduleIds": [
+      "reczw5Dm6EU9z62av"
+    ]
+  },
+  {
+    "airtableId": "recNZEPCknSVgbt1L",
+    "shootDayId": "DAY-0151",
+    "date": "2027-03-12",
+    "seasonShootDay": 43,
+    "episodeDay": 3,
+    "dayOfWeek": "Friday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recEMS6UmF2hJT8gI"
+    ],
+    "parentScheduleIds": [
+      "rec6DTSDqRwktYhHv"
+    ]
+  },
+  {
+    "airtableId": "recOQ7WEwcLCTMzr3",
+    "shootDayId": "DAY-0139",
+    "date": "2027-02-24",
+    "seasonShootDay": 31,
+    "episodeDay": 1,
+    "dayOfWeek": "Wednesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recTU8kbe5yyhfHTV"
+    ],
+    "parentScheduleIds": [
+      "reclbMJRD4r8RfLmP"
+    ]
+  },
+  {
+    "airtableId": "recOVSFIKJB6Gssje",
+    "shootDayId": "DAY-0223",
+    "date": "2027-04-28",
+    "seasonShootDay": 76,
+    "episodeDay": 6,
+    "dayOfWeek": "Wednesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recW60Fq9R3d2fh8C"
+    ],
+    "parentScheduleIds": [
+      "recGyXiLqWYazW03R"
+    ]
+  },
+  {
+    "airtableId": "recOXVejUmlIsYBKf",
+    "shootDayId": "DAY-0026",
+    "date": "2026-10-19",
+    "seasonShootDay": 26,
+    "episodeDay": 6,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recz372AO9qL5b7uX"
+    ],
+    "parentScheduleIds": [
+      "recI4n268KmEmm9QY"
+    ]
+  },
+  {
+    "airtableId": "recOgbwE0Nuvp6Crc",
+    "shootDayId": "DAY-0021",
+    "date": "2026-10-12",
+    "seasonShootDay": 21,
+    "episodeDay": 1,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recz372AO9qL5b7uX"
+    ],
+    "parentScheduleIds": [
+      "recI4n268KmEmm9QY"
+    ]
+  },
+  {
+    "airtableId": "recOsVmLzacxQZumu",
+    "shootDayId": "DAY-0196",
+    "date": "2027-04-15",
+    "seasonShootDay": 67,
+    "episodeDay": 7,
+    "dayOfWeek": "Thursday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "rec34igGiCoBpDunz"
+    ],
+    "parentScheduleIds": [
+      "recKReNdoTvdMgQtL"
+    ]
+  },
+  {
+    "airtableId": "recPDdGf5IpH8Vk2d",
+    "shootDayId": "DAY-0208",
+    "date": "2027-04-21",
+    "seasonShootDay": 71,
+    "episodeDay": 1,
+    "dayOfWeek": "Wednesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recW60Fq9R3d2fh8C"
+    ],
+    "parentScheduleIds": [
+      "recGyXiLqWYazW03R"
+    ]
+  },
+  {
+    "airtableId": "recPGwTUzIoiMOKDT",
+    "shootDayId": "DAY-0158",
+    "date": "2027-03-23",
+    "seasonShootDay": 50,
+    "episodeDay": 1,
+    "dayOfWeek": "Tuesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recPQXccd1bkhnx51"
+    ],
+    "parentScheduleIds": [
+      "recFcgECITJJm5ffM"
+    ]
+  },
+  {
+    "airtableId": "recPcrZiQES02to5X",
+    "shootDayId": "DAY-0263",
+    "date": "2027-06-07",
+    "seasonShootDay": 45,
+    "episodeDay": 5,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec2vmRD5xEAViFP8"
+    ],
+    "parentScheduleIds": [
+      "rec2faaHi8RjV51Kd"
+    ]
+  },
+  {
+    "airtableId": "recQWiXD3oPRRsYxd",
+    "shootDayId": "DAY-0133",
+    "date": "2027-02-16",
+    "seasonShootDay": 25,
+    "episodeDay": 5,
+    "dayOfWeek": "Tuesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recuHuTTLiIzwfVpa"
+    ],
+    "parentScheduleIds": [
+      "rec4nVTNL6c7Wg8tM"
+    ]
+  },
+  {
+    "airtableId": "recQZFeteQIicK2j0",
+    "shootDayId": "DAY-0184",
+    "date": "2027-04-09",
+    "seasonShootDay": 63,
+    "episodeDay": 3,
+    "dayOfWeek": "Friday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "rec34igGiCoBpDunz"
+    ],
+    "parentScheduleIds": [
+      "recKReNdoTvdMgQtL"
+    ]
+  },
+  {
+    "airtableId": "recQcKURS3x0ejLnO",
+    "shootDayId": "DAY-0041",
+    "date": "2026-11-02",
+    "seasonShootDay": 6,
+    "episodeDay": 6,
+    "dayOfWeek": "Monday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "recQl5FncorEDCmG0",
+    "shootDayId": "DAY-0022",
+    "date": "2026-10-13",
+    "seasonShootDay": 22,
+    "episodeDay": 2,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recz372AO9qL5b7uX"
+    ],
+    "parentScheduleIds": [
+      "recI4n268KmEmm9QY"
+    ]
+  },
+  {
+    "airtableId": "recQpchjJYNWd1fio",
+    "shootDayId": "DAY-0117",
+    "date": "2027-01-26",
+    "seasonShootDay": 11,
+    "episodeDay": 2,
+    "dayOfWeek": "Tuesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "receCxw3kDzekbLcH"
+    ],
+    "parentScheduleIds": [
+      "recVYddl2aWcFYXMM"
+    ]
+  },
+  {
+    "airtableId": "recQxEYlKWKmCiM6D",
+    "shootDayId": "DAY-0178",
+    "date": "2027-04-07",
+    "seasonShootDay": 61,
+    "episodeDay": 1,
+    "dayOfWeek": "Wednesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "rec34igGiCoBpDunz"
+    ],
+    "parentScheduleIds": [
+      "recKReNdoTvdMgQtL"
+    ]
+  },
+  {
+    "airtableId": "recR2pPfE5I73HENJ",
+    "shootDayId": "DAY-0111",
+    "date": "2027-01-21",
+    "seasonShootDay": 8,
+    "episodeDay": 8,
+    "dayOfWeek": "Thursday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recCmrwOrdbOy4JAj"
+    ],
+    "parentScheduleIds": [
+      "recpwW6E5rjv3CuQg"
+    ]
+  },
+  {
+    "airtableId": "recRB6oi7QukO3676",
+    "shootDayId": "DAY-0044",
+    "date": "2026-11-03",
+    "seasonShootDay": 37,
+    "episodeDay": 9,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recDi2Eq78pRQu3EA"
+    ],
+    "parentScheduleIds": [
+      "recewE0YUp8jdjf86"
+    ]
+  },
+  {
+    "airtableId": "recRUuufqdHePojEB",
+    "shootDayId": "DAY-0180",
+    "date": "2027-04-07",
+    "seasonShootDay": 8,
+    "episodeDay": 8,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "recRckDs8TcnU9aW6",
+    "shootDayId": "DAY-0048",
+    "date": "2026-11-05",
+    "seasonShootDay": 39,
+    "episodeDay": 11,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recDi2Eq78pRQu3EA"
+    ],
+    "parentScheduleIds": [
+      "recewE0YUp8jdjf86"
+    ]
+  },
+  {
+    "airtableId": "recRvn0PqzogJ1DxA",
+    "shootDayId": "DAY-0078",
+    "date": "2026-11-30",
+    "seasonShootDay": 54,
+    "episodeDay": 4,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recHjcxNobtfTO3KY"
+    ],
+    "parentScheduleIds": [
+      "rec4MRRiGJyLDk5Pm"
+    ]
+  },
+  {
+    "airtableId": "recS1oEK57F1pF7mA",
+    "shootDayId": "DAY-0009",
+    "date": "2026-09-24",
+    "seasonShootDay": 9,
+    "episodeDay": 9,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recdzgfL13ocW1Nsc"
+    ],
+    "parentScheduleIds": [
+      "rec2oBUj5yI0Xag5V"
+    ]
+  },
+  {
+    "airtableId": "recSARMsqkUQnv5js",
+    "shootDayId": "DAY-0115",
+    "date": "2027-01-25",
+    "seasonShootDay": 10,
+    "episodeDay": 1,
+    "dayOfWeek": "Monday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "receCxw3kDzekbLcH"
+    ],
+    "parentScheduleIds": [
+      "recVYddl2aWcFYXMM"
+    ]
+  },
+  {
+    "airtableId": "recSOHbgizO9xZFqq",
+    "shootDayId": "DAY-0138",
+    "date": "2027-02-23",
+    "seasonShootDay": 30,
+    "episodeDay": 10,
+    "dayOfWeek": "Tuesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recuHuTTLiIzwfVpa"
+    ],
+    "parentScheduleIds": [
+      "rec4nVTNL6c7Wg8tM"
+    ]
+  },
+  {
+    "airtableId": "recSQaIgWAX97YLCw",
+    "shootDayId": "DAY-0226",
+    "date": "2027-04-29",
+    "seasonShootDay": 77,
+    "episodeDay": 7,
+    "dayOfWeek": "Thursday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recW60Fq9R3d2fh8C"
+    ],
+    "parentScheduleIds": [
+      "recGyXiLqWYazW03R"
+    ]
+  },
+  {
+    "airtableId": "recSesSWFarVSy6Lp",
+    "shootDayId": "DAY-0004",
+    "date": "2026-09-17",
+    "seasonShootDay": 4,
+    "episodeDay": 4,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recdzgfL13ocW1Nsc"
+    ],
+    "parentScheduleIds": [
+      "rec2oBUj5yI0Xag5V"
+    ]
+  },
+  {
+    "airtableId": "recSwvb1lucuoOfGj",
+    "shootDayId": "DAY-0298",
+    "date": "2027-07-26",
+    "seasonShootDay": 80,
+    "episodeDay": 10,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec6ws7uWgloj1K9q"
+    ],
+    "parentScheduleIds": [
+      "rec4MrnRzeUY5dP1y"
+    ]
+  },
+  {
+    "airtableId": "recTTfnBqy3zQfp0j",
+    "shootDayId": "DAY-0134",
+    "date": "2027-02-17",
+    "seasonShootDay": 26,
+    "episodeDay": 6,
+    "dayOfWeek": "Wednesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recuHuTTLiIzwfVpa"
+    ],
+    "parentScheduleIds": [
+      "rec4nVTNL6c7Wg8tM"
+    ]
+  },
+  {
+    "airtableId": "recTV93RP9dQuAWm2",
+    "shootDayId": "DAY-0006",
+    "date": "2026-09-21",
+    "seasonShootDay": 6,
+    "episodeDay": 6,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recdzgfL13ocW1Nsc"
+    ],
+    "parentScheduleIds": [
+      "rec2oBUj5yI0Xag5V"
+    ]
+  },
+  {
+    "airtableId": "recTttOQUibsIqY90",
+    "shootDayId": "DAY-0254",
+    "date": "2027-05-24",
+    "seasonShootDay": 36,
+    "episodeDay": 6,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recR1DjPLaHmoSeBI"
+    ],
+    "parentScheduleIds": [
+      "recBIuVPYyTasK6PQ"
+    ]
+  },
+  {
+    "airtableId": "recUTKmD1DeFOsPlQ",
+    "shootDayId": "DAY-0270",
+    "date": "2027-06-16",
+    "seasonShootDay": 52,
+    "episodeDay": 3,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recAWpwHxddun87YP"
+    ],
+    "parentScheduleIds": [
+      "recZFdZn709rzagFA"
+    ]
+  },
+  {
+    "airtableId": "recVCTObeuJi8kFGR",
+    "shootDayId": "DAY-0232",
+    "date": "2027-05-03",
+    "seasonShootDay": 79,
+    "episodeDay": 9,
+    "dayOfWeek": "Monday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recW60Fq9R3d2fh8C"
+    ],
+    "parentScheduleIds": [
+      "recGyXiLqWYazW03R"
+    ]
+  },
+  {
+    "airtableId": "recVLWUHGiC9Vld7B",
+    "shootDayId": "DAY-0034",
+    "date": "2026-10-27",
+    "seasonShootDay": 32,
+    "episodeDay": 4,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recDi2Eq78pRQu3EA"
+    ],
+    "parentScheduleIds": [
+      "recewE0YUp8jdjf86"
+    ]
+  },
+  {
+    "airtableId": "recVguRYHESl5Npem",
+    "shootDayId": "DAY-0074",
+    "date": "2026-11-24",
+    "seasonShootDay": 52,
+    "episodeDay": 2,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recHjcxNobtfTO3KY"
+    ],
+    "parentScheduleIds": [
+      "rec4MRRiGJyLDk5Pm"
+    ]
+  },
+  {
+    "airtableId": "recWKu6ZbU5e6ctRC",
+    "shootDayId": "DAY-0188",
+    "date": "2027-04-12",
+    "seasonShootDay": 6,
+    "episodeDay": 6,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recFpC33zXioBJHqU"
+    ],
+    "parentScheduleIds": [
+      "recTW1nlyUOnnFdL7"
+    ]
+  },
+  {
+    "airtableId": "recWhpF0JVf7GpUtT",
+    "shootDayId": "DAY-0033",
+    "date": "2026-10-27",
+    "seasonShootDay": 2,
+    "episodeDay": 2,
+    "dayOfWeek": "Tuesday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "recX75479yDb0Ld85",
+    "shootDayId": "DAY-0153",
+    "date": "2027-03-16",
+    "seasonShootDay": 45,
+    "episodeDay": 5,
+    "dayOfWeek": "Tuesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recEMS6UmF2hJT8gI"
+    ],
+    "parentScheduleIds": [
+      "rec6DTSDqRwktYhHv"
+    ]
+  },
+  {
+    "airtableId": "recXYiiy4d1cM9oxO",
+    "shootDayId": "DAY-0229",
+    "date": "2027-04-30",
+    "seasonShootDay": 78,
+    "episodeDay": 8,
+    "dayOfWeek": "Friday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recW60Fq9R3d2fh8C"
+    ],
+    "parentScheduleIds": [
+      "recGyXiLqWYazW03R"
+    ]
+  },
+  {
+    "airtableId": "recXcvRm2us43iPIC",
+    "shootDayId": "DAY-0230",
+    "date": "2027-04-30",
+    "seasonShootDay": 20,
+    "episodeDay": 1,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recod6zb7DAAYxWX4"
+    ],
+    "parentScheduleIds": [
+      "recIlUjiZnLCryapd"
+    ]
+  },
+  {
+    "airtableId": "recXt8EXqxDVYMqqB",
+    "shootDayId": "DAY-0177",
+    "date": "2027-04-06",
+    "seasonShootDay": 7,
+    "episodeDay": 7,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "recXwfKPltBNHiVw2",
+    "shootDayId": "DAY-0243",
+    "date": "2027-05-07",
+    "seasonShootDay": 30,
+    "episodeDay": 30,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "recY0XjsM12cOgDac",
+    "shootDayId": "DAY-0271",
+    "date": "2027-06-17",
+    "seasonShootDay": 53,
+    "episodeDay": 4,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recAWpwHxddun87YP"
+    ],
+    "parentScheduleIds": [
+      "recZFdZn709rzagFA"
+    ]
+  },
+  {
+    "airtableId": "recYDWJhr6wcqcRXS",
+    "shootDayId": "DAY-0260",
+    "date": "2027-06-02",
+    "seasonShootDay": 42,
+    "episodeDay": 2,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec2vmRD5xEAViFP8"
+    ],
+    "parentScheduleIds": [
+      "rec2faaHi8RjV51Kd"
+    ]
+  },
+  {
+    "airtableId": "recYKPGgX8ydBsxP5",
+    "shootDayId": "DAY-0285",
+    "date": "2027-07-07",
+    "seasonShootDay": 67,
+    "episodeDay": 7,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recA8XpfxfZOQuAfq"
+    ],
+    "parentScheduleIds": [
+      "recQIMYCxSmclesbc"
+    ]
+  },
+  {
+    "airtableId": "recYfSiR4cXeOiL1k",
+    "shootDayId": "DAY-0054",
+    "date": "2026-11-10",
+    "seasonShootDay": 42,
+    "episodeDay": 2,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recvvqiJDhkpp9Nje"
+    ],
+    "parentScheduleIds": [
+      "reczw5Dm6EU9z62av"
+    ]
+  },
+  {
+    "airtableId": "recYmXV8LQMLMXL73",
+    "shootDayId": "DAY-0170",
+    "date": "2027-04-02",
+    "seasonShootDay": 58,
+    "episodeDay": 9,
+    "dayOfWeek": "Friday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recPQXccd1bkhnx51"
+    ],
+    "parentScheduleIds": [
+      "recFcgECITJJm5ffM"
+    ]
+  },
+  {
+    "airtableId": "recZIJ43BeN28otD1",
+    "shootDayId": "DAY-0146",
+    "date": "2027-03-05",
+    "seasonShootDay": 38,
+    "episodeDay": 8,
+    "dayOfWeek": "Friday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recTU8kbe5yyhfHTV"
+    ],
+    "parentScheduleIds": [
+      "reclbMJRD4r8RfLmP"
+    ]
+  },
+  {
+    "airtableId": "recZJZWtOMC8nYb3b",
+    "shootDayId": "DAY-0145",
+    "date": "2027-03-04",
+    "seasonShootDay": 37,
+    "episodeDay": 7,
+    "dayOfWeek": "Thursday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recTU8kbe5yyhfHTV"
+    ],
+    "parentScheduleIds": [
+      "reclbMJRD4r8RfLmP"
+    ]
+  },
+  {
+    "airtableId": "recZX2k4yCqQbQlkC",
+    "shootDayId": "DAY-0174",
+    "date": "2027-04-05",
+    "seasonShootDay": 6,
+    "episodeDay": 6,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "recZc2X9nYQJK3At9",
+    "shootDayId": "DAY-0160",
+    "date": "2027-03-25",
+    "seasonShootDay": 52,
+    "episodeDay": 3,
+    "dayOfWeek": "Thursday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recPQXccd1bkhnx51"
+    ],
+    "parentScheduleIds": [
+      "recFcgECITJJm5ffM"
+    ]
+  },
+  {
+    "airtableId": "recZoebVLszmj8J0b",
+    "shootDayId": "DAY-0091",
+    "date": "2026-12-11",
+    "seasonShootDay": 63,
+    "episodeDay": 3,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recZVxL4LtT6LEwjc"
+    ],
+    "parentScheduleIds": [
+      "rec7sB7i8FaAzT6hT"
+    ]
+  },
+  {
+    "airtableId": "recZqBkQSXm94lr2y",
+    "shootDayId": "DAY-0132",
+    "date": "2027-02-12",
+    "seasonShootDay": 24,
+    "episodeDay": 4,
+    "dayOfWeek": "Friday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recuHuTTLiIzwfVpa"
+    ],
+    "parentScheduleIds": [
+      "rec4nVTNL6c7Wg8tM"
+    ]
+  },
+  {
+    "airtableId": "recaJk5QkNfMqNJOD",
+    "shootDayId": "DAY-0122",
+    "date": "2027-01-29",
+    "seasonShootDay": 14,
+    "episodeDay": 5,
+    "dayOfWeek": "Friday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "receCxw3kDzekbLcH"
+    ],
+    "parentScheduleIds": [
+      "recVYddl2aWcFYXMM"
+    ]
+  },
+  {
+    "airtableId": "recaU8DUwKSGag4Qu",
+    "shootDayId": "DAY-0234",
+    "date": "2027-05-03",
+    "seasonShootDay": 26,
+    "episodeDay": 26,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "recaj2YRnL9oOQTFy",
+    "shootDayId": "DAY-0119",
+    "date": "2027-01-27",
+    "seasonShootDay": 12,
+    "episodeDay": 3,
+    "dayOfWeek": "Wednesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "receCxw3kDzekbLcH"
+    ],
+    "parentScheduleIds": [
+      "recVYddl2aWcFYXMM"
+    ]
+  },
+  {
+    "airtableId": "recanlAzruzPsd68E",
+    "shootDayId": "DAY-0008",
+    "date": "2026-09-23",
+    "seasonShootDay": 8,
+    "episodeDay": 8,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recrvDjQ5PDWawKJP"
+    ],
+    "parentScheduleIds": [
+      "rec2oBUj5yI0Xag5V"
+    ]
+  },
+  {
+    "airtableId": "recb4WqbgWdnAhymc",
+    "shootDayId": "DAY-0264",
+    "date": "2027-06-08",
+    "seasonShootDay": 46,
+    "episodeDay": 6,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec2vmRD5xEAViFP8"
+    ],
+    "parentScheduleIds": [
+      "rec2faaHi8RjV51Kd"
+    ]
+  },
+  {
+    "airtableId": "recbhUqnWaB2dJ3hB",
+    "shootDayId": "DAY-0155",
+    "date": "2027-03-18",
+    "seasonShootDay": 47,
+    "episodeDay": 7,
+    "dayOfWeek": "Thursday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recEMS6UmF2hJT8gI"
+    ],
+    "parentScheduleIds": [
+      "rec6DTSDqRwktYhHv"
+    ]
+  },
+  {
+    "airtableId": "recblOLkSoORTn1yD",
+    "shootDayId": "DAY-0167",
+    "date": "2027-03-31",
+    "seasonShootDay": 3,
+    "episodeDay": 3,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "recbneGKPWo0ErIlH",
+    "shootDayId": "DAY-0176",
+    "date": "2027-04-06",
+    "seasonShootDay": 2,
+    "episodeDay": 2,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recFpC33zXioBJHqU"
+    ],
+    "parentScheduleIds": [
+      "recTW1nlyUOnnFdL7"
+    ]
+  },
+  {
+    "airtableId": "recc5gLjUW0nYFDgF",
+    "shootDayId": "DAY-0292",
+    "date": "2027-07-16",
+    "seasonShootDay": 74,
+    "episodeDay": 4,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec6ws7uWgloj1K9q"
+    ],
+    "parentScheduleIds": [
+      "rec4MrnRzeUY5dP1y"
+    ]
+  },
+  {
+    "airtableId": "recc7eSMZFxXvYoTC",
+    "shootDayId": "DAY-0087",
+    "date": "2026-12-09",
+    "seasonShootDay": 27,
+    "episodeDay": 2,
+    "dayOfWeek": "Wednesday",
+    "location": "Africa",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "recW9ZbRaaTwYzQXv"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "reccCq5BanYHkNF34",
+    "shootDayId": "DAY-0279",
+    "date": "2027-06-29",
+    "seasonShootDay": 61,
+    "episodeDay": 1,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recA8XpfxfZOQuAfq"
+    ],
+    "parentScheduleIds": [
+      "recQIMYCxSmclesbc"
+    ]
+  },
+  {
+    "airtableId": "reccCyJykenxk6lMj",
+    "shootDayId": "DAY-0010",
+    "date": "2026-09-25",
+    "seasonShootDay": 10,
+    "episodeDay": 10,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recdzgfL13ocW1Nsc"
+    ],
+    "parentScheduleIds": [
+      "rec2oBUj5yI0Xag5V"
+    ]
+  },
+  {
+    "airtableId": "reccNp3q1LQvGlFqz",
+    "shootDayId": "DAY-0161",
+    "date": "2027-03-26",
+    "seasonShootDay": 53,
+    "episodeDay": 4,
+    "dayOfWeek": "Friday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recPQXccd1bkhnx51"
+    ],
+    "parentScheduleIds": [
+      "recFcgECITJJm5ffM"
+    ]
+  },
+  {
+    "airtableId": "reccWqzR1VsiwO24F",
+    "shootDayId": "DAY-0237",
+    "date": "2027-05-04",
+    "seasonShootDay": 27,
+    "episodeDay": 27,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "reccdIOYf6KVysj7C",
+    "shootDayId": "DAY-0007",
+    "date": "2026-09-22",
+    "seasonShootDay": 7,
+    "episodeDay": 7,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recdzgfL13ocW1Nsc"
+    ],
+    "parentScheduleIds": [
+      "rec2oBUj5yI0Xag5V"
+    ]
+  },
+  {
+    "airtableId": "reccn1h2dyqRNTwNg",
+    "shootDayId": "DAY-0231",
+    "date": "2027-04-30",
+    "seasonShootDay": 25,
+    "episodeDay": 25,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "reccp8o2Hh9JWgJr5",
+    "shootDayId": "DAY-0040",
+    "date": "2026-10-30",
+    "seasonShootDay": 35,
+    "episodeDay": 7,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recDi2Eq78pRQu3EA"
+    ],
+    "parentScheduleIds": [
+      "recewE0YUp8jdjf86"
+    ]
+  },
+  {
+    "airtableId": "recd09x26MNIKQY4Q",
+    "shootDayId": "DAY-0143",
+    "date": "2027-03-02",
+    "seasonShootDay": 35,
+    "episodeDay": 5,
+    "dayOfWeek": "Tuesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recTU8kbe5yyhfHTV"
+    ],
+    "parentScheduleIds": [
+      "reclbMJRD4r8RfLmP"
+    ]
+  },
+  {
+    "airtableId": "recdMXQCryWsLG640",
+    "shootDayId": "DAY-0214",
+    "date": "2027-04-23",
+    "seasonShootDay": 73,
+    "episodeDay": 3,
+    "dayOfWeek": "Friday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recW60Fq9R3d2fh8C"
+    ],
+    "parentScheduleIds": [
+      "recGyXiLqWYazW03R"
+    ]
+  },
+  {
+    "airtableId": "recdZORM6lAPQEY8i",
+    "shootDayId": "DAY-0205",
+    "date": "2027-04-20",
+    "seasonShootDay": 70,
+    "episodeDay": 10,
+    "dayOfWeek": "Tuesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "rec34igGiCoBpDunz"
+    ],
+    "parentScheduleIds": [
+      "recKReNdoTvdMgQtL"
+    ]
+  },
+  {
+    "airtableId": "recdmyIPPdcWPQPhE",
+    "shootDayId": "DAY-0065",
+    "date": "2026-11-18",
+    "seasonShootDay": 18,
+    "episodeDay": 18,
+    "dayOfWeek": "Wednesday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "recdx0fbWjmkFO5cM",
+    "shootDayId": "DAY-0095",
+    "date": "2027-01-07",
+    "seasonShootDay": 67,
+    "episodeDay": 7,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recZVxL4LtT6LEwjc"
+    ],
+    "parentScheduleIds": [
+      "rec7sB7i8FaAzT6hT"
+    ]
+  },
+  {
+    "airtableId": "rece5rx3UeQ9RrKf7",
+    "shootDayId": "DAY-0209",
+    "date": "2027-04-21",
+    "seasonShootDay": 13,
+    "episodeDay": 4,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec8jbXBNBAsaMel2"
+    ],
+    "parentScheduleIds": [
+      "recQzG5hdLtRvznoX"
+    ]
+  },
+  {
+    "airtableId": "receAxfqwF0BSzYXQ",
+    "shootDayId": "DAY-0001",
+    "date": "2026-09-14",
+    "seasonShootDay": 1,
+    "episodeDay": 1,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recdzgfL13ocW1Nsc"
+    ],
+    "parentScheduleIds": [
+      "rec2oBUj5yI0Xag5V"
+    ]
+  },
+  {
+    "airtableId": "receEPTNNQf77Ymbc",
+    "shootDayId": "DAY-0219",
+    "date": "2027-04-26",
+    "seasonShootDay": 21,
+    "episodeDay": 21,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "receOwfPBdbglEr7E",
+    "shootDayId": "DAY-0112",
+    "date": "2027-01-21",
+    "seasonShootDay": 76,
+    "episodeDay": 6,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recHvvxpd2RrLNju6"
+    ],
+    "parentScheduleIds": [
+      "recIhxk0sgxouCrQK"
+    ]
+  },
+  {
+    "airtableId": "receTa1N8fUOleCIW",
+    "shootDayId": "DAY-0053",
+    "date": "2026-11-10",
+    "seasonShootDay": 12,
+    "episodeDay": 12,
+    "dayOfWeek": "Tuesday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "recea4X356EaooVWY",
+    "shootDayId": "DAY-0245",
+    "date": "2027-05-11",
+    "seasonShootDay": 27,
+    "episodeDay": 8,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recod6zb7DAAYxWX4"
+    ],
+    "parentScheduleIds": [
+      "recIlUjiZnLCryapd"
+    ]
+  },
+  {
+    "airtableId": "recewmfc0pwB2MOIi",
+    "shootDayId": "DAY-0179",
+    "date": "2027-04-07",
+    "seasonShootDay": 3,
+    "episodeDay": 3,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recFpC33zXioBJHqU"
+    ],
+    "parentScheduleIds": [
+      "recTW1nlyUOnnFdL7"
+    ]
+  },
+  {
+    "airtableId": "recf7JQ8kKuDrkJ2a",
+    "shootDayId": "DAY-0175",
+    "date": "2027-04-06",
+    "seasonShootDay": 60,
+    "episodeDay": 11,
+    "dayOfWeek": "Tuesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recPQXccd1bkhnx51"
+    ],
+    "parentScheduleIds": [
+      "recFcgECITJJm5ffM"
+    ]
+  },
+  {
+    "airtableId": "recf7YDnykJ3E8O13",
+    "shootDayId": "DAY-0089",
+    "date": "2026-12-10",
+    "seasonShootDay": 28,
+    "episodeDay": 3,
+    "dayOfWeek": "Thursday",
+    "location": "Africa",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "recW9ZbRaaTwYzQXv"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "recfHgsAoSUCgwmLP",
+    "shootDayId": "DAY-0064",
+    "date": "2026-11-17",
+    "seasonShootDay": 47,
+    "episodeDay": 7,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recvvqiJDhkpp9Nje"
+    ],
+    "parentScheduleIds": [
+      "reczw5Dm6EU9z62av"
+    ]
+  },
+  {
+    "airtableId": "recfNHoO5MNcTwPNU",
+    "shootDayId": "DAY-0123",
+    "date": "2027-02-01",
+    "seasonShootDay": 15,
+    "episodeDay": 6,
+    "dayOfWeek": "Monday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "receCxw3kDzekbLcH"
+    ],
+    "parentScheduleIds": [
+      "recVYddl2aWcFYXMM"
+    ]
+  },
+  {
+    "airtableId": "recfUi5bNZWEA1dOe",
+    "shootDayId": "DAY-0092",
+    "date": "2027-01-04",
+    "seasonShootDay": 64,
+    "episodeDay": 4,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey / NYC",
+    "planningNote": "Returns from holiday hiatus",
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recZVxL4LtT6LEwjc"
+    ],
+    "parentScheduleIds": [
+      "rec7sB7i8FaAzT6hT"
+    ]
+  },
+  {
+    "airtableId": "recfcoCX0u8dQIjHq",
+    "shootDayId": "DAY-0094",
+    "date": "2027-01-06",
+    "seasonShootDay": 66,
+    "episodeDay": 6,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recZVxL4LtT6LEwjc"
+    ],
+    "parentScheduleIds": [
+      "rec7sB7i8FaAzT6hT"
+    ]
+  },
+  {
+    "airtableId": "recfkunJuC7who10d",
+    "shootDayId": "DAY-0060",
+    "date": "2026-11-13",
+    "seasonShootDay": 45,
+    "episodeDay": 5,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recvvqiJDhkpp9Nje"
+    ],
+    "parentScheduleIds": [
+      "reczw5Dm6EU9z62av"
+    ]
+  },
+  {
+    "airtableId": "recfmndX5LU3ql5td",
+    "shootDayId": "DAY-0235",
+    "date": "2027-05-04",
+    "seasonShootDay": 80,
+    "episodeDay": 10,
+    "dayOfWeek": "Tuesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recW60Fq9R3d2fh8C"
+    ],
+    "parentScheduleIds": [
+      "recGyXiLqWYazW03R"
+    ]
+  },
+  {
+    "airtableId": "recfowJRvyqnxSOFy",
+    "shootDayId": "DAY-0282",
+    "date": "2027-07-02",
+    "seasonShootDay": 64,
+    "episodeDay": 4,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recA8XpfxfZOQuAfq"
+    ],
+    "parentScheduleIds": [
+      "recQIMYCxSmclesbc"
+    ]
+  },
+  {
+    "airtableId": "recfwlk2LSXnU5UfI",
+    "shootDayId": "DAY-0197",
+    "date": "2027-04-15",
+    "seasonShootDay": 9,
+    "episodeDay": 9,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recFpC33zXioBJHqU"
+    ],
+    "parentScheduleIds": [
+      "recTW1nlyUOnnFdL7"
+    ]
+  },
+  {
+    "airtableId": "recfwvSdC1klv3s4R",
+    "shootDayId": "DAY-0276",
+    "date": "2027-06-24",
+    "seasonShootDay": 58,
+    "episodeDay": 9,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recAWpwHxddun87YP"
+    ],
+    "parentScheduleIds": [
+      "recZFdZn709rzagFA"
+    ]
+  },
+  {
+    "airtableId": "recg2A2MTPK1bCbyG",
+    "shootDayId": "DAY-0220",
+    "date": "2027-04-27",
+    "seasonShootDay": 75,
+    "episodeDay": 5,
+    "dayOfWeek": "Tuesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recW60Fq9R3d2fh8C"
+    ],
+    "parentScheduleIds": [
+      "recGyXiLqWYazW03R"
+    ]
+  },
+  {
+    "airtableId": "recg3O2v1vhL07u79",
+    "shootDayId": "DAY-0189",
+    "date": "2027-04-12",
+    "seasonShootDay": 11,
+    "episodeDay": 11,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "recgAMMrS0GFnnn3Z",
+    "shootDayId": "DAY-0277",
+    "date": "2027-06-25",
+    "seasonShootDay": 59,
+    "episodeDay": 10,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recAWpwHxddun87YP"
+    ],
+    "parentScheduleIds": [
+      "recZFdZn709rzagFA"
+    ]
+  },
+  {
+    "airtableId": "recgjInn6d0NIPhcY",
+    "shootDayId": "DAY-0212",
+    "date": "2027-04-22",
+    "seasonShootDay": 14,
+    "episodeDay": 5,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec8jbXBNBAsaMel2"
+    ],
+    "parentScheduleIds": [
+      "recQzG5hdLtRvznoX"
+    ]
+  },
+  {
+    "airtableId": "recgm2IjlyBeO1mbD",
+    "shootDayId": "DAY-0096",
+    "date": "2027-01-08",
+    "seasonShootDay": 68,
+    "episodeDay": 8,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recZVxL4LtT6LEwjc"
+    ],
+    "parentScheduleIds": [
+      "rec7sB7i8FaAzT6hT"
+    ]
+  },
+  {
+    "airtableId": "recgr1ls7X7yraZLo",
+    "shootDayId": "DAY-0218",
+    "date": "2027-04-26",
+    "seasonShootDay": 16,
+    "episodeDay": 7,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec8jbXBNBAsaMel2"
+    ],
+    "parentScheduleIds": [
+      "recQzG5hdLtRvznoX"
+    ]
+  },
+  {
+    "airtableId": "recgymhnec3VyrxWv",
+    "shootDayId": "DAY-0051",
+    "date": "2026-11-09",
+    "seasonShootDay": 11,
+    "episodeDay": 11,
+    "dayOfWeek": "Monday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "rech4xt8XHji5qTsZ",
+    "shootDayId": "DAY-0278",
+    "date": "2027-06-28",
+    "seasonShootDay": 60,
+    "episodeDay": 11,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recAWpwHxddun87YP"
+    ],
+    "parentScheduleIds": [
+      "recZFdZn709rzagFA"
+    ]
+  },
+  {
+    "airtableId": "rechQ9s1bDnRoiiET",
+    "shootDayId": "DAY-0017",
+    "date": "2026-10-06",
+    "seasonShootDay": 17,
+    "episodeDay": 7,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recrvDjQ5PDWawKJP"
+    ],
+    "parentScheduleIds": [
+      "rec1mrSciZUcIbrNe"
+    ]
+  },
+  {
+    "airtableId": "rechaMuob9ONs7z0y",
+    "shootDayId": "DAY-0090",
+    "date": "2026-12-10",
+    "seasonShootDay": 62,
+    "episodeDay": 2,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recZVxL4LtT6LEwjc"
+    ],
+    "parentScheduleIds": [
+      "rec7sB7i8FaAzT6hT"
+    ]
+  },
+  {
+    "airtableId": "reci2yMG3d88g4C1M",
+    "shootDayId": "DAY-0168",
+    "date": "2027-04-01",
+    "seasonShootDay": 57,
+    "episodeDay": 8,
+    "dayOfWeek": "Thursday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recPQXccd1bkhnx51"
+    ],
+    "parentScheduleIds": [
+      "recFcgECITJJm5ffM"
+    ]
+  },
+  {
+    "airtableId": "reciHdca0KCvISI0y",
+    "shootDayId": "DAY-0025",
+    "date": "2026-10-16",
+    "seasonShootDay": 25,
+    "episodeDay": 5,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recz372AO9qL5b7uX"
+    ],
+    "parentScheduleIds": [
+      "recI4n268KmEmm9QY"
+    ]
+  },
+  {
+    "airtableId": "reciadYkzZeWdOacj",
+    "shootDayId": "DAY-0281",
+    "date": "2027-07-01",
+    "seasonShootDay": 63,
+    "episodeDay": 3,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recA8XpfxfZOQuAfq"
+    ],
+    "parentScheduleIds": [
+      "recQIMYCxSmclesbc"
+    ]
+  },
+  {
+    "airtableId": "recibHWfnkv1CMVja",
+    "shootDayId": "DAY-0162",
+    "date": "2027-03-29",
+    "seasonShootDay": 54,
+    "episodeDay": 5,
+    "dayOfWeek": "Monday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recPQXccd1bkhnx51"
+    ],
+    "parentScheduleIds": [
+      "recFcgECITJJm5ffM"
+    ]
+  },
+  {
+    "airtableId": "recikexHIhQIZDvbU",
+    "shootDayId": "DAY-0049",
+    "date": "2026-11-06",
+    "seasonShootDay": 10,
+    "episodeDay": 10,
+    "dayOfWeek": "Friday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "recj71ixrWLLOZfqT",
+    "shootDayId": "DAY-0258",
+    "date": "2027-05-28",
+    "seasonShootDay": 40,
+    "episodeDay": 10,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recR1DjPLaHmoSeBI"
+    ],
+    "parentScheduleIds": [
+      "recBIuVPYyTasK6PQ"
+    ]
+  },
+  {
+    "airtableId": "recjSnT8ElyD13I7l",
+    "shootDayId": "DAY-0072",
+    "date": "2026-11-23",
+    "seasonShootDay": 51,
+    "episodeDay": 1,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recHjcxNobtfTO3KY"
+    ],
+    "parentScheduleIds": [
+      "rec4MRRiGJyLDk5Pm"
+    ]
+  },
+  {
+    "airtableId": "recjbcn5bS3ldOV5y",
+    "shootDayId": "DAY-0020",
+    "date": "2026-10-09",
+    "seasonShootDay": 20,
+    "episodeDay": 10,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recrvDjQ5PDWawKJP"
+    ],
+    "parentScheduleIds": [
+      "rec1mrSciZUcIbrNe"
+    ]
+  },
+  {
+    "airtableId": "recjd8kA2JRuq1WER",
+    "shootDayId": "DAY-0171",
+    "date": "2027-04-02",
+    "seasonShootDay": 5,
+    "episodeDay": 5,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "recjvxkbBKwp7VOF2",
+    "shootDayId": "DAY-0030",
+    "date": "2026-10-23",
+    "seasonShootDay": 30,
+    "episodeDay": 2,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recDi2Eq78pRQu3EA"
+    ],
+    "parentScheduleIds": [
+      "recewE0YUp8jdjf86"
+    ]
+  },
+  {
+    "airtableId": "reck24JS7KE1XZ8sC",
+    "shootDayId": "DAY-0104",
+    "date": "2027-01-14",
+    "seasonShootDay": 72,
+    "episodeDay": 2,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recHvvxpd2RrLNju6"
+    ],
+    "parentScheduleIds": [
+      "recIhxk0sgxouCrQK"
+    ]
+  },
+  {
+    "airtableId": "reck5MeWcalacZafc",
+    "shootDayId": "DAY-0207",
+    "date": "2027-04-20",
+    "seasonShootDay": 17,
+    "episodeDay": 17,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "reckNcaCCVRqArQyk",
+    "shootDayId": "DAY-0101",
+    "date": "2027-01-13",
+    "seasonShootDay": 3,
+    "episodeDay": 3,
+    "dayOfWeek": "Wednesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recCmrwOrdbOy4JAj"
+    ],
+    "parentScheduleIds": [
+      "recpwW6E5rjv3CuQg"
+    ]
+  },
+  {
+    "airtableId": "reckb7mW89gbwljHu",
+    "shootDayId": "DAY-0163",
+    "date": "2027-03-29",
+    "seasonShootDay": 1,
+    "episodeDay": 1,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "reckfJSn40xO59A8N",
+    "shootDayId": "DAY-0098",
+    "date": "2027-01-11",
+    "seasonShootDay": 69,
+    "episodeDay": 9,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recZVxL4LtT6LEwjc"
+    ],
+    "parentScheduleIds": [
+      "rec7sB7i8FaAzT6hT"
+    ]
+  },
+  {
+    "airtableId": "recklR341KYM32j2t",
+    "shootDayId": "DAY-0061",
+    "date": "2026-11-16",
+    "seasonShootDay": 16,
+    "episodeDay": 16,
+    "dayOfWeek": "Monday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "reclE4sXBDSwuAGN5",
+    "shootDayId": "DAY-0240",
+    "date": "2027-05-06",
+    "seasonShootDay": 24,
+    "episodeDay": 5,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recod6zb7DAAYxWX4"
+    ],
+    "parentScheduleIds": [
+      "recIlUjiZnLCryapd"
+    ]
+  },
+  {
+    "airtableId": "reclHlHRmPFTX0LqT",
+    "shootDayId": "DAY-0027",
+    "date": "2026-10-20",
+    "seasonShootDay": 27,
+    "episodeDay": 7,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recz372AO9qL5b7uX"
+    ],
+    "parentScheduleIds": [
+      "recI4n268KmEmm9QY"
+    ]
+  },
+  {
+    "airtableId": "reclQCcxLYccrsCjS",
+    "shootDayId": "DAY-0114",
+    "date": "2027-01-22",
+    "seasonShootDay": 77,
+    "episodeDay": 7,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recHvvxpd2RrLNju6"
+    ],
+    "parentScheduleIds": [
+      "recIhxk0sgxouCrQK"
+    ]
+  },
+  {
+    "airtableId": "recleVkkLd1POcfue",
+    "shootDayId": "DAY-0028",
+    "date": "2026-10-21",
+    "seasonShootDay": 28,
+    "episodeDay": 8,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recz372AO9qL5b7uX"
+    ],
+    "parentScheduleIds": [
+      "recI4n268KmEmm9QY"
+    ]
+  },
+  {
+    "airtableId": "reclufIVYVzuRo2WB",
+    "shootDayId": "DAY-0284",
+    "date": "2027-07-06",
+    "seasonShootDay": 66,
+    "episodeDay": 6,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recA8XpfxfZOQuAfq"
+    ],
+    "parentScheduleIds": [
+      "recQIMYCxSmclesbc"
+    ]
+  },
+  {
+    "airtableId": "reclwphRMaugUTGdS",
+    "shootDayId": "DAY-0147",
+    "date": "2027-03-08",
+    "seasonShootDay": 39,
+    "episodeDay": 9,
+    "dayOfWeek": "Monday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recTU8kbe5yyhfHTV"
+    ],
+    "parentScheduleIds": [
+      "reclbMJRD4r8RfLmP"
+    ]
+  },
+  {
+    "airtableId": "recm38KcNp7YMtGx4",
+    "shootDayId": "DAY-0105",
+    "date": "2027-01-15",
+    "seasonShootDay": 5,
+    "episodeDay": 5,
+    "dayOfWeek": "Friday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recCmrwOrdbOy4JAj"
+    ],
+    "parentScheduleIds": [
+      "recpwW6E5rjv3CuQg"
+    ]
+  },
+  {
+    "airtableId": "recmr9CHsHCrv304S",
+    "shootDayId": "DAY-0118",
+    "date": "2027-01-26",
+    "seasonShootDay": 79,
+    "episodeDay": 9,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recHvvxpd2RrLNju6"
+    ],
+    "parentScheduleIds": [
+      "recIhxk0sgxouCrQK"
+    ]
+  },
+  {
+    "airtableId": "recnNQvxdkPDkfk6k",
+    "shootDayId": "DAY-0152",
+    "date": "2027-03-15",
+    "seasonShootDay": 44,
+    "episodeDay": 4,
+    "dayOfWeek": "Monday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recEMS6UmF2hJT8gI"
+    ],
+    "parentScheduleIds": [
+      "rec6DTSDqRwktYhHv"
+    ]
+  },
+  {
+    "airtableId": "recnbrer9zJsKQMJe",
+    "shootDayId": "DAY-0108",
+    "date": "2027-01-19",
+    "seasonShootDay": 74,
+    "episodeDay": 4,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recHvvxpd2RrLNju6"
+    ],
+    "parentScheduleIds": [
+      "recIhxk0sgxouCrQK"
+    ]
+  },
+  {
+    "airtableId": "recnc2OT8qfDQm6IJ",
+    "shootDayId": "DAY-0068",
+    "date": "2026-11-19",
+    "seasonShootDay": 49,
+    "episodeDay": 9,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recvvqiJDhkpp9Nje"
+    ],
+    "parentScheduleIds": [
+      "reczw5Dm6EU9z62av"
+    ]
+  },
+  {
+    "airtableId": "recncgR5XeAYs6r7L",
+    "shootDayId": "DAY-0203",
+    "date": "2027-04-19",
+    "seasonShootDay": 11,
+    "episodeDay": 2,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec8jbXBNBAsaMel2"
+    ],
+    "parentScheduleIds": [
+      "recQzG5hdLtRvznoX"
+    ]
+  },
+  {
+    "airtableId": "recntjPGlivV8eb4M",
+    "shootDayId": "DAY-0244",
+    "date": "2027-05-10",
+    "seasonShootDay": 26,
+    "episodeDay": 7,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recod6zb7DAAYxWX4"
+    ],
+    "parentScheduleIds": [
+      "recIlUjiZnLCryapd"
+    ]
+  },
+  {
+    "airtableId": "reco0WHpmwSbbl2Ei",
+    "shootDayId": "DAY-0190",
+    "date": "2027-04-13",
+    "seasonShootDay": 65,
+    "episodeDay": 5,
+    "dayOfWeek": "Tuesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "rec34igGiCoBpDunz"
+    ],
+    "parentScheduleIds": [
+      "recKReNdoTvdMgQtL"
+    ]
+  },
+  {
+    "airtableId": "reco9mjvqiWqA4YkH",
+    "shootDayId": "DAY-0288",
+    "date": "2027-07-12",
+    "seasonShootDay": 70,
+    "episodeDay": 10,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recA8XpfxfZOQuAfq"
+    ],
+    "parentScheduleIds": [
+      "recQIMYCxSmclesbc"
+    ]
+  },
+  {
+    "airtableId": "recoKSJNKhYrNmhRy",
+    "shootDayId": "DAY-0086",
+    "date": "2026-12-08",
+    "seasonShootDay": 60,
+    "episodeDay": 10,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recHjcxNobtfTO3KY"
+    ],
+    "parentScheduleIds": [
+      "rec4MRRiGJyLDk5Pm"
+    ]
+  },
+  {
+    "airtableId": "recoNYtiv462wJQY3",
+    "shootDayId": "DAY-0011",
+    "date": "2026-09-28",
+    "seasonShootDay": 11,
+    "episodeDay": 1,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recrvDjQ5PDWawKJP"
+    ],
+    "parentScheduleIds": [
+      "rec1mrSciZUcIbrNe"
+    ]
+  },
+  {
+    "airtableId": "recoczM0wivLyH1wd",
+    "shootDayId": "DAY-0125",
+    "date": "2027-02-03",
+    "seasonShootDay": 17,
+    "episodeDay": 8,
+    "dayOfWeek": "Wednesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "receCxw3kDzekbLcH"
+    ],
+    "parentScheduleIds": [
+      "recVYddl2aWcFYXMM"
+    ]
+  },
+  {
+    "airtableId": "recohWbFBSp5G7bgX",
+    "shootDayId": "DAY-0023",
+    "date": "2026-10-14",
+    "seasonShootDay": 23,
+    "episodeDay": 3,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recz372AO9qL5b7uX"
+    ],
+    "parentScheduleIds": [
+      "recI4n268KmEmm9QY"
+    ]
+  },
+  {
+    "airtableId": "recooUniwI4owHrD0",
+    "shootDayId": "DAY-0128",
+    "date": "2027-02-08",
+    "seasonShootDay": 20,
+    "episodeDay": 11,
+    "dayOfWeek": "Monday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "receCxw3kDzekbLcH"
+    ],
+    "parentScheduleIds": [
+      "recVYddl2aWcFYXMM"
+    ]
+  },
+  {
+    "airtableId": "recpD5N2MeF8wAXXf",
+    "shootDayId": "DAY-0097",
+    "date": "2027-01-11",
+    "seasonShootDay": 1,
+    "episodeDay": 1,
+    "dayOfWeek": "Monday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recCmrwOrdbOy4JAj"
+    ],
+    "parentScheduleIds": [
+      "recpwW6E5rjv3CuQg"
+    ]
+  },
+  {
+    "airtableId": "recpI786MT1rXuvRK",
+    "shootDayId": "DAY-0172",
+    "date": "2027-04-05",
+    "seasonShootDay": 59,
+    "episodeDay": 10,
+    "dayOfWeek": "Monday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recPQXccd1bkhnx51"
+    ],
+    "parentScheduleIds": [
+      "recFcgECITJJm5ffM"
+    ]
+  },
+  {
+    "airtableId": "recpI7L54wKTmINIY",
+    "shootDayId": "DAY-0130",
+    "date": "2027-02-10",
+    "seasonShootDay": 22,
+    "episodeDay": 2,
+    "dayOfWeek": "Wednesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recuHuTTLiIzwfVpa"
+    ],
+    "parentScheduleIds": [
+      "rec4nVTNL6c7Wg8tM"
+    ]
+  },
+  {
+    "airtableId": "recpTPZaxhDAATTnc",
+    "shootDayId": "DAY-0225",
+    "date": "2027-04-28",
+    "seasonShootDay": 23,
+    "episodeDay": 23,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "recpkMaU78z6WxSUS",
+    "shootDayId": "DAY-0239",
+    "date": "2027-05-05",
+    "seasonShootDay": 28,
+    "episodeDay": 28,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "recpsHaT0I8aeHXKX",
+    "shootDayId": "DAY-0047",
+    "date": "2026-11-05",
+    "seasonShootDay": 9,
+    "episodeDay": 9,
+    "dayOfWeek": "Thursday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "recqNKtkw5Ncew4yQ",
+    "shootDayId": "DAY-0249",
+    "date": "2027-05-17",
+    "seasonShootDay": 31,
+    "episodeDay": 1,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recR1DjPLaHmoSeBI"
+    ],
+    "parentScheduleIds": [
+      "recBIuVPYyTasK6PQ"
+    ]
+  },
+  {
+    "airtableId": "recqbdCHXglJCQd2I",
+    "shootDayId": "DAY-0210",
+    "date": "2027-04-21",
+    "seasonShootDay": 18,
+    "episodeDay": 18,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "recqx1JI6BX8jVg9Q",
+    "shootDayId": "DAY-0183",
+    "date": "2027-04-08",
+    "seasonShootDay": 9,
+    "episodeDay": 9,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "recrLteIlDFVxfrvs",
+    "shootDayId": "DAY-0121",
+    "date": "2027-01-28",
+    "seasonShootDay": 13,
+    "episodeDay": 4,
+    "dayOfWeek": "Thursday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "receCxw3kDzekbLcH"
+    ],
+    "parentScheduleIds": [
+      "recVYddl2aWcFYXMM"
+    ]
+  },
+  {
+    "airtableId": "recrNlVwOwNorFmti",
+    "shootDayId": "DAY-0100",
+    "date": "2027-01-12",
+    "seasonShootDay": 70,
+    "episodeDay": 10,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recZVxL4LtT6LEwjc"
+    ],
+    "parentScheduleIds": [
+      "rec7sB7i8FaAzT6hT"
+    ]
+  },
+  {
+    "airtableId": "recrWuKMFuK0U4O2F",
+    "shootDayId": "DAY-0199",
+    "date": "2027-04-16",
+    "seasonShootDay": 68,
+    "episodeDay": 8,
+    "dayOfWeek": "Friday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "rec34igGiCoBpDunz"
+    ],
+    "parentScheduleIds": [
+      "recKReNdoTvdMgQtL"
+    ]
+  },
+  {
+    "airtableId": "recrf6WSu7MbqVQRT",
+    "shootDayId": "DAY-0195",
+    "date": "2027-04-14",
+    "seasonShootDay": 13,
+    "episodeDay": 13,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "recrkU9j869uYvOE7",
+    "shootDayId": "DAY-0056",
+    "date": "2026-11-11",
+    "seasonShootDay": 43,
+    "episodeDay": 3,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recvvqiJDhkpp9Nje"
+    ],
+    "parentScheduleIds": [
+      "reczw5Dm6EU9z62av"
+    ]
+  },
+  {
+    "airtableId": "recroA7eA3Si9CHlt",
+    "shootDayId": "DAY-0275",
+    "date": "2027-06-23",
+    "seasonShootDay": 57,
+    "episodeDay": 8,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recAWpwHxddun87YP"
+    ],
+    "parentScheduleIds": [
+      "recZFdZn709rzagFA"
+    ]
+  },
+  {
+    "airtableId": "recrpYOVnRJz6tubA",
+    "shootDayId": "DAY-0079",
+    "date": "2026-12-01",
+    "seasonShootDay": 25,
+    "episodeDay": 25,
+    "dayOfWeek": "Tuesday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "recsPwOdxa0aPOYog",
+    "shootDayId": "DAY-0083",
+    "date": "2026-12-04",
+    "seasonShootDay": 58,
+    "episodeDay": 8,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recHjcxNobtfTO3KY"
+    ],
+    "parentScheduleIds": [
+      "rec4MRRiGJyLDk5Pm"
+    ]
+  },
+  {
+    "airtableId": "recsoMoaxLCvXLp8z",
+    "shootDayId": "DAY-0063",
+    "date": "2026-11-17",
+    "seasonShootDay": 17,
+    "episodeDay": 17,
+    "dayOfWeek": "Tuesday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "rect0HJLisHqlyfK6",
+    "shootDayId": "DAY-0198",
+    "date": "2027-04-15",
+    "seasonShootDay": 14,
+    "episodeDay": 14,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "rect6vGGe2lopz07n",
+    "shootDayId": "DAY-0182",
+    "date": "2027-04-08",
+    "seasonShootDay": 4,
+    "episodeDay": 4,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recFpC33zXioBJHqU"
+    ],
+    "parentScheduleIds": [
+      "recTW1nlyUOnnFdL7"
+    ]
+  },
+  {
+    "airtableId": "rectYyR0Xd134KuBo",
+    "shootDayId": "DAY-0213",
+    "date": "2027-04-22",
+    "seasonShootDay": 19,
+    "episodeDay": 19,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recxQ0UMHbqxEPHgN"
+    ],
+    "unitProductionIds": [
+      "recN7l1TTQN095XHw"
+    ],
+    "parentScheduleIds": [
+      "recDS1ek7kqDIEF0t"
+    ]
+  },
+  {
+    "airtableId": "rectgtkivJqxJ4ClW",
+    "shootDayId": "DAY-0293",
+    "date": "2027-07-19",
+    "seasonShootDay": 75,
+    "episodeDay": 5,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec6ws7uWgloj1K9q"
+    ],
+    "parentScheduleIds": [
+      "rec4MrnRzeUY5dP1y"
+    ]
+  },
+  {
+    "airtableId": "recto9xnXRMexXF3A",
+    "shootDayId": "DAY-0233",
+    "date": "2027-05-03",
+    "seasonShootDay": 21,
+    "episodeDay": 2,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recod6zb7DAAYxWX4"
+    ],
+    "parentScheduleIds": [
+      "recIlUjiZnLCryapd"
+    ]
+  },
+  {
+    "airtableId": "recucnieV5le5asYz",
+    "shootDayId": "DAY-0062",
+    "date": "2026-11-16",
+    "seasonShootDay": 46,
+    "episodeDay": 6,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recvvqiJDhkpp9Nje"
+    ],
+    "parentScheduleIds": [
+      "reczw5Dm6EU9z62av"
+    ]
+  },
+  {
+    "airtableId": "recv3ONFwXvsx5z0i",
+    "shootDayId": "DAY-0259",
+    "date": "2027-06-01",
+    "seasonShootDay": 41,
+    "episodeDay": 1,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec2vmRD5xEAViFP8"
+    ],
+    "parentScheduleIds": [
+      "rec2faaHi8RjV51Kd"
+    ]
+  },
+  {
+    "airtableId": "recv8Vl3lLMFJqv0h",
+    "shootDayId": "DAY-0286",
+    "date": "2027-07-08",
+    "seasonShootDay": 68,
+    "episodeDay": 8,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recA8XpfxfZOQuAfq"
+    ],
+    "parentScheduleIds": [
+      "recQIMYCxSmclesbc"
+    ]
+  },
+  {
+    "airtableId": "recvc0oFAq7Whq2EX",
+    "shootDayId": "DAY-0154",
+    "date": "2027-03-17",
+    "seasonShootDay": 46,
+    "episodeDay": 6,
+    "dayOfWeek": "Wednesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recEMS6UmF2hJT8gI"
+    ],
+    "parentScheduleIds": [
+      "rec6DTSDqRwktYhHv"
+    ]
+  },
+  {
+    "airtableId": "recvn6s6pHoTcFJtf",
+    "shootDayId": "DAY-0269",
+    "date": "2027-06-15",
+    "seasonShootDay": 51,
+    "episodeDay": 2,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recAWpwHxddun87YP"
+    ],
+    "parentScheduleIds": [
+      "recZFdZn709rzagFA"
+    ]
+  },
+  {
+    "airtableId": "recwAP263NgpxwaHE",
+    "shootDayId": "DAY-0046",
+    "date": "2026-11-04",
+    "seasonShootDay": 38,
+    "episodeDay": 10,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recDi2Eq78pRQu3EA"
+    ],
+    "parentScheduleIds": [
+      "recewE0YUp8jdjf86"
+    ]
+  },
+  {
+    "airtableId": "recwC1dCrPCl9wNUi",
+    "shootDayId": "DAY-0148",
+    "date": "2027-03-09",
+    "seasonShootDay": 40,
+    "episodeDay": 10,
+    "dayOfWeek": "Tuesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recTU8kbe5yyhfHTV"
+    ],
+    "parentScheduleIds": [
+      "reclbMJRD4r8RfLmP"
+    ]
+  },
+  {
+    "airtableId": "recwDx3t0HNU5QLOR",
+    "shootDayId": "DAY-0181",
+    "date": "2027-04-08",
+    "seasonShootDay": 62,
+    "episodeDay": 2,
+    "dayOfWeek": "Thursday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "rec34igGiCoBpDunz"
+    ],
+    "parentScheduleIds": [
+      "recKReNdoTvdMgQtL"
+    ]
+  },
+  {
+    "airtableId": "recwZJR22i5KA4ri2",
+    "shootDayId": "DAY-0257",
+    "date": "2027-05-27",
+    "seasonShootDay": 39,
+    "episodeDay": 9,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recR1DjPLaHmoSeBI"
+    ],
+    "parentScheduleIds": [
+      "recBIuVPYyTasK6PQ"
+    ]
+  },
+  {
+    "airtableId": "recwbR37xmDdy5Lcc",
+    "shootDayId": "DAY-0217",
+    "date": "2027-04-26",
+    "seasonShootDay": 74,
+    "episodeDay": 4,
+    "dayOfWeek": "Monday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recW60Fq9R3d2fh8C"
+    ],
+    "parentScheduleIds": [
+      "recGyXiLqWYazW03R"
+    ]
+  },
+  {
+    "airtableId": "recwdRlcGUxHiyMCH",
+    "shootDayId": "DAY-0291",
+    "date": "2027-07-15",
+    "seasonShootDay": 73,
+    "episodeDay": 3,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec6ws7uWgloj1K9q"
+    ],
+    "parentScheduleIds": [
+      "rec4MrnRzeUY5dP1y"
+    ]
+  },
+  {
+    "airtableId": "recwvXFg62Sua26Kw",
+    "shootDayId": "DAY-0296",
+    "date": "2027-07-22",
+    "seasonShootDay": 78,
+    "episodeDay": 8,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec6ws7uWgloj1K9q"
+    ],
+    "parentScheduleIds": [
+      "rec4MrnRzeUY5dP1y"
+    ]
+  },
+  {
+    "airtableId": "recxb37U3L9gUWrug",
+    "shootDayId": "DAY-0014",
+    "date": "2026-10-01",
+    "seasonShootDay": 14,
+    "episodeDay": 4,
+    "dayOfWeek": "Thursday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recrvDjQ5PDWawKJP"
+    ],
+    "parentScheduleIds": [
+      "rec1mrSciZUcIbrNe"
+    ]
+  },
+  {
+    "airtableId": "recxpiONynUHjG94d",
+    "shootDayId": "DAY-0173",
+    "date": "2027-04-05",
+    "seasonShootDay": 1,
+    "episodeDay": 1,
+    "dayOfWeek": "Monday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recFpC33zXioBJHqU"
+    ],
+    "parentScheduleIds": [
+      "recTW1nlyUOnnFdL7"
+    ]
+  },
+  {
+    "airtableId": "recy4DT27XItTn6YN",
+    "shootDayId": "DAY-0015",
+    "date": "2026-10-02",
+    "seasonShootDay": 15,
+    "episodeDay": 5,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recrvDjQ5PDWawKJP"
+    ],
+    "parentScheduleIds": [
+      "rec1mrSciZUcIbrNe"
+    ]
+  },
+  {
+    "airtableId": "recy4Lw1xBZoKIGBz",
+    "shootDayId": "DAY-0120",
+    "date": "2027-01-27",
+    "seasonShootDay": 80,
+    "episodeDay": 10,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recHvvxpd2RrLNju6"
+    ],
+    "parentScheduleIds": [
+      "recIhxk0sgxouCrQK"
+    ]
+  },
+  {
+    "airtableId": "recy7IivTaB0SgiEU",
+    "shootDayId": "DAY-0136",
+    "date": "2027-02-19",
+    "seasonShootDay": 28,
+    "episodeDay": 8,
+    "dayOfWeek": "Friday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recuHuTTLiIzwfVpa"
+    ],
+    "parentScheduleIds": [
+      "rec4nVTNL6c7Wg8tM"
+    ]
+  },
+  {
+    "airtableId": "recy9xuyOXNm7Tqs1",
+    "shootDayId": "DAY-0267",
+    "date": "2027-06-11",
+    "seasonShootDay": 49,
+    "episodeDay": 9,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec2vmRD5xEAViFP8"
+    ],
+    "parentScheduleIds": [
+      "rec2faaHi8RjV51Kd"
+    ]
+  },
+  {
+    "airtableId": "recyEOkxi19ck9FNk",
+    "shootDayId": "DAY-0256",
+    "date": "2027-05-26",
+    "seasonShootDay": 38,
+    "episodeDay": 8,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recR1DjPLaHmoSeBI"
+    ],
+    "parentScheduleIds": [
+      "recBIuVPYyTasK6PQ"
+    ]
+  },
+  {
+    "airtableId": "recyO5Mt9lA7JxMUr",
+    "shootDayId": "DAY-0187",
+    "date": "2027-04-12",
+    "seasonShootDay": 64,
+    "episodeDay": 4,
+    "dayOfWeek": "Monday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "rec34igGiCoBpDunz"
+    ],
+    "parentScheduleIds": [
+      "recKReNdoTvdMgQtL"
+    ]
+  },
+  {
+    "airtableId": "recycTgrnOfdwnmZQ",
+    "shootDayId": "DAY-0149",
+    "date": "2027-03-10",
+    "seasonShootDay": 41,
+    "episodeDay": 1,
+    "dayOfWeek": "Wednesday",
+    "location": "Newark Stage",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [
+      "recEMS6UmF2hJT8gI"
+    ],
+    "parentScheduleIds": [
+      "rec6DTSDqRwktYhHv"
+    ]
+  },
+  {
+    "airtableId": "recyoQj9KeNNvjga8",
+    "shootDayId": "DAY-0071",
+    "date": "2026-11-23",
+    "seasonShootDay": 21,
+    "episodeDay": 21,
+    "dayOfWeek": "Monday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "reczB4rgxw5l2M4xe",
+    "shootDayId": "DAY-0075",
+    "date": "2026-11-25",
+    "seasonShootDay": 23,
+    "episodeDay": 23,
+    "dayOfWeek": "Wednesday",
+    "location": "NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recZVuWSBpLvNNVhF"
+    ],
+    "unitProductionIds": [
+      "rece83cE3UNDXVoVr"
+    ],
+    "parentScheduleIds": [
+      "recXkytYQzEzqdC4r"
+    ]
+  },
+  {
+    "airtableId": "reczHRfHxYArE5c0F",
+    "shootDayId": "DAY-0250",
+    "date": "2027-05-18",
+    "seasonShootDay": 32,
+    "episodeDay": 2,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "recR1DjPLaHmoSeBI"
+    ],
+    "parentScheduleIds": [
+      "recBIuVPYyTasK6PQ"
+    ]
+  },
+  {
+    "airtableId": "reczLHnSWwEw6OlTH",
+    "shootDayId": "DAY-0080",
+    "date": "2026-12-01",
+    "seasonShootDay": 55,
+    "episodeDay": 5,
+    "dayOfWeek": "Tuesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recHjcxNobtfTO3KY"
+    ],
+    "parentScheduleIds": [
+      "rec4MRRiGJyLDk5Pm"
+    ]
+  },
+  {
+    "airtableId": "reczN8daWVMPZHTn4",
+    "shootDayId": "DAY-0066",
+    "date": "2026-11-18",
+    "seasonShootDay": 48,
+    "episodeDay": 8,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey / NYC",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [
+      "recvvqiJDhkpp9Nje"
+    ],
+    "parentScheduleIds": [
+      "reczw5Dm6EU9z62av"
+    ]
+  },
+  {
+    "airtableId": "reczd6w5tmmF31wC0",
+    "shootDayId": "DAY-0297",
+    "date": "2027-07-23",
+    "seasonShootDay": 79,
+    "episodeDay": 9,
+    "dayOfWeek": "Friday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec6ws7uWgloj1K9q"
+    ],
+    "parentScheduleIds": [
+      "rec4MrnRzeUY5dP1y"
+    ]
+  },
+  {
+    "airtableId": "reczyOSv69DWJyeT8",
+    "shootDayId": "DAY-0290",
+    "date": "2027-07-14",
+    "seasonShootDay": 72,
+    "episodeDay": 2,
+    "dayOfWeek": "Wednesday",
+    "location": "New Jersey",
+    "planningNote": null,
+    "recordType": "Shoot Day",
+    "projectIds": [
+      "recpyL9RXdVnLipWD"
+    ],
+    "unitProductionIds": [
+      "rec6ws7uWgloj1K9q"
+    ],
+    "parentScheduleIds": [
+      "rec4MrnRzeUY5dP1y"
+    ]
+  }
+]
