@@ -1,6 +1,12 @@
 import { requireUser } from "@/lib/session";
 import { NavBar } from "@/components/nav-bar";
 
+// Every page here reads live data straight from Postgres on each request.
+// Without a session/cookie read forcing dynamic rendering (which auth()
+// used to do for free), Next.js would otherwise statically prerender some
+// of these at build time and serve stale data forever.
+export const dynamic = "force-dynamic";
+
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const user = await requireUser();
 

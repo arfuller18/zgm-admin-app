@@ -15,7 +15,7 @@ see [What's not in this build](#whats-not-in-this-build).
 - **Next.js 16** (App Router, Turbopack) + **React 19** + TypeScript
 - **Tailwind CSS v4** with a hand-rolled component kit (`src/components/ui`) — no external UI library
 - **Prisma 7** + **PostgreSQL** (via `@prisma/adapter-pg`) as the app's own database
-- **NextAuth.js (Auth.js) v5** with Google OAuth, JWT sessions, role-based access
+- **NextAuth.js (Auth.js) v5** with Google OAuth — built, wired, and **currently disabled** (see [Sign-in](#sign-in-currently-disabled))
 - **Airtable** (`airtable` npm SDK) — one-directional pull-sync from ZGM's existing base
 
 ## Architecture: own database, pull-synced from Airtable
@@ -62,15 +62,39 @@ booking for that same resource across **every other project**:
 - A person's or location's detail page shows a red "Conflict" badge on
   any booking that overlaps another project's booking for them.
 
+## Sign-in (currently disabled)
+
+There is no login step right now — every visitor acts as a single default
+Admin user (`src/lib/session.ts`'s `requireUser()`), so the app is usable
+immediately with no Google Cloud setup. This was a deliberate call: get a
+real OAuth app together once there's something worth gating, not before.
+
+Nothing about this is a dead end. Every page already goes through
+`requireUser()`/`requireRole()` rather than checking sessions directly, and
+the whole NextAuth setup is still in the repo, untouched:
+
+- `src/lib/auth.ts` — Google OAuth provider, JWT sessions, role bootstrap
+  (first sign-in becomes an active Admin, everyone after starts inactive
+  until approved from **Admin → Users & Roles**)
+- `src/app/login/page.tsx` — the sign-in page (Google button + a local
+  dev-login email picker gated by `ENABLE_DEV_LOGIN`)
+- `src/app/api/auth/[...nextauth]/route.ts` — the NextAuth route handler
+
+**To turn real sign-in back on:** restore `requireUser()` in
+`src/lib/session.ts` to call `auth()` and redirect unauthenticated visitors
+to `/login` (check `git log` for the prior version), add the "Sign out"
+button back to `src/components/nav-bar.tsx` (`signOutAction` in
+`src/app/(app)/actions.ts` is already there, just unused), and set
+`GOOGLE_CLIENT_ID`/`GOOGLE_CLIENT_SECRET`/`AUTH_SECRET`. Nothing else in
+the app needs to change.
+
 ## Roles
 
 Mirrors the PRD's draft role table (`prisma/schema.prisma`'s `Role` enum):
 Admin, Executive, Producer/PM, Department Lead, Crew/Staff, Finance,
-Vendor/External. New Google sign-ins are created **inactive** by default —
-an Admin must activate them from **Admin → Users & Roles** (or
-pre-provision by email before they ever sign in). The very first person
-ever to sign in is automatically promoted to an active Admin, so an empty
-system isn't locked out.
+Vendor/External. Enforced by `requireRole()` on admin-only pages already —
+it just has nothing to check against a real signed-in identity until
+sign-in is turned back on.
 
 ## Local development
 
@@ -89,15 +113,10 @@ Copy `.env` and fill in as needed:
 | Variable | Required | Notes |
 |---|---|---|
 | `DATABASE_URL` | Yes | Standard `postgresql://` connection string |
-| `AUTH_SECRET` | Yes | `openssl rand -base64 32` |
-| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | For real sign-in | From the [Google Cloud Console](https://console.cloud.google.com/apis/credentials) — see below |
-| `ENABLE_DEV_LOGIN` | Local only | `"true"` adds an email-picker login that bypasses Google OAuth. **Never set this in production** — it's blocked automatically when `NODE_ENV=production` regardless |
+| `BOOTSTRAP_ADMIN_EMAIL` | No | Identity used for the default no-login user and the seed script. Defaults to `arfuller18@gmail.com` |
 | `AIRTABLE_API_KEY` | For sync | A [Personal Access Token](https://airtable.com/create/tokens) with read access to the ZGM base |
 | `AIRTABLE_BASE_ID` | No | Defaults to `app1C5WNULP6I61dM` |
-
-**Google OAuth setup:** create an OAuth 2.0 Client ID (type: Web application)
-in the Google Cloud Console, add `http://localhost:3000/api/auth/callback/google`
-(and your production URL's equivalent) as an authorized redirect URI.
+| `AUTH_SECRET`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `ENABLE_DEV_LOGIN` | Not used yet | Only matter once sign-in is turned back on — see [Sign-in](#sign-in-currently-disabled) |
 
 ### 3. Install, migrate, seed
 
@@ -121,9 +140,8 @@ BOOTSTRAP_ADMIN_EMAIL=you@zerogravitymedia.com npm run db:seed
 npm run dev
 ```
 
-Visit `http://localhost:3000`. With `ENABLE_DEV_LOGIN="true"` and no Google
-credentials configured, the login page shows an email picker seeded with
-the bootstrap admin — no OAuth app needed to develop locally.
+Visit `http://localhost:3000` — it opens straight to the dashboard, no
+login step (see [Sign-in](#sign-in-currently-disabled)).
 
 ### 5. Keep data current
 
@@ -140,12 +158,15 @@ automatically yet.
 
 1. Push this repo to GitHub, import it into Vercel.
 2. Provision a Postgres database (Vercel Postgres, Neon, or Supabase all work — it's just `DATABASE_URL`).
-3. Set the environment variables from the table above in the Vercel project settings.
-4. Add your Vercel deployment URL's `/api/auth/callback/google` as an
-   authorized redirect URI in the Google Cloud Console.
-5. Run `npx prisma migrate deploy` against the production database (via a
+3. Set `DATABASE_URL` (and `AIRTABLE_API_KEY`/`AIRTABLE_BASE_ID` if you want sync working) in the Vercel project settings.
+4. Run `npx prisma migrate deploy` against the production database (via a
    build step or manually), then `npm run db:seed` once.
-6. Leave `ENABLE_DEV_LOGIN` unset.
+5. Deploy. There's no auth step to configure yet — see
+   [Sign-in](#sign-in-currently-disabled) for when you're ready to add it.
+
+`package.json`'s `postinstall` script (`prisma generate`) regenerates the
+Prisma client automatically on every Vercel build — it's gitignored as
+build output, so this has to happen fresh each deploy.
 
 ## Project structure
 
@@ -154,13 +175,14 @@ prisma/schema.prisma          Data model
 prisma/seed.ts                One-time Airtable snapshot import
 prisma/seed-data/*.json       The snapshot itself
 src/lib/prisma.ts             Prisma client singleton (driver adapter)
-src/lib/auth.ts               NextAuth config (Google + dev-login + role bootstrap)
+src/lib/session.ts            requireUser()/requireRole() — currently a no-login stub
+src/lib/auth.ts               NextAuth config, built but not yet wired in (see Sign-in)
 src/lib/airtable-sync.ts      Ongoing Airtable → Postgres pull-sync
 src/lib/conflicts.ts          Booking conflict-detection logic
 src/lib/display.ts            Enum → label/color mappings shared across pages
 src/components/ui/            Small hand-rolled design system (bright ZGM theme)
-src/app/(app)/                Authenticated app shell + all feature pages
-src/app/login/                Public sign-in page
+src/app/(app)/                App shell + all feature pages (force-dynamic: every page queries Postgres live on each request, never statically cached)
+src/app/login/                Sign-in page, built but currently unlinked
 ```
 
 ## What's not in this build

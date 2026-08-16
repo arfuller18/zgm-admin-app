@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { signOutAction } from "@/app/(app)/actions";
 import { ROLE_LABEL } from "@/lib/display";
 
 const NAV_LINKS = [
@@ -65,14 +64,6 @@ export function NavBar({
           <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand/10 text-sm font-semibold text-brand-strong">
             {initials}
           </div>
-          <form action={signOutAction}>
-            <button
-              type="submit"
-              className="rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-surface-muted hover:text-foreground"
-            >
-              Sign out
-            </button>
-          </form>
         </div>
       </div>
       <nav className="flex items-center gap-1 overflow-x-auto border-t border-border px-4 py-1.5 md:hidden">
