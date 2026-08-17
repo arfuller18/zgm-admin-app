@@ -12,8 +12,27 @@ import { PrismaPg } from "@prisma/adapter-pg";
 // validating the chain against a CA, same as `sslmode=require` (not
 // `verify-full`) does for psql. Local Postgres has no SSL listener at all,
 // so this only applies in production.
+//
+// `sslmode` in the URL has to go: pg's own connection-string parser turns
+// it into its own `ssl` config and, when a `connectionString` is passed
+// alongside an explicit `ssl` option, always overwrites the latter with
+// the former (see pg's ConnectionParameters) — so a leftover
+// `sslmode=require` would silently undo the `ssl` override below.
+function connectionStringWithoutSslMode(url: string | undefined) {
+  if (!url) return url;
+  try {
+    const parsed = new URL(url);
+    parsed.searchParams.delete("sslmode");
+    return parsed.toString();
+  } catch {
+    return url;
+  }
+}
+
 const adapter = new PrismaPg({
-  connectionString: process.env.RUNTIME_DATABASE_URL || process.env.DATABASE_URL,
+  connectionString: connectionStringWithoutSslMode(
+    process.env.RUNTIME_DATABASE_URL || process.env.DATABASE_URL
+  ),
   ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : undefined,
 });
 
