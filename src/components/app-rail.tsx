@@ -1,8 +1,10 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Building2, CalendarRange, Wallet, ExternalLink } from "lucide-react";
+import { Menu, X, Building2, CalendarRange, Wallet, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // The product-suite switcher: Zero Gravity's internal tools are three
@@ -12,14 +14,14 @@ import { cn } from "@/lib/utils";
 const INTERNAL_APPS = [
   {
     key: "admin",
-    label: "Admin",
+    label: "Zero Gravity Admin",
     href: "/",
     icon: Building2,
     active: (path: string) => !path.startsWith("/schedule"),
   },
   {
     key: "scheduling",
-    label: "Scheduling",
+    label: "Zero Gravity Scheduling",
     href: "/schedule",
     icon: CalendarRange,
     active: (path: string) => path.startsWith("/schedule"),
@@ -27,48 +29,98 @@ const INTERNAL_APPS = [
 ] as const;
 
 export function AppRail() {
+  const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
 
-  return (
-    <nav className="sticky top-0 flex h-screen w-16 shrink-0 flex-col items-stretch gap-1 border-r border-border bg-surface-muted/60 py-4 sm:w-24">
-      {INTERNAL_APPS.map((app) => {
-        const isActive = app.active(pathname);
-        const Icon = app.icon;
-        return (
-          <Link
-            key={app.key}
-            href={app.href}
-            className={cn(
-              "mx-2 flex flex-col items-center gap-1 rounded-xl px-1.5 py-3 text-center transition-colors",
-              isActive
-                ? "bg-brand text-brand-foreground shadow-sm shadow-brand/30"
-                : "text-muted-foreground hover:bg-surface hover:text-foreground"
-            )}
-          >
-            <Icon className="h-5 w-5" />
-            <span className="hidden text-[9px] font-medium uppercase tracking-wide opacity-70 sm:block">
-              Zero Gravity
-            </span>
-            <span className="text-[11px] font-semibold leading-tight sm:text-xs">{app.label}</span>
-          </Link>
-        );
-      })}
+  // The overlay has to portal straight to <body>: the header it'd otherwise
+  // render inside uses backdrop-blur, and backdrop-filter (like transform
+  // or filter) makes an element the containing block for its fixed-position
+  // descendants — without this, "fixed inset-0" collapses to the header's
+  // own box instead of the viewport. `document` doesn't exist during SSR,
+  // so the portal target is only available once mounted on the client —
+  // this is the standard pattern for that, not state synced from a prop.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => setMounted(true), []);
 
-      <a
-        href="https://zgm-budgeting-app.vercel.app"
-        target="_blank"
-        rel="noreferrer"
-        className="mx-2 flex flex-col items-center gap-1 rounded-xl px-1.5 py-3 text-center text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"
+  const overlay = (
+    <>
+      {open && (
+        <div
+          className="fixed inset-0 z-40 bg-black/30"
+          onClick={() => setOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
+      <aside
+        className={cn(
+          "fixed inset-y-0 left-0 z-50 flex w-80 max-w-[85vw] flex-col border-r border-border bg-surface shadow-xl transition-transform duration-200 ease-out",
+          open ? "translate-x-0" : "-translate-x-full"
+        )}
+        aria-hidden={!open}
       >
-        <Wallet className="h-5 w-5" />
-        <span className="hidden text-[9px] font-medium uppercase tracking-wide opacity-70 sm:block">
-          Zero Gravity
-        </span>
-        <span className="flex items-center gap-0.5 text-[11px] font-semibold leading-tight sm:text-xs">
-          Budgeting
-          <ExternalLink className="h-3 w-3 shrink-0 opacity-60" />
-        </span>
-      </a>
-    </nav>
+        <div className="flex h-16 shrink-0 items-center justify-between border-b border-border px-5">
+          <span className="text-sm font-semibold text-muted-foreground">Switch app</span>
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            aria-label="Close menu"
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-surface-muted hover:text-foreground"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
+        <nav className="flex-1 space-y-1 p-3">
+          {INTERNAL_APPS.map((app) => {
+            const isActive = app.active(pathname);
+            const Icon = app.icon;
+            return (
+              <Link
+                key={app.key}
+                href={app.href}
+                onClick={() => setOpen(false)}
+                className={cn(
+                  "flex items-center gap-3.5 rounded-xl px-4 py-3.5 text-base font-medium transition-colors",
+                  isActive ? "bg-brand/10 text-brand-strong" : "text-foreground hover:bg-surface-muted"
+                )}
+              >
+                <Icon className={cn("h-5 w-5 shrink-0", isActive ? "text-brand" : "text-muted-foreground")} />
+                {app.label}
+              </Link>
+            );
+          })}
+
+          <a
+            href="https://zgm-budgeting-app.vercel.app"
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-3.5 rounded-xl px-4 py-3.5 text-base font-medium text-foreground transition-colors hover:bg-surface-muted"
+          >
+            <Wallet className="h-5 w-5 shrink-0 text-muted-foreground" />
+            <span className="flex items-center gap-2">
+              Zero Gravity Budgeting
+              <ExternalLink className="h-4 w-4 shrink-0 opacity-60" />
+            </span>
+          </a>
+        </nav>
+      </aside>
+    </>
+  );
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        aria-label="Open menu"
+        aria-expanded={open}
+        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-foreground transition-colors hover:bg-surface-muted"
+      >
+        <Menu className="h-5 w-5" />
+      </button>
+      {mounted && createPortal(overlay, document.body)}
+    </>
   );
 }
