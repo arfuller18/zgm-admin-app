@@ -8,20 +8,28 @@ import { TimelineView } from "./timeline-view";
 export default async function SchedulePage({
   searchParams,
 }: {
-  searchParams: Promise<{ view?: string; month?: string; project?: string }>;
+  searchParams: Promise<{ view?: string; month?: string; project?: string; unit?: string }>;
 }) {
   await requireUser();
-  const { view: rawView, month, project: projectId } = await searchParams;
+  const { view: rawView, month, project: projectId, unit: unitId } = await searchParams;
   const view = rawView === "timeline" ? "timeline" : "calendar";
   const monthStart = parseMonthParam(month, new Date());
 
-  const projects = await prisma.project.findMany({
-    orderBy: { name: "asc" },
-    select: { id: true, name: true, projectCode: true },
-  });
+  const [projects, units] = await Promise.all([
+    prisma.project.findMany({
+      orderBy: { name: "asc" },
+      select: { id: true, name: true, projectCode: true },
+    }),
+    prisma.unitProduction.findMany({
+      where: projectId ? { projectId } : {},
+      orderBy: [{ project: { name: "asc" } }, { name: "asc" }],
+      select: { id: true, name: true, project: { select: { name: true } } },
+    }),
+  ]);
 
   const baseQs = new URLSearchParams();
   if (projectId) baseQs.set("project", projectId);
+  if (unitId) baseQs.set("unit", unitId);
 
   const viewHref = (v: string) => {
     const qs = new URLSearchParams(baseQs);
@@ -53,6 +61,18 @@ export default async function SchedulePage({
                 </option>
               ))}
             </select>
+            <select
+              name="unit"
+              defaultValue={unitId ?? ""}
+              className="rounded-lg border border-border bg-surface px-3 py-2 text-sm"
+            >
+              <option value="">All units</option>
+              {units.map((u) => (
+                <option key={u.id} value={u.id}>
+                  {projectId ? u.name : `${u.project.name} — ${u.name}`}
+                </option>
+              ))}
+            </select>
             <input type="hidden" name="view" value={view} />
             <button
               type="submit"
@@ -80,9 +100,9 @@ export default async function SchedulePage({
 
       <div className="mt-6">
         {view === "calendar" ? (
-          <CalendarView monthStart={monthStart} projectId={projectId} />
+          <CalendarView monthStart={monthStart} projectId={projectId} unitId={unitId} />
         ) : (
-          <TimelineView projectId={projectId} />
+          <TimelineView projectId={projectId} unitId={unitId} />
         )}
       </div>
     </div>

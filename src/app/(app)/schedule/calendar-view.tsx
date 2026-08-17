@@ -15,9 +15,11 @@ const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 export async function CalendarView({
   monthStart,
   projectId,
+  unitId,
 }: {
   monthStart: Date;
   projectId?: string;
+  unitId?: string;
 }) {
   const weeks = buildCalendarWeeks(monthStart);
   const gridStart = weeks[0][0];
@@ -27,6 +29,7 @@ export async function CalendarView({
     where: {
       date: { gte: gridStart, lte: gridEnd },
       ...(projectId ? { projectId } : {}),
+      ...(unitId ? { unitProductionId: unitId } : {}),
     },
     include: { project: true },
     orderBy: { date: "asc" },
@@ -43,7 +46,8 @@ export async function CalendarView({
 
   const prevMonth = monthParam(addMonths(monthStart, -1));
   const nextMonth = monthParam(addMonths(monthStart, 1));
-  const qs = (m: string) => `?view=calendar&month=${m}${projectId ? `&project=${projectId}` : ""}`;
+  const qs = (m: string) =>
+    `?view=calendar&month=${m}${projectId ? `&project=${projectId}` : ""}${unitId ? `&unit=${unitId}` : ""}`;
   const today = isoDateKey(new Date());
 
   return (

@@ -3,12 +3,13 @@ import { prisma } from "@/lib/prisma";
 import { PROJECT_COLOR_HEX } from "@/lib/display";
 import { addMonths, startOfMonth } from "@/lib/date-utils";
 
-export async function TimelineView({ projectId }: { projectId?: string }) {
+export async function TimelineView({ projectId, unitId }: { projectId?: string; unitId?: string }) {
   const phases = await prisma.productionSchedulePhase.findMany({
     where: {
       startDate: { not: null },
       endDate: { not: null },
       ...(projectId ? { projectId } : {}),
+      ...(unitId ? { unitProductions: { some: { id: unitId } } } : {}),
     },
     include: { project: true },
     orderBy: [{ project: { name: "asc" } }, { startDate: "asc" }],

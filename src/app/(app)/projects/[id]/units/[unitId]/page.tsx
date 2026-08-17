@@ -59,6 +59,9 @@ export default async function UnitProductionPage({
             {unit.episodeTitle ? ` · ${unit.episodeTitle}` : ""}
           </p>
         </div>
+        <LinkButton href={`/schedule?project=${projectId}&unit=${unit.id}`} variant="outline">
+          View on schedule
+        </LinkButton>
       </div>
 
       <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
