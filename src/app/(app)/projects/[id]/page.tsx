@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { requireUser } from "@/lib/session";
 import { Badge } from "@/components/ui/badge";
-import { LinkButton } from "@/components/ui/button";
+import { Button, LinkButton } from "@/components/ui/button";
+import { Input, Label, Select, Textarea } from "@/components/ui/input";
 import {
   PROJECT_STATUS_LABEL,
   PROJECT_STATUS_TONE,
@@ -11,15 +12,24 @@ import {
   PRIORITY_TONE,
   PROJECT_FORMAT_LABEL,
   PROJECT_COLOR_HEX,
+  PROJECT_CONTACT_RELATION_LABEL,
   BOOKING_STATUS_LABEL,
   BOOKING_STATUS_TONE,
+  BUDGET_STATUS_LABEL,
+  BUDGET_STATUS_TONE,
+  TASK_PRIORITY_LABEL,
+  TASK_PRIORITY_TONE,
 } from "@/lib/display";
+import { createBudget, updateBudget, deleteBudget, createTask, deleteTask } from "./actions";
+import { TaskStatusSelect } from "./task-status-select";
 
 const TABS = [
   { key: "overview", label: "Overview" },
   { key: "episodes", label: "Unit Productions" },
   { key: "schedule", label: "Schedule" },
   { key: "locations", label: "Locations" },
+  { key: "budget", label: "Budget" },
+  { key: "tasks", label: "Tasks" },
   { key: "bookings", label: "Bookings" },
 ] as const;
 
@@ -40,13 +50,14 @@ export default async function ProjectDetailPage({
   const project = await prisma.project.findUnique({ where: { id } });
   if (!project) notFound();
 
-  const [unitCount, phaseCount, shootDayCount, locationCount, bookingCount, contacts] =
+  const [unitCount, phaseCount, shootDayCount, locationCount, bookingCount, taskCount, contacts] =
     await Promise.all([
       prisma.unitProduction.count({ where: { projectId: id } }),
       prisma.productionSchedulePhase.count({ where: { projectId: id } }),
       prisma.shootDay.count({ where: { projectId: id } }),
       prisma.location.count({ where: { unitProductions: { some: { projectId: id } } } }),
       prisma.booking.count({ where: { projectId: id } }),
+      prisma.task.count({ where: { projectId: id } }),
       prisma.projectContact.findMany({ where: { projectId: id }, include: { person: true } }),
     ]);
 
@@ -80,9 +91,14 @@ export default async function ProjectDetailPage({
               {project.genre && <Badge tone="neutral">{project.genre}</Badge>}
             </div>
           </div>
-          <LinkButton href={`/schedule?project=${project.id}`} variant="outline">
-            View on schedule
-          </LinkButton>
+          <div className="flex shrink-0 gap-2">
+            <LinkButton href={`/projects/${project.id}/edit`} variant="outline">
+              Edit
+            </LinkButton>
+            <LinkButton href={`/schedule?project=${project.id}`} variant="outline">
+              View on schedule
+            </LinkButton>
+          </div>
         </div>
 
         <nav className="flex gap-1 overflow-x-auto border-t border-border px-4">
@@ -96,7 +112,9 @@ export default async function ProjectDetailPage({
                     ? locationCount
                     : t.key === "bookings"
                       ? bookingCount
-                      : undefined;
+                      : t.key === "tasks"
+                        ? taskCount
+                        : undefined;
             return (
               <Link
                 key={t.key}
@@ -120,6 +138,8 @@ export default async function ProjectDetailPage({
         {tab === "episodes" && <EpisodesTab projectId={id} />}
         {tab === "schedule" && <ScheduleTab projectId={id} />}
         {tab === "locations" && <LocationsTab projectId={id} />}
+        {tab === "budget" && <BudgetTab projectId={id} />}
+        {tab === "tasks" && <TasksTab projectId={id} />}
         {tab === "bookings" && <BookingsTab projectId={id} />}
       </div>
     </div>
@@ -135,15 +155,6 @@ function OverviewTab({
   contacts: Awaited<ReturnType<typeof prisma.projectContact.findMany<{ include: { person: true } }>>>;
   shootDayCount: number;
 }) {
-  const relationLabel: Record<string, string> = {
-    EXECUTIVE_OWNER: "Executive Owner",
-    DAY_TO_DAY_OWNER: "Day-to-Day Owner",
-    SHOWRUNNER: "Showrunner",
-    KEY_TALENT: "Key Talent",
-    KEY_CREW: "Key Crew",
-    IMPORTANT_CONTACT: "Important Contact",
-  };
-
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
       <div className="space-y-6 lg:col-span-2">
@@ -190,11 +201,46 @@ function OverviewTab({
             <Row label="Rights status" value={project.rightsStatus} />
             <Row label="Script status" value={project.scriptStatus} />
             <Row label="Sales / distribution" value={project.salesDistributionStatus} />
+            <Row label="Casting status" value={project.castingStatus} />
+            <Row label="Casting director" value={project.castingDirector} />
             <Row label="ZGM owner" value={project.zgmOwner} />
             <Row label="Episode count" value={project.episodeCount?.toString()} />
+            <Row
+              label="Episode length"
+              value={project.episodeLength ? `${project.episodeLength} min` : undefined}
+            />
             <Row label="Shoot days" value={shootDayCount.toString()} />
           </dl>
         </section>
+
+        {(project.googleFolderUrl || project.decksBiblesUrl || project.additionalLinks) && (
+          <section className="rounded-2xl border border-border bg-surface p-5">
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Links</h2>
+            <ul className="mt-3 space-y-2 text-sm">
+              {project.googleFolderUrl && (
+                <li>
+                  <a href={project.googleFolderUrl} target="_blank" rel="noreferrer" className="text-brand hover:underline">
+                    Google Folder ↗
+                  </a>
+                </li>
+              )}
+              {project.decksBiblesUrl && (
+                <li>
+                  <a href={project.decksBiblesUrl} target="_blank" rel="noreferrer" className="text-brand hover:underline">
+                    Decks & Bibles ↗
+                  </a>
+                </li>
+              )}
+              {project.additionalLinks && (
+                <li>
+                  <a href={project.additionalLinks} target="_blank" rel="noreferrer" className="text-brand hover:underline">
+                    Additional Link ↗
+                  </a>
+                </li>
+              )}
+            </ul>
+          </section>
+        )}
 
         {(project.nextDecision || project.nextAction) && (
           <section className="rounded-2xl border border-brand/20 bg-brand/5 p-5">
@@ -219,7 +265,9 @@ function OverviewTab({
                   <Link href={`/people/${c.personId}`} className="font-medium text-foreground hover:text-brand">
                     {c.person.fullName}
                   </Link>
-                  <span className="text-xs text-muted-foreground">{relationLabel[c.relation] ?? c.relation}</span>
+                  <span className="text-xs text-muted-foreground">
+                    {PROJECT_CONTACT_RELATION_LABEL[c.relation]}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -320,6 +368,236 @@ async function ScheduleTab({ projectId }: { projectId: string }) {
           ))}
         </tbody>
       </table>
+    </div>
+  );
+}
+
+function formatCurrency(value: unknown) {
+  if (value === null || value === undefined) return null;
+  const n = typeof value === "object" && value !== null && "toNumber" in value
+    ? (value as { toNumber: () => number }).toNumber()
+    : Number(value);
+  if (!Number.isFinite(n)) return null;
+  return n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+}
+
+async function BudgetTab({ projectId }: { projectId: string }) {
+  const budgets = await prisma.budget.findMany({
+    where: { projectId },
+    orderBy: { createdAt: "asc" },
+  });
+
+  return (
+    <div className="space-y-4">
+      {budgets.map((b) => (
+        <form
+          key={b.id}
+          action={updateBudget}
+          className="grid grid-cols-1 gap-3 rounded-2xl border border-border bg-surface p-5 sm:grid-cols-2 lg:grid-cols-4"
+        >
+          <input type="hidden" name="budgetId" value={b.id} />
+          <input type="hidden" name="projectId" value={projectId} />
+          <div className="sm:col-span-2 lg:col-span-4">
+            <Label htmlFor={`name-${b.id}`}>Name</Label>
+            <Input id={`name-${b.id}`} name="name" defaultValue={b.name} />
+          </div>
+          <div>
+            <Label htmlFor={`total-${b.id}`}>Total budget</Label>
+            <Input id={`total-${b.id}`} name="totalBudget" type="number" step="0.01" defaultValue={b.totalBudget?.toString() ?? ""} />
+          </div>
+          <div>
+            <Label htmlFor={`perEp-${b.id}`}>Budget per episode</Label>
+            <Input
+              id={`perEp-${b.id}`}
+              name="budgetPerEpisode"
+              type="number"
+              step="0.01"
+              defaultValue={b.budgetPerEpisode?.toString() ?? ""}
+            />
+          </div>
+          <div>
+            <Label htmlFor={`status-${b.id}`}>Status</Label>
+            <Select id={`status-${b.id}`} name="status" defaultValue={b.status ?? ""}>
+              <option value="">—</option>
+              {Object.entries(BUDGET_STATUS_LABEL).map(([value, label]) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </Select>
+          </div>
+          <div>
+            <Label htmlFor={`link-${b.id}`}>Budget sheet link</Label>
+            <Input id={`link-${b.id}`} name="budgetSheetsLink" type="url" defaultValue={b.budgetSheetsLink ?? ""} />
+          </div>
+          <div className="sm:col-span-2 lg:col-span-4">
+            <Label htmlFor={`notes-${b.id}`}>Notes</Label>
+            <Textarea id={`notes-${b.id}`} name="notes" defaultValue={b.notes ?? ""} />
+          </div>
+          <div className="flex items-center justify-between gap-2 sm:col-span-2 lg:col-span-4">
+            {b.status && <Badge tone={BUDGET_STATUS_TONE[b.status]}>{BUDGET_STATUS_LABEL[b.status]}</Badge>}
+            {formatCurrency(b.totalBudget) && (
+              <span className="text-sm text-muted-foreground">{formatCurrency(b.totalBudget)} total</span>
+            )}
+            <div className="ml-auto flex gap-2">
+              <Button type="submit" size="sm" variant="outline">
+                Save
+              </Button>
+              <Button type="submit" size="sm" variant="danger" formAction={deleteBudget}>
+                Delete
+              </Button>
+            </div>
+          </div>
+        </form>
+      ))}
+
+      {budgets.length === 0 && <EmptyState message="No budgets yet." />}
+
+      <form
+        action={createBudget}
+        className="grid grid-cols-1 gap-3 rounded-2xl border border-dashed border-border bg-surface-muted/30 p-5 sm:grid-cols-2 lg:grid-cols-4"
+      >
+        <input type="hidden" name="projectId" value={projectId} />
+        <div className="sm:col-span-2 lg:col-span-4">
+          <Label htmlFor="new-budget-name">New budget name</Label>
+          <Input id="new-budget-name" name="name" placeholder="e.g. Season 1 Draft Budget" required />
+        </div>
+        <div>
+          <Label htmlFor="new-budget-total">Total budget</Label>
+          <Input id="new-budget-total" name="totalBudget" type="number" step="0.01" />
+        </div>
+        <div>
+          <Label htmlFor="new-budget-perEp">Budget per episode</Label>
+          <Input id="new-budget-perEp" name="budgetPerEpisode" type="number" step="0.01" />
+        </div>
+        <div>
+          <Label htmlFor="new-budget-status">Status</Label>
+          <Select id="new-budget-status" name="status" defaultValue="">
+            <option value="">—</option>
+            {Object.entries(BUDGET_STATUS_LABEL).map(([value, label]) => (
+              <option key={value} value={value}>
+                {label}
+              </option>
+            ))}
+          </Select>
+        </div>
+        <div className="flex items-end">
+          <Button type="submit" variant="outline">
+            + Add Budget
+          </Button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+async function TasksTab({ projectId }: { projectId: string }) {
+  const tasks = await prisma.task.findMany({
+    where: { projectId },
+    include: { assignedTo: true, unitProduction: true },
+    orderBy: [{ status: "asc" }, { dueDate: "asc" }],
+  });
+
+  const total = tasks.length;
+  const completed = tasks.filter((t) => t.status === "COMPLETE").length;
+  const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+  return (
+    <div className="space-y-4">
+      <div className="rounded-2xl border border-border bg-surface p-5">
+        <div className="flex items-center justify-between text-sm">
+          <span className="font-medium text-foreground">
+            {completed} / {total} tasks complete
+          </span>
+          <span className="text-muted-foreground">{pct}%</span>
+        </div>
+        <div className="mt-2 h-2.5 w-full overflow-hidden rounded-full bg-surface-muted">
+          <div
+            className="h-full rounded-full bg-brand transition-all"
+            style={{ width: `${pct}%` }}
+          />
+        </div>
+      </div>
+
+      {tasks.length === 0 ? (
+        <EmptyState message="No tasks yet." />
+      ) : (
+        <div className="overflow-x-auto rounded-2xl border border-border bg-surface">
+          <table className="w-full text-left text-sm">
+            <thead className="bg-surface-muted text-xs uppercase tracking-wide text-muted-foreground">
+              <tr>
+                <th className="px-4 py-3 font-medium">Task</th>
+                <th className="px-4 py-3 font-medium">Unit</th>
+                <th className="px-4 py-3 font-medium">Assigned To</th>
+                <th className="px-4 py-3 font-medium">Priority</th>
+                <th className="px-4 py-3 font-medium">Due</th>
+                <th className="px-4 py-3 font-medium">Status</th>
+                <th className="px-4 py-3 font-medium" />
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {tasks.map((t) => (
+                <tr key={t.id}>
+                  <td className="px-4 py-3 font-medium">{t.title}</td>
+                  <td className="px-4 py-3">{t.unitProduction?.name ?? "—"}</td>
+                  <td className="px-4 py-3">{t.assignedTo?.fullName ?? "—"}</td>
+                  <td className="px-4 py-3">
+                    {t.priority ? (
+                      <Badge tone={TASK_PRIORITY_TONE[t.priority]}>{TASK_PRIORITY_LABEL[t.priority]}</Badge>
+                    ) : (
+                      "—"
+                    )}
+                  </td>
+                  <td className="px-4 py-3">{t.dueDate ? t.dueDate.toLocaleDateString() : "—"}</td>
+                  <td className="px-4 py-3">
+                    <TaskStatusSelect taskId={t.id} projectId={projectId} status={t.status} />
+                  </td>
+                  <td className="px-4 py-3 text-right">
+                    <form action={deleteTask}>
+                      <input type="hidden" name="taskId" value={t.id} />
+                      <input type="hidden" name="projectId" value={projectId} />
+                      <Button type="submit" variant="ghost" size="sm">
+                        Delete
+                      </Button>
+                    </form>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      <form
+        action={createTask}
+        className="grid grid-cols-1 gap-3 rounded-2xl border border-dashed border-border bg-surface-muted/30 p-5 sm:grid-cols-2 lg:grid-cols-4"
+      >
+        <input type="hidden" name="projectId" value={projectId} />
+        <div className="sm:col-span-2 lg:col-span-2">
+          <Label htmlFor="new-task-title">New task</Label>
+          <Input id="new-task-title" name="title" placeholder="e.g. Lock casting for lead role" required />
+        </div>
+        <div>
+          <Label htmlFor="new-task-priority">Priority</Label>
+          <Select id="new-task-priority" name="priority" defaultValue="">
+            <option value="">—</option>
+            {Object.entries(TASK_PRIORITY_LABEL).map(([value, label]) => (
+              <option key={value} value={value}>
+                {label}
+              </option>
+            ))}
+          </Select>
+        </div>
+        <div>
+          <Label htmlFor="new-task-due">Due date</Label>
+          <Input id="new-task-due" name="dueDate" type="date" />
+        </div>
+        <div className="sm:col-span-2 lg:col-span-4 flex items-end">
+          <Button type="submit" variant="outline">
+            + Add Task
+          </Button>
+        </div>
+      </form>
     </div>
   );
 }
