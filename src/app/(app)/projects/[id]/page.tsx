@@ -20,7 +20,14 @@ import {
   TASK_PRIORITY_LABEL,
   TASK_PRIORITY_TONE,
 } from "@/lib/display";
-import { createBudget, updateBudget, deleteBudget, createTask, deleteTask } from "./actions";
+import {
+  createBudget,
+  updateBudget,
+  deleteBudget,
+  createTask,
+  deleteTask,
+  createUnitProduction,
+} from "./actions";
 import { TaskStatusSelect } from "./task-status-select";
 
 const TABS = [
@@ -40,11 +47,11 @@ export default async function ProjectDetailPage({
   searchParams,
 }: {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ tab?: string }>;
+  searchParams: Promise<{ tab?: string; archived?: string }>;
 }) {
   await requireUser();
   const { id } = await params;
-  const { tab: rawTab } = await searchParams;
+  const { tab: rawTab, archived: showArchived } = await searchParams;
   const tab: TabKey = (TABS.find((t) => t.key === rawTab)?.key ?? "overview") as TabKey;
 
   const project = await prisma.project.findUnique({ where: { id } });
@@ -135,7 +142,7 @@ export default async function ProjectDetailPage({
 
       <div className="mt-6">
         {tab === "overview" && <OverviewTab project={project} contacts={contacts} shootDayCount={shootDayCount} />}
-        {tab === "episodes" && <EpisodesTab projectId={id} />}
+        {tab === "episodes" && <EpisodesTab projectId={id} showArchived={showArchived === "1"} />}
         {tab === "schedule" && <ScheduleTab projectId={id} />}
         {tab === "locations" && <LocationsTab projectId={id} />}
         {tab === "budget" && <BudgetTab projectId={id} />}
@@ -288,56 +295,96 @@ function Row({ label, value }: { label: string; value?: string | null }) {
   );
 }
 
-async function EpisodesTab({ projectId }: { projectId: string }) {
+async function EpisodesTab({ projectId, showArchived }: { projectId: string; showArchived: boolean }) {
   const units = await prisma.unitProduction.findMany({
-    where: { projectId },
+    where: { projectId, ...(showArchived ? {} : { archived: false }) },
     include: { director: true, writer: true, _count: { select: { tasks: true } } },
     orderBy: [{ season: "asc" }, { episode: "asc" }],
   });
 
-  if (units.length === 0) {
-    return <EmptyState message="No unit productions yet." />;
-  }
-
   return (
-    <div className="overflow-x-auto rounded-2xl border border-border bg-surface">
-      <table className="w-full text-left text-sm">
-        <thead className="bg-surface-muted text-xs uppercase tracking-wide text-muted-foreground">
-          <tr>
-            <th className="px-4 py-3 font-medium">Unit</th>
-            <th className="px-4 py-3 font-medium">Ep</th>
-            <th className="px-4 py-3 font-medium">Title</th>
-            <th className="px-4 py-3 font-medium">Director</th>
-            <th className="px-4 py-3 font-medium">Writer</th>
-            <th className="px-4 py-3 font-medium">Script Status</th>
-            <th className="px-4 py-3 font-medium">Dates</th>
-            <th className="px-4 py-3 font-medium">Tasks</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-border">
-          {units.map((u) => (
-            <tr key={u.id} className="hover:bg-surface-muted/50">
-              <td className="px-4 py-3 font-medium">
-                <Link href={`/projects/${projectId}/units/${u.id}`} className="text-brand hover:underline">
-                  {u.name}
-                </Link>
-              </td>
-              <td className="px-4 py-3">{u.episode ?? "—"}</td>
-              <td className="px-4 py-3">{u.episodeTitle ?? "—"}</td>
-              <td className="px-4 py-3">{u.director?.fullName ?? "—"}</td>
-              <td className="px-4 py-3">{u.writer?.fullName ?? "—"}</td>
-              <td className="px-4 py-3">
-                {u.scriptStatus ? <Badge tone="purple">{u.scriptStatus}</Badge> : "—"}
-              </td>
-              <td className="px-4 py-3 text-xs text-muted-foreground">
-                {u.startDate ? u.startDate.toLocaleDateString() : "—"}
-                {u.endDate ? ` – ${u.endDate.toLocaleDateString()}` : ""}
-              </td>
-              <td className="px-4 py-3">{u._count.tasks}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="space-y-4">
+      <div className="flex justify-end">
+        <Link
+          href={`/projects/${projectId}?tab=episodes${showArchived ? "" : "&archived=1"}`}
+          className="text-sm font-medium text-muted-foreground hover:text-foreground"
+        >
+          {showArchived ? "Hide archived" : "Show archived"}
+        </Link>
+      </div>
+
+      {units.length === 0 ? (
+        <EmptyState message="No unit productions yet." />
+      ) : (
+        <div className="overflow-x-auto rounded-2xl border border-border bg-surface">
+          <table className="w-full text-left text-sm">
+            <thead className="bg-surface-muted text-xs uppercase tracking-wide text-muted-foreground">
+              <tr>
+                <th className="px-4 py-3 font-medium">Unit</th>
+                <th className="px-4 py-3 font-medium">Ep</th>
+                <th className="px-4 py-3 font-medium">Title</th>
+                <th className="px-4 py-3 font-medium">Director</th>
+                <th className="px-4 py-3 font-medium">Writer</th>
+                <th className="px-4 py-3 font-medium">Script Status</th>
+                <th className="px-4 py-3 font-medium">Dates</th>
+                <th className="px-4 py-3 font-medium">Tasks</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {units.map((u) => (
+                <tr key={u.id} className={`hover:bg-surface-muted/50 ${u.archived ? "opacity-60" : ""}`}>
+                  <td className="px-4 py-3 font-medium">
+                    <Link href={`/projects/${projectId}/units/${u.id}`} className="text-brand hover:underline">
+                      {u.name}
+                    </Link>
+                    {u.archived && (
+                      <Badge tone="neutral" className="ml-2">
+                        Archived
+                      </Badge>
+                    )}
+                  </td>
+                  <td className="px-4 py-3">{u.episode ?? "—"}</td>
+                  <td className="px-4 py-3">{u.episodeTitle ?? "—"}</td>
+                  <td className="px-4 py-3">{u.director?.fullName ?? "—"}</td>
+                  <td className="px-4 py-3">{u.writer?.fullName ?? "—"}</td>
+                  <td className="px-4 py-3">
+                    {u.scriptStatus ? <Badge tone="purple">{u.scriptStatus}</Badge> : "—"}
+                  </td>
+                  <td className="px-4 py-3 text-xs text-muted-foreground">
+                    {u.startDate ? u.startDate.toLocaleDateString() : "—"}
+                    {u.endDate ? ` – ${u.endDate.toLocaleDateString()}` : ""}
+                  </td>
+                  <td className="px-4 py-3">{u._count.tasks}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      <form
+        action={createUnitProduction}
+        className="grid grid-cols-1 gap-3 rounded-2xl border border-dashed border-border bg-surface-muted/30 p-5 sm:grid-cols-4"
+      >
+        <input type="hidden" name="projectId" value={projectId} />
+        <div className="sm:col-span-2">
+          <Label htmlFor="new-unit-name">New unit production</Label>
+          <Input id="new-unit-name" name="name" placeholder="e.g. Episode 6" required />
+        </div>
+        <div>
+          <Label htmlFor="new-unit-season">Season</Label>
+          <Input id="new-unit-season" name="season" type="number" />
+        </div>
+        <div>
+          <Label htmlFor="new-unit-episode">Episode</Label>
+          <Input id="new-unit-episode" name="episode" type="number" />
+        </div>
+        <div className="sm:col-span-4 flex items-end">
+          <Button type="submit" variant="outline">
+            + Add Unit Production
+          </Button>
+        </div>
+      </form>
     </div>
   );
 }

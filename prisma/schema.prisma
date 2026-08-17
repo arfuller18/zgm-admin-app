@@ -97,6 +97,8 @@ enum ProjectStatus {
   GREENLIGHT_READY
   PREP
   PAUSED
+  WRAPPED
+  ARCHIVED
 }
 
 enum Priority {
@@ -243,6 +245,11 @@ model UnitProduction {
 
   startDate DateTime? // Airtable "Production Calendar"
   endDate   DateTime?
+
+  // Unit Productions have no Airtable status field to reuse (unlike
+  // Project, which gained WRAPPED/ARCHIVED as real ProjectStatus values) —
+  // this is purely an app-side hide-from-default-views flag.
+  archived Boolean @default(false)
 
   directorId String?
   director   Person? @relation("Director", fields: [directorId], references: [id])

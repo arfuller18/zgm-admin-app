@@ -5,8 +5,9 @@ import { requireUser } from "@/lib/session";
 import { Badge } from "@/components/ui/badge";
 import { Button, LinkButton } from "@/components/ui/button";
 import { Input, Label, Select } from "@/components/ui/input";
+import { ConfirmSubmitButton } from "@/components/ui/confirm-submit-button";
 import { TASK_PRIORITY_LABEL, TASK_PRIORITY_TONE } from "@/lib/display";
-import { createTask, deleteTask } from "../../actions";
+import { createTask, deleteTask, archiveUnitProduction, deleteUnitProduction } from "../../actions";
 import { TaskStatusSelect } from "../../task-status-select";
 import { UnitEditForm } from "./unit-edit-form";
 
@@ -52,7 +53,10 @@ export default async function UnitProductionPage({
 
       <div className="mt-3 flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">{unit.name}</h1>
+          <div className="flex items-center gap-2">
+            <h1 className="text-2xl font-bold tracking-tight">{unit.name}</h1>
+            {unit.archived && <Badge tone="neutral">Archived</Badge>}
+          </div>
           <p className="mt-1 text-sm text-muted-foreground">
             {unit.season != null ? `Season ${unit.season}` : ""}
             {unit.episode != null ? ` · Episode ${unit.episode}` : ""}
@@ -233,6 +237,50 @@ export default async function UnitProductionPage({
           </section>
         </div>
       </div>
+
+      <section className="mt-6 rounded-2xl border border-danger/30 bg-danger-bg/40 p-6">
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-danger">Danger Zone</h2>
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <p className="text-sm font-medium text-foreground">
+              {unit.archived ? "Unarchive this unit production" : "Archive this unit production"}
+            </p>
+            <p className="text-sm text-muted-foreground">
+              {unit.archived
+                ? "Brings it back into the default Unit Productions list."
+                : "Hides it from the default Unit Productions list and schedule filters. Reversible."}
+            </p>
+          </div>
+          <form action={archiveUnitProduction}>
+            <input type="hidden" name="unitId" value={unit.id} />
+            <input type="hidden" name="projectId" value={projectId} />
+            <input type="hidden" name="archived" value={unit.archived ? "false" : "true"} />
+            <Button type="submit" variant="outline">
+              {unit.archived ? "Unarchive" : "Archive"}
+            </Button>
+          </form>
+        </div>
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-4 border-t border-danger/20 pt-5">
+          <div>
+            <p className="text-sm font-medium text-foreground">Delete this unit production</p>
+            <p className="text-sm text-muted-foreground">
+              Permanently deletes {unit.name} and its tasks. Shoot days and bookings that reference it
+              are kept but unlinked. This can&apos;t be undone.
+            </p>
+          </div>
+          <form action={deleteUnitProduction}>
+            <input type="hidden" name="unitId" value={unit.id} />
+            <input type="hidden" name="projectId" value={projectId} />
+            <ConfirmSubmitButton
+              type="submit"
+              variant="danger"
+              confirmMessage={`Permanently delete "${unit.name}"? This can't be undone.`}
+            >
+              Delete Unit Production
+            </ConfirmSubmitButton>
+          </form>
+        </div>
+      </section>
     </div>
   );
 }

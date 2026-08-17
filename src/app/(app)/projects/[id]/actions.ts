@@ -253,3 +253,42 @@ export async function deleteTask(formData: FormData) {
   await prisma.task.delete({ where: { id: taskId } });
   revalidatePath(`/projects/${projectId}`);
 }
+
+// ---------- Unit Productions ----------
+
+export async function createUnitProduction(formData: FormData) {
+  await requireUser();
+  const projectId = String(formData.get("projectId") ?? "");
+  const name = str(formData, "name");
+  if (!projectId || !name) return;
+
+  const unit = await prisma.unitProduction.create({
+    data: {
+      projectId,
+      name,
+      season: int(formData, "season"),
+      episode: int(formData, "episode"),
+    },
+  });
+  redirect(`/projects/${projectId}/units/${unit.id}`);
+}
+
+export async function archiveUnitProduction(formData: FormData) {
+  await requireUser();
+  const unitId = String(formData.get("unitId") ?? "");
+  const projectId = String(formData.get("projectId") ?? "");
+  const archived = formData.get("archived") === "true";
+  if (!unitId) return;
+  await prisma.unitProduction.update({ where: { id: unitId }, data: { archived } });
+  revalidatePath(`/projects/${projectId}`);
+  redirect(`/projects/${projectId}/units/${unitId}`);
+}
+
+export async function deleteUnitProduction(formData: FormData) {
+  await requireUser();
+  const unitId = String(formData.get("unitId") ?? "");
+  const projectId = String(formData.get("projectId") ?? "");
+  if (!unitId) return;
+  await prisma.unitProduction.delete({ where: { id: unitId } });
+  redirect(`/projects/${projectId}?tab=episodes`);
+}

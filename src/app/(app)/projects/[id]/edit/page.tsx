@@ -4,9 +4,11 @@ import { prisma } from "@/lib/prisma";
 import { requireUser } from "@/lib/session";
 import { Button } from "@/components/ui/button";
 import { Select } from "@/components/ui/input";
+import { ConfirmSubmitButton } from "@/components/ui/confirm-submit-button";
 import { PROJECT_CONTACT_RELATION_LABEL } from "@/lib/display";
 import { ProjectEditForm } from "./project-edit-form";
 import { addProjectContact, removeProjectContact } from "../actions";
+import { archiveProject, deleteProject } from "../../actions";
 
 export default async function ProjectEditPage({ params }: { params: Promise<{ id: string }> }) {
   await requireUser();
@@ -100,6 +102,44 @@ export default async function ProjectEditPage({ params }: { params: Promise<{ id
             + Add
           </Button>
         </form>
+      </section>
+
+      <section className="mt-6 rounded-2xl border border-danger/30 bg-danger-bg/40 p-6">
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-danger">Danger Zone</h2>
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <p className="text-sm font-medium text-foreground">Archive this project</p>
+            <p className="text-sm text-muted-foreground">
+              Sets status to Archived and hides it from the default Projects list. Reversible — just
+              change the status back.
+            </p>
+          </div>
+          <form action={archiveProject}>
+            <input type="hidden" name="projectId" value={id} />
+            <Button type="submit" variant="outline">
+              Archive
+            </Button>
+          </form>
+        </div>
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-4 border-t border-danger/20 pt-5">
+          <div>
+            <p className="text-sm font-medium text-foreground">Delete this project</p>
+            <p className="text-sm text-muted-foreground">
+              Permanently deletes {project.name} and everything under it — unit productions, schedule
+              phases, shoot days, bookings, budgets, and tasks. This can&apos;t be undone.
+            </p>
+          </div>
+          <form action={deleteProject}>
+            <input type="hidden" name="projectId" value={id} />
+            <ConfirmSubmitButton
+              type="submit"
+              variant="danger"
+              confirmMessage={`Permanently delete "${project.name}" and everything under it? This can't be undone.`}
+            >
+              Delete Project
+            </ConfirmSubmitButton>
+          </form>
+        </div>
       </section>
     </div>
   );

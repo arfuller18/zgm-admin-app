@@ -34,6 +34,8 @@ export const PROJECT_STATUS_LABEL: Record<ProjectStatus, string> = {
   GREENLIGHT_READY: "Greenlight-Ready",
   PREP: "Prep",
   PAUSED: "Paused",
+  WRAPPED: "Wrapped",
+  ARCHIVED: "Archived",
 };
 
 export const PROJECT_STATUS_TONE: Record<ProjectStatus, BadgeTone> = {
@@ -46,6 +48,8 @@ export const PROJECT_STATUS_TONE: Record<ProjectStatus, BadgeTone> = {
   GREENLIGHT_READY: "success",
   PREP: "success",
   PAUSED: "warning",
+  WRAPPED: "brand",
+  ARCHIVED: "neutral",
 };
 
 export const PRIORITY_LABEL: Record<Priority, string> = {
