@@ -1,0 +1,3835 @@
+[
+  {
+    "airtableId": "rec04gK1O2OOIU0bD",
+    "title": "Playboy — Final production go/no-go",
+    "status": "Not Started",
+    "priority": "Critical",
+    "category": "Approval Pathway",
+    "notes": "Final executive review of budget, cash flow, cast, locations, legal, insurance, unions, staffing and readiness.",
+    "dueDate": "2026-09-04",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec067ZFHpsXPL4Ml",
+    "title": "Shipping containers",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec0r0p2B5ziNCRCs",
+    "title": "Insurance",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec128lCkn5CbIIH7",
+    "title": "Shipping containers",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": "2026-11-03",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec1F4CjgjAbZFW2E",
+    "title": "ZGM brand — Identity system review",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Marketing & Brand",
+    "notes": "Review master wordmark, 0/G signal mark, campus colorways, templates, motion identity and implementation rules.",
+    "dueDate": "2026-08-21",
+    "projectIds": [
+      "recfedx3WpVZrJtiu"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec1FGXGVJ91udJjl",
+    "title": "Catering + craft services",
+    "status": "In progress",
+    "priority": "Medium",
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": "2026-06-24",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "rec1T2eov4nToe6uK",
+    "title": "Insurance",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "rec1TkDzPvplzWPb3",
+    "title": "Cashflow schedule",
+    "status": "In progress",
+    "priority": "High",
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": "2026-06-15",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "rec1eXwvJGvg4N2mO",
+    "title": "Production designer",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec1ifs1zk7zpe6wq",
+    "title": "Housekeeping / maid service",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec1kAhLp7VwuWvhi",
+    "title": "Tone continuity",
+    "status": "Not Started",
+    "priority": "Low",
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": "2027-01-11",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec1mVUiWs9meH8Tm",
+    "title": "Board",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec1oHcPeRaQr1BIS",
+    "title": "Stages",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec2EHpvPePqoLHdT",
+    "title": "Hospitality",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec2nKggGCdPOghxV",
+    "title": "Show bible / tone deck / comps",
+    "status": "Complete",
+    "priority": "High",
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": "2026-10-13",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "rec320HKAS0mFTTmM",
+    "title": "Staff room",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": "2026-11-03",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec3496FJYICH5HDu",
+    "title": "Lock-up/storage",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": "2026-11-03",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec3Rv0DZOTOLdtf9",
+    "title": "Preliminary schedule / block-shooting logic",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec3TotEy07AfMM7V",
+    "title": "Playboy — Premiere and launch-event readiness",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Marketing & Brand",
+    "notes": "Confirm event, guest, talent, press, security, brand, technical and contingency readiness.",
+    "dueDate": "2027-09-01",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec48RBAYJvX16QFa",
+    "title": "Playboy — Casting and publicity capture plan",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Marketing & Brand",
+    "notes": "Confirm cast status, announcement order, stills/BTS capture, EPK needs, talent approvals and embargo plan.",
+    "dueDate": "2026-08-28",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec48RvxYOOARFNO9",
+    "title": "Schedule vs actual tracking",
+    "status": "Not Started",
+    "priority": "Low",
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": "2026-09-14",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec4IozLs8809Hksv",
+    "title": "Production designer",
+    "status": "Complete",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-06-17",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "rec4eev7tEqahJoQS",
+    "title": "Safety meeting",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec4jaFxATvn4DzXb",
+    "title": "Playboy — Trailer lock",
+    "status": "Not Started",
+    "priority": "Critical",
+    "category": "Marketing & Brand",
+    "notes": "Final trailer creative, music, legal, talent, licensor and network/streamer approval.",
+    "dueDate": "2027-07-14",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec4jpq80aqTOubFO",
+    "title": "Health/safety protocols",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": "2026-06-24",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "rec5EFkmCc8A4sZCi",
+    "title": "Laundry",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec6z0uwHe7w0Z7XO",
+    "title": "Distribution strategy",
+    "status": "In progress",
+    "priority": "High",
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": "2026-06-10",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "recsZpVEju68lReqs",
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "rec77MsB4OhSpqeo8",
+    "title": "Episode grouping / block optimization",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec7WyCbzzYPnNGEc",
+    "title": "Editor",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec7XJsNOsEqW0556",
+    "title": "Show bible / tone deck / comps",
+    "status": "In progress",
+    "priority": "High",
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": "2026-06-10",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "rec7iVDCpNc2zJDZC",
+    "title": "Editor",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-10-20",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "rec7tH0kzQy9XGkWk",
+    "title": "Hospitality",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": "2026-11-03",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec8QnlYLqdiuvfA1",
+    "title": "Casting",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec8QsE2hJ3y8JFo7",
+    "title": "Data backups",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec8hScnKo2ZIINix",
+    "title": "Playboy — Principal photography begins",
+    "status": "Not Started",
+    "priority": "Critical",
+    "category": "Physical Production",
+    "notes": "Controlling schedule milestone. CEO/COO or President of Studios and Head of Production jointly own the slate schedule.",
+    "dueDate": "2026-09-14",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec8z8n7l26pZUgd1",
+    "title": "Call sheet issued",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec94fCQOUUXta1D3",
+    "title": "Financing plan",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec9m6YaF5HWmidsM",
+    "title": "Shot lists/storyboards",
+    "status": "Not Started",
+    "priority": "Low",
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": "2026-09-14",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rec9o2F170eYovdaK",
+    "title": "Schedule vs actual tracking",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recAb7uyzXJVTceAL",
+    "title": "Casting",
+    "status": "Complete",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-06-17",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recAkVhlQlorxFfSW",
+    "title": "Staff room",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": "2026-07-01",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recAsyjNOvBOnmuak",
+    "title": "Production accountant",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-06-17",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recBRZx2In7wfbVop",
+    "title": "Data backups",
+    "status": "Not Started",
+    "priority": "Low",
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": "2026-09-14",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recBfF2Wr2UeSQT6r",
+    "title": "Production design",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": "2026-09-07",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "recsZpVEju68lReqs",
+      "reclkBFQxYxaRsR6E"
+    ]
+  },
+  {
+    "airtableId": "recBuehhapGoeOCr5",
+    "title": "VFX supervisor",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recBxInSsv91rPnHK",
+    "title": "HR/accounting/bookkeeping/CFO oversight",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": "2026-07-01",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recC9X26ifyAc8Ma6",
+    "title": "Hospitality",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": "2026-07-01",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recCfQeLAlckRHuFT",
+    "title": "Full budget",
+    "status": "In progress",
+    "priority": "High",
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": "2026-06-15",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recCsX845x8hVrPgR",
+    "title": "Full budget",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recCzHmmi54VszrGg",
+    "title": "Staff room",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recD6yYiJAdOfqAxu",
+    "title": "Schedule vs actual tracking",
+    "status": "Not Started",
+    "priority": "Low",
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": "2027-01-11",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recDXdzZeWMjRZZ6u",
+    "title": "HR/accounting/bookkeeping/CFO oversight",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": "2026-11-03",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recDc2F2Te3zMuP74",
+    "title": "Trucks / picture cars",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": "2026-10-27",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recDcRGhVXkPkULYG",
+    "title": "Bond company if needed",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recDiqJOJsiy66Qhf",
+    "title": "Lock-up/storage",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": "2026-07-01",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recDwVo0etigQcaKv",
+    "title": "Echoes — Principal photography begins",
+    "status": "Not Started",
+    "priority": "Critical",
+    "category": "Physical Production",
+    "notes": "Current controlling Airtable schedule milestone. CEO/COO or President of Studios and Head of Production jointly own the slate schedule.",
+    "dueDate": "2027-01-11",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recDyFrg1oDh1FgQa",
+    "title": "Casting",
+    "status": "Complete",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-10-20",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recECREmjxiuADpMs",
+    "title": "Episode breakdowns by location/cast/stunts/VFX",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": "2026-06-10",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recEehPMEYMSeW58u",
+    "title": "Writers room/scripts",
+    "status": "In progress",
+    "priority": "Medium",
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": "2026-09-07",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recEnAohDqSbmls8u",
+    "title": "Coverage strategy",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recF2WscvhXJMx627",
+    "title": "Echoes — Principal photography complete",
+    "status": "Not Started",
+    "priority": "Critical",
+    "category": "Physical Production",
+    "notes": "Complete episode block 8 and transition into dedicated pickups, sound and wrap.",
+    "dueDate": "2027-05-04",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recFHv7w1w2XzkmAN",
+    "title": "Company moves",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recG2lbbwRUGD8omY",
+    "title": "Rights agreements",
+    "status": "Complete",
+    "priority": "High",
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recG7mGn9pPPoIofb",
+    "title": "Episode grouping / block optimization",
+    "status": "In progress",
+    "priority": "High",
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": "2026-10-18",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recGSPtJHCtoD26FV",
+    "title": "Costume",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-06-17",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recGbFAYyCzMleadt",
+    "title": "Writers room/scripts",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recGdXAhprQa8DGef",
+    "title": "Echoes — Final production go/no-go",
+    "status": "Not Started",
+    "priority": "Critical",
+    "category": "Approval Pathway",
+    "notes": "Final executive review of schedule, cast, stage, VFX, budget, legal, insurance, unions and readiness.",
+    "dueDate": "2027-01-04",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recH5DoTFWBQ8GSug",
+    "title": "Janitorial",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": "2026-07-01",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recH9WEwzKRjvFTX8",
+    "title": "Line producer / UPM",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-10-20",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recHEl74q5YpsKD0b",
+    "title": "Costume/HMU",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recHXhcVomcYRqeok",
+    "title": "Line producer / UPM",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-06-17",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recHXmpc2X1TwwEGr",
+    "title": "ATL / BTL / post / contingency",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": "2026-10-18",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recHs6u3VqiOUSVqE",
+    "title": "Production legal",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recHvK8YGQEb4EnPB",
+    "title": "Playboy — Network/streamer technical delivery",
+    "status": "Not Started",
+    "priority": "Critical",
+    "category": "Post-Production & Delivery",
+    "notes": "Deliver masters, M&E, captions, metadata, art, legal and platform-specific technical package.",
+    "dueDate": "2027-08-04",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recI5Ma7dnbyX87E0",
+    "title": "Post plan",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recIBm8evGjY35aSc",
+    "title": "Final scripts or rolling delivery schedule",
+    "status": "In progress",
+    "priority": "High",
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": "2026-10-13",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recIJayn0fftiNJon",
+    "title": "Writers room/scripts",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": "2027-01-04",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recITFvzeLvnyMCyI",
+    "title": "Tone continuity",
+    "status": "Not Started",
+    "priority": "Low",
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": "2026-09-14",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recIofZHliP3Q6ffq",
+    "title": "Network",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recJ36zL67igvff8k",
+    "title": "Shot lists/storyboards",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recJHxHQLPoTmcfqp",
+    "title": "Production offices",
+    "status": "In progress",
+    "priority": "Medium",
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": "2026-10-27",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recJXDfsxkuQuZaBE",
+    "title": "1st AD",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recJg0Azw8XfOw1CJ",
+    "title": "Signature authority",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recJjTcvvYQ7dqfmO",
+    "title": "Final scripts or rolling delivery schedule",
+    "status": "In progress",
+    "priority": "High",
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": "2026-06-10",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recKOemJmKTvv9Ueh",
+    "title": "Showrunner / creative lead",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-10-20",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recKRvLuvCkCnj5BJ",
+    "title": "Company moves",
+    "status": "Not Started",
+    "priority": "Low",
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": "2026-09-14",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recKbDI3BI5ZO2BZo",
+    "title": "Playboy — Press screeners and review embargo",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Marketing & Brand",
+    "notes": "Release secure screeners, reviewer guidance and approved embargo terms through publicity lead.",
+    "dueDate": "2027-08-18",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recKgLTZElfdTLrJ9",
+    "title": "Final scripts or rolling delivery schedule",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recL0ldXzO237BeXv",
+    "title": "Final prep",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": "2026-09-07",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recLCAJL57A9QMxDy",
+    "title": "Editor",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-06-17",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recLEFzA8lpQXGUM5",
+    "title": "Script strips",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": "2026-06-15",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recLSAp56Uk2f9hQF",
+    "title": "Wrap report",
+    "status": "Not Started",
+    "priority": "Low",
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": "2027-01-11",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recLifoDl65ANMHYm",
+    "title": "Catering vendors",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": "2026-11-03",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recLkCGxKmZowRv1i",
+    "title": "Deal document storage",
+    "status": "In progress",
+    "priority": "High",
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recM0TrTgQByVGroq",
+    "title": "Playboy — Brand licensing gate",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Legal / Business Affairs",
+    "notes": "Confirm licensor scope, approvals, brand restrictions, logo usage, publicity controls and response times.",
+    "dueDate": "2026-08-14",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recM65ycaB9PksiV5",
+    "title": "Crew housing",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recMZpAZIeWRUgquR",
+    "title": "Wrap report",
+    "status": "Not Started",
+    "priority": "Low",
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": "2026-09-14",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recMj3CRdOIUENGM5",
+    "title": "1st AD",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-10-20",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recNBBxAhGTKvF6hr",
+    "title": "DP",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recNLYe22glqpJN70",
+    "title": "Catering + craft services",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recNNiOwBiqslg9V3",
+    "title": "Production accountant",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-10-20",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recNX2ssTZXY9mkzS",
+    "title": "Housekeeping / maid service",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": "2026-07-01",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recNixD1K1DBtiPqf",
+    "title": "Tone continuity",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recNtBguBAWgCRtJc",
+    "title": "Health/safety protocols",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recNw0RFKhm00TvLl",
+    "title": "Locations",
+    "status": "In progress",
+    "priority": "Medium",
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": "2026-09-07",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recO4pSl54k4gUQ58",
+    "title": "Trucks / picture cars",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recOY24nYarxyMdUg",
+    "title": "Crew housing",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": "2026-06-24",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recOu0CfIVR7Lzoy2",
+    "title": "Showrunner / creative lead",
+    "status": "Complete",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-06-17",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recOvZdP3f0mLaYmV",
+    "title": "Showrunner / creative lead",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recPW0i8lJBsrcdd5",
+    "title": "Union agreements",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recPmVHGt5GSGNgew",
+    "title": "Shot lists/storyboards",
+    "status": "Not Started",
+    "priority": "Low",
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": "2027-01-11",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recPoKOR2QGmwxaWd",
+    "title": "Shared drives",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": "2026-06-24",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recPoe9qakpTZWBzY",
+    "title": "HR/accounting/bookkeeping/CFO oversight",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recPtlKk9G7fiJ6Fy",
+    "title": "Costume/HMU",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": "2026-09-07",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recQ9OyEMk4rbuAdc",
+    "title": "Playboy — Final release go/no-go",
+    "status": "Not Started",
+    "priority": "Critical",
+    "category": "Approval Pathway",
+    "notes": "Final executive, network/streamer, legal, delivery, marketing and publicity release confirmation.",
+    "dueDate": "2027-09-08",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recQOhe7uaUJQ348s",
+    "title": "Catering vendors",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": "2026-07-01",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recQS1hO6iJNghWy6",
+    "title": "Playboy — Junket and press tour begins",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Marketing & Brand",
+    "notes": "Begin talent press, junket, trade, consumer and platform-facing publicity program.",
+    "dueDate": "2027-08-25",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recQlp7LYYsDWJLLG",
+    "title": "Directors mapped",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recQvzbW70jr4Enmj",
+    "title": "Costume/HMU",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": "2027-01-04",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recRgTiFGNvC0XUUv",
+    "title": "Contract matrix",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recRngMl0sKMZ4a7r",
+    "title": "Preliminary budget range",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recRqI3AfPgEYbVlB",
+    "title": "ZGM brand — Brand sprint kickoff",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Marketing & Brand",
+    "notes": "Kick off integrated brand, website, social and corporate communications sprint. Corporate item; no Project Hub record currently exists.",
+    "dueDate": "2026-08-10",
+    "projectIds": [
+      "recfedx3WpVZrJtiu"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recRsdzOdO0QD8SBy",
+    "title": "Network",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": "2026-06-24",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recRuiZNVs4LVjXi1",
+    "title": "DP",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-06-17",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recS7bl5E7rZ7fLyD",
+    "title": "Cashflow schedule",
+    "status": "In progress",
+    "priority": "High",
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": "2026-10-18",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recSHiGXLiO1kZLQS",
+    "title": "Company moves",
+    "status": "Not Started",
+    "priority": "Low",
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": "2027-01-11",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recSIHAIfSLSLpSMV",
+    "title": "Production offices",
+    "status": "In progress",
+    "priority": "Medium",
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": "2026-06-24",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recSSJR4x1pQzdaep",
+    "title": "Echoes — Stage, green-screen and VFX workflow lock",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Production Infrastructure",
+    "notes": "Lock stage plan, green-screen workflow, previs, data capture, VFX turnover and technical responsibilities.",
+    "dueDate": "2026-10-27",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recT3oIOPdGHGR2YG",
+    "title": "Locations",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recT8Xm8G0tcUTBye",
+    "title": "Chain of title",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recTMgmaFtjOClWxB",
+    "title": "Chain of title",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recTTIwArqUEPB5K6",
+    "title": "Playboy — Detailed post schedule lock",
+    "status": "Not Started",
+    "priority": "Critical",
+    "category": "Post-Production & Delivery",
+    "notes": "Lock episode turnovers, editorial, VFX, music, sound, color, captions, localization, QC and delivery milestones.",
+    "dueDate": "2027-02-05",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recTTMv1iJn40xtPM",
+    "title": "Episode breakdowns by location/cast/stunts/VFX",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recTb0P7giF1mpd8n",
+    "title": "Script strips",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recU9V8Rk2HK5dbQx",
+    "title": "Echoes — Post completion and delivery-readiness checkpoint",
+    "status": "Not Started",
+    "priority": "Critical",
+    "category": "Post-Production & Delivery",
+    "notes": "Confirm episode finishing, VFX, sound, color, captions, metadata, QC and network/streamer delivery readiness.",
+    "dueDate": "2027-07-27",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recUMvjXX37fEIG9q",
+    "title": "Post plan",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": "2026-09-07",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recUZa8LLaDzbTygK",
+    "title": "DP",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-10-20",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recV5pDoq5f0rLGho",
+    "title": "Production design",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recVAX3UCjoy4FfgB",
+    "title": "Distribution strategy",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recVJbr29YPtbJ3UM",
+    "title": "Transportation",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recVPlI1I4q7aB8GP",
+    "title": "Stages",
+    "status": "In progress",
+    "priority": "Medium",
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": "2026-06-24",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recVoVuVzGA4lKqB7",
+    "title": "Final prep",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recVvtxA5SZ35UzuM",
+    "title": "Health/safety protocols",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": "2026-10-27",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recVzqnW4EsO4MqKI",
+    "title": "Playboy — Streaming release",
+    "status": "Not Started",
+    "priority": "Critical",
+    "category": "Sales & Distribution",
+    "notes": "Working release milestone from the integrated calendar. Confirm with network/streamer before external use.",
+    "dueDate": "2027-09-15",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recW07w1Sxiro2fJd",
+    "title": "Preliminary schedule / block-shooting logic",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": "2026-10-13",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recWLRBqAjpJBByWD",
+    "title": "ATL / BTL / post / contingency",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": "2026-06-15",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recWd0f65jd8hvK7F",
+    "title": "Talent contracts",
+    "status": "In progress",
+    "priority": "High",
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs",
+      "recLadGYKaCxaOtKE"
+    ]
+  },
+  {
+    "airtableId": "recWi2VbDpQBAnwws",
+    "title": "Housekeeping / maid service",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": "2026-11-03",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recWlwBNeS5Dup9ya",
+    "title": "Room availability",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": "2026-07-01",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recWpPx6JurEoCR5Y",
+    "title": "Directors mapped",
+    "status": "In progress",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-06-17",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recXPEptSyp9bJ7EI",
+    "title": "Janitorial",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": "2026-11-03",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recXbMaQbREQ9nOc4",
+    "title": "Coverage strategy",
+    "status": "Not Started",
+    "priority": "Low",
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": "2027-01-11",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recXfIVb9hTwUzWqA",
+    "title": "Insurance",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recXffOQD5Z8lArV4",
+    "title": "Line producer / UPM",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recXhXmrot9l0DRTM",
+    "title": "DOODs",
+    "status": "In progress",
+    "priority": "High",
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": "2026-06-15",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recXiYk8nqWGbjXo1",
+    "title": "Echoes — Pickups, sound and production wrap complete",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Physical Production",
+    "notes": "Complete dedicated pickups/inserts, sound work, wrap reporting and production turnover.",
+    "dueDate": "2027-05-13",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recXtLHKA1Ocdllqx",
+    "title": "Meal compliance",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recY68HyFf5STWvoK",
+    "title": "DOODs",
+    "status": "In progress",
+    "priority": "High",
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": "2026-10-18",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recYBlyYTSe08FLs5",
+    "title": "Full budget",
+    "status": "In progress",
+    "priority": "High",
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": "2026-10-18",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recYOs1QgBTEqOLZI",
+    "title": "Rights agreements",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recYssPi6Rq1ArUK8",
+    "title": "Post supervisor",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-06-17",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "recsZpVEju68lReqs",
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recZ351khJZRHPYjl",
+    "title": "Contract matrix",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recZLNJ1TzE4Yc29x",
+    "title": "Talent contracts",
+    "status": "In progress",
+    "priority": "High",
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "recUliaIUKHJXTW5v",
+      "recLadGYKaCxaOtKE"
+    ]
+  },
+  {
+    "airtableId": "recZn0nsgPFNwspMO",
+    "title": "Casting",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recZnKALlXoD1aZ4H",
+    "title": "Tax incentive assumptions",
+    "status": "In progress",
+    "priority": "High",
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": "2026-10-13",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recaTbONyb9ypHrXI",
+    "title": "Composer",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recb0I9Kb9HlDennH",
+    "title": "Room availability",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": "2026-11-03",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recbLL2oBSbrKSzz3",
+    "title": "Rights agreements",
+    "status": "Complete",
+    "priority": "High",
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recbd64AodQLIBZeM",
+    "title": "Transportation",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": "2026-06-24",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "reccNFhOiBelpPhyX",
+    "title": "Transportation",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": "2026-10-27",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "reccRRtQQ3vJfYGRf",
+    "title": "Chain of title",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recd9AXscuNlT65WN",
+    "title": "Distribution strategy",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": "2026-10-13",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recdLX7tW1kWsfK3h",
+    "title": "Playboy — Production launch approval",
+    "status": "Not Started",
+    "priority": "Critical",
+    "category": "Executive Leadership",
+    "notes": "Executive confirmation that production may proceed into final launch and commitment phase.",
+    "dueDate": "2026-08-17",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recdvYbINSOhSvTQg",
+    "title": "Production accountant",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rece08j6US0FuLjxQ",
+    "title": "Final prep",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": "2027-01-04",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rece1eRAwmJ24fDQi",
+    "title": "Production design",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": "2027-01-04",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "receeMF2le6pd0Xsr",
+    "title": "Tax incentive assumptions",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recetUL4P0gDXFUde",
+    "title": "Playboy — Location lock",
+    "status": "Not Started",
+    "priority": "Critical",
+    "category": "Physical Production",
+    "notes": "Lock primary locations, agreements, access, parking, housing, stage use and contingency locations.",
+    "dueDate": "2026-08-21",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recfAhZsySVLFpTIC",
+    "title": "Financing plan",
+    "status": "Complete",
+    "priority": "High",
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": "2026-06-10",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "recsZpVEju68lReqs",
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recfBv6Rh4zko80F5",
+    "title": "Composer",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-10-20",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "recsZpVEju68lReqs",
+      "recvlIrwPp8CgPCoa"
+    ]
+  },
+  {
+    "airtableId": "recfIISQNVgrJdOug",
+    "title": "Financing plan",
+    "status": "Complete",
+    "priority": "High",
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": "2026-10-13",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recfRFp44xhdep4l6",
+    "title": "Union agreements",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recfq9SiyMxPnv3wR",
+    "title": "Production offices",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recfu9ISOchFXVjaJ",
+    "title": "Camera/tech",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": "2027-01-04",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recgDNLkeWGN5uy2x",
+    "title": "Contract matrix",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recgRuzd1NRMBbcrL",
+    "title": "Union agreements",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recgjqFCkH3rtbqjk",
+    "title": "Trash removal",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recgkwOyAaneXVuuQ",
+    "title": "Laundry",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": "2026-07-01",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "rechJfdZlnZvjOWkH",
+    "title": "ZGM brand — Positioning, tone and messaging approval",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Marketing & Brand",
+    "notes": "Approve corporate positioning, audience, voice, message hierarchy and external narrative.",
+    "dueDate": "2026-08-14",
+    "projectIds": [
+      "recfedx3WpVZrJtiu"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rechWZWRV3FqmtkwM",
+    "title": "Board",
+    "status": "In progress",
+    "priority": "High",
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": "2026-06-15",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recha88r9IN6MiUjh",
+    "title": "Safety meeting",
+    "status": "Not Started",
+    "priority": "Low",
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": "2027-01-11",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rechl11iPsD9wd085",
+    "title": "Playboy — Final master complete",
+    "status": "Not Started",
+    "priority": "Critical",
+    "category": "Post-Production & Delivery",
+    "notes": "Complete final picture, sound, color, VFX, captions, metadata and master package.",
+    "dueDate": "2027-07-21",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rechnJgbFqp3DkEHq",
+    "title": "Post supervisor",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rechnR1O1yINNL1dX",
+    "title": "Preliminary budget range",
+    "status": "In progress",
+    "priority": "High",
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": "2026-10-13",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "rechnnx2zqQ7QIYB0",
+    "title": "Costume",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-10-20",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "reciLmVaNw8DYuWSN",
+    "title": "Meal compliance",
+    "status": "Not Started",
+    "priority": "Low",
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": "2027-01-11",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recjVT5IkTHtUINDz",
+    "title": "Wrap report",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recjw2ocfTVbRDYtL",
+    "title": "Laundry",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": "2026-11-03",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "reck0VqplvXqbhDb3",
+    "title": "Directors mapped",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-10-20",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "reck0YviT8Ccw0iuv",
+    "title": "Trash removal",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": "2026-07-01",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "reckMVQXXhc5gWaNo",
+    "title": "Call sheet issued",
+    "status": "Not Started",
+    "priority": "Low",
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": "2027-01-11",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "reckT2SL6iWlArVpN",
+    "title": "Call sheet issued",
+    "status": "Not Started",
+    "priority": "Low",
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": "2026-09-14",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "reckW1FGWDWutdg0B",
+    "title": "Tax incentive assumptions",
+    "status": "In progress",
+    "priority": "High",
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": "2026-06-10",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "recsZpVEju68lReqs",
+      "recxa6Dhx4mVTiBSQ"
+    ]
+  },
+  {
+    "airtableId": "reclKTop5nTVDWX24",
+    "title": "Production legal",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-06-17",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "reclOpH43EV5WBpJH",
+    "title": "Bond company if needed",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": "2026-06-15",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "reclh4C555Yo9rzfS",
+    "title": "ZGM brand — Public brand launch",
+    "status": "Not Started",
+    "priority": "Critical",
+    "category": "Marketing & Brand",
+    "notes": "Launch ZGM website, social channels and coordinated corporate communications. Working milestone pending final confirmation.",
+    "dueDate": "2026-09-08",
+    "projectIds": [
+      "recfedx3WpVZrJtiu"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recm5OUOwt5Xq5RvB",
+    "title": "Show bible / tone deck / comps",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recmL8HX8w1RVGMqu",
+    "title": "Catering + craft services",
+    "status": "In progress",
+    "priority": "Medium",
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": "2026-10-27",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recmLRQpnyAPGFUVp",
+    "title": "Stunts/SFX/VFX",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": "2026-09-07",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recmLX1TeF2D1Qk2s",
+    "title": "Safety meeting",
+    "status": "Not Started",
+    "priority": "Low",
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": "2026-09-14",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recmVLqF4qby7jczu",
+    "title": "Shipping containers",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": "2026-07-01",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recmbBcayW8mAjQYz",
+    "title": "Stages",
+    "status": "In progress",
+    "priority": "Medium",
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": "2026-10-27",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recmpqzPIwqaNnr0J",
+    "title": "Production legal",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-10-20",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recmyqZcpUwIC7PE4",
+    "title": "Post plan",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": "2027-01-04",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recmzEBWethGDC9N1",
+    "title": "Catering vendors",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recns3DdSJy8dIkwD",
+    "title": "Stunts/SFX/VFX",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": "2027-01-04",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recntHXfuhSMQXZiz",
+    "title": "Composer",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-06-17",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "reco0BfGsN918bkY7",
+    "title": "Signature authority",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recoCOaypvbOiHnBS",
+    "title": "Board",
+    "status": "In progress",
+    "priority": "High",
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": "2026-10-18",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recoKYfTaRQRHVhpk",
+    "title": "Room availability",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recoS47w6PG7q2Kw9",
+    "title": "ZGM brand — Final launch-readiness approval",
+    "status": "Not Started",
+    "priority": "Critical",
+    "category": "Approval Pathway",
+    "notes": "Final approval of public narrative, website, social, press, assets, tracking, response plan and launch timing.",
+    "dueDate": "2026-09-04",
+    "projectIds": [
+      "recfedx3WpVZrJtiu"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recogxiuVmfi4OaxJ",
+    "title": "VFX supervisor",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-10-20",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "recsZpVEju68lReqs",
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recoityPGNQ5JMcKT",
+    "title": "ZGM brand — Website, copy and channel readiness review",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Marketing & Brand",
+    "notes": "Review website, copy, social channels, launch content, analytics, legal and operational readiness.",
+    "dueDate": "2026-08-28",
+    "projectIds": [
+      "recfedx3WpVZrJtiu"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recomDgyj2tdWU5hz",
+    "title": "Janitorial",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recoomkIwCQAGcI10",
+    "title": "Talent contracts",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recpSRAUFN6kcWNtK",
+    "title": "Signature authority",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recpdOUAIOcbqWely",
+    "title": "Casting",
+    "status": "In progress",
+    "priority": "Medium",
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": "2026-09-07",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs",
+      "recLadGYKaCxaOtKE"
+    ]
+  },
+  {
+    "airtableId": "recpjQ8T7Gb6UTL7u",
+    "title": "Data backups",
+    "status": "Not Started",
+    "priority": "Low",
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": "2027-01-11",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recpzddJipSYigfy9",
+    "title": "Deal document storage",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recq5ZnDYlz6YMd8t",
+    "title": "Preliminary budget range",
+    "status": "In progress",
+    "priority": "High",
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": "2026-06-10",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "recsZpVEju68lReqs",
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recqGCe7tQNZnjTP7",
+    "title": "Playboy — Principal photography complete",
+    "status": "Not Started",
+    "priority": "Critical",
+    "category": "Physical Production",
+    "notes": "Complete episode block 8 and transition into dedicated pickups, sound and wrap period.",
+    "dueDate": "2027-01-27",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recqo6Liphwe2kux2",
+    "title": "Network",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": "2026-10-27",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recrFdMh2D6hcuLBi",
+    "title": "Meal compliance",
+    "status": "Not Started",
+    "priority": "Low",
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": "2026-09-14",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recrQ7aW90l86KYM2",
+    "title": "Shared drives",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": "2026-10-27",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recrTg924GsMRFtmM",
+    "title": "Costume",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recruZZDAVEa3Yg0C",
+    "title": "Post supervisor",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-10-20",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recs6Z094sVkrvWY3",
+    "title": "Cashflow schedule",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recsCbdrGFSBXuxJb",
+    "title": "Preliminary schedule / block-shooting logic",
+    "status": "In progress",
+    "priority": "High",
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": "2026-06-10",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recsOMSLL50Kpjctx",
+    "title": "Playboy — Release feasibility gate",
+    "status": "Not Started",
+    "priority": "Critical",
+    "category": "Approval Pathway",
+    "notes": "Confirm delivery feasibility, release date confidence, remaining post risk, campaign readiness and network/streamer requirements.",
+    "dueDate": "2027-05-14",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recsWJuz85mqIT7so",
+    "title": "Playboy — Key art lock",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Marketing & Brand",
+    "notes": "Lock master key art and required crops, title treatment, billing block and partner versions.",
+    "dueDate": "2027-07-07",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rect5wprdp660pakM",
+    "title": "Lock-up/storage",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rectVdDcRDfOnlhqq",
+    "title": "Trash removal",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Studio / Corporate Infrastructure",
+    "notes": null,
+    "dueDate": "2026-11-03",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "rectZc5sDzfzQv0D7",
+    "title": "Episode breakdowns by location/cast/stunts/VFX",
+    "status": "In progress",
+    "priority": "High",
+    "category": "Development Lock",
+    "notes": null,
+    "dueDate": "2026-10-13",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recte1YPXa5UrkTTB",
+    "title": "Coverage strategy",
+    "status": "Not Started",
+    "priority": "Low",
+    "category": "Daily Operations",
+    "notes": null,
+    "dueDate": "2026-09-14",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recuH5jPkx3qGwHza",
+    "title": "ATL / BTL / post / contingency",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recuNbN62u8zE61Gs",
+    "title": "Playboy — Trailer launch",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Marketing & Brand",
+    "notes": "Launch approved trailer and coordinated press/social/talent rollout.",
+    "dueDate": "2027-07-28",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recux5Vkkze1DUfsW",
+    "title": "Echoes — Rolling post begins",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Post-Production & Delivery",
+    "notes": "Begin rolling editorial and finishing against episode turnovers.",
+    "dueDate": "2027-02-08",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recuzd3a16iuhrQls",
+    "title": "Playboy — Final 12-week campaign begins",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Marketing & Brand",
+    "notes": "Begin integrated release campaign across ZGM, agency, press, social, paid, talent and network/streamer channels.",
+    "dueDate": "2027-06-23",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recuzgUoM3SGZI5TN",
+    "title": "Camera/tech",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recv5SE78ZmzClNxM",
+    "title": "Echoes — Cast and director availability lock",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Creative Development",
+    "notes": "Confirm cast, director blocks, options, travel, rehearsal and conflicts against controlling schedule.",
+    "dueDate": "2026-12-18",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recvO9up5HD2vLG3Q",
+    "title": "Trucks / picture cars",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": "2026-06-24",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recved0KeY5ZwtH34",
+    "title": "Casting",
+    "status": "In progress",
+    "priority": "Medium",
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": "2027-01-04",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recvq4u1y2AGTfE32",
+    "title": "Playboy — QC redelivery target",
+    "status": "Not Started",
+    "priority": "Critical",
+    "category": "Post-Production & Delivery",
+    "notes": "Clear network/streamer QC notes and redeliver corrected assets.",
+    "dueDate": "2027-08-11",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recvsABMEr6CkuGW3",
+    "title": "VFX supervisor",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-06-17",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "recsZpVEju68lReqs",
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recw3zSvMbLJi1sXw",
+    "title": "Script strips",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": "2026-10-18",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recw4FxL0jtHTVZCn",
+    "title": "1st AD",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-06-17",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0",
+      "recsZpVEju68lReqs"
+    ]
+  },
+  {
+    "airtableId": "recw5UXeDwmIoaKFs",
+    "title": "Playboy — Teaser launch",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Marketing & Brand",
+    "notes": "Deliver and launch approved teaser with talent, licensor, legal and network/streamer sign-off.",
+    "dueDate": "2027-06-30",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recwL5wU1kzvZBayy",
+    "title": "Production designer",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Core Team Hires",
+    "notes": null,
+    "dueDate": "2026-10-20",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recxVWnSNeKn3HXUN",
+    "title": "Bond company if needed",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": "2026-10-18",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recxhDPHnGvjK2hMs",
+    "title": "Locations",
+    "status": "In progress",
+    "priority": "Medium",
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": "2027-01-04",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recxjFWBonpB8J7Pf",
+    "title": "Deal document storage",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Legal / Business Affairs",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recy9PcRsPhKz57Hh",
+    "title": "DOODs",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recyXdb9WM7kp4gS4",
+    "title": "Episode grouping / block optimization",
+    "status": "Not Started",
+    "priority": "High",
+    "category": "Budgeting & Scheduling",
+    "notes": null,
+    "dueDate": "2026-06-15",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "reczdskFj5gxXaPl0"
+    ]
+  },
+  {
+    "airtableId": "recyqAibkgMXkfBMv",
+    "title": "Crew housing",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": "2026-10-27",
+    "projectIds": [
+      "receRJgf4ZEafJsje"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "recyx4rZb12E9Fz65",
+    "title": "Shared drives",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Production Infrastructure",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "reczCYOf170F1MQ6W",
+    "title": "Stunts/SFX/VFX",
+    "status": "Not Started",
+    "priority": null,
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": null,
+    "projectIds": [],
+    "unitProductionIds": [],
+    "assignedToIds": []
+  },
+  {
+    "airtableId": "reczKTVHd2jWbp0tT",
+    "title": "Camera/tech",
+    "status": "Not Started",
+    "priority": "Medium",
+    "category": "Department Readiness",
+    "notes": null,
+    "dueDate": "2026-09-07",
+    "projectIds": [
+      "recqCXEkhTmutFP0o"
+    ],
+    "unitProductionIds": [],
+    "assignedToIds": [
+      "recsZpVEju68lReqs"
+    ]
+  }
+]

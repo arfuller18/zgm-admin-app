@@ -1,0 +1,92 @@
+[
+  {
+    "airtableId": "rec0s1Xs1Iy3QAAcI",
+    "name": "Grease Monkeys Budget",
+    "totalBudget": 30000000,
+    "budgetPerEpisode": null,
+    "status": "Draft",
+    "budgetSheetsLink": null,
+    "notes": null,
+    "projectIds": ["recpyL9RXdVnLipWD"]
+  },
+  {
+    "airtableId": "rec2OhJGgFpddl6d6",
+    "name": "Spezial: Adidas vs. Puma Budget",
+    "totalBudget": 40000000,
+    "budgetPerEpisode": 5000000,
+    "status": "Draft",
+    "budgetSheetsLink": null,
+    "notes": "Total budget: $40M. 50% ($20M) funded by a third party; remaining ZGM net cash need: $20M. Working schedule assumes 8 episodes at 10 shoot days each, split 50% Europe / 50% New Jersey.",
+    "projectIds": ["reclDjhyaob8O3v3f"]
+  },
+  {
+    "airtableId": "rec32RGL3sYYyhSYo",
+    "name": "The Playboy Budget",
+    "totalBudget": 30000000,
+    "budgetPerEpisode": 3750000,
+    "status": "Draft",
+    "budgetSheetsLink": null,
+    "notes": "Budget based on 10 episodes, 10 days for each episode, 2 day weekends",
+    "projectIds": ["recqCXEkhTmutFP0o"]
+  },
+  {
+    "airtableId": "rec5OqsGjcWcRIQ1z",
+    "name": "Monarchy Budget",
+    "totalBudget": 30000000,
+    "budgetPerEpisode": null,
+    "status": null,
+    "budgetSheetsLink": null,
+    "notes": null,
+    "projectIds": ["reczAkdCPFR9Veahb"]
+  },
+  {
+    "airtableId": "rec6a6Vhr6PEcIM8x",
+    "name": "The Big Game Budget",
+    "totalBudget": null,
+    "budgetPerEpisode": null,
+    "status": "Draft",
+    "budgetSheetsLink": null,
+    "notes": null,
+    "projectIds": ["recswcSD8xGy8Qfh9"]
+  },
+  {
+    "airtableId": "recIGGGTjc3gXZhEF",
+    "name": "Adidas vs. Puma Budget",
+    "totalBudget": 30000000,
+    "budgetPerEpisode": null,
+    "status": null,
+    "budgetSheetsLink": null,
+    "notes": null,
+    "projectIds": ["reclDjhyaob8O3v3f"]
+  },
+  {
+    "airtableId": "recTu7nuy2YGxSIp1",
+    "name": "Our Dear Dead Drug Lord Budget",
+    "totalBudget": 4500000,
+    "budgetPerEpisode": null,
+    "status": null,
+    "budgetSheetsLink": null,
+    "notes": null,
+    "projectIds": ["recxQ0UMHbqxEPHgN"]
+  },
+  {
+    "airtableId": "recmCa6DTLNR4VNfE",
+    "name": "New America Budget",
+    "totalBudget": 30000000,
+    "budgetPerEpisode": null,
+    "status": null,
+    "budgetSheetsLink": null,
+    "notes": null,
+    "projectIds": ["recF8n8GOhkf74YCQ"]
+  },
+  {
+    "airtableId": "recoPYBm8pgOeBDht",
+    "name": "Echoes of the Void Budget",
+    "totalBudget": 30000000,
+    "budgetPerEpisode": 3750000,
+    "status": "Draft",
+    "budgetSheetsLink": null,
+    "notes": null,
+    "projectIds": ["receRJgf4ZEafJsje"]
+  }
+]

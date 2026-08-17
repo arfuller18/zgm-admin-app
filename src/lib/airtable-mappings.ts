@@ -8,6 +8,9 @@ import type {
   ProjectStatus,
   Priority,
   ProjectColor,
+  BudgetStatus,
+  TaskStatus,
+  TaskPriority,
 } from "../../generated/prisma/enums";
 
 const FORMAT_MAP: Record<string, ProjectFormat> = {
@@ -49,6 +52,40 @@ const COLOR_MAP: Record<string, ProjectColor> = {
   Orange: "ORANGE",
   Red: "RED",
 };
+
+const BUDGET_STATUS_MAP: Record<string, BudgetStatus> = {
+  Draft: "DRAFT",
+  Final: "FINAL",
+};
+
+// Airtable's Tasks & Checklists "Status" choices ("To Do"/"In progress"/
+// "Done") differ from Task Status ("Not Started"/"In progress"/"Complete"/
+// "Blocked") — the latter is what's actually on the field we sync.
+const TASK_STATUS_MAP: Record<string, TaskStatus> = {
+  "Not Started": "NOT_STARTED",
+  "In progress": "IN_PROGRESS",
+  Blocked: "BLOCKED",
+  Complete: "COMPLETE",
+};
+
+const TASK_PRIORITY_MAP: Record<string, TaskPriority> = {
+  Critical: "CRITICAL",
+  High: "HIGH",
+  Medium: "MEDIUM",
+  Low: "LOW",
+};
+
+export function mapBudgetStatus(value: string | null | undefined) {
+  return value ? (BUDGET_STATUS_MAP[value] ?? null) : null;
+}
+
+export function mapTaskStatus(value: string | null | undefined) {
+  return value ? (TASK_STATUS_MAP[value] ?? "NOT_STARTED") : "NOT_STARTED";
+}
+
+export function mapTaskPriority(value: string | null | undefined) {
+  return value ? (TASK_PRIORITY_MAP[value] ?? null) : null;
+}
 
 export function mapProjectFormat(value: string | null | undefined) {
   return value ? (FORMAT_MAP[value] ?? null) : null;

@@ -128,6 +128,7 @@ model Project {
   format                  ProjectFormat?
   seasonFilm              String?
   episodeCount            Int?
+  episodeLength           Int? // minutes
   currentStatus           ProjectStatus?
   priority                Priority?
   zgmOwner                String?
@@ -139,6 +140,12 @@ model Project {
   genre                   String?
   projectColor            ProjectColor?
   mainContactRole         String?
+
+  googleFolderUrl String?
+  decksBiblesUrl  String?
+  castingStatus   String?
+  castingDirector String?
+  additionalLinks String?
 
   logline         String? @db.Text
   whyZgm          String? @db.Text
@@ -159,9 +166,38 @@ model Project {
   shootDays       ShootDay[]
   bookings        Booking[]
   contacts        ProjectContact[]
+  budgets         Budget[]
+  tasks           Task[]
 
   @@index([currentStatus])
   @@index([priority])
+}
+
+enum BudgetStatus {
+  DRAFT
+  FINAL
+}
+
+// Mirrors Airtable's Budget Lists table — a project can carry several
+// budget versions (e.g. a draft and a final) rather than one flat number.
+model Budget {
+  id         String  @id @default(cuid())
+  airtableId String? @unique
+
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  name             String
+  totalBudget      Decimal?      @db.Decimal(14, 2)
+  budgetPerEpisode Decimal?      @db.Decimal(14, 2)
+  status           BudgetStatus?
+  budgetSheetsLink String?
+  notes            String?       @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([projectId])
 }
 
 enum ProjectContactRelation {
@@ -205,6 +241,9 @@ model UnitProduction {
   bookingWindow String? @db.Text
   notes         String? @db.Text
 
+  startDate DateTime? // Airtable "Production Calendar"
+  endDate   DateTime?
+
   directorId String?
   director   Person? @relation("Director", fields: [directorId], references: [id])
   writerId   String?
@@ -217,6 +256,7 @@ model UnitProduction {
   shootDays      ShootDay[]
   locations      Location[]                @relation("UnitProductionLocations")
   bookings       Booking[]
+  tasks          Task[]
 
   @@index([projectId])
 }
@@ -335,6 +375,7 @@ model Person {
   writingUnits    UnitProduction[] @relation("Writer")
   projectContacts ProjectContact[]
   bookings        Booking[]
+  assignedTasks   Task[]
 
   @@index([fullName])
 }
@@ -394,6 +435,50 @@ model Booking {
   @@index([locationId, startDate, endDate])
   @@index([equipmentId, startDate, endDate])
   @@index([projectId])
+}
+
+enum TaskStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  BLOCKED
+  COMPLETE
+}
+
+enum TaskPriority {
+  CRITICAL
+  HIGH
+  MEDIUM
+  LOW
+}
+
+// Mirrors Airtable's Tasks & Checklists table. Drives each project's (and
+// unit production's) task progress bar: completed / total.
+model Task {
+  id         String  @id @default(cuid())
+  airtableId String? @unique
+
+  projectId String?
+  project   Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  unitProductionId String?
+  unitProduction   UnitProduction? @relation(fields: [unitProductionId], references: [id], onDelete: Cascade)
+
+  title    String
+  status   TaskStatus    @default(NOT_STARTED)
+  priority TaskPriority?
+  category String?
+
+  assignedToId String?
+  assignedTo   Person? @relation(fields: [assignedToId], references: [id])
+
+  dueDate DateTime?
+  notes   String?   @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([projectId])
+  @@index([unitProductionId])
 }
 
 // ---------- Airtable sync bookkeeping ----------
