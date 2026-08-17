@@ -291,7 +291,7 @@ function Row({ label, value }: { label: string; value?: string | null }) {
 async function EpisodesTab({ projectId }: { projectId: string }) {
   const units = await prisma.unitProduction.findMany({
     where: { projectId },
-    include: { director: true, writer: true },
+    include: { director: true, writer: true, _count: { select: { tasks: true } } },
     orderBy: [{ season: "asc" }, { episode: "asc" }],
   });
 
@@ -310,12 +310,18 @@ async function EpisodesTab({ projectId }: { projectId: string }) {
             <th className="px-4 py-3 font-medium">Director</th>
             <th className="px-4 py-3 font-medium">Writer</th>
             <th className="px-4 py-3 font-medium">Script Status</th>
+            <th className="px-4 py-3 font-medium">Dates</th>
+            <th className="px-4 py-3 font-medium">Tasks</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-border">
           {units.map((u) => (
-            <tr key={u.id}>
-              <td className="px-4 py-3 font-medium">{u.name}</td>
+            <tr key={u.id} className="hover:bg-surface-muted/50">
+              <td className="px-4 py-3 font-medium">
+                <Link href={`/projects/${projectId}/units/${u.id}`} className="text-brand hover:underline">
+                  {u.name}
+                </Link>
+              </td>
               <td className="px-4 py-3">{u.episode ?? "—"}</td>
               <td className="px-4 py-3">{u.episodeTitle ?? "—"}</td>
               <td className="px-4 py-3">{u.director?.fullName ?? "—"}</td>
@@ -323,6 +329,11 @@ async function EpisodesTab({ projectId }: { projectId: string }) {
               <td className="px-4 py-3">
                 {u.scriptStatus ? <Badge tone="purple">{u.scriptStatus}</Badge> : "—"}
               </td>
+              <td className="px-4 py-3 text-xs text-muted-foreground">
+                {u.startDate ? u.startDate.toLocaleDateString() : "—"}
+                {u.endDate ? ` – ${u.endDate.toLocaleDateString()}` : ""}
+              </td>
+              <td className="px-4 py-3">{u._count.tasks}</td>
             </tr>
           ))}
         </tbody>
