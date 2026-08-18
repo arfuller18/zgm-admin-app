@@ -93,7 +93,7 @@ export function AppRail() {
           })}
 
           <a
-            href="https://zgm-budgeting-app.vercel.app"
+            href="https://zgm-budget-app.vercel.app/"
             target="_blank"
             rel="noreferrer"
             className="flex items-center gap-3.5 rounded-xl px-4 py-3.5 text-base font-medium text-foreground transition-colors hover:bg-surface-muted"
