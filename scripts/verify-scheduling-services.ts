@@ -1,14 +1,26 @@
 import "dotenv/config";
 import assert from "node:assert/strict";
 import { prisma } from "../src/lib/prisma";
-import { parseScheduleDate as d, formatScheduleDate as f } from "../src/lib/scheduling/work-calendar";
+import {
+  parseScheduleDate as d,
+  formatScheduleDate as f,
+  addCalendarDays,
+} from "../src/lib/scheduling/work-calendar";
 import {
   getMasterVariation,
   createVariation,
   deleteVariation,
 } from "../src/lib/scheduling/variations";
 import { createUnitRequirement } from "../src/lib/scheduling/requirements";
-import { assign, move, resize, unassign, previewShift, applyShift } from "../src/lib/scheduling/assignments";
+import {
+  assign,
+  move,
+  resize,
+  resizeToStartDate,
+  unassign,
+  previewShift,
+  applyShift,
+} from "../src/lib/scheduling/assignments";
 import { previewPush, pushToMaster } from "../src/lib/scheduling/master";
 
 // Integration checks for the guarantees the whole model rests on: variation
@@ -146,6 +158,25 @@ async function main() {
   });
   check("resizing in a variation does not rewrite the project's stated need", () => {
     assert.equal(reqAfterResize.durationDays, 5);
+  });
+
+  const bAfterResize = await prisma.scheduleAssignment.findUniqueOrThrow({
+    where: { id: bAssignments[0].id },
+  });
+  // Same weekday, one calendar week earlier — on a Mon–Fri calendar that is
+  // exactly one full production week, so the assertion below is exact, not
+  // approximate.
+  const startOneWeekEarlier = addCalendarDays(bAfterResize.startDate, -7);
+  await resizeToStartDate(bAssignments[0].id, startOneWeekEarlier);
+  const bAfterStartResize = await prisma.scheduleAssignment.findUniqueOrThrow({
+    where: { id: bAssignments[0].id },
+  });
+  check("dragging the start edge back one week adds exactly 5 production days", () => {
+    assert.equal(bAfterStartResize.durationDays, bAfterResize.durationDays + 5);
+    assert.equal(f(bAfterStartResize.startDate), f(startOneWeekEarlier));
+  });
+  check("dragging the start edge leaves the end date untouched", () => {
+    assert.equal(f(bAfterStartResize.endDate), f(bAfterResize.endDate));
   });
 
   console.log("\nMaster isolation");

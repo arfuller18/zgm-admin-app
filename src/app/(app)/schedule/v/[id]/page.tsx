@@ -8,7 +8,7 @@ import { getVariation } from "@/lib/scheduling/variations";
 import { loadWorkspace } from "@/lib/scheduling/queries";
 import { previewPush } from "@/lib/scheduling/master";
 import { ScheduleWorkspace, ShiftControls } from "../../workspace";
-import { ScheduleTimeline } from "../../schedule-timeline";
+import { TimelineSection } from "../../timeline-section";
 import { CalendarSection } from "../../calendar-section";
 import { ViewControls } from "../../view-controls";
 import { PushToMasterForm } from "./push-form";
@@ -19,11 +19,11 @@ export default async function VariationPage({
   searchParams,
 }: {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ view?: string; month?: string; project?: string }>;
+  searchParams: Promise<{ view?: string; month?: string; project?: string; zoom?: string; anchor?: string }>;
 }) {
   await requireUser();
   const { id } = await params;
-  const { view: rawView, month, project: projectId } = await searchParams;
+  const { view: rawView, month, project: projectId, zoom, anchor } = await searchParams;
   const view = rawView === "timeline" ? "timeline" : rawView === "list" ? "list" : "calendar";
 
   const variation = await getVariation(id);
@@ -90,7 +90,15 @@ export default async function VariationPage({
           basePath={`/schedule/v/${variation.id}`}
         />
       )}
-      {view === "timeline" && <ScheduleTimeline variationId={variation.id} />}
+      {view === "timeline" && (
+        <TimelineSection
+          variationId={variation.id}
+          zoomParam={zoom}
+          anchorParam={anchor}
+          projectId={projectId}
+          basePath={`/schedule/v/${variation.id}`}
+        />
+      )}
 
       {view === "list" && (
         <>

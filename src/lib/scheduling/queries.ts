@@ -119,11 +119,12 @@ export async function loadSchedulingOverview() {
 }
 
 /**
- * Placements intersecting a date window, for the calendar. Anything
- * overlapping the window is included, not merely those starting inside it —
- * a 50-day Prep block must still render in the month it runs through.
+ * Placements intersecting a date window — the shared read model behind both
+ * the month calendar and the timeline. Anything *overlapping* the window is
+ * included, not merely those starting inside it: a 50-day Prep block must
+ * still render in the months it runs through.
  */
-export async function loadCalendarWindow(input: {
+export async function loadScheduleWindow(input: {
   variationId: string;
   from: Date;
   to: Date;
@@ -143,9 +144,10 @@ export async function loadCalendarWindow(input: {
       endDate: true,
       durationDays: true,
       projectId: true,
-      project: { select: { name: true, projectColor: true } },
+      project: { select: { name: true, projectColor: true, priority: true } },
       requirement: {
         select: {
+          kind: true,
           label: true,
           unitProduction: { select: { name: true } },
           eventType: { select: { name: true } },
@@ -162,8 +164,10 @@ export async function loadCalendarWindow(input: {
     projectId: a.projectId,
     projectName: a.project.name,
     projectColor: a.project.projectColor,
+    projectPriority: a.project.priority,
+    kind: a.requirement.kind,
     label: requirementLabel(a.requirement),
   }));
 }
 
-export type CalendarAssignment = Awaited<ReturnType<typeof loadCalendarWindow>>[number];
+export type ScheduleWindowAssignment = Awaited<ReturnType<typeof loadScheduleWindow>>[number];

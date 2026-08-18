@@ -6,7 +6,7 @@ import { getMasterVariation } from "@/lib/scheduling/variations";
 import { loadWorkspace } from "@/lib/scheduling/queries";
 import { listPublications } from "@/lib/scheduling/master";
 import { ScheduleWorkspace, ShiftControls } from "../workspace";
-import { ScheduleTimeline } from "../schedule-timeline";
+import { TimelineSection } from "../timeline-section";
 import { CalendarSection } from "../calendar-section";
 import { ViewControls } from "../view-controls";
 
@@ -17,10 +17,17 @@ import { ViewControls } from "../view-controls";
 export default async function MasterCalendarPage({
   searchParams,
 }: {
-  searchParams: Promise<{ published?: string; view?: string; month?: string; project?: string }>;
+  searchParams: Promise<{
+    published?: string;
+    view?: string;
+    month?: string;
+    project?: string;
+    zoom?: string;
+    anchor?: string;
+  }>;
 }) {
   await requireUser();
-  const { published, view: rawView, month, project: projectId } = await searchParams;
+  const { published, view: rawView, month, project: projectId, zoom, anchor } = await searchParams;
   const view = rawView === "timeline" ? "timeline" : rawView === "list" ? "list" : "calendar";
 
   const master = await getMasterVariation();
@@ -81,7 +88,15 @@ export default async function MasterCalendarPage({
           basePath="/schedule/master"
         />
       )}
-      {view === "timeline" && <ScheduleTimeline variationId={master.id} />}
+      {view === "timeline" && (
+        <TimelineSection
+          variationId={master.id}
+          zoomParam={zoom}
+          anchorParam={anchor}
+          projectId={projectId}
+          basePath="/schedule/master"
+        />
+      )}
 
       {view === "list" && (
         <>

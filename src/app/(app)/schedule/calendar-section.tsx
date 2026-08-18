@@ -1,4 +1,4 @@
-import { loadCalendarWindow } from "@/lib/scheduling/queries";
+import { loadScheduleWindow } from "@/lib/scheduling/queries";
 import { loadWorkCalendarContext } from "@/lib/scheduling/context";
 import {
   formatScheduleDate,
@@ -44,7 +44,7 @@ export async function CalendarSection({
   const gridEnd = addCalendarDays(monthEnd, 6 - monthEnd.getUTCDay());
 
   const [assignments, ctx] = await Promise.all([
-    loadCalendarWindow({ variationId, from: gridStart, to: gridEnd, projectId }),
+    loadScheduleWindow({ variationId, from: gridStart, to: gridEnd, projectId }),
     loadWorkCalendarContext(variationId),
   ]);
 

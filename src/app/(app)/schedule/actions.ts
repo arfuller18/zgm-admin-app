@@ -249,6 +249,10 @@ export async function pushToMasterAction(
   redirect("/schedule/master?published=1");
 }
 
+export type EdgeMoveResult =
+  | { ok: true; startDate: string; endDate: string; durationDays: number }
+  | { ok: false; message: string };
+
 /**
  * Typed move for the calendar's drag-and-drop, which has real values in hand
  * and no form to serialise through. Returns the resolved dates so the client
@@ -259,9 +263,7 @@ export async function moveAssignmentToDate(input: {
   assignmentId: string;
   variationId: string;
   isoDate: string;
-}): Promise<
-  { ok: true; startDate: string; endDate: string } | { ok: false; message: string }
-> {
+}): Promise<EdgeMoveResult> {
   await requireUser();
   const result = await run(() =>
     assignments.move(input.assignmentId, parseScheduleDate(input.isoDate))
@@ -273,5 +275,50 @@ export async function moveAssignmentToDate(input: {
     ok: true,
     startDate: formatScheduleDate(result.value.startDate),
     endDate: formatScheduleDate(result.value.endDate),
+    durationDays: result.value.durationDays,
+  };
+}
+
+/**
+ * Typed edge-drags for the timeline. Both take the date the cursor landed on
+ * and let the engine decide what that means: the client never converts a
+ * pixel offset into a duration, because "how many production days is that"
+ * is a work-calendar question and there is exactly one place that answers it.
+ */
+export async function resizeAssignmentToEnd(input: {
+  assignmentId: string;
+  variationId: string;
+  isoDate: string;
+}): Promise<EdgeMoveResult> {
+  await requireUser();
+  const result = await run(() =>
+    assignments.resizeToEndDate(input.assignmentId, parseScheduleDate(input.isoDate))
+  );
+  if (!result.ok) return { ok: false, message: result.message };
+  revalidateScheduling(input.variationId);
+  return {
+    ok: true,
+    startDate: formatScheduleDate(result.value.startDate),
+    endDate: formatScheduleDate(result.value.endDate),
+    durationDays: result.value.durationDays,
+  };
+}
+
+export async function resizeAssignmentFromStart(input: {
+  assignmentId: string;
+  variationId: string;
+  isoDate: string;
+}): Promise<EdgeMoveResult> {
+  await requireUser();
+  const result = await run(() =>
+    assignments.resizeToStartDate(input.assignmentId, parseScheduleDate(input.isoDate))
+  );
+  if (!result.ok) return { ok: false, message: result.message };
+  revalidateScheduling(input.variationId);
+  return {
+    ok: true,
+    startDate: formatScheduleDate(result.value.startDate),
+    endDate: formatScheduleDate(result.value.endDate),
+    durationDays: result.value.durationDays,
   };
 }

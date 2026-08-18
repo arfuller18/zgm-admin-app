@@ -107,6 +107,35 @@ export async function resizeToEndDate(assignmentId: string, newEndDate: Date) {
   return resize(assignmentId, durationDays);
 }
 
+/**
+ * Resize by dragging the *leading* edge: the block's end stays put and its
+ * start moves, so the duration absorbs the change. Distinct from `move`,
+ * which drags the whole block and keeps the duration.
+ */
+export async function resizeToStartDate(assignmentId: string, newStartDate: Date) {
+  const assignment = await prisma.scheduleAssignment.findUnique({ where: { id: assignmentId } });
+  if (!assignment) throw new SchedulingError("Assignment not found.");
+
+  const ctx = await loadWorkCalendarContext(assignment.variationId);
+  const start = normalizeScheduleDate(newStartDate);
+  if (start > assignment.endDate) {
+    throw new SchedulingError("An event cannot start after it ends.");
+  }
+  const durationDays = Math.max(
+    countProductionDays(start, assignment.endDate, ctx, assignment.projectId),
+    1
+  );
+  // Re-derive the end rather than keeping the old one: if the dragged-to end
+  // sat on a weekend, the honest end is the last production day, not the
+  // date the cursor happened to land on.
+  const endDate = resolveEndDate(start, durationDays, ctx, assignment.projectId);
+
+  return prisma.scheduleAssignment.update({
+    where: { id: assignmentId },
+    data: { startDate: start, durationDays, endDate },
+  });
+}
+
 /** Promote an assignment's length into the requirement's stated need. */
 export async function applyDurationToRequirement(assignmentId: string) {
   const assignment = await prisma.scheduleAssignment.findUnique({ where: { id: assignmentId } });

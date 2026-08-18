@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { PROJECT_COLOR_HEX } from "@/lib/display";
 import { moveAssignmentToDate } from "./actions";
-import type { CalendarAssignment } from "@/lib/scheduling/queries";
+import type { ScheduleWindowAssignment } from "@/lib/scheduling/queries";
 
 // Interactive month calendar. Multi-day placements render as continuous bars
 // across each week row, lane-packed so overlapping productions stack instead
@@ -20,7 +20,7 @@ import type { CalendarAssignment } from "@/lib/scheduling/queries";
 const MS_PER_DAY = 86_400_000;
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-type Assignment = Omit<CalendarAssignment, "startDate" | "endDate"> & {
+type Assignment = Omit<ScheduleWindowAssignment, "startDate" | "endDate"> & {
   startDate: string;
   endDate: string;
 };
