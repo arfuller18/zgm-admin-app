@@ -1,110 +1,153 @@
 import Link from "next/link";
-import { prisma } from "@/lib/prisma";
 import { requireUser } from "@/lib/session";
-import { parseMonthParam } from "@/lib/date-utils";
-import { CalendarView } from "./calendar-view";
-import { TimelineView } from "./timeline-view";
+import { Badge } from "@/components/ui/badge";
+import { LinkButton } from "@/components/ui/button";
+import { VARIATION_STATUS_LABEL, VARIATION_STATUS_TONE } from "@/lib/display";
+import { loadSchedulingOverview } from "@/lib/scheduling/queries";
+import { NewVariationForm } from "./new-variation-form";
 
-export default async function SchedulePage({
-  searchParams,
-}: {
-  searchParams: Promise<{ view?: string; month?: string; project?: string; unit?: string }>;
-}) {
+// The Scheduling home. Master sits at the top as an operational calendar in
+// its own right — variations are listed separately, below, as the planning
+// workspaces they are. The two are never presented as peers.
+
+function fmt(d: Date | null | undefined) {
+  if (!d) return null;
+  return new Date(d).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
+
+export default async function SchedulePage() {
   await requireUser();
-  const { view: rawView, month, project: projectId, unit: unitId } = await searchParams;
-  const view = rawView === "timeline" ? "timeline" : "calendar";
-  const monthStart = parseMonthParam(month, new Date());
-
-  const [projects, units] = await Promise.all([
-    prisma.project.findMany({
-      orderBy: { name: "asc" },
-      select: { id: true, name: true, projectCode: true },
-    }),
-    prisma.unitProduction.findMany({
-      where: projectId ? { projectId } : {},
-      orderBy: [{ project: { name: "asc" } }, { name: "asc" }],
-      select: { id: true, name: true, project: { select: { name: true } } },
-    }),
-  ]);
-
-  const baseQs = new URLSearchParams();
-  if (projectId) baseQs.set("project", projectId);
-  if (unitId) baseQs.set("unit", unitId);
-
-  const viewHref = (v: string) => {
-    const qs = new URLSearchParams(baseQs);
-    qs.set("view", v);
-    if (v === "calendar" && month) qs.set("month", month);
-    return `/schedule?${qs.toString()}`;
-  };
+  const { masterAssignments, masterRange, variations, unscheduled, publications } =
+    await loadSchedulingOverview();
 
   return (
-    <div>
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">Schedule</h1>
-          <p className="mt-1 text-muted-foreground">
-            Every project&apos;s shoot days and production phases, in one place.
-          </p>
-        </div>
-        <div className="flex flex-wrap items-center gap-2">
-          <form className="flex gap-2">
-            <select
-              name="project"
-              defaultValue={projectId ?? ""}
-              className="rounded-lg border border-border bg-surface px-3 py-2 text-sm"
-            >
-              <option value="">All projects</option>
-              {projects.map((p) => (
-                <option key={p.id} value={p.id}>
-                  {p.projectCode ?? p.name}
-                </option>
-              ))}
-            </select>
-            <select
-              name="unit"
-              defaultValue={unitId ?? ""}
-              className="rounded-lg border border-border bg-surface px-3 py-2 text-sm"
-            >
-              <option value="">All units</option>
-              {units.map((u) => (
-                <option key={u.id} value={u.id}>
-                  {projectId ? u.name : `${u.project.name} — ${u.name}`}
-                </option>
-              ))}
-            </select>
-            <input type="hidden" name="view" value={view} />
-            <button
-              type="submit"
-              className="rounded-lg border border-border bg-surface px-3 py-2 text-sm font-medium hover:bg-surface-muted"
-            >
-              Filter
-            </button>
-          </form>
-          <div className="flex overflow-hidden rounded-lg border border-border text-sm">
-            <Link
-              href={viewHref("calendar")}
-              className={`px-3 py-2 font-medium ${view === "calendar" ? "bg-brand text-brand-foreground" : "hover:bg-surface-muted"}`}
-            >
-              Calendar
-            </Link>
-            <Link
-              href={viewHref("timeline")}
-              className={`px-3 py-2 font-medium ${view === "timeline" ? "bg-brand text-brand-foreground" : "hover:bg-surface-muted"}`}
-            >
-              Timeline
-            </Link>
-          </div>
-        </div>
+    <div className="space-y-8">
+      <div>
+        <h1 className="text-2xl font-bold tracking-tight">Scheduling</h1>
+        <p className="mt-1 text-muted-foreground">
+          Plan in a variation, then publish to the Master Calendar.
+        </p>
       </div>
 
-      <div className="mt-6">
-        {view === "calendar" ? (
-          <CalendarView monthStart={monthStart} projectId={projectId} unitId={unitId} />
+      {/* Master — visually distinct, listed first, never inside the variations list. */}
+      <section className="overflow-hidden rounded-2xl border-2 border-brand/30 bg-surface shadow-sm">
+        <div className="h-1.5 w-full bg-gradient-to-r from-brand to-accent" />
+        <div className="flex flex-wrap items-start justify-between gap-4 p-6">
+          <div>
+            <div className="flex items-center gap-2">
+              <h2 className="text-xl font-bold tracking-tight">Master Calendar</h2>
+              <Badge tone="brand">Operational</Badge>
+            </div>
+            <p className="mt-1 max-w-xl text-sm text-muted-foreground">
+              ZGM&apos;s current production schedule — what the company is actually doing. Changes
+              land here only when a variation is published.
+            </p>
+            <dl className="mt-4 flex flex-wrap gap-x-8 gap-y-2 text-sm">
+              <div>
+                <dt className="text-xs uppercase tracking-wide text-muted-foreground">Scheduled</dt>
+                <dd className="font-semibold">{masterAssignments} placements</dd>
+              </div>
+              {masterRange?.start && (
+                <div>
+                  <dt className="text-xs uppercase tracking-wide text-muted-foreground">Covers</dt>
+                  <dd className="font-semibold">
+                    {fmt(masterRange.start)} – {fmt(masterRange.end)}
+                  </dd>
+                </div>
+              )}
+              <div>
+                <dt className="text-xs uppercase tracking-wide text-muted-foreground">
+                  Awaiting scheduling
+                </dt>
+                <dd className="font-semibold">{unscheduled} requirements</dd>
+              </div>
+            </dl>
+          </div>
+          <LinkButton href="/schedule/master">Open Master Calendar</LinkButton>
+        </div>
+      </section>
+
+      <section>
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <h2 className="text-lg font-semibold">Schedule variations</h2>
+            <p className="text-sm text-muted-foreground">
+              Planning scenarios. Nothing here affects the Master Calendar until it&apos;s published.
+            </p>
+          </div>
+        </div>
+
+        {variations.length === 0 ? (
+          <p className="mt-4 rounded-2xl border border-dashed border-border bg-surface-muted/50 p-8 text-center text-sm text-muted-foreground">
+            No variations yet. Create one below to start planning without touching Master.
+          </p>
         ) : (
-          <TimelineView projectId={projectId} unitId={unitId} />
+          <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {variations.map((v) => (
+              <li key={v.id}>
+                <Link
+                  href={`/schedule/v/${v.id}`}
+                  className="block h-full rounded-2xl border border-border bg-surface p-5 transition-shadow hover:shadow-md"
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <span className="font-semibold">{v.name}</span>
+                    <Badge tone={VARIATION_STATUS_TONE[v.status]}>
+                      {VARIATION_STATUS_LABEL[v.status]}
+                    </Badge>
+                  </div>
+                  {v.description && (
+                    <p className="mt-1.5 line-clamp-2 text-sm text-muted-foreground">
+                      {v.description}
+                    </p>
+                  )}
+                  <p className="mt-3 text-xs text-muted-foreground">
+                    {v._count.assignments} placement{v._count.assignments === 1 ? "" : "s"}
+                    {v.sourceVariation ? ` · from ${v.sourceVariation.name}` : ""}
+                  </p>
+                </Link>
+              </li>
+            ))}
+          </ul>
         )}
-      </div>
+
+        <div className="mt-4">
+          <NewVariationForm variations={variations.map((v) => ({ id: v.id, name: v.name }))} />
+        </div>
+      </section>
+
+      {publications.length > 0 && (
+        <section>
+          <h2 className="text-lg font-semibold">Recently published to Master</h2>
+          <ul className="mt-3 divide-y divide-border rounded-2xl border border-border bg-surface">
+            {publications.map((p) => (
+              <li key={p.id} className="flex flex-wrap items-center justify-between gap-2 px-4 py-3 text-sm">
+                <div>
+                  <span className="font-medium">
+                    {p.sourceVariation?.name ?? "A deleted variation"}
+                  </span>
+                  <span className="text-muted-foreground">
+                    {" "}
+                    · {p.assignmentsAdded} added
+                    {p.assignmentsReplaced > 0 ? `, ${p.assignmentsReplaced} replaced` : ""}
+                    {p.scope === "SELECTED_PROJECTS"
+                      ? ` · ${p.projectIds.length} project${p.projectIds.length === 1 ? "" : "s"}`
+                      : " · entire variation"}
+                  </span>
+                </div>
+                <span className="text-xs text-muted-foreground">
+                  {new Date(p.publishedAt).toLocaleString()}
+                  {p.publishedBy?.name ? ` · ${p.publishedBy.name}` : ""}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </div>
   );
 }

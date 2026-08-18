@@ -13,7 +13,46 @@ import type {
   TaskStatus,
   TaskPriority,
   ProjectContactRelation,
+  RequirementStatus,
+  VariationStatus,
+  ShootDayStatus,
 } from "../../generated/prisma/enums";
+
+// These four are genuinely different states and the UI must not blur them:
+// defined-but-unplaced, planned inside a scenario, operationally scheduled,
+// and finished. "Scheduled in a variation" is emphatically not "complete".
+export const REQUIREMENT_STATUS_LABEL: Record<RequirementStatus, string> = {
+  DRAFT: "Unscheduled",
+  SCHEDULED_IN_VARIATION: "In a variation",
+  ON_MASTER: "On Master",
+  COMPLETE: "Complete",
+};
+
+export const REQUIREMENT_STATUS_TONE: Record<RequirementStatus, BadgeTone> = {
+  DRAFT: "neutral",
+  SCHEDULED_IN_VARIATION: "info",
+  ON_MASTER: "success",
+  COMPLETE: "brand",
+};
+
+export const VARIATION_STATUS_LABEL: Record<VariationStatus, string> = {
+  DRAFT: "Draft",
+  UNDER_REVIEW: "Under review",
+  ARCHIVED: "Archived",
+};
+
+export const VARIATION_STATUS_TONE: Record<VariationStatus, BadgeTone> = {
+  DRAFT: "neutral",
+  UNDER_REVIEW: "warning",
+  ARCHIVED: "neutral",
+};
+
+export const SHOOT_DAY_STATUS_LABEL: Record<ShootDayStatus, string> = {
+  PLANNED: "Planned",
+  CONFIRMED: "Confirmed",
+  SHOT: "Shot",
+  CANCELLED: "Cancelled",
+};
 
 export const PROJECT_CONTACT_RELATION_LABEL: Record<ProjectContactRelation, string> = {
   EXECUTIVE_OWNER: "Executive Owner",

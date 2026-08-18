@@ -1,0 +1,119 @@
+// Read models for the scheduling UI. Kept out of the page components so the
+// same shapes can back a calendar, a timeline, or an API response later.
+
+import { prisma } from "../prisma";
+
+/**
+ * Everything one variation needs, grouped by project.
+ *
+ * Requirements are returned whether or not they are placed — an item that is
+ * already scheduled stays in the list, marked, rather than disappearing.
+ * Hiding it would lose the sense of what a production still owes.
+ */
+export async function loadWorkspace(variationId: string) {
+  const [projects, eventTypes] = await Promise.all([
+    prisma.project.findMany({
+      where: {
+        currentStatus: { not: "ARCHIVED" },
+        schedulingRequirements: { some: {} },
+      },
+      orderBy: [{ priority: "asc" }, { name: "asc" }],
+      select: {
+        id: true,
+        name: true,
+        projectCode: true,
+        projectColor: true,
+        currentStatus: true,
+        schedulingRequirements: {
+          orderBy: [{ kind: "asc" }, { sortOrder: "asc" }, { createdAt: "asc" }],
+          select: {
+            id: true,
+            kind: true,
+            label: true,
+            durationDays: true,
+            status: true,
+            unitProduction: { select: { id: true, name: true, season: true, episode: true } },
+            eventType: { select: { id: true, name: true } },
+            assignments: {
+              where: { variationId },
+              orderBy: { startDate: "asc" },
+              select: {
+                id: true,
+                startDate: true,
+                endDate: true,
+                durationDays: true,
+                notes: true,
+              },
+            },
+          },
+        },
+      },
+    }),
+    prisma.productionEventType.findMany({
+      where: { active: true },
+      orderBy: [{ sortOrder: "asc" }, { name: "asc" }],
+      select: { id: true, name: true, defaultDurationDays: true },
+    }),
+  ]);
+
+  return { projects, eventTypes };
+}
+
+export type WorkspaceData = Awaited<ReturnType<typeof loadWorkspace>>;
+export type WorkspaceProject = WorkspaceData["projects"][number];
+export type WorkspaceRequirement = WorkspaceProject["schedulingRequirements"][number];
+
+/** Human label for a requirement, whichever kind it is. */
+export function requirementLabel(r: {
+  label: string | null;
+  unitProduction: { name: string } | null;
+  eventType: { name: string } | null;
+}) {
+  return r.label ?? r.unitProduction?.name ?? r.eventType?.name ?? "Untitled";
+}
+
+/** Counts for the scheduling hub. */
+export async function loadSchedulingOverview() {
+  const master = await prisma.scheduleVariation.findFirst({ where: { kind: "MASTER" } });
+
+  const [variations, masterAssignments, unscheduled, publications] = await Promise.all([
+    prisma.scheduleVariation.findMany({
+      where: { kind: "VARIATION", status: { not: "ARCHIVED" } },
+      orderBy: { updatedAt: "desc" },
+      include: {
+        _count: { select: { assignments: true } },
+        sourceVariation: { select: { name: true } },
+      },
+    }),
+    master
+      ? prisma.scheduleAssignment.count({ where: { variationId: master.id } })
+      : Promise.resolve(0),
+    prisma.schedulingRequirement.count({ where: { status: "DRAFT" } }),
+    prisma.masterPublication.findMany({
+      orderBy: { publishedAt: "desc" },
+      take: 5,
+      include: {
+        sourceVariation: { select: { name: true } },
+        publishedBy: { select: { name: true, email: true } },
+      },
+    }),
+  ]);
+
+  // The window Master actually covers, for the hub summary.
+  const range = master
+    ? await prisma.scheduleAssignment.aggregate({
+        where: { variationId: master.id },
+        _min: { startDate: true },
+        _max: { endDate: true },
+      })
+    : null;
+
+  return {
+    master,
+    masterAssignments,
+    masterRange: range ? { start: range._min.startDate, end: range._max.endDate } : null,
+    variations,
+    unscheduled,
+    publications,
+  };
+}

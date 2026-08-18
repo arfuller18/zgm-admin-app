@@ -1,0 +1,110 @@
+import Link from "next/link";
+import { requireUser } from "@/lib/session";
+import { Badge } from "@/components/ui/badge";
+import { LinkButton } from "@/components/ui/button";
+import { getMasterVariation } from "@/lib/scheduling/variations";
+import { loadWorkspace } from "@/lib/scheduling/queries";
+import { listPublications } from "@/lib/scheduling/master";
+import { ScheduleWorkspace, ShiftControls } from "../workspace";
+import { ScheduleTimeline } from "../schedule-timeline";
+
+// The Master Calendar. Same planning surface underneath, deliberately
+// different framing on top: this is the operational schedule, not a scenario.
+// It has no delete, no rename, and it says plainly that edits here are live.
+
+export default async function MasterCalendarPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ published?: string }>;
+}) {
+  await requireUser();
+  const { published } = await searchParams;
+
+  const master = await getMasterVariation();
+  const [data, publications] = await Promise.all([loadWorkspace(master.id), listPublications(5)]);
+
+  const placements = data.projects.reduce(
+    (n, p) => n + p.schedulingRequirements.filter((r) => r.assignments.length > 0).length,
+    0
+  );
+
+  return (
+    <div className="space-y-6">
+      <div>
+        <Link href="/schedule" className="text-sm font-medium text-muted-foreground hover:text-foreground">
+          ← Scheduling
+        </Link>
+
+        <div className="mt-3 overflow-hidden rounded-2xl border-2 border-brand/30 bg-surface">
+          <div className="h-1.5 w-full bg-gradient-to-r from-brand to-accent" />
+          <div className="flex flex-wrap items-start justify-between gap-4 p-6">
+            <div>
+              <div className="flex flex-wrap items-center gap-2">
+                <h1 className="text-2xl font-bold tracking-tight">Master Calendar</h1>
+                <Badge tone="brand">Operational</Badge>
+              </div>
+              <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
+                What ZGM is actually doing. {placements} production
+                {placements === 1 ? "" : "s"} scheduled. Edits made here are live immediately — the
+                usual route is to plan in a variation and publish.
+              </p>
+            </div>
+            <LinkButton href="/schedule" variant="outline">
+              Plan in a variation
+            </LinkButton>
+          </div>
+        </div>
+      </div>
+
+      {published && (
+        <p className="rounded-xl border border-success/30 bg-success-bg px-4 py-3 text-sm text-success">
+          Published. The Master Calendar now reflects the new schedule.
+        </p>
+      )}
+
+      <section>
+        <h2 className="mb-3 text-lg font-semibold">Production timeline</h2>
+        <ScheduleTimeline variationId={master.id} />
+      </section>
+
+      <ShiftControls
+        variationId={master.id}
+        projects={data.projects.map((p) => ({ id: p.id, name: p.name }))}
+      />
+
+      <ScheduleWorkspace
+        variationId={master.id}
+        data={data}
+        readOnlyNotice="Changes here take effect immediately"
+      />
+
+      {publications.length > 0 && (
+        <section>
+          <h2 className="text-lg font-semibold">Publish history</h2>
+          <p className="text-sm text-muted-foreground">
+            Replaced schedules are retained here rather than discarded.
+          </p>
+          <ul className="mt-3 divide-y divide-border rounded-2xl border border-border bg-surface">
+            {publications.map((p) => (
+              <li key={p.id} className="flex flex-wrap items-center justify-between gap-2 px-4 py-3 text-sm">
+                <div>
+                  <span className="font-medium">{p.sourceVariation?.name ?? "A deleted variation"}</span>
+                  <span className="text-muted-foreground">
+                    {" "}
+                    · {p.assignmentsAdded} added
+                    {p.assignmentsReplaced > 0 ? `, ${p.assignmentsReplaced} replaced` : ""}
+                  </span>
+                  {p.note && <p className="text-xs text-muted-foreground">{p.note}</p>}
+                </div>
+                <span className="text-xs text-muted-foreground">
+                  {new Date(p.publishedAt).toLocaleString()}
+                  {p.publishedBy?.name ? ` · ${p.publishedBy.name}` : ""}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </div>
+  );
+}

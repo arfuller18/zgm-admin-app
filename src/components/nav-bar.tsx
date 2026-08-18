@@ -8,6 +8,10 @@ import { AppRail } from "@/components/app-rail";
 const ADMIN_NAV_LINKS = [
   { href: "/", label: "Dashboard" },
   { href: "/projects", label: "Projects" },
+  // The operational schedule is company-wide information, so it is reachable
+  // from Admin directly — nobody should have to enter a planning scenario to
+  // see what ZGM is currently doing.
+  { href: "/schedule/master", label: "Master Calendar" },
   { href: "/people", label: "People" },
   { href: "/locations", label: "Locations" },
 ];
