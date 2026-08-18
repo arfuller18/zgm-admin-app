@@ -8,7 +8,7 @@ import * as variations from "@/lib/scheduling/variations";
 import * as requirements from "@/lib/scheduling/requirements";
 import * as assignments from "@/lib/scheduling/assignments";
 import * as master from "@/lib/scheduling/master";
-import { parseScheduleDate } from "@/lib/scheduling/work-calendar";
+import { parseScheduleDate, formatScheduleDate } from "@/lib/scheduling/work-calendar";
 import type { ShiftUnit } from "@/lib/scheduling/work-calendar";
 
 // Thin wrappers over src/lib/scheduling/*. No business logic lives here —
@@ -247,4 +247,31 @@ export async function pushToMasterAction(
 
   revalidateScheduling(variationId);
   redirect("/schedule/master?published=1");
+}
+
+/**
+ * Typed move for the calendar's drag-and-drop, which has real values in hand
+ * and no form to serialise through. Returns the resolved dates so the client
+ * can reconcile its optimistic state with what the work calendar actually
+ * decided — dropping on a Saturday snaps forward, and the UI must show that.
+ */
+export async function moveAssignmentToDate(input: {
+  assignmentId: string;
+  variationId: string;
+  isoDate: string;
+}): Promise<
+  { ok: true; startDate: string; endDate: string } | { ok: false; message: string }
+> {
+  await requireUser();
+  const result = await run(() =>
+    assignments.move(input.assignmentId, parseScheduleDate(input.isoDate))
+  );
+  if (!result.ok) return { ok: false, message: result.message };
+
+  revalidateScheduling(input.variationId);
+  return {
+    ok: true,
+    startDate: formatScheduleDate(result.value.startDate),
+    endDate: formatScheduleDate(result.value.endDate),
+  };
 }

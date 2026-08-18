@@ -7,6 +7,8 @@ import { loadWorkspace } from "@/lib/scheduling/queries";
 import { listPublications } from "@/lib/scheduling/master";
 import { ScheduleWorkspace, ShiftControls } from "../workspace";
 import { ScheduleTimeline } from "../schedule-timeline";
+import { CalendarSection } from "../calendar-section";
+import { ViewControls } from "../view-controls";
 
 // The Master Calendar. Same planning surface underneath, deliberately
 // different framing on top: this is the operational schedule, not a scenario.
@@ -15,10 +17,11 @@ import { ScheduleTimeline } from "../schedule-timeline";
 export default async function MasterCalendarPage({
   searchParams,
 }: {
-  searchParams: Promise<{ published?: string }>;
+  searchParams: Promise<{ published?: string; view?: string; month?: string; project?: string }>;
 }) {
   await requireUser();
-  const { published } = await searchParams;
+  const { published, view: rawView, month, project: projectId } = await searchParams;
+  const view = rawView === "timeline" ? "timeline" : rawView === "list" ? "list" : "calendar";
 
   const master = await getMasterVariation();
   const [data, publications] = await Promise.all([loadWorkspace(master.id), listPublications(5)]);
@@ -62,21 +65,37 @@ export default async function MasterCalendarPage({
         </p>
       )}
 
-      <section>
-        <h2 className="mb-3 text-lg font-semibold">Production timeline</h2>
-        <ScheduleTimeline variationId={master.id} />
-      </section>
-
-      <ShiftControls
-        variationId={master.id}
+      <ViewControls
+        basePath="/schedule/master"
+        view={view}
+        month={month}
+        projectId={projectId}
         projects={data.projects.map((p) => ({ id: p.id, name: p.name }))}
       />
 
-      <ScheduleWorkspace
-        variationId={master.id}
-        data={data}
-        readOnlyNotice="Changes here take effect immediately"
-      />
+      {view === "calendar" && (
+        <CalendarSection
+          variationId={master.id}
+          month={month}
+          projectId={projectId}
+          basePath="/schedule/master"
+        />
+      )}
+      {view === "timeline" && <ScheduleTimeline variationId={master.id} />}
+
+      {view === "list" && (
+        <>
+          <ShiftControls
+            variationId={master.id}
+            projects={data.projects.map((p) => ({ id: p.id, name: p.name }))}
+          />
+          <ScheduleWorkspace
+            variationId={master.id}
+            data={data}
+            readOnlyNotice="Changes here take effect immediately"
+          />
+        </>
+      )}
 
       {publications.length > 0 && (
         <section>

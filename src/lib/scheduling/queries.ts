@@ -117,3 +117,53 @@ export async function loadSchedulingOverview() {
     publications,
   };
 }
+
+/**
+ * Placements intersecting a date window, for the calendar. Anything
+ * overlapping the window is included, not merely those starting inside it —
+ * a 50-day Prep block must still render in the month it runs through.
+ */
+export async function loadCalendarWindow(input: {
+  variationId: string;
+  from: Date;
+  to: Date;
+  projectId?: string;
+}) {
+  const assignments = await prisma.scheduleAssignment.findMany({
+    where: {
+      variationId: input.variationId,
+      startDate: { lte: input.to },
+      endDate: { gte: input.from },
+      ...(input.projectId ? { projectId: input.projectId } : {}),
+    },
+    orderBy: [{ startDate: "asc" }, { durationDays: "desc" }],
+    select: {
+      id: true,
+      startDate: true,
+      endDate: true,
+      durationDays: true,
+      projectId: true,
+      project: { select: { name: true, projectColor: true } },
+      requirement: {
+        select: {
+          label: true,
+          unitProduction: { select: { name: true } },
+          eventType: { select: { name: true } },
+        },
+      },
+    },
+  });
+
+  return assignments.map((a) => ({
+    id: a.id,
+    startDate: a.startDate,
+    endDate: a.endDate,
+    durationDays: a.durationDays,
+    projectId: a.projectId,
+    projectName: a.project.name,
+    projectColor: a.project.projectColor,
+    label: requirementLabel(a.requirement),
+  }));
+}
+
+export type CalendarAssignment = Awaited<ReturnType<typeof loadCalendarWindow>>[number];

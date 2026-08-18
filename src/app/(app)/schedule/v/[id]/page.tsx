@@ -9,12 +9,22 @@ import { loadWorkspace } from "@/lib/scheduling/queries";
 import { previewPush } from "@/lib/scheduling/master";
 import { ScheduleWorkspace, ShiftControls } from "../../workspace";
 import { ScheduleTimeline } from "../../schedule-timeline";
+import { CalendarSection } from "../../calendar-section";
+import { ViewControls } from "../../view-controls";
 import { PushToMasterForm } from "./push-form";
 import { deleteVariationAction } from "../../actions";
 
-export default async function VariationPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function VariationPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ view?: string; month?: string; project?: string }>;
+}) {
   await requireUser();
   const { id } = await params;
+  const { view: rawView, month, project: projectId } = await searchParams;
+  const view = rawView === "timeline" ? "timeline" : rawView === "list" ? "list" : "calendar";
 
   const variation = await getVariation(id);
   if (!variation) notFound();
@@ -64,17 +74,33 @@ export default async function VariationPage({ params }: { params: Promise<{ id: 
 
       <PushToMasterForm variationId={variation.id} preview={preview} />
 
-      <section>
-        <h2 className="mb-3 text-lg font-semibold">Production timeline</h2>
-        <ScheduleTimeline variationId={variation.id} />
-      </section>
-
-      <ShiftControls
-        variationId={variation.id}
+      <ViewControls
+        basePath={`/schedule/v/${variation.id}`}
+        view={view}
+        month={month}
+        projectId={projectId}
         projects={data.projects.map((p) => ({ id: p.id, name: p.name }))}
       />
 
-      <ScheduleWorkspace variationId={variation.id} data={data} />
+      {view === "calendar" && (
+        <CalendarSection
+          variationId={variation.id}
+          month={month}
+          projectId={projectId}
+          basePath={`/schedule/v/${variation.id}`}
+        />
+      )}
+      {view === "timeline" && <ScheduleTimeline variationId={variation.id} />}
+
+      {view === "list" && (
+        <>
+          <ShiftControls
+            variationId={variation.id}
+            projects={data.projects.map((p) => ({ id: p.id, name: p.name }))}
+          />
+          <ScheduleWorkspace variationId={variation.id} data={data} />
+        </>
+      )}
     </div>
   );
 }
