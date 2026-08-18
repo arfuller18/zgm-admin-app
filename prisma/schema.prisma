@@ -37,6 +37,9 @@ model User {
   accounts        Account[]
   sessions        Session[]
   createdBookings Booking[] @relation("BookingCreatedBy")
+
+  createdVariations  ScheduleVariation[] @relation("VariationCreatedBy")
+  masterPublications MasterPublication[] @relation("PublishedBy")
 }
 
 model Account {
@@ -171,6 +174,10 @@ model Project {
   budgets         Budget[]
   tasks           Task[]
 
+  schedulingRequirements SchedulingRequirement[]
+  scheduleAssignments    ScheduleAssignment[]
+  workCalendarExceptions WorkCalendarException[]
+
   @@index([currentStatus])
   @@index([priority])
 }
@@ -243,6 +250,11 @@ model UnitProduction {
   bookingWindow String? @db.Text
   notes         String? @db.Text
 
+  // DEPRECATED — superseded by ScheduleAssignment. Dates are a property of
+  // a placement within a variation, not of the unit's identity, so a unit
+  // cannot carry one pair of dates once it can appear in several schedules.
+  // Never populated in practice (0 of 50 rows). Kept for one release; the
+  // unit edit form no longer writes them. Dropped in a later migration.
   startDate DateTime? // Airtable "Production Calendar"
   endDate   DateTime?
 
@@ -264,6 +276,8 @@ model UnitProduction {
   locations      Location[]                @relation("UnitProductionLocations")
   bookings       Booking[]
   tasks          Task[]
+
+  schedulingRequirements SchedulingRequirement[]
 
   @@index([projectId])
 }
@@ -309,20 +323,49 @@ model ShootDay {
   unitProductionId String?
   unitProduction   UnitProduction? @relation(fields: [unitProductionId], references: [id])
 
+  // DEPRECATED — superseded by scheduleAssignmentId. Kept populated for one
+  // release so the legacy table stays reconcilable.
   parentScheduleId String?
   parentSchedule   ProductionSchedulePhase? @relation(fields: [parentScheduleId], references: [id])
 
+  // A shoot day belongs to an assignment, and an assignment belongs to a
+  // variation — so day-level scheduling works inside any variation without
+  // first pushing to Master. Days are materialised for Master on publish and
+  // on demand elsewhere; the model imposes no such restriction.
+  scheduleAssignmentId String?
+  scheduleAssignment   ScheduleAssignment? @relation(fields: [scheduleAssignmentId], references: [id], onDelete: Cascade)
+
   seasonShootDay Int?
   episodeDay     Int?
+  // DEPRECATED — derived from `date` at read time. A stored copy can drift.
   dayOfWeek      String?
+  // Legacy free-text location, retained while locationId is backfilled.
   location       String?
   planningNote   String? @db.Text
+
+  locationId  String?
+  locationRef Location? @relation("ShootDayLocation", fields: [locationId], references: [id], onDelete: SetNull)
+
+  status    ShootDayStatus @default(PLANNED)
+  sortOrder Int            @default(0)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([projectId])
   @@index([date])
+  // Missing until now — this is the column the per-unit schedule filter
+  // queries on.
+  @@index([unitProductionId])
+  @@index([scheduleAssignmentId])
+  @@index([date, projectId])
+}
+
+enum ShootDayStatus {
+  PLANNED
+  CONFIRMED
+  SHOT
+  CANCELLED
 }
 
 model Location {
@@ -346,6 +389,9 @@ model Location {
 
   unitProductions UnitProduction[] @relation("UnitProductionLocations")
   bookings        Booking[]
+
+  scheduleAssignments ScheduleAssignment[]
+  shootDays           ShootDay[]           @relation("ShootDayLocation")
 }
 
 model Equipment {
@@ -486,6 +532,258 @@ model Task {
 
   @@index([projectId])
   @@index([unitProductionId])
+}
+
+// ---------- Scheduling ----------
+//
+// The scheduling subsystem separates three concepts that the legacy
+// ProductionSchedulePhase table conflated:
+//
+//   SchedulingRequirement  what a project NEEDS scheduled, and for how long
+//   ScheduleVariation      a planning scenario ("what could happen")
+//   ScheduleAssignment     when a requirement sits, WITHIN one variation
+//
+// Production identity always lives in Admin (Project / UnitProduction).
+// A unit appearing in three variations is three ScheduleAssignment rows
+// pointing at one requirement pointing at one unit — never three copies
+// of the episode.
+
+model WorkCalendar {
+  id        String  @id @default(cuid())
+  name      String
+  isDefault Boolean @default(false)
+
+  // Explicit per-weekday flags. The default (Mon–Fri) matches the live
+  // data exactly: 298 seeded shoot days, zero of them on a weekend.
+  worksMonday    Boolean @default(true)
+  worksTuesday   Boolean @default(true)
+  worksWednesday Boolean @default(true)
+  worksThursday  Boolean @default(true)
+  worksFriday    Boolean @default(true)
+  worksSaturday  Boolean @default(false)
+  worksSunday    Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  exceptions WorkCalendarException[]
+  variations ScheduleVariation[]
+}
+
+enum WorkCalendarExceptionKind {
+  HOLIDAY
+  SHUTDOWN
+  BLACKOUT
+  WORKDAY_OVERRIDE // force a normally-off day ON (e.g. a Saturday shoot)
+  NONWORKDAY_OVERRIDE // force a normally-on day OFF
+}
+
+model WorkCalendarException {
+  id         String       @id @default(cuid())
+  calendarId String
+  calendar   WorkCalendar @relation(fields: [calendarId], references: [id], onDelete: Cascade)
+
+  date   DateTime                  @db.Date
+  kind   WorkCalendarExceptionKind
+  // Required on purpose: overriding a weekend is a deliberate act and the
+  // reason ("EOTV Stunts") is what makes it reviewable later.
+  reason String
+
+  // Optional narrowing — an override that applies to one project only,
+  // rather than shifting the whole company calendar.
+  projectId String?
+  project   Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([calendarId, date, projectId])
+  @@index([calendarId, date])
+}
+
+// Catalogue of schedulable event types (Prep, Stunts, Post…). Seeded from
+// the distinct legacy `phase` values plus ZGM's standard set. Compound
+// legacy values ("Pickups / Sound / Wrap") are preserved verbatim rather
+// than split by a migration — splitting is a domain call, made here.
+model ProductionEventType {
+  id   String @id @default(cuid())
+  name String @unique
+  slug String @unique
+
+  // A suggestion surfaced in the UI, never a lock — every requirement's
+  // duration is independently editable.
+  defaultDurationDays Int?
+  sortOrder           Int     @default(0)
+  active              Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  requirements SchedulingRequirement[]
+}
+
+enum RequirementKind {
+  UNIT_PRODUCTION
+  PRODUCTION_EVENT
+}
+
+enum RequirementStatus {
+  DRAFT // defined, not placed in any variation
+  SCHEDULED_IN_VARIATION // placed somewhere, but not operational
+  ON_MASTER // published to the Master Calendar
+  COMPLETE
+}
+
+// "This project needs this thing scheduled, for this many production days."
+// Discriminated by `kind`: either it points at a UnitProduction (an episode
+// or unit) or at a ProductionEventType (Prep, Post, Stunts…).
+model SchedulingRequirement {
+  id        String  @id @default(cuid())
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  kind RequirementKind
+
+  // Exactly one of the two is set, per `kind` — enforced by a CHECK
+  // constraint added in the migration alongside the service layer.
+  unitProductionId String?
+  unitProduction   UnitProduction?      @relation(fields: [unitProductionId], references: [id], onDelete: Cascade)
+  eventTypeId      String?
+  eventType        ProductionEventType? @relation(fields: [eventTypeId], references: [id])
+
+  label        String? // optional override, e.g. "Second Unit Stunts"
+  durationDays Int // in PRODUCTION days — this is the requirement itself
+  status       RequirementStatus @default(DRAFT)
+  notes        String?           @db.Text
+  sortOrder    Int               @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  assignments ScheduleAssignment[]
+
+  // One requirement per unit production. Postgres treats NULLs as distinct,
+  // so this does not constrain event-type requirements.
+  @@unique([projectId, unitProductionId])
+  @@index([projectId, status])
+}
+
+enum VariationKind {
+  MASTER
+  VARIATION
+}
+
+enum VariationStatus {
+  DRAFT
+  UNDER_REVIEW
+  ARCHIVED
+}
+
+// A planning scenario. The Master Calendar is one of these rows with
+// `kind = MASTER`, kept singleton by a partial unique index created in the
+// migration, and guarded against deletion in the service layer. It is
+// presented as a first-class operational calendar in the UI — never as
+// "just another variation".
+model ScheduleVariation {
+  id          String          @id @default(cuid())
+  name        String
+  description String?         @db.Text
+  kind        VariationKind   @default(VARIATION)
+  status      VariationStatus @default(DRAFT)
+
+  // Lineage, for audit only. Assignments still point at Admin entities,
+  // never at another variation's copy of a production.
+  sourceVariationId String?
+  sourceVariation   ScheduleVariation?  @relation("VariationLineage", fields: [sourceVariationId], references: [id], onDelete: SetNull)
+  derivedVariations ScheduleVariation[] @relation("VariationLineage")
+
+  workCalendarId String?
+  workCalendar   WorkCalendar? @relation(fields: [workCalendarId], references: [id])
+
+  windowStart DateTime? @db.Date
+  windowEnd   DateTime? @db.Date
+
+  createdById String?
+  createdBy   User?    @relation("VariationCreatedBy", fields: [createdById], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  assignments  ScheduleAssignment[]
+  publications MasterPublication[]  @relation("PublishedFrom")
+
+  @@index([kind, status])
+}
+
+// Where a requirement sits within one variation. Day-level detail hangs off
+// this via ShootDay, so day scheduling works inside a variation without
+// needing to be pushed to Master first.
+model ScheduleAssignment {
+  id String @id @default(cuid())
+
+  variationId String
+  variation   ScheduleVariation @relation(fields: [variationId], references: [id], onDelete: Cascade)
+
+  requirementId String
+  requirement   SchedulingRequirement @relation(fields: [requirementId], references: [id], onDelete: Cascade)
+
+  // Denormalised for the hottest read path (schedule filtered by project).
+  // Always equals requirement.projectId; the service layer keeps it true.
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  startDate    DateTime @db.Date
+  endDate      DateTime @db.Date
+  durationDays Int // production days actually spanned
+
+  locationId String?
+  location   Location? @relation(fields: [locationId], references: [id], onDelete: SetNull)
+  notes      String?   @db.Text
+
+  // Provenance from the legacy backfill — keeps the mapping auditable and
+  // makes the old table safe to drop once reconciled.
+  legacyPhaseId String? @unique
+  airtableId    String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  shootDays ShootDay[]
+
+  // Deliberately NOT unique on (variationId, requirementId): a requirement
+  // may be split into blocks — "Prep part 1 / part 2" is real in production.
+  @@index([variationId, startDate, endDate])
+  @@index([projectId, startDate])
+  @@index([requirementId])
+}
+
+enum PublicationScope {
+  ENTIRE_VARIATION
+  SELECTED_PROJECTS
+}
+
+// Audit record of every push to Master. Snapshots are kept so history
+// survives even when the underlying assignments are later replaced again.
+model MasterPublication {
+  id String @id @default(cuid())
+
+  sourceVariationId String?
+  sourceVariation   ScheduleVariation? @relation("PublishedFrom", fields: [sourceVariationId], references: [id], onDelete: SetNull)
+
+  scope      PublicationScope
+  projectIds String[] // populated when scope = SELECTED_PROJECTS
+
+  replacedSnapshot Json?
+  appliedSnapshot  Json?
+
+  assignmentsAdded    Int @default(0)
+  assignmentsReplaced Int @default(0)
+  assignmentsRemoved  Int @default(0)
+
+  publishedById String?
+  publishedBy   User?    @relation("PublishedBy", fields: [publishedById], references: [id])
+  publishedAt   DateTime @default(now())
+  note          String?  @db.Text
+
+  @@index([publishedAt])
 }
 
 // ---------- Airtable sync bookkeeping ----------
