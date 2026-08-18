@@ -304,6 +304,34 @@ async function main() {
     assert.equal(req2After.status, "ON_MASTER");
   });
 
+  // Regression guard. ShootDay.scheduleAssignment was briefly onDelete:Cascade,
+  // which meant unscheduling a block silently destroyed its days along with
+  // their planning notes. It must be SetNull: the day survives, unlinked.
+  const survivor = await prisma.scheduleAssignment.findFirstOrThrow({
+    where: { variationId: varA.id },
+  });
+  await prisma.shootDay.create({
+    data: {
+      projectId: project.id,
+      unitProductionId: ep1.id,
+      scheduleAssignmentId: survivor.id,
+      date: d("2027-03-15"),
+      planningNote: "ZZZ day-level note that must not be destroyed",
+    },
+  });
+  const daysBefore = await prisma.shootDay.count({ where: { projectId: project.id } });
+  await unassign(survivor.id);
+  const daysAfter = await prisma.shootDay.count({ where: { projectId: project.id } });
+  const orphaned = await prisma.shootDay.count({
+    where: { projectId: project.id, scheduleAssignmentId: null },
+  });
+  check("unscheduling does not destroy shoot days", () => {
+    assert.equal(daysAfter, daysBefore);
+  });
+  check("the shoot days are unlinked rather than deleted", () => {
+    assert.equal(orphaned, 1);
+  });
+
   // --- Master guards ------------------------------------------------------
   console.log("\nMaster guards");
   let deleteBlocked = false;

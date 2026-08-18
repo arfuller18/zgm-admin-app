@@ -25,6 +25,10 @@ export default async function SchedulePage() {
   const { masterAssignments, masterRange, variations, unscheduled, publications } =
     await loadSchedulingOverview();
 
+  // A freshly deployed database has the tables but no data until the backfill
+  // runs, so point at it rather than showing a bare empty calendar.
+  const needsSetup = masterAssignments === 0 && unscheduled === 0;
+
   return (
     <div className="space-y-8">
       <div>
@@ -33,6 +37,22 @@ export default async function SchedulePage() {
           Plan in a variation, then publish to the Master Calendar.
         </p>
       </div>
+
+      {needsSetup && (
+        <div className="rounded-2xl border border-warning/30 bg-warning-bg p-5">
+          <p className="font-semibold text-warning">Scheduling isn&apos;t set up on this database yet.</p>
+          <p className="mt-1 text-sm text-foreground">
+            The existing production calendar needs to be migrated into the scheduling engine before
+            anything appears here.
+          </p>
+          <Link
+            href="/admin/scheduling"
+            className="mt-3 inline-block text-sm font-medium text-brand hover:underline"
+          >
+            Open Scheduling Setup →
+          </Link>
+        </div>
+      )}
 
       {/* Master — visually distinct, listed first, never inside the variations list. */}
       <section className="overflow-hidden rounded-2xl border-2 border-brand/30 bg-surface shadow-sm">

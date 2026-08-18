@@ -332,8 +332,13 @@ model ShootDay {
   // variation — so day-level scheduling works inside any variation without
   // first pushing to Master. Days are materialised for Master on publish and
   // on demand elsewhere; the model imposes no such restriction.
+  // SetNull, emphatically not Cascade. Unscheduling a block must not destroy
+  // its days: a shoot day carries real content (planning notes, location,
+  // status) that a planner would not expect to lose by moving something out
+  // of a schedule. The day survives, attached to its project and unit, and
+  // can be re-linked or cleaned up deliberately.
   scheduleAssignmentId String?
-  scheduleAssignment   ScheduleAssignment? @relation(fields: [scheduleAssignmentId], references: [id], onDelete: Cascade)
+  scheduleAssignment   ScheduleAssignment? @relation(fields: [scheduleAssignmentId], references: [id], onDelete: SetNull)
 
   seasonShootDay Int?
   episodeDay     Int?
