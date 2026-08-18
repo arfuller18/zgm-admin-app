@@ -12,7 +12,7 @@
     "db:studio": "prisma studio",
     "db:seed": "tsx prisma/seed.ts",
     "db:backfill-scheduling": "tsx prisma/backfill-scheduling.ts",
-    "verify:scheduling": "tsx scripts/verify-work-calendar.ts",
+    "verify:scheduling": "tsx scripts/verify-work-calendar.ts && tsx scripts/verify-scheduling-services.ts",
     "sync:airtable": "tsx scripts/sync-airtable.ts"
   },
   "dependencies": {
