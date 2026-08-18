@@ -8,8 +8,15 @@ import * as variations from "@/lib/scheduling/variations";
 import * as requirements from "@/lib/scheduling/requirements";
 import * as assignments from "@/lib/scheduling/assignments";
 import * as master from "@/lib/scheduling/master";
-import { parseScheduleDate, formatScheduleDate } from "@/lib/scheduling/work-calendar";
+import {
+  parseScheduleDate,
+  formatScheduleDate,
+  addCalendarDays,
+  isProductionDay,
+} from "@/lib/scheduling/work-calendar";
 import type { ShiftUnit } from "@/lib/scheduling/work-calendar";
+import { loadWorkCalendarContext } from "@/lib/scheduling/context";
+import { requirementLabel, type ScheduleWindowAssignment } from "@/lib/scheduling/queries";
 
 // Thin wrappers over src/lib/scheduling/*. No business logic lives here —
 // keeping it in the service layer is what lets the same code back a separate
@@ -320,5 +327,68 @@ export async function resizeAssignmentFromStart(input: {
     startDate: formatScheduleDate(result.value.startDate),
     endDate: formatScheduleDate(result.value.endDate),
     durationDays: result.value.durationDays,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Merged Master preview — a visual "what would Master look like" for the
+// push form. Read-only, by construction: it calls the same previewMergedMaster
+// used for the tabular before/after summary, then shapes it into the same
+// window/assignment/non-working-day shape the Gantt already knows how to draw.
+// ---------------------------------------------------------------------------
+
+export interface MergedMasterPreviewResult {
+  windowStart: string;
+  windowEnd: string;
+  nonWorkingDays: string[];
+  incomingIds: string[];
+  assignments: (Omit<ScheduleWindowAssignment, "startDate" | "endDate"> & {
+    startDate: string;
+    endDate: string;
+  })[];
+}
+
+export async function loadMergedMasterPreview(input: {
+  variationId: string;
+  projectIds?: string[];
+}): Promise<MergedMasterPreviewResult> {
+  await requireUser();
+  const rows = await master.previewMergedMaster(input);
+
+  if (rows.length === 0) {
+    return { windowStart: "", windowEnd: "", nonWorkingDays: [], incomingIds: [], assignments: [] };
+  }
+
+  // Pad to whole months so the header ticks line up cleanly, same as the
+  // main timeline's own window math.
+  const minStart = rows.reduce((a, r) => (r.startDate < a ? r.startDate : a), rows[0].startDate);
+  const maxEnd = rows.reduce((a, r) => (r.endDate > a ? r.endDate : a), rows[0].endDate);
+  const windowStart = new Date(Date.UTC(minStart.getUTCFullYear(), minStart.getUTCMonth(), 1));
+  const windowEnd = new Date(Date.UTC(maxEnd.getUTCFullYear(), maxEnd.getUTCMonth() + 1, 0));
+
+  const masterVariation = await variations.getMasterVariation();
+  const ctx = await loadWorkCalendarContext(masterVariation.id);
+  const nonWorkingDays: string[] = [];
+  for (let d = windowStart; d <= windowEnd; d = addCalendarDays(d, 1)) {
+    if (!isProductionDay(d, ctx)) nonWorkingDays.push(formatScheduleDate(d));
+  }
+
+  return {
+    windowStart: formatScheduleDate(windowStart),
+    windowEnd: formatScheduleDate(windowEnd),
+    nonWorkingDays,
+    incomingIds: rows.filter((r) => r.incoming).map((r) => r.id),
+    assignments: rows.map((r) => ({
+      id: r.id,
+      startDate: formatScheduleDate(r.startDate),
+      endDate: formatScheduleDate(r.endDate),
+      durationDays: r.durationDays,
+      projectId: r.projectId,
+      projectName: r.project.name,
+      projectColor: r.project.projectColor,
+      projectPriority: r.project.priority,
+      kind: r.requirement.kind,
+      label: requirementLabel(r.requirement),
+    })),
   };
 }

@@ -1,10 +1,11 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { pushToMasterAction, type ActionState } from "../../actions";
+import { pushToMasterAction, loadMergedMasterPreview, type ActionState } from "../../actions";
+import { TimelineGantt, type Zoom } from "../../timeline-gantt";
 import type { PushPreview } from "@/lib/scheduling/master";
 
 const initial: ActionState = { status: "idle" };
@@ -34,6 +35,32 @@ export function PushToMasterForm({
   const [state, formAction, isPending] = useActionState(pushToMasterAction, initial);
   const [scope, setScope] = useState<"ALL" | "SELECTED">("ALL");
   const [selected, setSelected] = useState<string[]>([]);
+
+  // Visual preview — collapsed by default since it's a heavier render than
+  // the table above and not everyone needs it every time. Reactive to the
+  // same scope/selection controls rather than duplicating them.
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewZoom, setPreviewZoom] = useState<Zoom>("quarter");
+  const [previewData, setPreviewData] = useState<Awaited<
+    ReturnType<typeof loadMergedMasterPreview>
+  > | null>(null);
+  const [isPreviewPending, startPreviewTransition] = useTransition();
+
+  const previewProjectIds = scope === "SELECTED" ? selected : undefined;
+  useEffect(() => {
+    // Render branches on scope/selected directly for the empty-selection
+    // case (see JSX below), so there's nothing to fetch or clear here.
+    if (!previewOpen) return;
+    if (scope === "SELECTED" && selected.length === 0) return;
+    startPreviewTransition(async () => {
+      const data = await loadMergedMasterPreview({ variationId, projectIds: previewProjectIds });
+      setPreviewData(data);
+    });
+    // previewProjectIds is derived fresh each render from scope/selected;
+    // depending on those directly (rather than the array reference) is what
+    // makes this re-fire only when the actual selection changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [previewOpen, variationId, scope, selected.join(",")]);
 
   const replacing = preview.projects.filter((p) => p.conflictsWithExisting);
   const nothingToPush = preview.totalIncoming === 0;
@@ -155,6 +182,52 @@ export function PushToMasterForm({
               </p>
             </div>
           )}
+
+          <div className="overflow-hidden rounded-xl border border-border">
+            <button
+              type="button"
+              onClick={() => setPreviewOpen((v) => !v)}
+              className="flex w-full items-center justify-between gap-2 px-4 py-2.5 text-left text-sm font-medium hover:bg-surface-muted"
+            >
+              <span>
+                {previewOpen ? "Hide" : "Show"} visual preview
+                <span className="ml-1.5 font-normal text-muted-foreground">
+                  — what Master would look like across the calendar
+                </span>
+              </span>
+              <span className={`text-xs text-muted-foreground transition-transform ${previewOpen ? "rotate-180" : ""}`}>
+                ▾
+              </span>
+            </button>
+
+            {previewOpen && (
+              <div className="border-t border-border p-4">
+                {scope === "SELECTED" && selected.length === 0 ? (
+                  <p className="text-sm text-muted-foreground">
+                    Select at least one project above to preview it.
+                  </p>
+                ) : isPreviewPending && !previewData ? (
+                  <p className="text-sm text-muted-foreground">Loading preview…</p>
+                ) : previewData && previewData.assignments.length > 0 ? (
+                  <TimelineGantt
+                    variationId={variationId}
+                    zoom={previewZoom}
+                    windowStart={previewData.windowStart}
+                    windowEnd={previewData.windowEnd}
+                    assignments={previewData.assignments}
+                    nonWorkingDays={previewData.nonWorkingDays}
+                    onZoomChange={setPreviewZoom}
+                    zoomLevels={["month", "quarter", "year"]}
+                    periodLabel="Full merged range"
+                    editable={false}
+                    highlightIds={new Set(previewData.incomingIds)}
+                  />
+                ) : (
+                  <p className="text-sm text-muted-foreground">Nothing to preview yet.</p>
+                )}
+              </div>
+            )}
+          </div>
 
           <div>
             <label className="mb-1 block text-xs text-muted-foreground" htmlFor="push-note">

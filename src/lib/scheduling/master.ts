@@ -113,7 +113,7 @@ export async function previewMergedMaster(input: { variationId: string; projectI
   const untouched = await prisma.scheduleAssignment.findMany({
     where: { variationId: master.id, projectId: { notIn: affected.length > 0 ? affected : ["_"] } },
     include: {
-      project: { select: { id: true, name: true, projectColor: true } },
+      project: { select: { id: true, name: true, projectColor: true, priority: true } },
       requirement: {
         include: { unitProduction: { select: { name: true } }, eventType: { select: { name: true } } },
       },
@@ -123,7 +123,7 @@ export async function previewMergedMaster(input: { variationId: string; projectI
   const incomingDetailed = await prisma.scheduleAssignment.findMany({
     where: { id: { in: incoming.map((a) => a.id) } },
     include: {
-      project: { select: { id: true, name: true, projectColor: true } },
+      project: { select: { id: true, name: true, projectColor: true, priority: true } },
       requirement: {
         include: { unitProduction: { select: { name: true } }, eventType: { select: { name: true } } },
       },

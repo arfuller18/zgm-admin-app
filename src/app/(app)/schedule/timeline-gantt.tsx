@@ -75,8 +75,11 @@ export function TimelineGantt({
   nextHref,
   todayHref,
   zoomHrefs,
+  onZoomChange,
+  zoomLevels = ["week", "month", "quarter", "year"],
   periodLabel,
   editable,
+  highlightIds,
 }: {
   variationId: string;
   zoom: Zoom;
@@ -85,12 +88,20 @@ export function TimelineGantt({
   assignments: Assignment[];
   /** ISO dates in the window that are not production days. */
   nonWorkingDays: string[];
-  prevHref: string;
-  nextHref: string;
-  todayHref: string;
-  zoomHrefs: Record<Zoom, string>;
+  /** Omit all three to render without period navigation — a fixed-range view. */
+  prevHref?: string;
+  nextHref?: string;
+  todayHref?: string;
+  /** URL-driven zoom switching. Mutually exclusive with `onZoomChange`. */
+  zoomHrefs?: Record<Zoom, string>;
+  /** State-driven zoom switching, for an ephemeral panel with no URL of its own. */
+  onZoomChange?: (z: Zoom) => void;
+  /** Which zoom tabs to offer. Defaults to all four. */
+  zoomLevels?: Zoom[];
   periodLabel: string;
   editable: boolean;
+  /** Assignment ids to visually call out — "this is what's incoming," not Master as-is. */
+  highlightIds?: ReadonlySet<string>;
 }) {
   const [items, setItems] = useState(initial);
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
@@ -305,17 +316,23 @@ export function TimelineGantt({
 
   // ---------------------------------------------------------------------
 
-  const zoomTab = (z: Zoom, label: string) => (
-    <Link
-      key={z}
-      href={zoomHrefs[z]}
-      className={`px-3 py-1.5 text-sm font-medium ${
-        zoom === z ? "bg-brand text-brand-foreground" : "hover:bg-surface-muted"
-      }`}
-    >
-      {label}
-    </Link>
-  );
+  const zoomTab = (z: Zoom, label: string) => {
+    const className = `px-3 py-1.5 text-sm font-medium ${
+      zoom === z ? "bg-brand text-brand-foreground" : "hover:bg-surface-muted"
+    }`;
+    if (onZoomChange) {
+      return (
+        <button key={z} type="button" onClick={() => onZoomChange(z)} className={className}>
+          {label}
+        </button>
+      );
+    }
+    return (
+      <Link key={z} href={zoomHrefs![z]} className={className}>
+        {label}
+      </Link>
+    );
+  };
 
   function bar(a: Assignment, color: string, rowTop: number, muted = false) {
     const g = ghost?.id === a.id ? ghost : null;
@@ -334,21 +351,30 @@ export function TimelineGantt({
     const clippedRight = from + span > totalDays;
     const showLabel = width >= MIN_LABEL_PX;
 
+    // In preview mode (`highlightIds` present), the point is to draw the eye
+    // to what's about to change: incoming placements stay full-strength and
+    // outlined, everything already on Master fades back.
+    const isIncoming = highlightIds?.has(a.id) ?? false;
+    const dimmed = (highlightIds && !isIncoming) || muted;
+
     return (
       <div
         key={a.id}
-        className={`group absolute flex items-center ${muted ? "opacity-70" : ""}`}
+        className={`group absolute flex items-center ${dimmed ? "opacity-60" : ""}`}
         style={{ left, width, top: rowTop + 3, height: ROW_H - 8 }}
       >
         <div
           onPointerDown={(e) => beginDrag(e, a, "move")}
-          title={`${a.projectName} · ${a.label}\n${pretty(a.startDate)} – ${pretty(a.endDate)} · ${a.durationDays} production days${editable ? "\nDrag to move, drag an edge to resize" : ""}`}
+          title={`${a.projectName} · ${a.label}\n${pretty(a.startDate)} – ${pretty(a.endDate)} · ${a.durationDays} production days${
+            isIncoming ? "\nIncoming — not yet on Master" : ""
+          }${editable ? "\nDrag to move, drag an edge to resize" : ""}`}
           className={[
             "flex h-full w-full items-center overflow-hidden px-2 text-[11px] font-medium text-white shadow-sm",
             editable ? "cursor-grab active:cursor-grabbing" : "",
             clippedLeft ? "rounded-l-none" : "rounded-l-full",
             clippedRight ? "rounded-r-none" : "rounded-r-full",
             drag?.id === a.id ? "ring-2 ring-foreground/40" : "",
+            isIncoming ? "ring-2 ring-offset-1 ring-foreground" : "",
             // A dashed edge is the honest signal that the block keeps going
             // past the window rather than ending here.
             clippedLeft || clippedRight ? "border-y border-white/40" : "",
@@ -358,6 +384,7 @@ export function TimelineGantt({
           {showLabel && (
             <span className="truncate">
               {clippedLeft ? "… " : ""}
+              {isIncoming ? "● " : ""}
               {a.label}
               {width >= 150 && (
                 <span className="ml-1.5 font-normal opacity-80">{a.durationDays}d</span>
@@ -391,25 +418,27 @@ export function TimelineGantt({
         <div className="flex flex-wrap items-center gap-2">
           {isPending && <span className="text-xs text-muted-foreground">Saving…</span>}
           <div className="flex overflow-hidden rounded-lg border border-border">
-            {zoomTab("week", "Week")}
-            {zoomTab("month", "Month")}
-            {zoomTab("quarter", "Quarter")}
-            {zoomTab("year", "Year")}
+            {zoomLevels.includes("week") && zoomTab("week", "Week")}
+            {zoomLevels.includes("month") && zoomTab("month", "Month")}
+            {zoomLevels.includes("quarter") && zoomTab("quarter", "Quarter")}
+            {zoomLevels.includes("year") && zoomTab("year", "Year")}
           </div>
-          <div className="flex overflow-hidden rounded-lg border border-border text-sm">
-            <Link href={prevHref} className="px-3 py-1.5 hover:bg-surface-muted">
-              ←
-            </Link>
-            <Link
-              href={todayHref}
-              className="border-x border-border px-3 py-1.5 hover:bg-surface-muted"
-            >
-              Today
-            </Link>
-            <Link href={nextHref} className="px-3 py-1.5 hover:bg-surface-muted">
-              →
-            </Link>
-          </div>
+          {prevHref && nextHref && todayHref && (
+            <div className="flex overflow-hidden rounded-lg border border-border text-sm">
+              <Link href={prevHref} className="px-3 py-1.5 hover:bg-surface-muted">
+                ←
+              </Link>
+              <Link
+                href={todayHref}
+                className="border-x border-border px-3 py-1.5 hover:bg-surface-muted"
+              >
+                Today
+              </Link>
+              <Link href={nextHref} className="px-3 py-1.5 hover:bg-surface-muted">
+                →
+              </Link>
+            </div>
+          )}
         </div>
       </div>
 
@@ -561,9 +590,11 @@ export function TimelineGantt({
       )}
 
       <p className="mt-2 text-xs text-muted-foreground">
-        {editable
-          ? "Drag a bar to move it, or drag either edge to resize. Durations are counted in production days, so shaded days are skipped."
-          : "Read-only view."}{" "}
+        {highlightIds
+          ? "Outlined bars marked ● are incoming from this variation and not yet on Master. Everything else is Master unchanged."
+          : editable
+            ? "Drag a bar to move it, or drag either edge to resize. Durations are counted in production days, so shaded days are skipped."
+            : "Read-only view."}{" "}
         Click a project name to collapse its rows onto one line.
       </p>
     </div>
