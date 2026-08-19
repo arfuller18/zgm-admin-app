@@ -5,6 +5,7 @@
 
 import { prisma } from "../prisma";
 import { SchedulingError } from "./variations";
+import * as variations from "./variations";
 import { syncRequirementStatus } from "./requirements";
 import { loadWorkCalendarContext } from "./context";
 import {
@@ -160,6 +161,52 @@ export async function unassign(assignmentId: string) {
 
   await prisma.scheduleAssignment.delete({ where: { id: assignmentId } });
   await syncRequirementStatus(assignment.requirementId);
+}
+
+// ---------------------------------------------------------------------------
+// Bulk removal — "take this project off Master" / "start this schedule over"
+//
+// Soft, same as unassign(): every placement in scope is removed, but nothing
+// is deleted. Requirements return to unscheduled and stay available to place
+// again — the difference between clearing a schedule and destroying it. For
+// Master specifically that matters even more: this is the live production
+// calendar, and "clear" must mean "nothing is happening right now," not
+// "the plan for it is gone."
+// ---------------------------------------------------------------------------
+
+/**
+ * Unschedule every placement one project has in a variation, and drop that
+ * project from the variation's included-projects scope. Requirements return
+ * to unscheduled; nothing about the project or its productions is touched.
+ */
+export async function removeProjectFromVariation(variationId: string, projectId: string) {
+  const rows = await prisma.scheduleAssignment.findMany({
+    where: { variationId, projectId },
+    select: { id: true },
+  });
+  for (const row of rows) {
+    await unassign(row.id);
+  }
+  await variations.removeIncludedProject(variationId, projectId);
+  return { removed: rows.length };
+}
+
+/**
+ * Unschedule everything in a variation and reset its project scope to
+ * empty. For a planning scenario this is "start over." For Master, this is
+ * "nothing is scheduled" — the requirements it held are simply unscheduled,
+ * not gone, and can be re-planned and re-published like any other.
+ */
+export async function clearVariation(variationId: string) {
+  const rows = await prisma.scheduleAssignment.findMany({
+    where: { variationId },
+    select: { id: true },
+  });
+  for (const row of rows) {
+    await unassign(row.id);
+  }
+  await variations.setIncludedProjects(variationId, []);
+  return { removed: rows.length };
 }
 
 // ---------------------------------------------------------------------------

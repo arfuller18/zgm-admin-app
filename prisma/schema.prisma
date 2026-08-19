@@ -707,6 +707,13 @@ model ScheduleVariation {
   windowStart DateTime? @db.Date
   windowEnd   DateTime? @db.Date
 
+  // Which projects this schedule is scoped to — the filter bubbles and the
+  // unscheduled-events drawer both read this instead of every project in
+  // the company, so a variation only ever shows what it was set up to plan.
+  // Unconstrained (no FK on array columns in Postgres): the service layer
+  // is the source of truth for keeping it in sync with reality.
+  includedProjectIds String[] @default([])
+
   createdById String?
   createdBy   User?    @relation("VariationCreatedBy", fields: [createdById], references: [id])
   createdAt   DateTime @default(now())

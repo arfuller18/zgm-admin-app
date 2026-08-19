@@ -10,6 +10,9 @@ import {
   getMasterVariation,
   createVariation,
   deleteVariation,
+  addIncludedProject,
+  removeIncludedProject,
+  setIncludedProjects,
 } from "../src/lib/scheduling/variations";
 import { createUnitRequirement } from "../src/lib/scheduling/requirements";
 import {
@@ -18,6 +21,8 @@ import {
   resize,
   resizeToStartDate,
   unassign,
+  removeProjectFromVariation,
+  clearVariation,
   previewShift,
   applyShift,
 } from "../src/lib/scheduling/assignments";
@@ -279,6 +284,73 @@ async function main() {
   // Leave varA exactly as later sections expect it: otherAssignment was only
   // here to prove cross-project detection, not to stay scheduled.
   await unassign(otherAssignment.id);
+
+  // --- project scope --------------------------------------------------------
+  console.log("\nProject scope");
+  const varC = await createVariation({ name: "ZZZ Verify Scope", mode: "BLANK" });
+  check("a blank variation starts with no included projects", () => {
+    assert.deepEqual(varC.includedProjectIds, []);
+  });
+
+  const afterAdd = await addIncludedProject(varC.id, project.id);
+  check("adding a project includes it", () => {
+    assert.deepEqual(afterAdd.includedProjectIds, [project.id]);
+  });
+  const afterAddAgain = await addIncludedProject(varC.id, project.id);
+  check("adding the same project again is idempotent", () => {
+    assert.deepEqual(afterAddAgain.includedProjectIds, [project.id]);
+  });
+  const afterRemove = await removeIncludedProject(varC.id, project.id);
+  check("removing a project drops it from the scope", () => {
+    assert.deepEqual(afterRemove.includedProjectIds, []);
+  });
+
+  const afterSet = await setIncludedProjects(varC.id, [project.id, otherProject.id]);
+  check("setIncludedProjects replaces the scope wholesale", () => {
+    assert.deepEqual([...afterSet.includedProjectIds].sort(), [project.id, otherProject.id].sort());
+  });
+
+  const cAssignment = await assign({
+    variationId: varC.id,
+    requirementId: otherReq.id,
+    startDate: d("2027-06-01"),
+  });
+  const removal = await removeProjectFromVariation(varC.id, otherProject.id);
+  check("removing a project from scope unschedules its placements", () => {
+    assert.equal(removal.removed, 1);
+  });
+  const varCAfterRemoval = await prisma.scheduleVariation.findUniqueOrThrow({ where: { id: varC.id } });
+  check("the removed project drops out of the scope list", () => {
+    assert.deepEqual(varCAfterRemoval.includedProjectIds, [project.id]);
+  });
+  const cAssignmentGone = await prisma.scheduleAssignment.findUnique({
+    where: { id: cAssignment.id },
+  });
+  check("the unscheduled placement is actually gone, not just hidden", () => {
+    assert.equal(cAssignmentGone, null);
+  });
+  const otherReqAfterRemoval = await prisma.schedulingRequirement.findUniqueOrThrow({
+    where: { id: otherReq.id },
+  });
+  check("the requirement returns to unscheduled, not deleted", () => {
+    assert.equal(otherReqAfterRemoval.status, "DRAFT");
+  });
+
+  await assign({ variationId: varC.id, requirementId: otherReq.id, startDate: d("2027-06-08") });
+  const clearResult = await clearVariation(varC.id);
+  check("clearing a variation unschedules everything left", () => {
+    assert.equal(clearResult.removed, 1);
+  });
+  const varCAfterClear = await prisma.scheduleVariation.findUniqueOrThrow({ where: { id: varC.id } });
+  check("clearing resets the scope to empty", () => {
+    assert.deepEqual(varCAfterClear.includedProjectIds, []);
+  });
+  const remainingInC = await prisma.scheduleAssignment.count({ where: { variationId: varC.id } });
+  check("nothing is left scheduled in the cleared variation", () => {
+    assert.equal(remainingInC, 0);
+  });
+
+  await deleteVariation(varC.id);
 
   // --- preview purity -----------------------------------------------------
   console.log("\nPreview");

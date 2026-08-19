@@ -59,6 +59,14 @@ export async function createVariation(input: {
   mode: CreateVariationMode;
   sourceVariationId?: string | null;
   createdById?: string | null;
+  /**
+   * Which projects this variation is scoped to. Defaults to the source's
+   * scope for DUPLICATE/COPY_MASTER (a sensible starting point to prune from)
+   * and to empty for BLANK — pass an explicit list to override either way.
+   * This is a starting point, not a hard limit: addIncludedProject /
+   * removeIncludedProject can change it later.
+   */
+  includedProjectIds?: string[];
 }) {
   const name = input.name.trim();
   if (!name) throw new SchedulingError("A variation needs a name.");
@@ -73,6 +81,14 @@ export async function createVariation(input: {
     sourceId = (await getMasterVariation()).id;
   }
 
+  let includedProjectIds = input.includedProjectIds;
+  if (includedProjectIds === undefined) {
+    includedProjectIds = sourceId
+      ? (await prisma.scheduleVariation.findUnique({ where: { id: sourceId } }))?.includedProjectIds ?? []
+      : [];
+  }
+  includedProjectIds = [...new Set(includedProjectIds)];
+
   const calendar = await prisma.workCalendar.findFirst({ where: { isDefault: true } });
 
   return prisma.$transaction(async (tx) => {
@@ -85,6 +101,7 @@ export async function createVariation(input: {
         sourceVariationId: sourceId,
         workCalendarId: calendar?.id ?? null,
         createdById: input.createdById ?? null,
+        includedProjectIds,
       },
     });
 
@@ -144,4 +161,37 @@ export async function deleteVariation(id: string) {
     throw new SchedulingError("The Master Calendar cannot be deleted.");
   }
   await prisma.scheduleVariation.delete({ where: { id } });
+}
+
+// ---------------------------------------------------------------------------
+// Project scope — which projects a variation's UI is scoped to. Editable at
+// any time: the creation-time picker sets a starting point, not a limit.
+// ---------------------------------------------------------------------------
+
+export async function addIncludedProject(variationId: string, projectId: string) {
+  const variation = await prisma.scheduleVariation.findUnique({ where: { id: variationId } });
+  if (!variation) throw new SchedulingError("Variation not found.");
+  if (variation.includedProjectIds.includes(projectId)) return variation;
+  return prisma.scheduleVariation.update({
+    where: { id: variationId },
+    data: { includedProjectIds: [...variation.includedProjectIds, projectId] },
+  });
+}
+
+export async function removeIncludedProject(variationId: string, projectId: string) {
+  const variation = await prisma.scheduleVariation.findUnique({ where: { id: variationId } });
+  if (!variation) throw new SchedulingError("Variation not found.");
+  return prisma.scheduleVariation.update({
+    where: { id: variationId },
+    data: { includedProjectIds: variation.includedProjectIds.filter((id) => id !== projectId) },
+  });
+}
+
+export async function setIncludedProjects(variationId: string, projectIds: string[]) {
+  const variation = await prisma.scheduleVariation.findUnique({ where: { id: variationId } });
+  if (!variation) throw new SchedulingError("Variation not found.");
+  return prisma.scheduleVariation.update({
+    where: { id: variationId },
+    data: { includedProjectIds: [...new Set(projectIds)] },
+  });
 }
