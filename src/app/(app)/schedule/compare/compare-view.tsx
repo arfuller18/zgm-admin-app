@@ -15,12 +15,16 @@ export function CompareView({
   rightId,
   left,
   right,
+  leftReadOnly,
+  rightReadOnly,
 }: {
   targets: Target[];
   leftId: string;
   rightId: string;
   left: PaneData;
   right: PaneData;
+  leftReadOnly?: boolean;
+  rightReadOnly?: boolean;
 }) {
   const router = useRouter();
 
@@ -39,7 +43,7 @@ export function CompareView({
           onChange={(id) => navigate({ left: id })}
         />
         <div className="mt-3">
-          <CalendarMonth {...left} />
+          <CalendarMonth {...left} readOnly={leftReadOnly} />
         </div>
       </div>
 
@@ -51,7 +55,7 @@ export function CompareView({
           onChange={(id) => navigate({ right: id })}
         />
         <div className="mt-3">
-          <CalendarMonth {...right} />
+          <CalendarMonth {...right} readOnly={rightReadOnly} />
         </div>
       </div>
     </div>

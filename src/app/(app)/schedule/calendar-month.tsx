@@ -16,6 +16,7 @@ import {
 import { UNSCHEDULED_DRAG_TYPE } from "./unscheduled-drawer";
 import { BlockPopover } from "./block-popover";
 import { ExportMenu } from "./export-menu";
+import { useCreateVariationPrompt } from "./master/create-variation-prompt";
 import type { ScheduleWindowAssignment } from "@/lib/scheduling/queries";
 
 // Infinite-scroll month calendar. Multi-day placements render as continuous
@@ -83,22 +84,9 @@ function shiftMonthKey(monthKey: string, delta: number) {
   return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}`;
 }
 
-/** Sun–Sat weeks covering the month, including adjacent-month bleed. */
-function buildWeeks(monthStart: Date) {
-  const monthEnd = new Date(Date.UTC(monthStart.getUTCFullYear(), monthStart.getUTCMonth() + 1, 0));
-  const gridStart = addDays(monthStart, -monthStart.getUTCDay());
-  const gridEnd = addDays(monthEnd, 6 - monthEnd.getUTCDay());
-  const weeks: Date[][] = [];
-  let cursor = gridStart;
-  while (cursor <= gridEnd) {
-    const week: Date[] = [];
-    for (let i = 0; i < 7; i++) {
-      week.push(cursor);
-      cursor = addDays(cursor, 1);
-    }
-    weeks.push(week);
-  }
-  return weeks;
+/** "YYYY-MM-01" Date → "YYYY-MM" key. */
+function monthKeyOf(d: Date) {
+  return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}`;
 }
 
 /**
@@ -136,6 +124,7 @@ export function CalendarMonth({
   isWorkingDay: initialIsWorkingDay,
   todayMonth,
   anchorMonth,
+  readOnly,
 }: {
   variationId: string;
   projectId?: string;
@@ -146,6 +135,13 @@ export function CalendarMonth({
   todayMonth: string;
   /** The month the page should already be scrolled to on load. */
   anchorMonth: string;
+  /**
+   * Master's calendar, and only Master's: no drag, no resize, no dropping a
+   * new placement onto it. Every one of those instead opens the same
+   * "create a variation" prompt — Master only ever changes by publishing a
+   * variation into it, never by editing it in place.
+   */
+  readOnly?: boolean;
 }) {
   const [months, setMonths] = useState(initialMonths);
   const [items, setItems] = useState(initialAssignments);
@@ -160,6 +156,7 @@ export function CalendarMonth({
   } | null>(null);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [isPending, startTransition] = useTransition();
+  const { requestEdit, modal: editPrompt } = useCreateVariationPrompt();
 
   // Read inside the IntersectionObserver callback, which is set up once and
   // would otherwise close over stale values from whichever render it was
@@ -486,6 +483,10 @@ export function CalendarMonth({
     // shared React state between this component and the drawer.
     const requirementId = e.dataTransfer.getData(UNSCHEDULED_DRAG_TYPE);
     if (requirementId) {
+      if (readOnly) {
+        requestEdit();
+        return;
+      }
       onDropUnscheduled(requirementId, dayIso);
       return;
     }
@@ -501,174 +502,214 @@ export function CalendarMonth({
     }
   }
 
-  function renderMonth(monthKey: string) {
-    const monthStart = parse(`${monthKey}-01`);
-    const weeks = buildWeeks(monthStart);
+  function renderWeek(week: Date[]) {
+    const weekStart = week[0];
+    const weekEnd = week[6];
+
+    const segments = items
+      .map((a) => {
+        const s = parse(a.startDate);
+        const e = parse(a.endDate);
+        if (e < weekStart || s > weekEnd) return null;
+        const clippedStart = s < weekStart ? weekStart : s;
+        const clippedEnd = e > weekEnd ? weekEnd : e;
+        return {
+          assignment: a,
+          startCol: clippedStart.getUTCDay(),
+          span: Math.round((clippedEnd.getTime() - clippedStart.getTime()) / MS_PER_DAY) + 1,
+          continuesLeft: s < weekStart,
+          continuesRight: e > weekEnd,
+        };
+      })
+      .filter((x): x is NonNullable<typeof x> => x !== null);
+
+    const lanes = packLanes(segments);
 
     return (
-      <div
-        key={monthKey}
-        ref={(el) => {
-          monthRefs.current[monthKey] = el;
-        }}
-      >
-        <div className="border-y border-border bg-surface-muted/70 px-3 py-1.5 text-sm font-semibold">
-          {monthLabel(monthKey)}
+      <div key={fmt(weekStart)} className="border-t border-border">
+        {/* Day numbers + drop targets */}
+        <div className="grid grid-cols-7">
+          {week.map((day) => {
+            const iso = fmt(day);
+            const working = isWorkingDay[iso] ?? false;
+            const isToday = iso === todayIso;
+            return (
+              <div
+                key={iso}
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  setHoverDay(iso);
+                }}
+                onDragLeave={() => setHoverDay((h) => (h === iso ? null : h))}
+                onDrop={(e) => onDrop(iso, e)}
+                className={[
+                  "min-h-11 border-r border-border px-2 py-1.5 last:border-r-0",
+                  // Non-production days are shaded so a planner can see
+                  // at a glance why a block skipped them.
+                  working ? "" : "bg-surface-muted/60",
+                  hoverDay === iso ? "bg-brand/10 ring-1 ring-inset ring-brand" : "",
+                ].join(" ")}
+              >
+                <span
+                  className={
+                    isToday
+                      ? "inline-flex h-5 w-5 items-center justify-center rounded-full bg-brand text-[11px] font-semibold text-brand-foreground"
+                      : "text-[11px] text-muted-foreground"
+                  }
+                >
+                  {day.getUTCDate()}
+                </span>
+              </div>
+            );
+          })}
         </div>
 
-        {weeks.map((week, wi) => {
-          const weekStart = week[0];
-          const weekEnd = week[6];
+        {/* Bars, one row per lane */}
+        <div className="space-y-0.5 px-0 pb-1.5">
+          {lanes.map((lane, li) => (
+            <div key={li} className="grid grid-cols-7 gap-0">
+              {(() => {
+                const cells: React.ReactNode[] = [];
+                let col = 0;
+                for (const seg of lane.sort((a, b) => a.startCol - b.startCol)) {
+                  if (seg.startCol > col) {
+                    cells.push(
+                      <div key={`gap-${col}`} style={{ gridColumn: `span ${seg.startCol - col}` }} />
+                    );
+                  }
+                  const a = seg.assignment;
+                  const color = a.projectColor ? PROJECT_COLOR_HEX[a.projectColor] : "#8b5cf6";
+                  cells.push(
+                    <div key={a.id} style={{ gridColumn: `span ${seg.span}` }} className="px-1">
+                      <div className="group relative">
+                        <div
+                          draggable={!readOnly}
+                          onDragStart={() => setDrag({ id: a.id, mode: "move" })}
+                          onDragEnd={() => {
+                            setDrag(null);
+                            setHoverDay(null);
+                          }}
+                          onClick={(e) => openPopover(a.id, e.currentTarget)}
+                          title={
+                            readOnly
+                              ? `${a.projectName} · ${a.label}\n${pretty(a.startDate)} – ${pretty(a.endDate)} · ${a.durationDays} production days\nClick for details`
+                              : `${a.projectName} · ${a.label}\n${pretty(a.startDate)} – ${pretty(a.endDate)} · ${a.durationDays} production days\nDrag to move, drag an edge to resize, click for details`
+                          }
+                          className={[
+                            "truncate px-2 py-0.5 text-[11px] font-medium text-white shadow-sm",
+                            readOnly ? "cursor-pointer" : "cursor-grab active:cursor-grabbing",
+                            seg.continuesLeft ? "rounded-l-none" : "rounded-l-full",
+                            seg.continuesRight ? "rounded-r-none" : "rounded-r-full",
+                            drag?.id === a.id ? "opacity-50" : "",
+                          ].join(" ")}
+                          style={{ backgroundColor: color }}
+                        >
+                          {seg.continuesLeft ? "… " : ""}
+                          {a.label}
+                        </div>
 
-          const segments = items
-            .map((a) => {
-              const s = parse(a.startDate);
-              const e = parse(a.endDate);
-              if (e < weekStart || s > weekEnd) return null;
-              const clippedStart = s < weekStart ? weekStart : s;
-              const clippedEnd = e > weekEnd ? weekEnd : e;
-              return {
-                assignment: a,
-                startCol: clippedStart.getUTCDay(),
-                span: Math.round((clippedEnd.getTime() - clippedStart.getTime()) / MS_PER_DAY) + 1,
-                continuesLeft: s < weekStart,
-                continuesRight: e > weekEnd,
-              };
-            })
-            .filter((x): x is NonNullable<typeof x> => x !== null);
-
-          const lanes = packLanes(segments);
-
-          return (
-            <div key={wi} className="border-t border-border">
-              {/* Day numbers + drop targets */}
-              <div className="grid grid-cols-7">
-                {week.map((day) => {
-                  const iso = fmt(day);
-                  const inMonth = day.getUTCMonth() === monthStart.getUTCMonth();
-                  const working = isWorkingDay[iso] ?? false;
-                  const isToday = iso === todayIso;
-                  return (
-                    <div
-                      key={iso}
-                      onDragOver={(e) => {
-                        e.preventDefault();
-                        setHoverDay(iso);
-                      }}
-                      onDragLeave={() => setHoverDay((h) => (h === iso ? null : h))}
-                      onDrop={(e) => onDrop(iso, e)}
-                      className={[
-                        "min-h-11 border-r border-border px-2 py-1.5 last:border-r-0",
-                        // Non-production days are shaded so a planner can see
-                        // at a glance why a block skipped them.
-                        working ? "" : "bg-surface-muted/60",
-                        inMonth ? "" : "opacity-45",
-                        hoverDay === iso ? "bg-brand/10 ring-1 ring-inset ring-brand" : "",
-                      ].join(" ")}
-                    >
-                      <span
-                        className={
-                          isToday
-                            ? "inline-flex h-5 w-5 items-center justify-center rounded-full bg-brand text-[11px] font-semibold text-brand-foreground"
-                            : "text-[11px] text-muted-foreground"
-                        }
-                      >
-                        {day.getUTCDate()}
-                      </span>
+                        {/* Resize handles only where a segment is the assignment's
+                            true start/end — a mid-bar week-wrap segment has neither. */}
+                        {!readOnly && !seg.continuesLeft && (
+                          <span
+                            draggable
+                            onDragStart={(e) => {
+                              e.stopPropagation();
+                              setDrag({ id: a.id, mode: "start" });
+                            }}
+                            onDragEnd={() => {
+                              setDrag(null);
+                              setHoverDay(null);
+                            }}
+                            title="Drag to resize the start"
+                            className="absolute left-0 top-0 h-full w-2 cursor-ew-resize opacity-0 group-hover:bg-black/20 group-hover:opacity-100"
+                          />
+                        )}
+                        {!readOnly && !seg.continuesRight && (
+                          <span
+                            draggable
+                            onDragStart={(e) => {
+                              e.stopPropagation();
+                              setDrag({ id: a.id, mode: "end" });
+                            }}
+                            onDragEnd={() => {
+                              setDrag(null);
+                              setHoverDay(null);
+                            }}
+                            title="Drag to resize the end"
+                            className="absolute right-0 top-0 h-full w-2 cursor-ew-resize opacity-0 group-hover:bg-black/20 group-hover:opacity-100"
+                          />
+                        )}
+                      </div>
                     </div>
                   );
-                })}
-              </div>
-
-              {/* Bars, one row per lane */}
-              <div className="space-y-0.5 px-0 pb-1.5">
-                {lanes.map((lane, li) => (
-                  <div key={li} className="grid grid-cols-7 gap-0">
-                    {(() => {
-                      const cells: React.ReactNode[] = [];
-                      let col = 0;
-                      for (const seg of lane.sort((a, b) => a.startCol - b.startCol)) {
-                        if (seg.startCol > col) {
-                          cells.push(
-                            <div key={`gap-${col}`} style={{ gridColumn: `span ${seg.startCol - col}` }} />
-                          );
-                        }
-                        const a = seg.assignment;
-                        const color = a.projectColor ? PROJECT_COLOR_HEX[a.projectColor] : "#8b5cf6";
-                        cells.push(
-                          <div key={a.id} style={{ gridColumn: `span ${seg.span}` }} className="px-1">
-                            <div className="group relative">
-                              <div
-                                draggable
-                                onDragStart={() => setDrag({ id: a.id, mode: "move" })}
-                                onDragEnd={() => {
-                                  setDrag(null);
-                                  setHoverDay(null);
-                                }}
-                                onClick={(e) => openPopover(a.id, e.currentTarget)}
-                                title={`${a.projectName} · ${a.label}\n${pretty(a.startDate)} – ${pretty(a.endDate)} · ${a.durationDays} production days\nDrag to move, drag an edge to resize, click for details`}
-                                className={[
-                                  "cursor-grab truncate px-2 py-0.5 text-[11px] font-medium text-white shadow-sm active:cursor-grabbing",
-                                  seg.continuesLeft ? "rounded-l-none" : "rounded-l-full",
-                                  seg.continuesRight ? "rounded-r-none" : "rounded-r-full",
-                                  drag?.id === a.id ? "opacity-50" : "",
-                                ].join(" ")}
-                                style={{ backgroundColor: color }}
-                              >
-                                {seg.continuesLeft ? "… " : ""}
-                                {a.label}
-                              </div>
-
-                              {/* Resize handles only where a segment is the assignment's
-                                  true start/end — a mid-bar week-wrap segment has neither. */}
-                              {!seg.continuesLeft && (
-                                <span
-                                  draggable
-                                  onDragStart={(e) => {
-                                    e.stopPropagation();
-                                    setDrag({ id: a.id, mode: "start" });
-                                  }}
-                                  onDragEnd={() => {
-                                    setDrag(null);
-                                    setHoverDay(null);
-                                  }}
-                                  title="Drag to resize the start"
-                                  className="absolute left-0 top-0 h-full w-2 cursor-ew-resize opacity-0 group-hover:bg-black/20 group-hover:opacity-100"
-                                />
-                              )}
-                              {!seg.continuesRight && (
-                                <span
-                                  draggable
-                                  onDragStart={(e) => {
-                                    e.stopPropagation();
-                                    setDrag({ id: a.id, mode: "end" });
-                                  }}
-                                  onDragEnd={() => {
-                                    setDrag(null);
-                                    setHoverDay(null);
-                                  }}
-                                  title="Drag to resize the end"
-                                  className="absolute right-0 top-0 h-full w-2 cursor-ew-resize opacity-0 group-hover:bg-black/20 group-hover:opacity-100"
-                                />
-                              )}
-                            </div>
-                          </div>
-                        );
-                        col = seg.startCol + seg.span;
-                      }
-                      if (col < 7) {
-                        cells.push(<div key="tail" style={{ gridColumn: `span ${7 - col}` }} />);
-                      }
-                      return cells;
-                    })()}
-                  </div>
-                ))}
-              </div>
+                  col = seg.startCol + seg.span;
+                }
+                if (col < 7) {
+                  cells.push(<div key="tail" style={{ gridColumn: `span ${7 - col}` }} />);
+                }
+                return cells;
+              })()}
             </div>
-          );
-        })}
+          ))}
+        </div>
       </div>
     );
+  }
+
+  /**
+   * One continuous strip of Sun–Sat weeks spanning every loaded month, with
+   * a divider inserted right before the week containing each month's 1st —
+   * never per-month blocks that each pad out their own first/last week with
+   * the neighboring month's days. Two adjacent months always share a
+   * boundary week (whichever week holds both the tail of one and the head
+   * of the next); building weeks per month independently rendered that
+   * shared week twice — once bled into the end of the earlier month's
+   * block, again bled into the start of the later month's, each copy with
+   * its own placement bars drawn on top. This walks the whole loaded range
+   * as one sequence instead, so every day — and every bar in it — appears
+   * exactly once, with the divider alone marking where a new month starts.
+   */
+  function renderCalendar() {
+    if (months.length === 0) return null;
+    const firstMonthStart = parse(`${months[0]}-01`);
+    const lastMonthStart = parse(`${months[months.length - 1]}-01`);
+    const lastMonthEnd = new Date(
+      Date.UTC(lastMonthStart.getUTCFullYear(), lastMonthStart.getUTCMonth() + 1, 0)
+    );
+    const gridStart = addDays(firstMonthStart, -firstMonthStart.getUTCDay());
+    const gridEnd = addDays(lastMonthEnd, 6 - lastMonthEnd.getUTCDay());
+
+    const nodes: React.ReactNode[] = [];
+    let cursor = gridStart;
+    while (cursor <= gridEnd) {
+      const week: Date[] = [];
+      for (let i = 0; i < 7; i++) {
+        week.push(cursor);
+        cursor = addDays(cursor, 1);
+      }
+
+      // A month's 1st can only ever fall in one week — weeks are 7 days,
+      // months are never that short — so this fires at most once per week.
+      const monthStartDay = week.find((d) => d.getUTCDate() === 1);
+      if (monthStartDay) {
+        const key = monthKeyOf(monthStartDay);
+        nodes.push(
+          <div
+            key={`divider-${key}`}
+            ref={(el) => {
+              monthRefs.current[key] = el;
+            }}
+            className="border-y border-border bg-surface-muted/70 px-3 py-1.5 text-sm font-semibold"
+          >
+            {monthLabel(key)}
+          </div>
+        );
+      }
+
+      nodes.push(renderWeek(week));
+    }
+    return nodes;
   }
 
   return (
@@ -740,7 +781,7 @@ export function CalendarMonth({
 
         <div ref={topSentinelRef} />
 
-        {months.map((m) => renderMonth(m))}
+        {renderCalendar()}
 
         <div ref={bottomSentinelRef} />
       </div>
@@ -759,6 +800,7 @@ export function CalendarMonth({
               top={popover.top}
               left={popover.left}
               busy={isPending}
+              readOnly={readOnly}
               onClose={() => setPopover(null)}
               onMove={(isoDate) => {
                 setPopover(null);
@@ -772,14 +814,17 @@ export function CalendarMonth({
                 setPopover(null);
                 performDelete(a.id);
               }}
+              onRequestEdit={requestEdit}
             />
           );
         })()}
 
+      {editPrompt}
+
       <p className="mt-2 text-xs text-muted-foreground">
-        Drag a block to move it, or drag either edge to resize — click a block for precise controls
-        or to remove it. Drag an item from the unscheduled list to place it. Length in production
-        days is preserved, and shaded days are skipped automatically. Scroll to load more months.
+        {readOnly
+          ? "This is the Master Calendar — it can't be edited directly. Click a placement, or drag one from the unscheduled list, to create a variation and make the change there. Scroll to load more months."
+          : "Drag a block to move it, or drag either edge to resize — click a block for precise controls or to remove it. Drag an item from the unscheduled list to place it. Length in production days is preserved, and shaded days are skipped automatically. Scroll to load more months."}
       </p>
 
       {items.length === 0 && (

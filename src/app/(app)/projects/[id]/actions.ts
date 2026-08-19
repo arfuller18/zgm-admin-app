@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { requireUser } from "@/lib/session";
+import { createUnitRequirement } from "@/lib/scheduling/requirements";
 import type {
   ProjectFormat,
   ProjectStatus,
@@ -270,6 +271,16 @@ export async function createUnitProduction(formData: FormData) {
       episode: int(formData, "episode"),
     },
   });
+
+  // Without this, a new unit production never appears anywhere in
+  // Scheduling — unscheduledItems() is driven entirely by requirements, not
+  // by UnitProduction rows directly. 5 days matches the manual "Add to
+  // schedule" form's own default; a scheduler can change it from either the
+  // unscheduled drawer or this project's Scheduling tab at any time.
+  await createUnitRequirement({ projectId, unitProductionId: unit.id, durationDays: 5 });
+  revalidatePath("/schedule");
+  revalidatePath("/schedule/master");
+
   redirect(`/projects/${projectId}/units/${unit.id}`);
 }
 

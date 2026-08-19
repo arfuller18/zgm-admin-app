@@ -25,10 +25,12 @@ export function BlockPopover({
   top,
   left,
   busy,
+  readOnly,
   onClose,
   onMove,
   onResize,
   onDelete,
+  onRequestEdit,
 }: {
   projectName: string;
   label: string;
@@ -38,10 +40,13 @@ export function BlockPopover({
   top: number;
   left: number;
   busy: boolean;
+  /** Master's blocks open this panel too, but view-only — see CalendarMonth's own readOnly prop. */
+  readOnly?: boolean;
   onClose: () => void;
   onMove: (isoDate: string) => void;
   onResize: (days: number) => void;
   onDelete: () => void;
+  onRequestEdit?: () => void;
 }) {
   const [moveDate, setMoveDate] = useState(startIso);
   const [days, setDays] = useState(String(durationDays));
@@ -70,6 +75,25 @@ export function BlockPopover({
 
         <p className="mb-3 text-xs text-muted-foreground">{prettyRange}</p>
 
+        {readOnly ? (
+          <div className="space-y-3">
+            <p className="text-xs text-muted-foreground">
+              This is the Master Calendar — it can&apos;t be edited directly. Create a variation to
+              move, resize, or remove this placement.
+            </p>
+            <Button
+              type="button"
+              size="sm"
+              className="w-full"
+              onClick={() => {
+                onClose();
+                onRequestEdit?.();
+              }}
+            >
+              Create variation to edit
+            </Button>
+          </div>
+        ) : (
         <div className="space-y-3">
           <div>
             <label className="mb-1 block text-[11px] text-muted-foreground" htmlFor="popover-move-date">
@@ -131,6 +155,7 @@ export function BlockPopover({
             Remove from schedule
           </Button>
         </div>
+        )}
       </div>
     </>,
     document.body

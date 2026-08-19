@@ -77,11 +77,13 @@ export async function CalendarSection({
   variationId,
   month,
   projectId,
+  readOnly,
 }: {
   variationId: string;
   month?: string;
   projectId?: string;
+  readOnly?: boolean;
 }) {
   const data = await loadCalendarSectionData({ variationId, month, projectId });
-  return <CalendarMonth {...data} />;
+  return <CalendarMonth {...data} readOnly={readOnly} />;
 }

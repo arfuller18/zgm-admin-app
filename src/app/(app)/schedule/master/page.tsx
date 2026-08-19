@@ -45,6 +45,17 @@ export default async function MasterCalendarPage({
     listSchedulableProjects(),
   ]);
   const includedProjects = allProjects.filter((p) => master.includedProjectIds.includes(p.id));
+  // Driven by what's actually scheduled, not by includedProjectIds — a
+  // project can carry live placements on Master while sitting outside
+  // scope (toggled off via "Manage projects" without being unscheduled),
+  // and it needs to stay reachable here regardless, or there'd be no way
+  // left to remove it.
+  const scheduledProjectIds = new Set(
+    data.projects
+      .filter((p) => p.schedulingRequirements.some((r) => r.assignments.length > 0))
+      .map((p) => p.id)
+  );
+  const scheduledProjects = allProjects.filter((p) => scheduledProjectIds.has(p.id));
 
   const placements = data.projects.reduce(
     (n, p) => n + p.schedulingRequirements.filter((r) => r.assignments.length > 0).length,
@@ -64,8 +75,8 @@ export default async function MasterCalendarPage({
               </div>
               <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
                 What ZGM is actually doing. {placements} production
-                {placements === 1 ? "" : "s"} scheduled. Edits made here are live immediately — the
-                usual route is to plan in a variation and publish.
+                {placements === 1 ? "" : "s"} scheduled. This is read-only — plan changes in a
+                variation, then publish it here.
               </p>
             </div>
             <LinkButton href="/schedule" variant="outline">
@@ -100,7 +111,7 @@ export default async function MasterCalendarPage({
         <div className="flex items-start gap-4">
           <UnscheduledDrawer items={unscheduledItems(data, master.includedProjectIds)} />
           <div className="min-w-0 flex-1">
-            <CalendarSection variationId={master.id} month={month} projectId={projectId} />
+            <CalendarSection variationId={master.id} month={month} projectId={projectId} readOnly />
           </div>
         </div>
       )}
@@ -129,7 +140,7 @@ export default async function MasterCalendarPage({
         </>
       )}
 
-      <ManageMaster includedProjects={includedProjects} />
+      <ManageMaster includedProjects={scheduledProjects} />
 
       {publications.length > 0 && (
         <section>

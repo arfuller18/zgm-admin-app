@@ -138,6 +138,33 @@ export async function archiveVariationAction(formData: FormData) {
   redirect("/schedule");
 }
 
+/**
+ * The Master Calendar's own "edit" button, in effect: Master itself can't be
+ * dragged, resized, or dropped onto (see CalendarMonth's readOnly prop) — the
+ * only way to change it is to plan the change in a copy and publish that
+ * copy back. This is the one-click version of that copy step, invoked from
+ * the prompt that intercepts an attempted edit on Master.
+ */
+export async function createVariationFromMasterAction(): Promise<
+  { ok: true; id: string } | { ok: false; message: string }
+> {
+  const user = await requireUser();
+  const result = await run(() =>
+    variations.createVariation({
+      name: `Master copy — ${new Date().toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      })}`,
+      mode: "COPY_MASTER",
+      createdById: user.id,
+    })
+  );
+  if (!result.ok) return result;
+  revalidatePath("/schedule");
+  return { ok: true, id: result.value.id };
+}
+
 export async function deleteVariationAction(formData: FormData) {
   await requireUser();
   const id = str(formData, "variationId");

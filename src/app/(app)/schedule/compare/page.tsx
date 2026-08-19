@@ -5,9 +5,10 @@ import { CompareView } from "./compare-view";
 
 // Two schedules, side by side. Reuses the exact same calendar (CalendarMonth)
 // each single-schedule page uses — a comparison view earns its keep by being
-// the same tool in two places, not a simplified read-only echo of it, so
-// dragging, resizing, and the block popover all work here too, on either
-// side.
+// the same tool in two places, so dragging, resizing, and the block popover
+// all work here too, on either side, except when that side is Master: same
+// readOnly rule as /schedule/master, since Master doesn't get a second,
+// looser set of edit rules just because it's rendered next to something else.
 
 export default async function CompareSchedulesPage({
   searchParams,
@@ -43,7 +44,15 @@ export default async function CompareSchedulesPage({
         </p>
       </div>
 
-      <CompareView targets={targets} leftId={leftId} rightId={rightId} left={leftData} right={rightData} />
+      <CompareView
+        targets={targets}
+        leftId={leftId}
+        rightId={rightId}
+        left={leftData}
+        right={rightData}
+        leftReadOnly={leftId === master.id}
+        rightReadOnly={rightId === master.id}
+      />
     </div>
   );
 }

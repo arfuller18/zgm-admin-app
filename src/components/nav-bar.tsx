@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ROLE_LABEL } from "@/lib/display";
 import { AppRail } from "@/components/app-rail";
+import { SchedulingNav } from "@/components/scheduling-nav";
 
 const ADMIN_NAV_LINKS = [
   { href: "/", label: "Dashboard" },
@@ -46,15 +47,19 @@ export function NavBar({
             </span>
           </Link>
           <nav className="hidden items-center gap-1 md:flex">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-surface-muted hover:text-foreground"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {isScheduling ? (
+              <SchedulingNav />
+            ) : (
+              navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-surface-muted hover:text-foreground"
+                >
+                  {link.label}
+                </Link>
+              ))
+            )}
             {!isScheduling && user.role === "ADMIN" && (
               <Link
                 href="/admin/users"
@@ -78,17 +83,21 @@ export function NavBar({
           </div>
         </div>
       </div>
-      {navLinks.length > 0 && (
+      {(isScheduling || navLinks.length > 0) && (
         <nav className="flex items-center gap-1 overflow-x-auto border-t border-border px-4 py-1.5 md:hidden">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="shrink-0 rounded-lg px-3 py-1.5 text-sm font-medium text-muted-foreground hover:bg-surface-muted hover:text-foreground"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {isScheduling ? (
+            <SchedulingNav />
+          ) : (
+            navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="shrink-0 rounded-lg px-3 py-1.5 text-sm font-medium text-muted-foreground hover:bg-surface-muted hover:text-foreground"
+              >
+                {link.label}
+              </Link>
+            ))
+          )}
         </nav>
       )}
     </header>
