@@ -5,13 +5,14 @@ import { Badge } from "@/components/ui/badge";
 import { ConfirmSubmitButton } from "@/components/ui/confirm-submit-button";
 import { VARIATION_STATUS_LABEL, VARIATION_STATUS_TONE } from "@/lib/display";
 import { getVariation } from "@/lib/scheduling/variations";
-import { loadWorkspace, flattenWorkspaceAssignments } from "@/lib/scheduling/queries";
+import { loadWorkspace, flattenWorkspaceAssignments, listSchedulableProjects } from "@/lib/scheduling/queries";
 import { previewPush } from "@/lib/scheduling/master";
 import { ScheduleWorkspace } from "../../workspace";
 import { ShiftControls } from "../../shift-modal";
 import { TimelineSection } from "../../timeline-section";
 import { CalendarSection } from "../../calendar-section";
 import { ViewControls } from "../../view-controls";
+import { ManageProjects } from "../../manage-projects";
 import { PushToMasterForm } from "./push-form";
 import { deleteVariationAction } from "../../actions";
 
@@ -33,7 +34,12 @@ export default async function VariationPage({
   // the variation workspace.
   if (variation.kind === "MASTER") redirect("/schedule/master");
 
-  const [data, preview] = await Promise.all([loadWorkspace(id), previewPush({ variationId: id })]);
+  const [data, preview, allProjects] = await Promise.all([
+    loadWorkspace(id),
+    previewPush({ variationId: id }),
+    listSchedulableProjects(),
+  ]);
+  const includedProjects = allProjects.filter((p) => variation.includedProjectIds.includes(p.id));
 
   return (
     <div className="space-y-6">
@@ -75,13 +81,20 @@ export default async function VariationPage({
 
       <PushToMasterForm variationId={variation.id} preview={preview} />
 
-      <ViewControls
-        basePath={`/schedule/v/${variation.id}`}
-        view={view}
-        month={month}
-        projectId={projectId}
-        projects={data.projects.map((p) => ({ id: p.id, name: p.name }))}
-      />
+      <div className="flex flex-wrap items-center gap-3">
+        <ViewControls
+          basePath={`/schedule/v/${variation.id}`}
+          view={view}
+          month={month}
+          projectId={projectId}
+          projects={includedProjects}
+        />
+        <ManageProjects
+          variationId={variation.id}
+          includedProjectIds={variation.includedProjectIds}
+          allProjects={allProjects}
+        />
+      </div>
 
       {view === "calendar" && (
         <CalendarSection
@@ -105,7 +118,7 @@ export default async function VariationPage({
         <>
           <ShiftControls
             variationId={variation.id}
-            projects={data.projects.map((p) => ({ id: p.id, name: p.name }))}
+            projects={includedProjects}
             assignments={flattenWorkspaceAssignments(data)}
           />
           <ScheduleWorkspace variationId={variation.id} data={data} />

@@ -3,13 +3,14 @@ import { requireUser } from "@/lib/session";
 import { Badge } from "@/components/ui/badge";
 import { LinkButton } from "@/components/ui/button";
 import { getMasterVariation } from "@/lib/scheduling/variations";
-import { loadWorkspace, flattenWorkspaceAssignments } from "@/lib/scheduling/queries";
+import { loadWorkspace, flattenWorkspaceAssignments, listSchedulableProjects } from "@/lib/scheduling/queries";
 import { listPublications } from "@/lib/scheduling/master";
 import { ScheduleWorkspace } from "../workspace";
 import { ShiftControls } from "../shift-modal";
 import { TimelineSection } from "../timeline-section";
 import { CalendarSection } from "../calendar-section";
 import { ViewControls } from "../view-controls";
+import { ManageProjects } from "../manage-projects";
 
 // The Master Calendar. Same planning surface underneath, deliberately
 // different framing on top: this is the operational schedule, not a scenario.
@@ -32,7 +33,12 @@ export default async function MasterCalendarPage({
   const view = rawView === "timeline" ? "timeline" : rawView === "list" ? "list" : "calendar";
 
   const master = await getMasterVariation();
-  const [data, publications] = await Promise.all([loadWorkspace(master.id), listPublications(5)]);
+  const [data, publications, allProjects] = await Promise.all([
+    loadWorkspace(master.id),
+    listPublications(5),
+    listSchedulableProjects(),
+  ]);
+  const includedProjects = allProjects.filter((p) => master.includedProjectIds.includes(p.id));
 
   const placements = data.projects.reduce(
     (n, p) => n + p.schedulingRequirements.filter((r) => r.assignments.length > 0).length,
@@ -73,13 +79,20 @@ export default async function MasterCalendarPage({
         </p>
       )}
 
-      <ViewControls
-        basePath="/schedule/master"
-        view={view}
-        month={month}
-        projectId={projectId}
-        projects={data.projects.map((p) => ({ id: p.id, name: p.name }))}
-      />
+      <div className="flex flex-wrap items-center gap-3">
+        <ViewControls
+          basePath="/schedule/master"
+          view={view}
+          month={month}
+          projectId={projectId}
+          projects={includedProjects}
+        />
+        <ManageProjects
+          variationId={master.id}
+          includedProjectIds={master.includedProjectIds}
+          allProjects={allProjects}
+        />
+      </div>
 
       {view === "calendar" && (
         <CalendarSection
@@ -103,7 +116,7 @@ export default async function MasterCalendarPage({
         <>
           <ShiftControls
             variationId={master.id}
-            projects={data.projects.map((p) => ({ id: p.id, name: p.name }))}
+            projects={includedProjects}
             assignments={flattenWorkspaceAssignments(data)}
           />
           <ScheduleWorkspace

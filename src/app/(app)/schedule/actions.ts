@@ -97,6 +97,33 @@ export async function renameVariationAction(formData: FormData) {
   revalidateScheduling(id);
 }
 
+/**
+ * Typed toggles for the "Manage projects" control, which needs the result
+ * back immediately to update its own checkbox state — a bare form action
+ * would work too, but this one lives inside a dropdown, not a <form>.
+ */
+export async function addIncludedProjectAction(input: {
+  variationId: string;
+  projectId: string;
+}): Promise<{ ok: true } | { ok: false; message: string }> {
+  await requireUser();
+  const result = await run(() => variations.addIncludedProject(input.variationId, input.projectId));
+  if (!result.ok) return result;
+  revalidateScheduling(input.variationId);
+  return { ok: true };
+}
+
+export async function removeIncludedProjectAction(input: {
+  variationId: string;
+  projectId: string;
+}): Promise<{ ok: true } | { ok: false; message: string }> {
+  await requireUser();
+  const result = await run(() => variations.removeIncludedProject(input.variationId, input.projectId));
+  if (!result.ok) return result;
+  revalidateScheduling(input.variationId);
+  return { ok: true };
+}
+
 export async function archiveVariationAction(formData: FormData) {
   await requireUser();
   const id = str(formData, "variationId");
