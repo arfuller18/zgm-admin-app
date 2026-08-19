@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { requireUser } from "@/lib/session";
 import { Badge } from "@/components/ui/badge";
 import { LinkButton } from "@/components/ui/button";
@@ -55,11 +54,7 @@ export default async function MasterCalendarPage({
   return (
     <div className="space-y-6">
       <div>
-        <Link href="/schedule" className="text-sm font-medium text-muted-foreground hover:text-foreground">
-          ← Scheduling
-        </Link>
-
-        <div className="mt-3 overflow-hidden rounded-2xl border-2 border-brand/30 bg-surface">
+        <div className="overflow-hidden rounded-2xl border-2 border-brand/30 bg-surface">
           <div className="h-1.5 w-full bg-gradient-to-r from-brand to-accent" />
           <div className="flex flex-wrap items-start justify-between gap-4 p-6">
             <div>

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { requireUser } from "@/lib/session";
 import { getMasterVariation, listScheduleTargets } from "@/lib/scheduling/variations";
 import { loadCalendarSectionData } from "../calendar-section";
@@ -38,10 +37,7 @@ export default async function CompareSchedulesPage({
   return (
     <div className="space-y-6">
       <div>
-        <Link href="/schedule" className="text-sm font-medium text-muted-foreground hover:text-foreground">
-          ← Scheduling
-        </Link>
-        <h1 className="mt-3 text-2xl font-bold tracking-tight">Compare schedules</h1>
+        <h1 className="text-2xl font-bold tracking-tight">Compare schedules</h1>
         <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
           Master or any variation, side by side.
         </p>
