@@ -13,6 +13,7 @@ import {
   moveAssignmentToDate,
   resizeAssignmentToEnd,
   resizeAssignmentFromStart,
+  type ScheduleConflictView,
 } from "./actions";
 import type { ScheduleWindowAssignment } from "@/lib/scheduling/queries";
 
@@ -108,6 +109,10 @@ export function TimelineGantt({
   const [drag, setDrag] = useState<Drag | null>(null);
   const [ghost, setGhost] = useState<{ id: string; start: string; end: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [conflictNotice, setConflictNotice] = useState<{
+    movedLabel: string;
+    conflicts: ScheduleConflictView[];
+  } | null>(null);
   const [isPending, startTransition] = useTransition();
   const laneRef = useRef<HTMLDivElement>(null);
 
@@ -285,9 +290,11 @@ export function TimelineGantt({
     }
 
     // Show the guess immediately; reconcile with the engine's answer below.
+    const movedLabel = items.find((a) => a.id === d.id)?.label ?? "This block";
     setItems((prev) =>
       prev.map((a) => (a.id === d.id ? { ...a, startDate: g.start, endDate: g.end } : a))
     );
+    setConflictNotice(null);
 
     const call =
       d.mode === "move"
@@ -307,6 +314,11 @@ export function TimelineGantt({
               : a
           )
         );
+        // The move/resize already happened — a location conflict here is a
+        // heads-up, not a rollback reason. A scheduler may mean it.
+        if (res.conflicts.length > 0) {
+          setConflictNotice({ movedLabel, conflicts: res.conflicts });
+        }
       } else {
         setItems(initial);
         setError(res.message);
@@ -444,6 +456,30 @@ export function TimelineGantt({
 
       {error && (
         <p className="mb-3 rounded-lg bg-danger-bg px-3 py-2 text-sm text-danger">{error}</p>
+      )}
+
+      {conflictNotice && (
+        <div className="mb-3 flex items-start justify-between gap-3 rounded-lg bg-warning-bg px-3 py-2 text-sm text-warning">
+          <p>
+            <strong>{conflictNotice.movedLabel}</strong> now shares a location with{" "}
+            {conflictNotice.conflicts.map((c, i) => (
+              <span key={i}>
+                {i > 0 ? ", " : ""}
+                <strong>{c.projectName}</strong> · {c.label} ({pretty(c.startDate)} – {pretty(c.endDate)})
+              </span>
+            ))}{" "}
+            at {conflictNotice.conflicts[0].locationName} on overlapping days. The move went through —
+            this is just a heads-up.
+          </p>
+          <button
+            type="button"
+            onClick={() => setConflictNotice(null)}
+            className="shrink-0 text-warning/70 hover:text-warning"
+            aria-label="Dismiss"
+          >
+            ✕
+          </button>
+        </div>
       )}
 
       {groups.length === 0 ? (

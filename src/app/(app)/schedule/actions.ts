@@ -8,6 +8,7 @@ import * as variations from "@/lib/scheduling/variations";
 import * as requirements from "@/lib/scheduling/requirements";
 import * as assignments from "@/lib/scheduling/assignments";
 import * as master from "@/lib/scheduling/master";
+import * as conflicts from "@/lib/scheduling/conflicts";
 import {
   parseScheduleDate,
   formatScheduleDate,
@@ -331,9 +332,57 @@ export async function pushToMasterAction(
   redirect("/schedule/master?published=1");
 }
 
+export interface ScheduleConflictView {
+  projectName: string;
+  label: string;
+  locationName: string;
+  startDate: string;
+  endDate: string;
+}
+
 export type EdgeMoveResult =
-  | { ok: true; startDate: string; endDate: string; durationDays: number }
+  | {
+      ok: true;
+      startDate: string;
+      endDate: string;
+      durationDays: number;
+      /**
+       * Other placements sharing this assignment's location on overlapping
+       * dates, if it has a location set. Never blocks the move — it already
+       * happened — this is purely informational, same spirit as the
+       * People/Location booking-conflict warnings elsewhere in the app.
+       */
+      conflicts: ScheduleConflictView[];
+    }
   | { ok: false; message: string };
+
+/** Location conflicts for an assignment as it now stands, empty if it has
+ * no location or nothing else overlaps it. */
+async function checkLocationConflicts(assignment: {
+  id: string;
+  variationId: string;
+  projectId: string;
+  locationId: string | null;
+  startDate: Date;
+  endDate: Date;
+}): Promise<ScheduleConflictView[]> {
+  if (!assignment.locationId) return [];
+  const rows = await conflicts.findLocationConflicts({
+    variationId: assignment.variationId,
+    locationId: assignment.locationId,
+    startDate: assignment.startDate,
+    endDate: assignment.endDate,
+    excludeAssignmentId: assignment.id,
+    excludeProjectId: assignment.projectId,
+  });
+  return rows.map((r) => ({
+    projectName: r.projectName,
+    label: r.label,
+    locationName: r.locationName,
+    startDate: formatScheduleDate(r.startDate),
+    endDate: formatScheduleDate(r.endDate),
+  }));
+}
 
 /**
  * Typed move for the calendar's drag-and-drop, which has real values in hand
@@ -358,6 +407,7 @@ export async function moveAssignmentToDate(input: {
     startDate: formatScheduleDate(result.value.startDate),
     endDate: formatScheduleDate(result.value.endDate),
     durationDays: result.value.durationDays,
+    conflicts: await checkLocationConflicts(result.value),
   };
 }
 
@@ -383,6 +433,7 @@ export async function resizeAssignmentToEnd(input: {
     startDate: formatScheduleDate(result.value.startDate),
     endDate: formatScheduleDate(result.value.endDate),
     durationDays: result.value.durationDays,
+    conflicts: await checkLocationConflicts(result.value),
   };
 }
 
@@ -402,6 +453,7 @@ export async function resizeAssignmentFromStart(input: {
     startDate: formatScheduleDate(result.value.startDate),
     endDate: formatScheduleDate(result.value.endDate),
     durationDays: result.value.durationDays,
+    conflicts: await checkLocationConflicts(result.value),
   };
 }
 
@@ -466,4 +518,36 @@ export async function loadMergedMasterPreview(input: {
       label: requirementLabel(r.requirement),
     })),
   };
+}
+
+// ---------------------------------------------------------------------------
+// Push-to-Master location conflicts — the safety check that belongs right
+// where a variation is about to become real, alongside the "this project
+// already has a Master schedule" warning previewPush already surfaces.
+// ---------------------------------------------------------------------------
+
+export interface PushLocationConflictView {
+  incomingProjectName: string;
+  incomingLabel: string;
+  locationName: string;
+  conflictsWith: { projectName: string; label: string; startDate: string; endDate: string }[];
+}
+
+export async function previewPushConflictsAction(input: {
+  variationId: string;
+  projectIds?: string[];
+}): Promise<PushLocationConflictView[]> {
+  await requireUser();
+  const rows = await master.previewPushConflicts(input);
+  return rows.map((r) => ({
+    incomingProjectName: r.incomingProjectName,
+    incomingLabel: r.incomingLabel,
+    locationName: r.locationName,
+    conflictsWith: r.conflictsWith.map((c) => ({
+      projectName: c.projectName,
+      label: c.label,
+      startDate: formatScheduleDate(c.startDate),
+      endDate: formatScheduleDate(c.endDate),
+    })),
+  }));
 }

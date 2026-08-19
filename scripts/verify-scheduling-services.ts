@@ -22,6 +22,7 @@ import {
   applyShift,
 } from "../src/lib/scheduling/assignments";
 import { previewPush, pushToMaster } from "../src/lib/scheduling/master";
+import { findLocationConflicts } from "../src/lib/scheduling/conflicts";
 
 // Integration checks for the guarantees the whole model rests on: variation
 // isolation, Master isolation, and partial-push safety.
@@ -47,11 +48,14 @@ function check(name: string, fn: () => void) {
 }
 
 async function cleanup() {
-  const p = await prisma.project.findFirst({ where: { name: TEST_PROJECT } });
-  if (p) await prisma.project.delete({ where: { id: p.id } }); // cascades everywhere
+  // Prefix match, not just TEST_PROJECT by exact name: the location-conflict
+  // checks below create a second throwaway project, and both need to be gone
+  // by teardown for "leaves Master exactly as it was found" to hold.
+  await prisma.project.deleteMany({ where: { name: { startsWith: "ZZZ" } } }); // cascades everywhere
   await prisma.scheduleVariation.deleteMany({
     where: { kind: "VARIATION", name: { startsWith: "ZZZ Verify" } },
   });
+  await prisma.location.deleteMany({ where: { name: { startsWith: "ZZZ" } } });
 }
 
 async function main() {
@@ -198,6 +202,83 @@ async function main() {
     assert.equal(f(overlapping.startDate), "2027-03-01");
   });
   await unassign(overlapping.id);
+
+  // --- location conflicts --------------------------------------------------
+  // Distinct from calendar/date overlap above: two productions may run at
+  // the same time (normal), but wanting the same physical location on
+  // overlapping days is what findLocationConflicts exists to catch.
+  console.log("\nLocation conflicts");
+  const stage = await prisma.location.create({ data: { name: "ZZZ Test Stage" } });
+  await prisma.scheduleAssignment.update({ where: { id: a1.id }, data: { locationId: stage.id } });
+
+  const sameProjectOverlap = await assign({
+    variationId: varA.id,
+    requirementId: req2.id,
+    startDate: d("2027-03-01"), // on top of req1's block again
+  });
+  await prisma.scheduleAssignment.update({
+    where: { id: sameProjectOverlap.id },
+    data: { locationId: stage.id },
+  });
+  const sameProjectConflicts = await findLocationConflicts({
+    variationId: varA.id,
+    locationId: stage.id,
+    startDate: a1.startDate,
+    endDate: a1.endDate,
+    excludeAssignmentId: a1.id,
+    excludeProjectId: project.id,
+  });
+  check("two units of the same project sharing a location is not flagged", () => {
+    assert.equal(sameProjectConflicts.length, 0);
+  });
+  await unassign(sameProjectOverlap.id);
+
+  const otherProject = await prisma.project.create({
+    data: { name: "ZZZ Conflict Check", currentStatus: "PREP", projectColor: "PINK" },
+  });
+  const otherEp = await prisma.unitProduction.create({
+    data: { projectId: otherProject.id, name: "ZZZ Other Ep", episode: 1 },
+  });
+  const otherReq = await createUnitRequirement({
+    projectId: otherProject.id,
+    unitProductionId: otherEp.id,
+    durationDays: 3,
+  });
+  const otherAssignment = await assign({
+    variationId: varA.id,
+    requirementId: otherReq.id,
+    startDate: d("2027-03-03"), // inside req1's Mon–Fri block
+  });
+  await prisma.scheduleAssignment.update({
+    where: { id: otherAssignment.id },
+    data: { locationId: stage.id },
+  });
+  const crossProjectConflicts = await findLocationConflicts({
+    variationId: varA.id,
+    locationId: stage.id,
+    startDate: a1.startDate,
+    endDate: a1.endDate,
+    excludeAssignmentId: a1.id,
+    excludeProjectId: project.id,
+  });
+  check("a different project at the same location on overlapping dates is flagged", () => {
+    assert.equal(crossProjectConflicts.length, 1);
+    assert.equal(crossProjectConflicts[0].projectId, otherProject.id);
+  });
+
+  const nonOverlappingCheck = await findLocationConflicts({
+    variationId: varA.id,
+    locationId: stage.id,
+    startDate: d("2027-04-01"),
+    endDate: d("2027-04-05"),
+  });
+  check("the same location on non-overlapping dates is not flagged", () => {
+    assert.equal(nonOverlappingCheck.length, 0);
+  });
+
+  // Leave varA exactly as later sections expect it: otherAssignment was only
+  // here to prove cross-project detection, not to stay scheduled.
+  await unassign(otherAssignment.id);
 
   // --- preview purity -----------------------------------------------------
   console.log("\nPreview");

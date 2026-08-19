@@ -4,7 +4,13 @@ import { useActionState, useEffect, useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { pushToMasterAction, loadMergedMasterPreview, type ActionState } from "../../actions";
+import {
+  pushToMasterAction,
+  loadMergedMasterPreview,
+  previewPushConflictsAction,
+  type ActionState,
+  type PushLocationConflictView,
+} from "../../actions";
 import { TimelineGantt, type Zoom } from "../../timeline-gantt";
 import type { PushPreview } from "@/lib/scheduling/master";
 
@@ -61,6 +67,26 @@ export function PushToMasterForm({
     // makes this re-fire only when the actual selection changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [previewOpen, variationId, scope, selected.join(",")]);
+
+  // Location conflicts — unlike the visual preview above, this is a safety
+  // check, not a heavy render, so it runs unconditionally (not gated behind
+  // a disclosure) and stays current with whatever scope is selected.
+  const [locationConflicts, setLocationConflicts] = useState<PushLocationConflictView[]>([]);
+  const noSelection = scope === "SELECTED" && selected.length === 0;
+  useEffect(() => {
+    // Render checks noSelection directly (see JSX below) and an empty array
+    // already renders nothing, so an empty selection needs no fetch and no
+    // state to clear here.
+    if (noSelection) return;
+    let cancelled = false;
+    previewPushConflictsAction({ variationId, projectIds: previewProjectIds }).then((rows) => {
+      if (!cancelled) setLocationConflicts(rows);
+    });
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [variationId, scope, selected.join(",")]);
 
   const replacing = preview.projects.filter((p) => p.conflictsWithExisting);
   const nothingToPush = preview.totalIncoming === 0;
@@ -179,6 +205,36 @@ export function PushToMasterForm({
                 Publishing replaces the existing Master schedule for{" "}
                 {affectedReplacing.length === 1 ? "it" : "them"}. Every other project on Master is
                 left untouched, and the replaced schedule is kept in the publish history.
+              </p>
+            </div>
+          )}
+
+          {!noSelection && locationConflicts.length > 0 && (
+            <div className="rounded-xl border border-warning/30 bg-warning-bg p-4 text-sm">
+              <p className="font-semibold text-warning">
+                {locationConflicts.length === 1
+                  ? "A location is double-booked."
+                  : `${locationConflicts.length} locations are double-booked.`}
+              </p>
+              <ul className="mt-2 space-y-1.5 text-foreground">
+                {locationConflicts.map((c, i) => (
+                  <li key={i}>
+                    <strong>{c.incomingProjectName}</strong> · {c.incomingLabel} wants{" "}
+                    <strong>{c.locationName}</strong>, already booked by{" "}
+                    {c.conflictsWith.map((x, j) => (
+                      <span key={j}>
+                        {j > 0 ? ", " : ""}
+                        <strong>{x.projectName}</strong> · {x.label} ({fmt(new Date(x.startDate))} –{" "}
+                        {fmt(new Date(x.endDate))})
+                      </span>
+                    ))}{" "}
+                    on Master.
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-2 text-xs text-muted-foreground">
+                This doesn&apos;t block publishing — a shared location may be intentional. Worth
+                double-checking before you do.
               </p>
             </div>
           )}

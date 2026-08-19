@@ -9,6 +9,7 @@
 import { prisma } from "../prisma";
 import { SchedulingError, getMasterVariation } from "./variations";
 import { syncRequirementStatus } from "./requirements";
+import { requirementLabel } from "./queries";
 import type { PublicationScope } from "../../../generated/prisma/enums";
 
 export interface ProjectPushSummary {
@@ -98,6 +99,86 @@ export async function previewPush(input: {
     totalIncoming: incoming.length,
     totalReplacing: projects.reduce((n, p) => n + p.replacing, 0),
   };
+}
+
+export interface PushLocationConflict {
+  incomingAssignmentId: string;
+  incomingProjectName: string;
+  incomingLabel: string;
+  locationName: string;
+  conflictsWith: {
+    assignmentId: string;
+    projectName: string;
+    label: string;
+    startDate: Date;
+    endDate: Date;
+  }[];
+}
+
+/**
+ * Location double-bookings this push would create: an incoming placement
+ * sharing a location with something already on Master for a *different*
+ * project (its own project's current Master rows are about to be replaced
+ * by this push, so they don't count against it), on overlapping dates.
+ * Read-only, same as previewPush — this only tells you what would happen.
+ */
+export async function previewPushConflicts(input: {
+  variationId: string;
+  projectIds?: string[];
+}): Promise<PushLocationConflict[]> {
+  const { incoming } = await resolveScope(input.variationId, input.projectIds);
+  const withLocation = incoming.filter((a) => a.locationId);
+  if (withLocation.length === 0) return [];
+
+  const master = await getMasterVariation();
+  const affectedProjectIds = new Set(incoming.map((a) => a.projectId));
+  const locationIds = [...new Set(withLocation.map((a) => a.locationId as string))];
+
+  const existing = await prisma.scheduleAssignment.findMany({
+    where: {
+      variationId: master.id,
+      locationId: { in: locationIds },
+      projectId: { notIn: [...affectedProjectIds] },
+    },
+    include: {
+      project: { select: { name: true } },
+      location: { select: { name: true } },
+      requirement: {
+        include: { unitProduction: { select: { name: true } }, eventType: { select: { name: true } } },
+      },
+    },
+  });
+
+  const incomingRequirements = await prisma.schedulingRequirement.findMany({
+    where: { id: { in: withLocation.map((a) => a.requirementId) } },
+    include: { unitProduction: { select: { name: true } }, eventType: { select: { name: true } } },
+  });
+  const requirementById = new Map(incomingRequirements.map((r) => [r.id, r]));
+
+  const conflicts: PushLocationConflict[] = [];
+  for (const inc of withLocation) {
+    const clashing = existing.filter(
+      (e) =>
+        e.locationId === inc.locationId && e.startDate <= inc.endDate && e.endDate >= inc.startDate
+    );
+    if (clashing.length === 0) continue;
+
+    const incRequirement = requirementById.get(inc.requirementId);
+    conflicts.push({
+      incomingAssignmentId: inc.id,
+      incomingProjectName: inc.project.name,
+      incomingLabel: incRequirement ? requirementLabel(incRequirement) : "Untitled",
+      locationName: clashing[0].location?.name ?? "Unknown location",
+      conflictsWith: clashing.map((c) => ({
+        assignmentId: c.id,
+        projectName: c.project.name,
+        label: requirementLabel(c.requirement),
+        startDate: c.startDate,
+        endDate: c.endDate,
+      })),
+    });
+  }
+  return conflicts;
 }
 
 /**

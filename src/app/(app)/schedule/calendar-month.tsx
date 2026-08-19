@@ -4,7 +4,7 @@ import { useMemo, useState, useTransition } from "react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { PROJECT_COLOR_HEX } from "@/lib/display";
-import { moveAssignmentToDate } from "./actions";
+import { moveAssignmentToDate, type ScheduleConflictView } from "./actions";
 import type { ScheduleWindowAssignment } from "@/lib/scheduling/queries";
 
 // Interactive month calendar. Multi-day placements render as continuous bars
@@ -108,6 +108,10 @@ export function CalendarMonth({
   const [dragId, setDragId] = useState<string | null>(null);
   const [hoverDay, setHoverDay] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [conflictNotice, setConflictNotice] = useState<{
+    movedLabel: string;
+    conflicts: ScheduleConflictView[];
+  } | null>(null);
   const [isPending, startTransition] = useTransition();
 
   // Server data wins whenever the page re-renders with a new set.
@@ -146,6 +150,7 @@ export function CalendarMonth({
       )
     );
     setError(null);
+    setConflictNotice(null);
 
     startTransition(async () => {
       const res = await moveAssignmentToDate({ assignmentId: id, variationId, isoDate: dayIso });
@@ -155,6 +160,11 @@ export function CalendarMonth({
             a.id === id ? { ...a, startDate: res.startDate, endDate: res.endDate } : a
           )
         );
+        // The move already happened — a location conflict here is a
+        // heads-up, not a rollback reason. A scheduler may mean it.
+        if (res.conflicts.length > 0) {
+          setConflictNotice({ movedLabel: target.label, conflicts: res.conflicts });
+        }
       } else {
         setItems(initial); // roll back
         setError(res.message);
@@ -190,6 +200,30 @@ export function CalendarMonth({
 
       {error && (
         <p className="mb-3 rounded-lg bg-danger-bg px-3 py-2 text-sm text-danger">{error}</p>
+      )}
+
+      {conflictNotice && (
+        <div className="mb-3 flex items-start justify-between gap-3 rounded-lg bg-warning-bg px-3 py-2 text-sm text-warning">
+          <p>
+            <strong>{conflictNotice.movedLabel}</strong> now shares a location with{" "}
+            {conflictNotice.conflicts.map((c, i) => (
+              <span key={i}>
+                {i > 0 ? ", " : ""}
+                <strong>{c.projectName}</strong> · {c.label} ({pretty(c.startDate)} – {pretty(c.endDate)})
+              </span>
+            ))}{" "}
+            at {conflictNotice.conflicts[0].locationName} on overlapping days. The move went through —
+            this is just a heads-up.
+          </p>
+          <button
+            type="button"
+            onClick={() => setConflictNotice(null)}
+            className="shrink-0 text-warning/70 hover:text-warning"
+            aria-label="Dismiss"
+          >
+            ✕
+          </button>
+        </div>
       )}
 
       <div className="overflow-hidden rounded-2xl border border-border bg-surface">
