@@ -11,6 +11,7 @@ import { TimelineSection } from "../timeline-section";
 import { CalendarSection } from "../calendar-section";
 import { ViewControls } from "../view-controls";
 import { ManageProjects } from "../manage-projects";
+import { ManageMaster } from "./manage-master";
 
 // The Master Calendar. Same planning surface underneath, deliberately
 // different framing on top: this is the operational schedule, not a scenario.
@@ -126,6 +127,8 @@ export default async function MasterCalendarPage({
           />
         </>
       )}
+
+      <ManageMaster includedProjects={includedProjects} />
 
       {publications.length > 0 && (
         <section>

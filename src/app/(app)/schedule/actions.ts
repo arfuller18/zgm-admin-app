@@ -240,6 +240,44 @@ export async function unassignAction(formData: FormData) {
 }
 
 /**
+ * Remove a project's placements from the Master Calendar. Soft, same as
+ * unassign(): requirements return to unscheduled, nothing is deleted. Uses
+ * ActionState (rather than a bare form action) because this acts on the
+ * live schedule and a silently-swallowed error here would be the wrong kind
+ * of quiet.
+ */
+export async function removeProjectFromMasterAction(
+  _prev: ActionState,
+  formData: FormData
+): Promise<ActionState> {
+  await requireUser();
+  const projectId = str(formData, "projectId");
+  if (!projectId) return { status: "error", message: "No project specified." };
+
+  const master = await variations.getMasterVariation();
+  const result = await run(() => assignments.removeProjectFromVariation(master.id, projectId));
+  if (!result.ok) return { status: "error", message: result.message };
+
+  revalidateScheduling(master.id);
+  return { status: "idle" };
+}
+
+/** Unschedule everything on Master. Same soft semantics as above, just
+ * every project instead of one. */
+export async function clearMasterAction(
+  _prev: ActionState,
+  _formData: FormData
+): Promise<ActionState> {
+  await requireUser();
+  const master = await variations.getMasterVariation();
+  const result = await run(() => assignments.clearVariation(master.id));
+  if (!result.ok) return { status: "error", message: result.message };
+
+  revalidateScheduling(master.id);
+  return { status: "idle" };
+}
+
+/**
  * The four ways to scope a bulk shift, serialisable across the client/server
  * boundary (dates as ISO strings — `assignments.ShiftScope` wants real Dates,
  * so `toServiceScope` below is the one place that converts).
