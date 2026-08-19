@@ -1,25 +1,43 @@
 "use client";
 
-import { useMemo, useState, useTransition } from "react";
-import Link from "next/link";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { Badge } from "@/components/ui/badge";
 import { PROJECT_COLOR_HEX } from "@/lib/display";
-import { moveAssignmentToDate, assignRequirementToDate, type ScheduleConflictView } from "./actions";
+import {
+  moveAssignmentToDate,
+  assignRequirementToDate,
+  loadCalendarMonthAction,
+  type ScheduleConflictView,
+} from "./actions";
 import { UNSCHEDULED_DRAG_TYPE } from "./unscheduled-drawer";
 import type { ScheduleWindowAssignment } from "@/lib/scheduling/queries";
 
-// Interactive month calendar. Multi-day placements render as continuous bars
-// across each week row, lane-packed so overlapping productions stack instead
-// of colliding — ZGM runs several shows at once, so overlap is the normal
-// case, not an error state.
+// Infinite-scroll month calendar. Multi-day placements render as continuous
+// bars across each week row, lane-packed so overlapping productions stack
+// instead of colliding — ZGM runs several shows at once, so overlap is the
+// normal case, not an error state.
 //
 // Dragging a bar onto a day sets that placement's START date; the end date
 // follows from its duration via the work calendar. That is deliberately the
 // only drag semantic: "grab the middle and shift by the offset" reads as
 // clever but makes precise placement guesswork.
+//
+// Scrolling: months accumulate client-side as sentinels above/below the
+// loaded range come into view — nothing already rendered is ever unmounted,
+// which is deliberately not "true" virtualization. At the scale one
+// production company's schedule reaches (tens of months, at most a few
+// hundred placements), the DOM cost of keeping everything mounted is
+// negligible next to the complexity a windowing library would add, and it
+// means drag-and-drop never has to worry about a bar disappearing out from
+// under a pointer that's still down.
 
 const MS_PER_DAY = 86_400_000;
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+// A generous but finite backstop against runaway loading (a stuck
+// IntersectionObserver re-firing, a scroll-wheel fling past the edge
+// before data arrives) — 36 months either side of where someone started
+// is far more runway than any real planning horizon needs.
+const MAX_LOADED_MONTHS = 72;
 
 type Assignment = Omit<ScheduleWindowAssignment, "startDate" | "endDate"> & {
   startDate: string;
@@ -43,6 +61,20 @@ function pretty(iso: string) {
     year: "numeric",
     timeZone: "UTC",
   });
+}
+
+/** "YYYY-MM" → "August 2026". */
+function monthLabel(monthKey: string) {
+  return parse(`${monthKey}-01`).toLocaleDateString("en-US", {
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
+function shiftMonthKey(monthKey: string, delta: number) {
+  const [y, m] = monthKey.split("-").map(Number);
+  const d = new Date(Date.UTC(y, m - 1 + delta, 1));
+  return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}`;
 }
 
 /** Sun–Sat weeks covering the month, including adjacent-month bleed. */
@@ -89,23 +121,23 @@ function packLanes<T extends { startCol: number; span: number }>(segments: T[]):
 
 export function CalendarMonth({
   variationId,
-  monthIso,
-  assignments: initial,
-  isWorkingDay,
-  prevHref,
-  nextHref,
-  todayHref,
+  projectId,
+  initialMonths,
+  assignments: initialAssignments,
+  isWorkingDay: initialIsWorkingDay,
+  todayMonth,
 }: {
   variationId: string;
-  monthIso: string; // "YYYY-MM-01"
+  projectId?: string;
+  /** "YYYY-MM" keys, ascending — the months loaded by the server on first render. */
+  initialMonths: string[];
   assignments: Assignment[];
-  /** ISO date → whether it is a production day, precomputed on the server. */
   isWorkingDay: Record<string, boolean>;
-  prevHref: string;
-  nextHref: string;
-  todayHref: string;
+  todayMonth: string;
 }) {
-  const [items, setItems] = useState(initial);
+  const [months, setMonths] = useState(initialMonths);
+  const [items, setItems] = useState(initialAssignments);
+  const [isWorkingDay, setIsWorkingDay] = useState(initialIsWorkingDay);
   const [dragId, setDragId] = useState<string | null>(null);
   const [hoverDay, setHoverDay] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -113,22 +145,91 @@ export function CalendarMonth({
     movedLabel: string;
     conflicts: ScheduleConflictView[];
   } | null>(null);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [isPending, startTransition] = useTransition();
 
-  // Server data wins whenever the page re-renders with a new set.
-  const initialKey = useMemo(
-    () => initial.map((a) => `${a.id}:${a.startDate}`).join("|"),
-    [initial]
-  );
-  const [seenKey, setSeenKey] = useState(initialKey);
-  if (seenKey !== initialKey) {
-    setSeenKey(initialKey);
-    setItems(initial);
+  // Read inside the IntersectionObserver callback, which is set up once and
+  // would otherwise close over stale values from whichever render it was
+  // created in. Synced via effect, not during render — mutating a ref while
+  // rendering breaks React's purity guarantees even though nothing here
+  // reads it back for this render's own output.
+  const liveRef = useRef({ months, isLoadingMore: false });
+  useEffect(() => {
+    liveRef.current.months = months;
+  }, [months]);
+
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const topSentinelRef = useRef<HTMLDivElement>(null);
+  const bottomSentinelRef = useRef<HTMLDivElement>(null);
+  const monthRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const prependHeightBefore = useRef<number | null>(null);
+
+  const todayIso = fmt(new Date());
+
+  function loadMore(direction: "before" | "after") {
+    if (liveRef.current.isLoadingMore) return;
+    const current = liveRef.current.months;
+    if (current.length >= MAX_LOADED_MONTHS) return;
+    const targetMonth =
+      direction === "before" ? shiftMonthKey(current[0], -1) : shiftMonthKey(current[current.length - 1], 1);
+    if (current.includes(targetMonth)) return;
+
+    liveRef.current.isLoadingMore = true;
+    setIsLoadingMore(true);
+    // Prepending shifts everything below it down; capture the height now so
+    // the effect below can compensate scrollTop once the new month mounts,
+    // keeping whatever the user was looking at in place.
+    if (direction === "before" && scrollRef.current) {
+      prependHeightBefore.current = scrollRef.current.scrollHeight;
+    }
+
+    startTransition(async () => {
+      const res = await loadCalendarMonthAction({ variationId, month: targetMonth, projectId });
+      setItems((prev) => {
+        const seen = new Set(prev.map((a) => a.id));
+        return [...prev, ...res.assignments.filter((a) => !seen.has(a.id))];
+      });
+      setIsWorkingDay((prev) => ({ ...prev, ...res.isWorkingDay }));
+      setMonths((prev) => (direction === "before" ? [targetMonth, ...prev] : [...prev, targetMonth]));
+      liveRef.current.isLoadingMore = false;
+      setIsLoadingMore(false);
+    });
   }
 
-  const monthStart = parse(monthIso);
-  const weeks = useMemo(() => buildWeeks(monthStart), [monthIso]); // eslint-disable-line react-hooks/exhaustive-deps
-  const todayIso = fmt(new Date());
+  useEffect(() => {
+    const topEl = topSentinelRef.current;
+    const bottomEl = bottomSentinelRef.current;
+    const root = scrollRef.current;
+    if (!topEl || !bottomEl || !root) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          if (entry.target === topEl) loadMore("before");
+          else if (entry.target === bottomEl) loadMore("after");
+        }
+      },
+      { root, rootMargin: "800px 0px" }
+    );
+    observer.observe(topEl);
+    observer.observe(bottomEl);
+    return () => observer.disconnect();
+    // variationId/projectId are the only props loadMore's closure depends on
+    // that can actually change; months/isLoadingMore are read live via ref.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [variationId, projectId]);
+
+  useEffect(() => {
+    if (prependHeightBefore.current !== null && scrollRef.current) {
+      const added = scrollRef.current.scrollHeight - prependHeightBefore.current;
+      scrollRef.current.scrollTop += added;
+      prependHeightBefore.current = null;
+    }
+  }, [months]);
+
+  function scrollToToday() {
+    monthRefs.current[todayMonth]?.scrollIntoView({ block: "start" });
+  }
 
   /**
    * A brand-new placement from the unscheduled drawer, not an existing bar
@@ -170,6 +271,7 @@ export function CalendarMonth({
 
     const target = items.find((a) => a.id === id);
     if (!target || target.startDate === dayIso) return;
+    const before = { startDate: target.startDate, endDate: target.endDate };
 
     // Optimistic: shift the bar by the same number of calendar days so it
     // moves under the cursor immediately. The server re-derives the true end
@@ -199,80 +301,33 @@ export function CalendarMonth({
           setConflictNotice({ movedLabel: target.label, conflicts: res.conflicts });
         }
       } else {
-        setItems(initial); // roll back
+        // Roll back only this one placement — other months loaded via
+        // scroll (or other successful edits) aren't this action's to undo.
+        setItems((prev) => prev.map((a) => (a.id === id ? { ...a, ...before } : a)));
         setError(res.message);
       }
     });
   }
 
-  return (
-    <div>
-      <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
-        <h3 className="text-lg font-semibold">
-          {monthStart.toLocaleDateString("en-US", {
-            month: "long",
-            year: "numeric",
-            timeZone: "UTC",
-          })}
-        </h3>
-        <div className="flex items-center gap-2">
-          {isPending && <span className="text-xs text-muted-foreground">Saving…</span>}
-          <div className="flex overflow-hidden rounded-lg border border-border text-sm">
-            <Link href={prevHref} className="px-3 py-1.5 hover:bg-surface-muted">
-              ←
-            </Link>
-            <Link href={todayHref} className="border-x border-border px-3 py-1.5 hover:bg-surface-muted">
-              Today
-            </Link>
-            <Link href={nextHref} className="px-3 py-1.5 hover:bg-surface-muted">
-              →
-            </Link>
-          </div>
-        </div>
-      </div>
+  function renderMonth(monthKey: string) {
+    const monthStart = parse(`${monthKey}-01`);
+    const weeks = buildWeeks(monthStart);
 
-      {error && (
-        <p className="mb-3 rounded-lg bg-danger-bg px-3 py-2 text-sm text-danger">{error}</p>
-      )}
-
-      {conflictNotice && (
-        <div className="mb-3 flex items-start justify-between gap-3 rounded-lg bg-warning-bg px-3 py-2 text-sm text-warning">
-          <p>
-            <strong>{conflictNotice.movedLabel}</strong> now shares a location with{" "}
-            {conflictNotice.conflicts.map((c, i) => (
-              <span key={i}>
-                {i > 0 ? ", " : ""}
-                <strong>{c.projectName}</strong> · {c.label} ({pretty(c.startDate)} – {pretty(c.endDate)})
-              </span>
-            ))}{" "}
-            at {conflictNotice.conflicts[0].locationName} on overlapping days. The move went through —
-            this is just a heads-up.
-          </p>
-          <button
-            type="button"
-            onClick={() => setConflictNotice(null)}
-            className="shrink-0 text-warning/70 hover:text-warning"
-            aria-label="Dismiss"
-          >
-            ✕
-          </button>
-        </div>
-      )}
-
-      <div className="overflow-hidden rounded-2xl border border-border bg-surface">
-        <div className="grid grid-cols-7 bg-surface-muted text-xs font-medium uppercase tracking-wide text-muted-foreground">
-          {WEEKDAYS.map((d) => (
-            <div key={d} className="px-3 py-2">
-              {d}
-            </div>
-          ))}
+    return (
+      <div
+        key={monthKey}
+        ref={(el) => {
+          monthRefs.current[monthKey] = el;
+        }}
+      >
+        <div className="border-y border-border bg-surface-muted/70 px-3 py-1.5 text-sm font-semibold">
+          {monthLabel(monthKey)}
         </div>
 
         {weeks.map((week, wi) => {
           const weekStart = week[0];
           const weekEnd = week[6];
 
-          // Clip each placement to this week and note where it sits.
           const segments = items
             .map((a) => {
               const s = parse(a.startDate);
@@ -342,7 +397,9 @@ export function CalendarMonth({
                       let col = 0;
                       for (const seg of lane.sort((a, b) => a.startCol - b.startCol)) {
                         if (seg.startCol > col) {
-                          cells.push(<div key={`gap-${col}`} style={{ gridColumn: `span ${seg.startCol - col}` }} />);
+                          cells.push(
+                            <div key={`gap-${col}`} style={{ gridColumn: `span ${seg.startCol - col}` }} />
+                          );
                         }
                         const a = seg.assignment;
                         const color = a.projectColor ? PROJECT_COLOR_HEX[a.projectColor] : "#7c3aed";
@@ -383,16 +440,84 @@ export function CalendarMonth({
           );
         })}
       </div>
+    );
+  }
+
+  return (
+    <div>
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+        <h3 className="text-lg font-semibold">Calendar</h3>
+        <div className="flex items-center gap-2">
+          {(isPending || isLoadingMore) && (
+            <span className="text-xs text-muted-foreground">
+              {isLoadingMore ? "Loading more…" : "Saving…"}
+            </span>
+          )}
+          <button
+            type="button"
+            onClick={scrollToToday}
+            className="rounded-lg border border-border px-3 py-1.5 text-sm hover:bg-surface-muted"
+          >
+            Today
+          </button>
+        </div>
+      </div>
+
+      {error && (
+        <p className="mb-3 rounded-lg bg-danger-bg px-3 py-2 text-sm text-danger">{error}</p>
+      )}
+
+      {conflictNotice && (
+        <div className="mb-3 flex items-start justify-between gap-3 rounded-lg bg-warning-bg px-3 py-2 text-sm text-warning">
+          <p>
+            <strong>{conflictNotice.movedLabel}</strong> now shares a location with{" "}
+            {conflictNotice.conflicts.map((c, i) => (
+              <span key={i}>
+                {i > 0 ? ", " : ""}
+                <strong>{c.projectName}</strong> · {c.label} ({pretty(c.startDate)} – {pretty(c.endDate)})
+              </span>
+            ))}{" "}
+            at {conflictNotice.conflicts[0].locationName} on overlapping days. The move went through —
+            this is just a heads-up.
+          </p>
+          <button
+            type="button"
+            onClick={() => setConflictNotice(null)}
+            className="shrink-0 text-warning/70 hover:text-warning"
+            aria-label="Dismiss"
+          >
+            ✕
+          </button>
+        </div>
+      )}
+
+      <div
+        ref={scrollRef}
+        className="max-h-[75vh] overflow-y-auto overscroll-contain rounded-2xl border border-border bg-surface"
+      >
+        <div className="sticky top-0 z-10 grid grid-cols-7 border-b border-border bg-surface-muted text-xs font-medium uppercase tracking-wide text-muted-foreground">
+          {WEEKDAYS.map((d) => (
+            <div key={d} className="px-3 py-2">
+              {d}
+            </div>
+          ))}
+        </div>
+
+        <div ref={topSentinelRef} />
+
+        {months.map((m) => renderMonth(m))}
+
+        <div ref={bottomSentinelRef} />
+      </div>
 
       <p className="mt-2 text-xs text-muted-foreground">
-        Drag a block onto a day to move it. Its length in production days is preserved, and shaded
-        days are skipped automatically.
+        Drag a block onto a day to move it, or drag an item from the unscheduled list to place it.
+        Length in production days is preserved, and shaded days are skipped automatically. Scroll to
+        load more months.
       </p>
 
       {items.length === 0 && (
-        <p className="mt-3 text-center text-sm text-muted-foreground">
-          Nothing scheduled in this month.
-        </p>
+        <p className="mt-3 text-center text-sm text-muted-foreground">Nothing scheduled yet.</p>
       )}
 
       {items.length > 0 && (

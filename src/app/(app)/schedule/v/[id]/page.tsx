@@ -105,12 +105,7 @@ export default async function VariationPage({
       {view === "calendar" && (
         <>
           <UnscheduledDrawer items={unscheduledItems(data, variation.includedProjectIds)} />
-          <CalendarSection
-            variationId={variation.id}
-            month={month}
-            projectId={projectId}
-            basePath={`/schedule/v/${variation.id}`}
-          />
+          <CalendarSection variationId={variation.id} month={month} projectId={projectId} />
         </>
       )}
       {view === "timeline" && (

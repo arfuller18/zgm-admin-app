@@ -2,7 +2,8 @@
 // same shapes can back a calendar, a timeline, or an API response later.
 
 import { prisma } from "../prisma";
-import { formatScheduleDate } from "./work-calendar";
+import { formatScheduleDate, addCalendarDays, isProductionDay } from "./work-calendar";
+import type { WorkCalendarContext } from "./work-calendar";
 
 /**
  * Everything one variation needs, grouped by project.
@@ -301,3 +302,48 @@ export function unscheduledItems(data: WorkspaceData, includedProjectIds: string
   }
   return out.sort((a, b) => a.projectName.localeCompare(b.projectName) || a.label.localeCompare(b.label));
 }
+
+/**
+ * One calendar month's worth of data — placements plus which days are
+ * production days — for the grid that actually renders (Sun–Sat weeks,
+ * so it bleeds a few days into the adjacent months on either side).
+ *
+ * Shared between the calendar's initial server render and the infinite-
+ * scroll action that loads additional months client-side, so there is
+ * exactly one implementation of "what does a month need."
+ */
+export async function loadMonthGrid(input: {
+  variationId: string;
+  monthStart: Date;
+  projectId?: string;
+  ctx: WorkCalendarContext;
+}) {
+  const monthEnd = new Date(
+    Date.UTC(input.monthStart.getUTCFullYear(), input.monthStart.getUTCMonth() + 1, 0)
+  );
+  const gridStart = addCalendarDays(input.monthStart, -input.monthStart.getUTCDay());
+  const gridEnd = addCalendarDays(monthEnd, 6 - monthEnd.getUTCDay());
+
+  const assignments = await loadScheduleWindow({
+    variationId: input.variationId,
+    from: gridStart,
+    to: gridEnd,
+    projectId: input.projectId,
+  });
+
+  const isWorkingDay: Record<string, boolean> = {};
+  for (let d = gridStart; d <= gridEnd; d = addCalendarDays(d, 1)) {
+    isWorkingDay[formatScheduleDate(d)] = isProductionDay(d, input.ctx);
+  }
+
+  return {
+    assignments: assignments.map((a) => ({
+      ...a,
+      startDate: formatScheduleDate(a.startDate),
+      endDate: formatScheduleDate(a.endDate),
+    })),
+    isWorkingDay,
+  };
+}
+
+export type MonthGridData = Awaited<ReturnType<typeof loadMonthGrid>>;

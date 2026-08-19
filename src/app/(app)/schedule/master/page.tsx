@@ -104,12 +104,7 @@ export default async function MasterCalendarPage({
       {view === "calendar" && (
         <>
           <UnscheduledDrawer items={unscheduledItems(data, master.includedProjectIds)} />
-          <CalendarSection
-            variationId={master.id}
-            month={month}
-            projectId={projectId}
-            basePath="/schedule/master"
-          />
+          <CalendarSection variationId={master.id} month={month} projectId={projectId} />
         </>
       )}
       {view === "timeline" && (

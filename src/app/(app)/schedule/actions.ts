@@ -20,6 +20,7 @@ import { loadWorkCalendarContext } from "@/lib/scheduling/context";
 import {
   requirementLabel,
   getAssignmentDisplay,
+  loadMonthGrid,
   type ScheduleWindowAssignment,
 } from "@/lib/scheduling/queries";
 
@@ -674,4 +675,30 @@ export async function previewPushConflictsAction(input: {
       endDate: formatScheduleDate(c.endDate),
     })),
   }));
+}
+
+// ---------------------------------------------------------------------------
+// Infinite-scroll calendar — one additional month at a time, called as the
+// user scrolls near either edge of what's already loaded.
+// ---------------------------------------------------------------------------
+
+/** "YYYY-MM" → the first of that month, UTC. */
+function parseMonthParam(month: string): Date {
+  const [y, m] = month.split("-").map(Number);
+  return new Date(Date.UTC(y, m - 1, 1));
+}
+
+export async function loadCalendarMonthAction(input: {
+  variationId: string;
+  month: string; // "YYYY-MM"
+  projectId?: string;
+}) {
+  await requireUser();
+  const ctx = await loadWorkCalendarContext(input.variationId);
+  return loadMonthGrid({
+    variationId: input.variationId,
+    monthStart: parseMonthParam(input.month),
+    projectId: input.projectId,
+    ctx,
+  });
 }
