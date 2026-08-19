@@ -25,9 +25,14 @@ export default async function AdminSyncPage() {
             never touched by this.
           </p>
         </div>
-        <Link href="/admin/users" className="shrink-0 text-sm font-medium text-brand hover:underline">
-          Users &amp; roles →
-        </Link>
+        <div className="flex shrink-0 flex-col items-end gap-1">
+          <Link href="/admin/scheduling" className="text-sm font-medium text-brand hover:underline">
+            Scheduling setup →
+          </Link>
+          <Link href="/admin/users" className="text-sm font-medium text-brand hover:underline">
+            Users &amp; roles →
+          </Link>
+        </div>
       </div>
 
       <Card>

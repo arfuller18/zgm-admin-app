@@ -8,37 +8,39 @@
   --muted-foreground: #635f77;
   --border: #e6e3f5;
 
-  /* Brand — vivid violet + electric cyan, distinct from the 7 project colors */
-  --brand: #7c3aed;
-  --brand-strong: #6d28d9;
+  /* Brand — softened violet + cyan, one shade lighter than before, still
+     distinct from the 7 project colors */
+  --brand: #8b5cf6;
+  --brand-strong: #7c3aed;
   --brand-foreground: #ffffff;
-  --accent: #06b6d4;
-  --accent-foreground: #ffffff;
+  --accent: #22d3ee;
+  --accent-foreground: #0f172a;
 
   /* Status */
-  --success: #16a34a;
+  --success: #22c55e;
   --success-bg: #dcfce7;
-  --warning: #d97706;
+  --warning: #f59e0b;
   --warning-bg: #fef3c7;
-  --danger: #dc2626;
+  --danger: #ef4444;
   --danger-bg: #fee2e2;
-  --info: #2563eb;
+  --info: #3b82f6;
   --info-bg: #dbeafe;
 
-  /* ZGM Project Colors — mirrors Airtable's "Project Color" single-select */
-  --zgm-pink: #ec4899;
+  /* ZGM Project Colors — mirrors Airtable's "Project Color" single-select,
+     lightened one Tailwind step (500 -> 400) from the original palette */
+  --zgm-pink: #f472b6;
   --zgm-pink-bg: #fce7f3;
-  --zgm-purple: #a855f7;
+  --zgm-purple: #c084fc;
   --zgm-purple-bg: #f3e8ff;
-  --zgm-blue: #3b82f6;
+  --zgm-blue: #60a5fa;
   --zgm-blue-bg: #dbeafe;
-  --zgm-green: #22c55e;
+  --zgm-green: #4ade80;
   --zgm-green-bg: #dcfce7;
-  --zgm-yellow: #eab308;
+  --zgm-yellow: #facc15;
   --zgm-yellow-bg: #fef9c3;
-  --zgm-orange: #f97316;
+  --zgm-orange: #fb923c;
   --zgm-orange-bg: #ffedd5;
-  --zgm-red: #ef4444;
+  --zgm-red: #f87171;
   --zgm-red-bg: #fee2e2;
 }
 

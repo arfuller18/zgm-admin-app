@@ -29,7 +29,7 @@ export interface ProjectCardData {
 }
 
 export function ProjectCard({ project }: { project: ProjectCardData }) {
-  const accent = project.projectColor ? PROJECT_COLOR_HEX[project.projectColor] : "#7c3aed";
+  const accent = project.projectColor ? PROJECT_COLOR_HEX[project.projectColor] : "#8b5cf6";
 
   return (
     <Link

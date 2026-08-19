@@ -7,6 +7,9 @@ import {
   mapProjectStatus,
   mapPriority,
   mapProjectColor,
+  mapBudgetStatus,
+  mapTaskStatus,
+  mapTaskPriority,
   toDate,
   isPlaceholderProject,
 } from "../src/lib/airtable-mappings";
@@ -125,6 +128,30 @@ type RawShootDay = {
   parentScheduleIds: string[];
 };
 
+type RawBudget = {
+  airtableId: string;
+  name: string;
+  totalBudget: number | null;
+  budgetPerEpisode: number | null;
+  status: string | null;
+  budgetSheetsLink: string | null;
+  notes: string | null;
+  projectIds: string[];
+};
+
+type RawTask = {
+  airtableId: string;
+  title: string;
+  status: string | null;
+  priority: string | null;
+  category: string | null;
+  notes: string | null;
+  dueDate: string | null;
+  projectIds: string[];
+  unitProductionIds: string[];
+  assignedToIds: string[];
+};
+
 async function main() {
   const projects = load<RawProject[]>("projects.json").filter(
     (p) => !isPlaceholderProject(p)
@@ -134,9 +161,13 @@ async function main() {
   const unitProductions = load<RawUnitProduction[]>("unit-productions.json");
   const schedulePhases = load<RawSchedulePhase[]>("schedule-phases.json");
   const shootDays = load<RawShootDay[]>("shoot-days.json");
+  const budgets = load<RawBudget[]>("budgets.json");
+  const tasks = load<RawTask[]>("tasks.json").filter(
+    (t) => t.projectIds.length > 0 || t.unitProductionIds.length > 0
+  );
 
   console.log(
-    `Seeding ${projects.length} projects, ${contacts.length} contacts, ${locations.length} locations, ${unitProductions.length} unit productions, ${schedulePhases.length} schedule phases, ${shootDays.length} shoot days...`
+    `Seeding ${projects.length} projects, ${contacts.length} contacts, ${locations.length} locations, ${unitProductions.length} unit productions, ${schedulePhases.length} schedule phases, ${shootDays.length} shoot days, ${budgets.length} budgets, ${tasks.length} tasks...`
   );
 
   // 0. Bootstrap admin user, so there's someone to sign in as from the start
@@ -405,7 +436,67 @@ async function main() {
     });
   }
 
-  const [projectCount, unitCount, phaseCount, dayCount, locationCount, personCount] =
+  // 8. Budgets
+  for (const b of budgets) {
+    const projectAirtableId = b.projectIds[0];
+    if (!projectAirtableId) continue;
+    const project = await prisma.project.findUnique({
+      where: { airtableId: projectAirtableId },
+    });
+    if (!project) continue;
+
+    const data = {
+      name: b.name.trim(),
+      totalBudget: b.totalBudget,
+      budgetPerEpisode: b.budgetPerEpisode,
+      status: mapBudgetStatus(b.status),
+      budgetSheetsLink: b.budgetSheetsLink,
+      notes: b.notes,
+      projectId: project.id,
+    };
+    await prisma.budget.upsert({
+      where: { airtableId: b.airtableId },
+      update: data,
+      create: { airtableId: b.airtableId, ...data },
+    });
+  }
+
+  // 9. Tasks
+  for (const t of tasks) {
+    const projectAirtableId = t.projectIds[0];
+    const unitAirtableId = t.unitProductionIds[0];
+    const project = projectAirtableId
+      ? await prisma.project.findUnique({ where: { airtableId: projectAirtableId } })
+      : null;
+    const unit = unitAirtableId
+      ? await prisma.unitProduction.findUnique({ where: { airtableId: unitAirtableId } })
+      : null;
+    if (!project && !unit) continue;
+
+    const assigneeAirtableId = t.assignedToIds[0];
+    const assignee = assigneeAirtableId
+      ? await prisma.person.findUnique({ where: { airtableId: assigneeAirtableId } })
+      : null;
+
+    const data = {
+      title: t.title,
+      status: mapTaskStatus(t.status),
+      priority: mapTaskPriority(t.priority),
+      category: t.category,
+      notes: t.notes,
+      dueDate: toDate(t.dueDate),
+      projectId: project?.id ?? null,
+      unitProductionId: unit?.id ?? null,
+      assignedToId: assignee?.id ?? null,
+    };
+    await prisma.task.upsert({
+      where: { airtableId: t.airtableId },
+      update: data,
+      create: { airtableId: t.airtableId, ...data },
+    });
+  }
+
+  const [projectCount, unitCount, phaseCount, dayCount, locationCount, personCount, budgetCount, taskCount] =
     await Promise.all([
       prisma.project.count(),
       prisma.unitProduction.count(),
@@ -413,6 +504,8 @@ async function main() {
       prisma.shootDay.count(),
       prisma.location.count(),
       prisma.person.count(),
+      prisma.budget.count(),
+      prisma.task.count(),
     ]);
 
   console.log("Seed complete:", {
@@ -422,6 +515,8 @@ async function main() {
     dayCount,
     locationCount,
     personCount,
+    budgetCount,
+    taskCount,
   });
 }
 

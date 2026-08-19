@@ -16,6 +16,9 @@ import {
   mapProjectStatus,
   mapPriority,
   mapProjectColor,
+  mapBudgetStatus,
+  mapTaskStatus,
+  mapTaskPriority,
   toDate,
   isPlaceholderProject,
 } from "./airtable-mappings";
@@ -29,6 +32,9 @@ const TABLES = {
   shootDays: "tblBbAegVRgCjubkQ",
   locationList: "tblAsC0xpURlt9agR",
   contactList: "tblsiIrCyM1UwJv9S",
+  budgetLists: "tbl6pB8qNvVQnxwws",
+  tasksChecklists: "tblEBNdNMKJYXSHXS",
+  zgmFileManagement: "tblFw2YuiI2ahcgO8",
 } as const;
 
 // Field IDs (not names) — Project Hub's "Project Name" and Contact List's
@@ -67,6 +73,12 @@ const F = {
     keyTalentIds: "fld9tvcdTEB9AGlrK",
     keyCrewIds: "fldyTzmWJbqD6bGSF",
     importantContactIds: "fldso5YMgJQ8rWP4x",
+    episodeLength: "fldn1Q6jQwHxUr11s",
+    googleFolderIds: "fld4BAnS9q2sNym4I",
+    decksBiblesIds: "fldJxhq6myfnVdEda",
+    castingStatus: "fld9iyXy78lV3Eb4X",
+    castingDirector: "fld5V7lBpN3u1wNUU",
+    additionalLinks: "fldDEYQpvOdCizRka",
   },
   unitProductions: {
     name: "fldxd9xrJcOHYvKpb",
@@ -82,6 +94,8 @@ const F = {
     locations: "fldehyfuLfEFdAgWX",
     scriptStatus: "fldgAjhIEbHleRFjK",
     duration: "fldacQuUzOYKmpFpM",
+    startDate: "fldErthEv2IFLq9UX",
+    endDate: "fld7wM57Fc3srGmsO",
   },
   productionSchedule: {
     scheduleId: "fldrUQmqSfOtmRqr9",
@@ -122,6 +136,29 @@ const F = {
     contactType: "fldJt7IyEUI4sHnVN",
     profession: "fldVSa0RQ0TKoSot4",
   },
+  budgetLists: {
+    name: "fldix6GmLgJR210zP",
+    project: "flde50cP6mOD3CeZK",
+    totalBudget: "fldv39d084qd60VVU",
+    budgetPerEpisode: "fldUiHsDpOwx577Al",
+    status: "fldVwZbWs0awSAhPy",
+    budgetSheetsLink: "fldxFpNRD88uQqjKp",
+    notes: "fldnJe2R1Cv0tGt3J",
+  },
+  tasksChecklists: {
+    title: "fldzd7UzcRiwCgYF4",
+    status: "fldMlH23bo5eJxNHP",
+    assignedTo: "fldQJn8LOkXMpgHd0",
+    priority: "fld8oA1rUrJltGrur",
+    notes: "fldpZPAg8MTJXWNyY",
+    project: "fldRTesjLguWa9hjc",
+    unitProductions: "fldtMstM7uNZVP1F0",
+    dueDate: "fldUajtFTMa50VzbR",
+    category: "fldj4P6ZtNuJOz0St",
+  },
+  zgmFileManagement: {
+    link: "fldfKOc3YZ5eWXjpM",
+  },
 } as const;
 
 type Cell = AirtableRecord<FieldSet>["fields"];
@@ -158,6 +195,39 @@ function linkIds(fields: Cell, fieldId: string): string[] {
   return Array.isArray(v) ? (v as string[]) : [];
 }
 
+function url(fields: Cell, fieldId: string): string | null {
+  const v = fields[fieldId];
+  return typeof v === "string" ? v.trim() || null : null;
+}
+
+// Airtable's "duration" field type returns a plain number of seconds.
+function durationMinutes(fields: Cell, fieldId: string): number | null {
+  const v = fields[fieldId];
+  return typeof v === "number" ? Math.round(v / 60) : null;
+}
+
+// "Casting Status"/"Casting Director" are lookups through a linked record,
+// so the cell value is an array whose shape depends on the underlying
+// field type (plain strings, {name} option objects, or a nested array for
+// a lookup-through-a-link). Take the first resolvable value defensively.
+function lookupFirstString(fields: Cell, fieldId: string): string | null {
+  const v = fields[fieldId] as unknown;
+  if (!Array.isArray(v) || v.length === 0) return null;
+  const first = v[0];
+  if (typeof first === "string") return first;
+  if (first && typeof first === "object" && "name" in first) {
+    return (first as { name: string }).name;
+  }
+  if (Array.isArray(first) && first.length > 0) {
+    const inner = first[0];
+    if (typeof inner === "string") return inner;
+    if (inner && typeof inner === "object" && "name" in inner) {
+      return (inner as { name: string }).name;
+    }
+  }
+  return null;
+}
+
 function getBase() {
   const apiKey = process.env.AIRTABLE_API_KEY;
   if (!apiKey) {
@@ -181,6 +251,8 @@ export interface SyncSummary {
   shootDays: number;
   locations: number;
   people: number;
+  budgets: number;
+  tasks: number;
 }
 
 export async function syncAirtable(): Promise<SyncSummary> {
@@ -188,13 +260,15 @@ export async function syncAirtable(): Promise<SyncSummary> {
   try {
     const base = getBase();
 
-    const [projectRecords, unitRecords, scheduleRecords, dayRecords, locationRecords] =
+    const [projectRecords, unitRecords, scheduleRecords, dayRecords, locationRecords, budgetRecords, taskRecords] =
       await Promise.all([
         fetchAll(base, TABLES.projectHub),
         fetchAll(base, TABLES.unitProductions),
         fetchAll(base, TABLES.productionSchedule),
         fetchAll(base, TABLES.shootDays),
         fetchAll(base, TABLES.locationList),
+        fetchAll(base, TABLES.budgetLists),
+        fetchAll(base, TABLES.tasksChecklists),
       ]);
 
     // Locations
@@ -211,6 +285,32 @@ export async function syncAirtable(): Promise<SyncSummary> {
           locationType: multiSelectNames(r.fields, F.locationList.locationType),
         },
       });
+    }
+
+    // Google Folder / Decks & Bibles are links to ZGM File Management
+    // records; resolve the small set actually referenced to their "Link"
+    // URL so the Project row can just carry a plain URL.
+    const fileIds = new Set<string>();
+    for (const r of projectRecords) {
+      linkIds(r.fields, F.projectHub.googleFolderIds).forEach((id) => fileIds.add(id));
+      linkIds(r.fields, F.projectHub.decksBiblesIds).forEach((id) => fileIds.add(id));
+    }
+    const fileLinkMap = new Map<string, string>();
+    {
+      const idList = Array.from(fileIds);
+      const CHUNK = 40;
+      for (let i = 0; i < idList.length; i += CHUNK) {
+        const chunk = idList.slice(i, i + CHUNK);
+        if (chunk.length === 0) continue;
+        const formula = `OR(${chunk.map((id) => `RECORD_ID()="${id}"`).join(",")})`;
+        const recs = await base(TABLES.zgmFileManagement)
+          .select({ filterByFormula: formula, returnFieldsByFieldId: true })
+          .all();
+        for (const rec of recs) {
+          const link = url(rec.fields, F.zgmFileManagement.link);
+          if (link) fileLinkMap.set(rec.id, link);
+        }
+      }
     }
 
     // Projects (skip empty placeholder records, e.g. "General ZGM Info")
@@ -231,6 +331,7 @@ export async function syncAirtable(): Promise<SyncSummary> {
         format: mapProjectFormat(selectName(f, F.projectHub.format)),
         seasonFilm: str(f, F.projectHub.seasonFilm),
         episodeCount: num(f, F.projectHub.episodeCount),
+        episodeLength: durationMinutes(f, F.projectHub.episodeLength),
         currentStatus: mapProjectStatus(selectName(f, F.projectHub.currentStatus)),
         priority: mapPriority(selectName(f, F.projectHub.priority)),
         zgmOwner: str(f, F.projectHub.zgmOwner),
@@ -251,6 +352,11 @@ export async function syncAirtable(): Promise<SyncSummary> {
         nextDecision: str(f, F.projectHub.nextDecision),
         nextAction: str(f, F.projectHub.nextAction),
         nextActionDueDate: toDate(str(f, F.projectHub.nextActionDueDate)),
+        googleFolderUrl: fileLinkMap.get(linkIds(f, F.projectHub.googleFolderIds)[0] ?? "") ?? null,
+        decksBiblesUrl: fileLinkMap.get(linkIds(f, F.projectHub.decksBiblesIds)[0] ?? "") ?? null,
+        castingStatus: lookupFirstString(f, F.projectHub.castingStatus),
+        castingDirector: lookupFirstString(f, F.projectHub.castingDirector),
+        additionalLinks: url(f, F.projectHub.additionalLinks),
       };
       await prisma.project.upsert({
         where: { airtableId: r.id },
@@ -287,6 +393,9 @@ export async function syncAirtable(): Promise<SyncSummary> {
       for (const { fieldId } of relationFieldIds) {
         linkIds(r.fields, fieldId).forEach((id) => contactIds.add(id));
       }
+    }
+    for (const r of taskRecords) {
+      linkIds(r.fields, F.tasksChecklists.assignedTo).forEach((id) => contactIds.add(id));
     }
 
     const contactIdList = Array.from(contactIds);
@@ -372,6 +481,8 @@ export async function syncAirtable(): Promise<SyncSummary> {
         bookedBy: str(f, F.unitProductions.bookedBy),
         bookingWindow: str(f, F.unitProductions.bookingWindow),
         notes: str(f, F.unitProductions.notes),
+        startDate: toDate(str(f, F.unitProductions.startDate)),
+        endDate: toDate(str(f, F.unitProductions.endDate)),
         projectId: project.id,
         directorId: director?.id ?? null,
         writerId: writer?.id ?? null,
@@ -471,6 +582,68 @@ export async function syncAirtable(): Promise<SyncSummary> {
       });
     }
 
+    // Budgets
+    for (const r of budgetRecords) {
+      const f = r.fields;
+      const projectAirtableId = linkIds(f, F.budgetLists.project)[0];
+      if (!projectAirtableId) continue;
+      const project = await prisma.project.findUnique({ where: { airtableId: projectAirtableId } });
+      if (!project) continue;
+
+      const data = {
+        name: (str(f, F.budgetLists.name) ?? "Untitled Budget").trim(),
+        totalBudget: num(f, F.budgetLists.totalBudget),
+        budgetPerEpisode: num(f, F.budgetLists.budgetPerEpisode),
+        status: mapBudgetStatus(selectName(f, F.budgetLists.status)),
+        budgetSheetsLink: url(f, F.budgetLists.budgetSheetsLink),
+        notes: str(f, F.budgetLists.notes),
+        projectId: project.id,
+      };
+      await prisma.budget.upsert({
+        where: { airtableId: r.id },
+        update: data,
+        create: { airtableId: r.id, ...data },
+      });
+    }
+
+    // Tasks & Checklists
+    let syncedTaskCount = 0;
+    for (const r of taskRecords) {
+      const f = r.fields;
+      const projectAirtableId = linkIds(f, F.tasksChecklists.project)[0];
+      const unitAirtableId = linkIds(f, F.tasksChecklists.unitProductions)[0];
+      const project = projectAirtableId
+        ? await prisma.project.findUnique({ where: { airtableId: projectAirtableId } })
+        : null;
+      const unit = unitAirtableId
+        ? await prisma.unitProduction.findUnique({ where: { airtableId: unitAirtableId } })
+        : null;
+      if (!project && !unit) continue;
+
+      const assigneeAirtableId = linkIds(f, F.tasksChecklists.assignedTo)[0];
+      const assignee = assigneeAirtableId
+        ? await prisma.person.findUnique({ where: { airtableId: assigneeAirtableId } })
+        : null;
+
+      const data = {
+        title: (str(f, F.tasksChecklists.title) ?? "Untitled Task").trim(),
+        status: mapTaskStatus(selectName(f, F.tasksChecklists.status)),
+        priority: mapTaskPriority(selectName(f, F.tasksChecklists.priority)),
+        category: selectName(f, F.tasksChecklists.category),
+        notes: str(f, F.tasksChecklists.notes),
+        dueDate: toDate(str(f, F.tasksChecklists.dueDate)),
+        projectId: project?.id ?? null,
+        unitProductionId: unit?.id ?? null,
+        assignedToId: assignee?.id ?? null,
+      };
+      await prisma.task.upsert({
+        where: { airtableId: r.id },
+        update: data,
+        create: { airtableId: r.id, ...data },
+      });
+      syncedTaskCount++;
+    }
+
     const summary: SyncSummary = {
       projects: realProjects.length,
       unitProductions: unitRecords.length,
@@ -478,6 +651,8 @@ export async function syncAirtable(): Promise<SyncSummary> {
       shootDays: dayRecords.length,
       locations: locationRecords.length,
       people: contactRecords.length,
+      budgets: budgetRecords.length,
+      tasks: syncedTaskCount,
     };
 
     await prisma.syncLog.create({
@@ -491,7 +666,9 @@ export async function syncAirtable(): Promise<SyncSummary> {
           summary.schedulePhases +
           summary.shootDays +
           summary.locations +
-          summary.people,
+          summary.people +
+          summary.budgets +
+          summary.tasks,
         startedAt,
         finishedAt: new Date(),
       },

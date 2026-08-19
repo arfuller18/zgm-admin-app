@@ -115,7 +115,7 @@ export default async function DashboardPage() {
                         style={{
                           backgroundColor: sd.project.projectColor
                             ? PROJECT_COLOR_HEX[sd.project.projectColor]
-                            : "#7c3aed",
+                            : "#8b5cf6",
                         }}
                       />
                       <div>
