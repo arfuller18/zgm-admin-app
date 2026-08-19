@@ -27,17 +27,20 @@ function parseMonth(month: string | undefined): Date {
 // network round-trip for more.
 const INITIAL_SPAN = 1;
 
-export async function CalendarSection({
-  variationId,
-  month,
-  projectId,
-}: {
+/**
+ * The data half of CalendarSection, split out so the compare view can load
+ * two independent calendars' starting data in parallel and hand it directly
+ * to two CalendarMonth instances it owns itself — CalendarMonth has to be
+ * mounted by a Client Component there (a ref to each pane is how scroll sync
+ * reaches in), which a Server Component like CalendarSection cannot do.
+ */
+export async function loadCalendarSectionData(input: {
   variationId: string;
   month?: string;
   projectId?: string;
 }) {
-  const anchor = parseMonth(month);
-  const ctx = await loadWorkCalendarContext(variationId);
+  const anchor = parseMonth(input.month);
+  const ctx = await loadWorkCalendarContext(input.variationId);
 
   const monthStarts: Date[] = [];
   for (let i = -INITIAL_SPAN; i <= INITIAL_SPAN; i++) {
@@ -45,7 +48,9 @@ export async function CalendarSection({
   }
 
   const grids = await Promise.all(
-    monthStarts.map((monthStart) => loadMonthGrid({ variationId, monthStart, projectId, ctx }))
+    monthStarts.map((monthStart) =>
+      loadMonthGrid({ variationId: input.variationId, monthStart, projectId: input.projectId, ctx })
+    )
   );
 
   const assignmentsById = new Map<string, (typeof grids)[number]["assignments"][number]>();
@@ -57,15 +62,26 @@ export async function CalendarSection({
 
   const now = new Date();
 
-  return (
-    <CalendarMonth
-      variationId={variationId}
-      projectId={projectId}
-      initialMonths={monthStarts.map(monthKey)}
-      assignments={[...assignmentsById.values()]}
-      isWorkingDay={isWorkingDay}
-      todayMonth={monthKey(new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1)))}
-      anchorMonth={monthKey(anchor)}
-    />
-  );
+  return {
+    variationId: input.variationId,
+    projectId: input.projectId,
+    initialMonths: monthStarts.map(monthKey),
+    assignments: [...assignmentsById.values()],
+    isWorkingDay,
+    todayMonth: monthKey(new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1))),
+    anchorMonth: monthKey(anchor),
+  };
+}
+
+export async function CalendarSection({
+  variationId,
+  month,
+  projectId,
+}: {
+  variationId: string;
+  month?: string;
+  projectId?: string;
+}) {
+  const data = await loadCalendarSectionData({ variationId, month, projectId });
+  return <CalendarMonth {...data} />;
 }

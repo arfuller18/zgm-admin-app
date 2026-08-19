@@ -41,6 +41,19 @@ export async function getVariation(id: string) {
   });
 }
 
+/**
+ * Every schedule a picker might offer someone: Master first, then variations
+ * in the same order the hub lists them. Used by the side-by-side compare
+ * view, where either side can be Master or any scenario.
+ */
+export async function listScheduleTargets() {
+  const [master, variations] = await Promise.all([getMasterVariation(), listVariations()]);
+  return [
+    { id: master.id, name: master.name, kind: "MASTER" as const },
+    ...variations.map((v) => ({ id: v.id, name: v.name, kind: "VARIATION" as const })),
+  ];
+}
+
 export type CreateVariationMode = "BLANK" | "DUPLICATE" | "COPY_MASTER";
 
 /**

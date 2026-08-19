@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useTransition } from "react";
+import { useEffect, useImperativeHandle, useRef, useState, useTransition } from "react";
 import { Badge } from "@/components/ui/badge";
 import { PROJECT_COLOR_HEX } from "@/lib/display";
 import {
@@ -128,7 +128,20 @@ function packLanes<T extends { startCol: number; span: number }>(segments: T[]):
 /** What's being dragged: the whole block (a move), or just one edge (a resize). */
 type Drag = { id: string; mode: "move" | "start" | "end" };
 
+/**
+ * Exposed to a parent that wants to drive this calendar's scroll position
+ * from the outside — currently just the side-by-side compare view, which
+ * calls this on one pane whenever the other's user-initiated scroll crosses
+ * into a new month. Fetches whatever months are missing first: the two
+ * panes load independently, so the target month is not guaranteed to be in
+ * range yet the way it is for the plain "scroll to today" button.
+ */
+export interface CalendarMonthHandle {
+  scrollToMonth: (monthKey: string) => void;
+}
+
 export function CalendarMonth({
+  ref,
   variationId,
   projectId,
   initialMonths,
@@ -136,7 +149,9 @@ export function CalendarMonth({
   isWorkingDay: initialIsWorkingDay,
   todayMonth,
   anchorMonth,
+  onVisibleMonthChange,
 }: {
+  ref?: React.Ref<CalendarMonthHandle>;
   variationId: string;
   projectId?: string;
   /** "YYYY-MM" keys, ascending — the months loaded by the server on first render. */
@@ -146,6 +161,15 @@ export function CalendarMonth({
   todayMonth: string;
   /** The month the page should already be scrolled to on load. */
   anchorMonth: string;
+  /**
+   * Fires with the "YYYY-MM" key of whichever month is now at the top of
+   * the viewport, but only for scrolling the user actually did — not for
+   * this component's own auto-scroll-on-mount, month-prepend compensation,
+   * or an incoming scrollToMonth call from the compare view's sync. Without
+   * that distinction, two synced panes would each keep re-triggering the
+   * other in a feedback loop.
+   */
+  onVisibleMonthChange?: (monthKey: string) => void;
 }) {
   const [months, setMonths] = useState(initialMonths);
   const [items, setItems] = useState(initialAssignments);
@@ -166,7 +190,19 @@ export function CalendarMonth({
   // created in. Synced via effect, not during render — mutating a ref while
   // rendering breaks React's purity guarantees even though nothing here
   // reads it back for this render's own output.
-  const liveRef = useRef({ months, isLoadingMore: false });
+  //
+  // loadingBefore/loadingAfter are separate flags, not one shared
+  // "isLoadingMore" — both sentinels routinely cross into view in the same
+  // IntersectionObserver batch (mount, or a big prepend), and a single flag
+  // let whichever direction the callback processed first (always "before":
+  // topEl is checked before bottomEl) claim it and silently block the
+  // other for that entire batch. Since re-entering view is what re-fires
+  // the callback for a sentinel, and both stay inside the generous 800px
+  // margin for a while after loading, a blocked direction could go a long
+  // stretch without another chance — "after" loading would stall out after
+  // the first month while "before" kept winning every time both fired
+  // together.
+  const liveRef = useRef({ months, loadingBefore: false, loadingAfter: false });
   useEffect(() => {
     liveRef.current.months = months;
   }, [months]);
@@ -177,17 +213,42 @@ export function CalendarMonth({
   const monthRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const prependHeightBefore = useRef<number | null>(null);
 
+  // Set right before this component moves its own scrollTop for a reason
+  // other than the user's own scroll gesture (auto-scroll on mount, prepend
+  // compensation, an incoming sync call) — checked by the scroll handler so
+  // onVisibleMonthChange only ever reports genuine user scrolling. Without
+  // it, two compare-view panes syncing each other would each treat the
+  // sync-driven scroll they just received as a new user scroll and report
+  // it right back, ping-ponging.
+  const isProgrammaticScroll = useRef(false);
+
+  // The month ensureMonthLoadedAndScroll is waiting to scroll to once its
+  // DOM node exists. Set once loadOneMonth resolves the network side of
+  // things — but the ref callback that populates monthRefs only runs when
+  // React actually commits the resulting render, which is not synchronous
+  // with an `await` inside an async function. Resolved by the effect below,
+  // the same way prependHeightBefore is: state changes, then an effect
+  // reads the now-current DOM once React has caught up.
+  const pendingScrollTarget = useRef<string | null>(null);
+
   const todayIso = fmt(new Date());
 
-  function loadMore(direction: "before" | "after") {
-    if (liveRef.current.isLoadingMore) return;
+  /**
+   * One month, loaded and merged into state. Returns the month key on
+   * success so a caller can keep advancing without waiting for this
+   * component's own liveRef-sync effect to catch up; null if there was
+   * nothing to do (already loading, already loaded, or capped out).
+   */
+  async function loadOneMonth(direction: "before" | "after"): Promise<string | null> {
+    const loadingKey = direction === "before" ? "loadingBefore" : "loadingAfter";
+    if (liveRef.current[loadingKey]) return null;
     const current = liveRef.current.months;
-    if (current.length >= MAX_LOADED_MONTHS) return;
+    if (current.length >= MAX_LOADED_MONTHS) return null;
     const targetMonth =
       direction === "before" ? shiftMonthKey(current[0], -1) : shiftMonthKey(current[current.length - 1], 1);
-    if (current.includes(targetMonth)) return;
+    if (current.includes(targetMonth)) return null;
 
-    liveRef.current.isLoadingMore = true;
+    liveRef.current[loadingKey] = true;
     setIsLoadingMore(true);
     // Prepending shifts everything below it down; capture the height now so
     // the effect below can compensate scrollTop once the new month mounts,
@@ -196,16 +257,23 @@ export function CalendarMonth({
       prependHeightBefore.current = scrollRef.current.scrollHeight;
     }
 
+    const res = await loadCalendarMonthAction({ variationId, month: targetMonth, projectId });
+    setItems((prev) => {
+      const seen = new Set(prev.map((a) => a.id));
+      return [...prev, ...res.assignments.filter((a) => !seen.has(a.id))];
+    });
+    setIsWorkingDay((prev) => ({ ...prev, ...res.isWorkingDay }));
+    setMonths((prev) => (direction === "before" ? [targetMonth, ...prev] : [...prev, targetMonth]));
+    liveRef.current.months =
+      direction === "before" ? [targetMonth, ...liveRef.current.months] : [...liveRef.current.months, targetMonth];
+    liveRef.current[loadingKey] = false;
+    setIsLoadingMore(liveRef.current.loadingBefore || liveRef.current.loadingAfter);
+    return targetMonth;
+  }
+
+  function loadMore(direction: "before" | "after") {
     startTransition(async () => {
-      const res = await loadCalendarMonthAction({ variationId, month: targetMonth, projectId });
-      setItems((prev) => {
-        const seen = new Set(prev.map((a) => a.id));
-        return [...prev, ...res.assignments.filter((a) => !seen.has(a.id))];
-      });
-      setIsWorkingDay((prev) => ({ ...prev, ...res.isWorkingDay }));
-      setMonths((prev) => (direction === "before" ? [targetMonth, ...prev] : [...prev, targetMonth]));
-      liveRef.current.isLoadingMore = false;
-      setIsLoadingMore(false);
+      await loadOneMonth(direction);
     });
   }
 
@@ -228,12 +296,14 @@ export function CalendarMonth({
     observer.observe(bottomEl);
     return () => observer.disconnect();
     // variationId/projectId are the only props loadMore's closure depends on
-    // that can actually change; months/isLoadingMore are read live via ref.
+    // that can actually change; months/loadingBefore/loadingAfter are read
+    // live via ref.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [variationId, projectId]);
 
   useEffect(() => {
     if (prependHeightBefore.current !== null && scrollRef.current) {
+      isProgrammaticScroll.current = true;
       const added = scrollRef.current.scrollHeight - prependHeightBefore.current;
       scrollRef.current.scrollTop += added;
       prependHeightBefore.current = null;
@@ -249,6 +319,7 @@ export function CalendarMonth({
     const container = scrollRef.current;
     const target = monthRefs.current[monthKey];
     if (!container || !target) return;
+    isProgrammaticScroll.current = true;
     const containerRect = container.getBoundingClientRect();
     const targetRect = target.getBoundingClientRect();
     container.scrollTop += targetRect.top - containerRect.top;
@@ -275,6 +346,127 @@ export function CalendarMonth({
 
   function scrollToToday() {
     scrollToMonth(todayMonth);
+    // A deliberate jump, same as scrolling there by hand — reported
+    // directly rather than through the scroll handler, since scrollToMonth
+    // already marks its own scroll programmatic (to keep auto-scroll-on-
+    // mount and prepend compensation from reporting themselves).
+    if (todayMonth !== lastReportedMonth.current) {
+      lastReportedMonth.current = todayMonth;
+      onVisibleMonthChange?.(todayMonth);
+    }
+  }
+
+  /**
+   * Finishes a pending scrollToMonth once there's actually enough loaded
+   * content for it to land correctly. Aligning a month's top edge to the
+   * container's top only works if there's at least a full viewport's worth
+   * of content at or after it — otherwise the browser silently clamps
+   * scrollTop short of the intended position (nothing physically exists to
+   * scroll into), and the target visibly undershoots. Rather than guess how
+   * many months that takes (it depends on how much each one actually
+   * renders to, which varies with how many overlapping placements it
+   * holds), this measures the real gap after each load and keeps loading
+   * one more "after" month until the math actually works out.
+   */
+  function tryResolvePendingScroll() {
+    const target = pendingScrollTarget.current;
+    if (!target) return;
+    const container = scrollRef.current;
+    const targetEl = monthRefs.current[target];
+    if (!container || !targetEl) return; // Not rendered yet — retried when `months` next changes.
+
+    const containerRect = container.getBoundingClientRect();
+    const targetRect = targetEl.getBoundingClientRect();
+    const desiredScrollTop = container.scrollTop + (targetRect.top - containerRect.top);
+    const maxScrollTop = container.scrollHeight - container.clientHeight;
+
+    if (desiredScrollTop > maxScrollTop + 1) {
+      loadOneMonth("after"); // Fire-and-forget: its setMonths re-runs this via the effect below.
+      return;
+    }
+    scrollToMonth(target);
+    pendingScrollTarget.current = null;
+  }
+
+  useEffect(() => {
+    tryResolvePendingScroll();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [months]);
+
+  /**
+   * The compare view's entry point: scroll to a month that may not be
+   * loaded here yet, since the two panes load independently as each is
+   * scrolled. Fetches one month at a time toward the target — a step at a
+   * time, not a jump — because that's the same request `loadOneMonth`
+   * already knows how to make; there's no bulk "load range" endpoint, and
+   * building one just for this would duplicate loadMonthGrid's windowing
+   * for a case that in practice takes at most a handful of steps.
+   */
+  async function ensureMonthLoadedAndScroll(monthKey: string) {
+    while (!liveRef.current.months.includes(monthKey) && liveRef.current.months.length < MAX_LOADED_MONTHS) {
+      const current = liveRef.current.months;
+      if (monthKey < current[0]) {
+        if (!(await loadOneMonth("before"))) break;
+      } else if (monthKey > current[current.length - 1]) {
+        if (!(await loadOneMonth("after"))) break;
+      } else {
+        // Sorted between two already-loaded months but not itself present —
+        // not a real month key (caller error), nothing more to fetch.
+        break;
+      }
+    }
+    pendingScrollTarget.current = monthKey;
+    tryResolvePendingScroll();
+  }
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      scrollToMonth: (monthKey: string) => {
+        startTransition(async () => {
+          await ensureMonthLoadedAndScroll(monthKey);
+        });
+      },
+    }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+
+  // Reports the topmost visible month to onVisibleMonthChange, but only for
+  // scrolling the user actually caused — see isProgrammaticScroll's own
+  // comment for why that distinction exists. Debounced: a fling scroll can
+  // cross several months in one gesture, and syncing the other pane after
+  // every intermediate frame would fire off a burst of scrollToMonth calls
+  // (each one loading and scrolling) instead of one settled result.
+  const lastReportedMonth = useRef(anchorMonth);
+  const reportTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  function handleScroll() {
+    const container = scrollRef.current;
+    if (!container) return;
+    if (isProgrammaticScroll.current) {
+      isProgrammaticScroll.current = false;
+      return;
+    }
+    if (!onVisibleMonthChange) return;
+
+    if (reportTimer.current) clearTimeout(reportTimer.current);
+    reportTimer.current = setTimeout(() => {
+      const containerTop = container.getBoundingClientRect().top;
+      // Months render in ascending order top-to-bottom, so the topmost
+      // visible one is the last whose own top has scrolled up to (or past)
+      // the container's — everything after it is still further down.
+      let topMonth = liveRef.current.months[0];
+      for (const m of liveRef.current.months) {
+        const el = monthRefs.current[m];
+        if (!el) continue;
+        if (el.getBoundingClientRect().top - containerTop <= 4) topMonth = m;
+        else break;
+      }
+      if (topMonth !== lastReportedMonth.current) {
+        lastReportedMonth.current = topMonth;
+        onVisibleMonthChange(topMonth);
+      }
+    }, 200);
   }
 
   function openPopover(id: string, el: HTMLElement) {
@@ -695,6 +887,7 @@ export function CalendarMonth({
 
       <div
         ref={scrollRef}
+        onScroll={handleScroll}
         // overflow-anchor: none — the browser's own scroll anchoring already
         // tries to keep content stable when a month is prepended above the
         // viewport, and it fights the explicit prependHeightBefore
