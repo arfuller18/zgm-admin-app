@@ -402,7 +402,7 @@ export function CalendarMonth({
                           );
                         }
                         const a = seg.assignment;
-                        const color = a.projectColor ? PROJECT_COLOR_HEX[a.projectColor] : "#7c3aed";
+                        const color = a.projectColor ? PROJECT_COLOR_HEX[a.projectColor] : "#8b5cf6";
                         cells.push(
                           <div key={a.id} style={{ gridColumn: `span ${seg.span}` }} className="px-1">
                             <div
@@ -528,7 +528,7 @@ export function CalendarMonth({
               tone="neutral"
               className="gap-1.5"
               style={{
-                borderLeft: `3px solid ${a.projectColor ? PROJECT_COLOR_HEX[a.projectColor] : "#7c3aed"}`,
+                borderLeft: `3px solid ${a.projectColor ? PROJECT_COLOR_HEX[a.projectColor] : "#8b5cf6"}`,
               }}
             >
               {a.projectName}

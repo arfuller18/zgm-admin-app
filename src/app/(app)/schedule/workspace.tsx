@@ -63,7 +63,7 @@ export function ScheduleWorkspace({
       </div>
 
       {projects.map((project) => {
-        const accent = project.projectColor ? PROJECT_COLOR_HEX[project.projectColor] : "#7c3aed";
+        const accent = project.projectColor ? PROJECT_COLOR_HEX[project.projectColor] : "#8b5cf6";
         const units = project.schedulingRequirements.filter((r) => r.kind === "UNIT_PRODUCTION");
         const events = project.schedulingRequirements.filter((r) => r.kind === "PRODUCTION_EVENT");
 

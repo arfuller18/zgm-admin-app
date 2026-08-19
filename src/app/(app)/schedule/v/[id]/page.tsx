@@ -103,10 +103,12 @@ export default async function VariationPage({
       </div>
 
       {view === "calendar" && (
-        <>
+        <div className="flex items-start gap-4">
           <UnscheduledDrawer items={unscheduledItems(data, variation.includedProjectIds)} />
-          <CalendarSection variationId={variation.id} month={month} projectId={projectId} />
-        </>
+          <div className="min-w-0 flex-1">
+            <CalendarSection variationId={variation.id} month={month} projectId={projectId} />
+          </div>
+        </div>
       )}
       {view === "timeline" && (
         <TimelineSection

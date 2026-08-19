@@ -68,7 +68,7 @@ export default async function ProjectDetailPage({
       prisma.projectContact.findMany({ where: { projectId: id }, include: { person: true } }),
     ]);
 
-  const accent = project.projectColor ? PROJECT_COLOR_HEX[project.projectColor] : "#7c3aed";
+  const accent = project.projectColor ? PROJECT_COLOR_HEX[project.projectColor] : "#8b5cf6";
 
   return (
     <div>

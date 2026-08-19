@@ -102,10 +102,12 @@ export default async function MasterCalendarPage({
       </div>
 
       {view === "calendar" && (
-        <>
+        <div className="flex items-start gap-4">
           <UnscheduledDrawer items={unscheduledItems(data, master.includedProjectIds)} />
-          <CalendarSection variationId={master.id} month={month} projectId={projectId} />
-        </>
+          <div className="min-w-0 flex-1">
+            <CalendarSection variationId={master.id} month={month} projectId={projectId} />
+          </div>
+        </div>
       )}
       {view === "timeline" && (
         <TimelineSection

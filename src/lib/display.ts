@@ -127,13 +127,13 @@ export const PROJECT_COLOR_TONE: Record<ProjectColor, BadgeTone> = {
 };
 
 export const PROJECT_COLOR_HEX: Record<ProjectColor, string> = {
-  PINK: "#ec4899",
-  PURPLE: "#a855f7",
-  BLUE: "#3b82f6",
-  GREEN: "#22c55e",
-  YELLOW: "#eab308",
-  ORANGE: "#f97316",
-  RED: "#ef4444",
+  PINK: "#f472b6",
+  PURPLE: "#c084fc",
+  BLUE: "#60a5fa",
+  GREEN: "#4ade80",
+  YELLOW: "#facc15",
+  ORANGE: "#fb923c",
+  RED: "#f87171",
 };
 
 export const BOOKING_STATUS_LABEL: Record<BookingStatus, string> = {

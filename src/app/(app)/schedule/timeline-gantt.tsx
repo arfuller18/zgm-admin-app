@@ -153,7 +153,7 @@ export function TimelineGantt({
         g = {
           id: a.projectId,
           name: a.projectName,
-          color: a.projectColor ? PROJECT_COLOR_HEX[a.projectColor] : "#7c3aed",
+          color: a.projectColor ? PROJECT_COLOR_HEX[a.projectColor] : "#8b5cf6",
           priority: a.projectPriority as string | null,
           rows: [],
         };
