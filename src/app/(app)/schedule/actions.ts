@@ -93,13 +93,26 @@ export async function createVariationAction(
   redirect(`/schedule/v/${result.value.id}`);
 }
 
-export async function renameVariationAction(formData: FormData) {
+/**
+ * Typed, like addIncludedProjectAction below — called directly from the
+ * inline rename control rather than through a <form>, so it needs the
+ * result back immediately to know whether to close the editor or show an
+ * error. description is required (not optional) specifically so a
+ * name-only rename can't accidentally clear it — renameVariation() treats
+ * an omitted description as "set to null," not "leave alone."
+ */
+export async function renameVariationAction(input: {
+  variationId: string;
+  name: string;
+  description: string | null;
+}): Promise<{ ok: true } | { ok: false; message: string }> {
   await requireUser();
-  const id = str(formData, "variationId");
-  const name = str(formData, "name");
-  if (!id || !name) return;
-  await run(() => variations.renameVariation(id, name, str(formData, "description")));
-  revalidateScheduling(id);
+  const result = await run(() =>
+    variations.renameVariation(input.variationId, input.name, input.description)
+  );
+  if (!result.ok) return result;
+  revalidateScheduling(input.variationId);
+  return { ok: true };
 }
 
 /**

@@ -20,6 +20,7 @@ import { ViewControls } from "../../view-controls";
 import { ManageProjects } from "../../manage-projects";
 import { UnscheduledDrawer } from "../../unscheduled-drawer";
 import { PushToMasterForm } from "./push-form";
+import { VariationTitle } from "./variation-title";
 import { deleteVariationAction } from "../../actions";
 
 export default async function VariationPage({
@@ -57,7 +58,11 @@ export default async function VariationPage({
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              <h1 className="text-2xl font-bold tracking-tight">{variation.name}</h1>
+              <VariationTitle
+                variationId={variation.id}
+                name={variation.name}
+                description={variation.description}
+              />
               <Badge tone={VARIATION_STATUS_TONE[variation.status]}>
                 {VARIATION_STATUS_LABEL[variation.status]}
               </Badge>
