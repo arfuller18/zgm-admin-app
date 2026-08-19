@@ -134,6 +134,21 @@ export async function loadSchedulingOverview() {
 }
 
 /**
+ * Every project with at least one live placement in a variation — driven by
+ * actual assignments, not by includedProjectIds scope, for the same reason
+ * "Manage Master Calendar" reads that way: scope is a filter setting, and a
+ * project can carry real placements while sitting outside it.
+ */
+export async function listActivelyScheduledProjects(variationId: string) {
+  const assignments = await prisma.scheduleAssignment.findMany({
+    where: { variationId },
+    select: { project: { select: { id: true, name: true, projectColor: true } } },
+  });
+  const byId = new Map(assignments.map((a) => [a.project.id, a.project]));
+  return [...byId.values()].sort((a, b) => a.name.localeCompare(b.name));
+}
+
+/**
  * Placements intersecting a date window — the shared read model behind both
  * the month calendar and the timeline. Anything *overlapping* the window is
  * included, not merely those starting inside it: a 50-day Prep block must

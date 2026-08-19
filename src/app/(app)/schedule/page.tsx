@@ -2,12 +2,16 @@ import Link from "next/link";
 import { requireUser } from "@/lib/session";
 import { Badge } from "@/components/ui/badge";
 import { LinkButton } from "@/components/ui/button";
-import { loadSchedulingOverview } from "@/lib/scheduling/queries";
+import { VARIATION_STATUS_LABEL, VARIATION_STATUS_TONE } from "@/lib/display";
+import { loadSchedulingOverview, listActivelyScheduledProjects } from "@/lib/scheduling/queries";
+import { getMasterVariation } from "@/lib/scheduling/variations";
+import { CalendarSection } from "./calendar-section";
 
-// The Scheduling home: an overview, not the place variations are managed —
-// that's its own tab now (see scheduling-nav.tsx). Master sits here as an
-// operational calendar in its own right, plus a variations count that links
-// out rather than a full picker grid duplicating the Variations tab.
+// The Scheduling home: Master's own current-month calendar front and
+// center (it's the live schedule — the whole reason this product exists),
+// with the two things worth a glance without leaving the page — the most
+// active variations, and who's actually on Master right now — alongside it
+// rather than buried further down.
 
 function fmt(d: Date | null | undefined) {
   if (!d) return null;
@@ -19,14 +23,18 @@ function fmt(d: Date | null | undefined) {
   });
 }
 
+const TOP_VARIATIONS = 2;
+
 export default async function SchedulePage() {
   await requireUser();
-  const { masterAssignments, masterRange, variations, unscheduled, publications } =
-    await loadSchedulingOverview();
+  const master = await getMasterVariation();
+  const [{ masterAssignments, masterRange, variations, unscheduled, publications }, scheduledProjects] =
+    await Promise.all([loadSchedulingOverview(), listActivelyScheduledProjects(master.id)]);
 
   // A freshly deployed database has the tables but no data until the backfill
   // runs, so point at it rather than showing a bare empty calendar.
   const needsSetup = masterAssignments === 0 && unscheduled === 0;
+  const topVariations = variations.slice(0, TOP_VARIATIONS);
 
   return (
     <div className="space-y-8">
@@ -53,56 +61,91 @@ export default async function SchedulePage() {
         </div>
       )}
 
-      {/* Master — visually distinct, listed first, never inside the variations list. */}
-      <section className="overflow-hidden rounded-2xl border-2 border-brand/30 bg-surface shadow-sm">
-        <div className="h-1.5 w-full bg-gradient-to-r from-brand to-accent" />
-        <div className="flex flex-wrap items-start justify-between gap-4 p-6">
-          <div>
-            <div className="flex items-center gap-2">
-              <h2 className="text-xl font-bold tracking-tight">Master Calendar</h2>
-              <Badge tone="brand">Operational</Badge>
-            </div>
-            <p className="mt-1 max-w-xl text-sm text-muted-foreground">
-              ZGM&apos;s current production schedule — what the company is actually doing. Changes
-              land here only when a variation is published.
-            </p>
-            <dl className="mt-4 flex flex-wrap gap-x-8 gap-y-2 text-sm">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[3fr_2fr]">
+        {/* Master — visually distinct, and the main event on this page. */}
+        <section className="min-w-0 overflow-hidden rounded-2xl border-2 border-brand/30 bg-surface shadow-sm">
+          <div className="h-1.5 w-full bg-gradient-to-r from-brand to-accent" />
+          <div className="p-6">
+            <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
-                <dt className="text-xs uppercase tracking-wide text-muted-foreground">Scheduled</dt>
-                <dd className="font-semibold">{masterAssignments} placements</dd>
-              </div>
-              {masterRange?.start && (
-                <div>
-                  <dt className="text-xs uppercase tracking-wide text-muted-foreground">Covers</dt>
-                  <dd className="font-semibold">
-                    {fmt(masterRange.start)} – {fmt(masterRange.end)}
-                  </dd>
+                <div className="flex items-center gap-2">
+                  <h2 className="text-xl font-bold tracking-tight">Master Calendar</h2>
+                  <Badge tone="brand">Operational</Badge>
                 </div>
-              )}
-              <div>
-                <dt className="text-xs uppercase tracking-wide text-muted-foreground">
-                  Awaiting scheduling
-                </dt>
-                <dd className="font-semibold">{unscheduled} requirements</dd>
+                <p className="mt-1 max-w-xl text-sm text-muted-foreground">
+                  {masterAssignments} placement{masterAssignments === 1 ? "" : "s"}
+                  {masterRange?.start ? ` · ${fmt(masterRange.start)} – ${fmt(masterRange.end)}` : ""}
+                </p>
               </div>
-            </dl>
+              <LinkButton href="/schedule/master" size="sm">
+                Open full calendar
+              </LinkButton>
+            </div>
+            <div className="mt-4">
+              <CalendarSection variationId={master.id} readOnly />
+            </div>
           </div>
-          <LinkButton href="/schedule/master">Open Master Calendar</LinkButton>
-        </div>
-      </section>
+        </section>
 
-      <section className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-surface p-6">
-        <div>
-          <h2 className="text-lg font-semibold">Schedule variations</h2>
-          <p className="text-sm text-muted-foreground">
-            {variations.length} planning scenario{variations.length === 1 ? "" : "s"}, isolated from
-            Master until published.
-          </p>
+        {/* Right rail: what's most worth a glance without leaving the page. */}
+        <div className="flex min-w-0 flex-col gap-6">
+          <section className="rounded-2xl border border-border bg-surface p-5">
+            <div className="mb-3 flex items-center justify-between gap-2">
+              <h2 className="font-semibold">Variations</h2>
+              <Link
+                href="/schedule/variations"
+                className="text-xs font-medium text-brand hover:underline"
+              >
+                See all →
+              </Link>
+            </div>
+            {topVariations.length === 0 ? (
+              <p className="text-sm text-muted-foreground">
+                No variations yet — create one to start planning without touching Master.
+              </p>
+            ) : (
+              <ul className="space-y-2">
+                {topVariations.map((v) => (
+                  <li key={v.id}>
+                    <Link
+                      href={`/schedule/v/${v.id}`}
+                      className="block rounded-xl border border-border p-3 transition-shadow hover:shadow-sm"
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <span className="truncate text-sm font-semibold">{v.name}</span>
+                        <Badge tone={VARIATION_STATUS_TONE[v.status]}>
+                          {VARIATION_STATUS_LABEL[v.status]}
+                        </Badge>
+                      </div>
+                      <p className="mt-1 text-xs text-muted-foreground">
+                        {v._count.assignments} placement{v._count.assignments === 1 ? "" : "s"}
+                      </p>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+
+          <section className="rounded-2xl border border-border bg-surface p-5">
+            <h2 className="mb-3 font-semibold">Active on Master</h2>
+            {scheduledProjects.length === 0 ? (
+              <p className="text-sm text-muted-foreground">Nothing scheduled yet.</p>
+            ) : (
+              <ul className="space-y-2">
+                {scheduledProjects.map((p) => (
+                  <li key={p.id} className="flex items-center gap-2 text-sm">
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-success-bg text-success">
+                      ✓
+                    </span>
+                    <span className="truncate">{p.name}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
         </div>
-        <LinkButton href="/schedule/variations" variant="outline">
-          Manage variations
-        </LinkButton>
-      </section>
+      </div>
 
       {publications.length > 0 && (
         <section>
