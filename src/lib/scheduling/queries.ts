@@ -73,6 +73,19 @@ export function requirementLabel(r: {
   return r.label ?? r.unitProduction?.name ?? r.eventType?.name ?? "Untitled";
 }
 
+/**
+ * Every project a schedule could be scoped to — not just ones with existing
+ * requirements, since picking a project at variation-creation time is about
+ * planning ahead, not just reacting to what's already there.
+ */
+export async function listSchedulableProjects() {
+  return prisma.project.findMany({
+    where: { currentStatus: { not: "ARCHIVED" } },
+    orderBy: { name: "asc" },
+    select: { id: true, name: true, projectColor: true },
+  });
+}
+
 /** Counts for the scheduling hub. */
 export async function loadSchedulingOverview() {
   const master = await prisma.scheduleVariation.findFirst({ where: { kind: "MASTER" } });

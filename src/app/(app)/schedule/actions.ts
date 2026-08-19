@@ -71,6 +71,7 @@ export async function createVariationAction(
   if (!name) return { status: "error", message: "Give the variation a name." };
 
   const mode = (str(formData, "mode") ?? "BLANK") as variations.CreateVariationMode;
+  const includedProjectIds = formData.getAll("includedProjectIds").map(String).filter(Boolean);
   const result = await run(() =>
     variations.createVariation({
       name,
@@ -78,6 +79,7 @@ export async function createVariationAction(
       mode,
       sourceVariationId: str(formData, "sourceVariationId"),
       createdById: user.id,
+      includedProjectIds,
     })
   );
   if (!result.ok) return { status: "error", message: result.message };

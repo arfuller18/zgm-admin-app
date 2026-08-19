@@ -3,7 +3,7 @@ import { requireUser } from "@/lib/session";
 import { Badge } from "@/components/ui/badge";
 import { LinkButton } from "@/components/ui/button";
 import { VARIATION_STATUS_LABEL, VARIATION_STATUS_TONE } from "@/lib/display";
-import { loadSchedulingOverview } from "@/lib/scheduling/queries";
+import { loadSchedulingOverview, listSchedulableProjects } from "@/lib/scheduling/queries";
 import { NewVariationForm } from "./new-variation-form";
 
 // The Scheduling home. Master sits at the top as an operational calendar in
@@ -22,8 +22,8 @@ function fmt(d: Date | null | undefined) {
 
 export default async function SchedulePage() {
   await requireUser();
-  const { masterAssignments, masterRange, variations, unscheduled, publications } =
-    await loadSchedulingOverview();
+  const [{ master, masterAssignments, masterRange, variations, unscheduled, publications }, allProjects] =
+    await Promise.all([loadSchedulingOverview(), listSchedulableProjects()]);
 
   // A freshly deployed database has the tables but no data until the backfill
   // runs, so point at it rather than showing a bare empty calendar.
@@ -136,7 +136,15 @@ export default async function SchedulePage() {
         )}
 
         <div className="mt-4">
-          <NewVariationForm variations={variations.map((v) => ({ id: v.id, name: v.name }))} />
+          <NewVariationForm
+            variations={variations.map((v) => ({
+              id: v.id,
+              name: v.name,
+              includedProjectIds: v.includedProjectIds,
+            }))}
+            allProjects={allProjects}
+            masterIncludedProjectIds={master?.includedProjectIds ?? []}
+          />
         </div>
       </section>
 
