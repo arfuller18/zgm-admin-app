@@ -40,10 +40,10 @@ import type { ScheduleWindowAssignment } from "@/lib/scheduling/queries";
 
 const MS_PER_DAY = 86_400_000;
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-// A generous but finite backstop against runaway loading (a stuck
-// IntersectionObserver re-firing, a scroll-wheel fling past the edge
-// before data arrives) — 36 months either side of where someone started
-// is far more runway than any real planning horizon needs.
+// A generous but finite backstop against runaway loading (rapid repeated
+// checkEdges calls, a scroll-wheel fling past the edge before data
+// arrives) — 36 months either side of where someone started is far more
+// runway than any real planning horizon needs.
 const MAX_LOADED_MONTHS = 72;
 
 type Assignment = Omit<ScheduleWindowAssignment, "startDate" | "endDate"> & {
@@ -158,31 +158,22 @@ export function CalendarMonth({
   const [isPending, startTransition] = useTransition();
   const { requestEdit, modal: editPrompt } = useCreateVariationPrompt();
 
-  // Read inside the IntersectionObserver callback, which is set up once and
-  // would otherwise close over stale values from whichever render it was
-  // created in. Synced via effect, not during render — mutating a ref while
-  // rendering breaks React's purity guarantees even though nothing here
-  // reads it back for this render's own output.
+  // Read inside handleScroll/checkEdges, which close over whatever render
+  // created them and would otherwise see stale values indefinitely. Synced
+  // via effect, not during render — mutating a ref while rendering breaks
+  // React's purity guarantees even though nothing here reads it back for
+  // this render's own output.
   //
   // loadingBefore/loadingAfter are separate flags, not one shared
-  // "isLoadingMore" — both sentinels routinely cross into view in the same
-  // IntersectionObserver batch (mount, or a big prepend), and a single flag
-  // let whichever direction the callback processed first (always "before":
-  // topEl is checked before bottomEl) claim it and silently block the
-  // other for that entire batch. Since re-entering view is what re-fires
-  // the callback for a sentinel, and both stay inside the generous 800px
-  // margin for a while after loading, a blocked direction could go a long
-  // stretch without another chance — "after" loading would stall out after
-  // the first month while "before" kept winning every time both fired
-  // together.
+  // "isLoadingMore" — a fast fling can put both edges within the trigger
+  // margin in the same tick, and a single flag would let whichever
+  // direction ran first claim it and block the other for that whole pass.
   const liveRef = useRef({ months, loadingBefore: false, loadingAfter: false });
   useEffect(() => {
     liveRef.current.months = months;
   }, [months]);
 
   const scrollRef = useRef<HTMLDivElement>(null);
-  const topSentinelRef = useRef<HTMLDivElement>(null);
-  const bottomSentinelRef = useRef<HTMLDivElement>(null);
   const monthRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const prependHeightBefore = useRef<number | null>(null);
 
@@ -232,29 +223,37 @@ export function CalendarMonth({
     });
   }
 
-  useEffect(() => {
-    const topEl = topSentinelRef.current;
-    const bottomEl = bottomSentinelRef.current;
-    const root = scrollRef.current;
-    if (!topEl || !bottomEl || !root) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          if (entry.target === topEl) loadMore("before");
-          else if (entry.target === bottomEl) loadMore("after");
-        }
-      },
-      { root, rootMargin: "800px 0px" }
-    );
-    observer.observe(topEl);
-    observer.observe(bottomEl);
-    return () => observer.disconnect();
-    // variationId/projectId are the only props loadMore's closure depends on
-    // that can actually change; months/loadingBefore/loadingAfter are read
-    // live via ref.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [variationId, projectId]);
+  // How close to either edge, in px, triggers loading another month —
+  // generous, so the next month is already in place well before it's
+  // actually reached.
+  const EDGE_MARGIN = 800;
+
+  /**
+   * Loads another month whenever less than EDGE_MARGIN of room is left on
+   * either edge. This used to be an IntersectionObserver watching a
+   * sentinel at each end, which is the standard approach but has a real
+   * failure mode here: it only fires on a *crossing* of the margin
+   * boundary. If a month's content isn't tall enough to push the sentinel
+   * back outside the margin — a light month, just a couple of short
+   * placements — "intersecting" never goes false again after that load, so
+   * no further crossing (and no further load) ever fires again, even
+   * though the user is still sitting right at the edge scrolling for more.
+   * A heavy month rarely hits this; a light one hits it constantly, which
+   * is what made it easy to miss. Direct geometry has no such edge case —
+   * it just re-answers "is either edge close?" every time something that
+   * could change the answer happens, below.
+   */
+  function checkEdges() {
+    const container = scrollRef.current;
+    if (!container) return;
+    const { scrollTop, scrollHeight, clientHeight } = container;
+    if (scrollTop <= EDGE_MARGIN) loadMore("before");
+    if (scrollHeight - (scrollTop + clientHeight) <= EDGE_MARGIN) loadMore("after");
+  }
+
+  function handleScroll() {
+    checkEdges();
+  }
 
   useEffect(() => {
     if (prependHeightBefore.current !== null && scrollRef.current) {
@@ -262,6 +261,17 @@ export function CalendarMonth({
       scrollRef.current.scrollTop += added;
       prependHeightBefore.current = null;
     }
+  }, [months]);
+
+  // Re-checks after every commit where the loaded range changed — this is
+  // what makes loading self-chain when one month's worth of content still
+  // leaves an edge inside the margin, and what does the initial fill on
+  // mount (an untouched scrollTop of 0 always starts inside EDGE_MARGIN of
+  // the top). Ordered after the prepend-compensation effect above so it
+  // reads scrollTop post-correction, not the transient pre-correction value.
+  useEffect(() => {
+    checkEdges();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [months]);
 
   // Scrolls only this component's own scroll container, never the page —
@@ -283,17 +293,19 @@ export function CalendarMonth({
   // so an untouched scroll position would otherwise open one month early.
   // Guarded by a ref, not just an empty deps array: React's Strict Mode
   // double-invokes effects in dev, and the second firing can land after an
-  // auto-triggered month prepend (the generous IntersectionObserver
-  // rootMargin below often fires immediately on mount) already shifted
-  // everything down — recomputing the scroll delta a second time against
-  // that already-adjusted layout double-counts the shift. A ref makes the
-  // actual scroll a true one-time effect regardless of how many times the
-  // effect body runs.
+  // auto-triggered month load (checkEdges' own initial fill, above, often
+  // runs before this) already shifted everything down — recomputing the
+  // scroll delta a second time against that already-adjusted layout
+  // double-counts the shift. A ref makes the actual scroll a true one-time
+  // effect regardless of how many times the effect body runs.
   const didAutoScroll = useRef(false);
   useEffect(() => {
     if (didAutoScroll.current) return;
     didAutoScroll.current = true;
     scrollToMonth(anchorMonth);
+    // The jump itself doesn't touch `months`, so nothing else re-checks
+    // whether the anchor landed close to either loaded edge.
+    checkEdges();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -763,6 +775,7 @@ export function CalendarMonth({
 
       <div
         ref={scrollRef}
+        onScroll={handleScroll}
         // overflow-anchor: none — the browser's own scroll anchoring already
         // tries to keep content stable when a month is prepended above the
         // viewport, and it fights the explicit prependHeightBefore
@@ -779,11 +792,7 @@ export function CalendarMonth({
           ))}
         </div>
 
-        <div ref={topSentinelRef} />
-
         {renderCalendar()}
-
-        <div ref={bottomSentinelRef} />
       </div>
 
       {popover &&
