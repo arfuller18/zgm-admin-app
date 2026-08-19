@@ -38,12 +38,13 @@ export function ManageProjects({
     if (rect) {
       // Anchor to the button's left edge and grow rightward, but clamp so
       // it can never run off either side — the button's own position can't
-      // be trusted (the filter row wraps, so it can land anywhere).
-      const left = Math.min(
-        Math.max(rect.left + window.scrollX, 8),
-        window.scrollX + window.innerWidth - PANEL_WIDTH - 8
-      );
-      setCoords({ top: rect.bottom + window.scrollY + 6, left });
+      // be trusted (the filter row wraps, so it can land anywhere). No
+      // window.scrollX/scrollY here: this panel is `position: fixed`, whose
+      // containing block is the viewport, so getBoundingClientRect's
+      // already-viewport-relative numbers need no scroll offset added —
+      // doing so anyway would double count the page's scroll position.
+      const left = Math.min(Math.max(rect.left, 8), window.innerWidth - PANEL_WIDTH - 8);
+      setCoords({ top: rect.bottom + 6, left });
     }
     setOpen(true);
   }

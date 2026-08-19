@@ -5,11 +5,17 @@ import { Badge } from "@/components/ui/badge";
 import { PROJECT_COLOR_HEX } from "@/lib/display";
 import {
   moveAssignmentToDate,
+  resizeAssignmentToEnd,
+  resizeAssignmentFromStart,
+  resizeAssignmentDuration,
+  unassignAssignmentTyped,
   assignRequirementToDate,
   loadCalendarMonthAction,
   type ScheduleConflictView,
 } from "./actions";
 import { UNSCHEDULED_DRAG_TYPE } from "./unscheduled-drawer";
+import { BlockPopover } from "./block-popover";
+import { ExportMenu } from "./export-menu";
 import type { ScheduleWindowAssignment } from "@/lib/scheduling/queries";
 
 // Infinite-scroll month calendar. Multi-day placements render as continuous
@@ -119,6 +125,9 @@ function packLanes<T extends { startCol: number; span: number }>(segments: T[]):
   return lanes;
 }
 
+/** What's being dragged: the whole block (a move), or just one edge (a resize). */
+type Drag = { id: string; mode: "move" | "start" | "end" };
+
 export function CalendarMonth({
   variationId,
   projectId,
@@ -126,6 +135,7 @@ export function CalendarMonth({
   assignments: initialAssignments,
   isWorkingDay: initialIsWorkingDay,
   todayMonth,
+  anchorMonth,
 }: {
   variationId: string;
   projectId?: string;
@@ -134,12 +144,15 @@ export function CalendarMonth({
   assignments: Assignment[];
   isWorkingDay: Record<string, boolean>;
   todayMonth: string;
+  /** The month the page should already be scrolled to on load. */
+  anchorMonth: string;
 }) {
   const [months, setMonths] = useState(initialMonths);
   const [items, setItems] = useState(initialAssignments);
   const [isWorkingDay, setIsWorkingDay] = useState(initialIsWorkingDay);
-  const [dragId, setDragId] = useState<string | null>(null);
+  const [drag, setDrag] = useState<Drag | null>(null);
   const [hoverDay, setHoverDay] = useState<string | null>(null);
+  const [popover, setPopover] = useState<{ id: string; top: number; left: number } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [conflictNotice, setConflictNotice] = useState<{
     movedLabel: string;
@@ -227,8 +240,61 @@ export function CalendarMonth({
     }
   }, [months]);
 
+  // Scrolls only this component's own scroll container, never the page —
+  // Element.scrollIntoView walks every scrollable ancestor, including the
+  // outer page, which drags the whole layout down to chase a month buried
+  // inside an already-scrollable panel. Measuring the offset and setting
+  // scrollTop directly stays contained to the one element meant to move.
+  function scrollToMonth(monthKey: string) {
+    const container = scrollRef.current;
+    const target = monthRefs.current[monthKey];
+    if (!container || !target) return;
+    const containerRect = container.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+    container.scrollTop += targetRect.top - containerRect.top;
+  }
+
+  // Land on the relevant month without making anyone click for it — the
+  // requested (or current) month is always the middle of the initial batch,
+  // so an untouched scroll position would otherwise open one month early.
+  // Guarded by a ref, not just an empty deps array: React's Strict Mode
+  // double-invokes effects in dev, and the second firing can land after an
+  // auto-triggered month prepend (the generous IntersectionObserver
+  // rootMargin below often fires immediately on mount) already shifted
+  // everything down — recomputing the scroll delta a second time against
+  // that already-adjusted layout double-counts the shift. A ref makes the
+  // actual scroll a true one-time effect regardless of how many times the
+  // effect body runs.
+  const didAutoScroll = useRef(false);
+  useEffect(() => {
+    if (didAutoScroll.current) return;
+    didAutoScroll.current = true;
+    scrollToMonth(anchorMonth);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   function scrollToToday() {
-    monthRefs.current[todayMonth]?.scrollIntoView({ block: "start" });
+    scrollToMonth(todayMonth);
+  }
+
+  function openPopover(id: string, el: HTMLElement) {
+    const POPOVER_WIDTH = 288; // w-72
+    // A generous estimate, not a measurement — the popover's content is
+    // fixed (no dynamic list to grow it), so this only has to be tall
+    // enough that "flip above" triggers whenever the real content wouldn't
+    // fit below. A `fixed`-position element can't be scrolled into reach by
+    // scrolling the page, so a block near the bottom of the calendar needs
+    // this flip, not just horizontal clamping.
+    const POPOVER_HEIGHT = 320;
+    const rect = el.getBoundingClientRect();
+    // No window.scrollX/scrollY: the popover is `position: fixed`, whose
+    // containing block is the viewport, so getBoundingClientRect's
+    // already-viewport-relative numbers need no scroll offset added.
+    const left = Math.min(Math.max(rect.left, 8), window.innerWidth - POPOVER_WIDTH - 8);
+    const spaceBelow = window.innerHeight - rect.bottom;
+    const top =
+      spaceBelow >= POPOVER_HEIGHT + 8 ? rect.bottom + 6 : Math.max(8, rect.top - POPOVER_HEIGHT - 6);
+    setPopover({ id, top, left });
   }
 
   /**
@@ -253,22 +319,8 @@ export function CalendarMonth({
     });
   }
 
-  function onDrop(dayIso: string, e: React.DragEvent) {
-    setHoverDay(null);
-
-    // The drawer sets this MIME type on drag start; it's how a brand-new
-    // placement is told apart from an existing bar being moved, without any
-    // shared React state between this component and the drawer.
-    const requirementId = e.dataTransfer.getData(UNSCHEDULED_DRAG_TYPE);
-    if (requirementId) {
-      onDropUnscheduled(requirementId, dayIso);
-      return;
-    }
-
-    const id = dragId;
-    setDragId(null);
-    if (!id) return;
-
+  /** Drag the whole block onto a day: sets the start date, duration follows. */
+  function performMove(id: string, dayIso: string) {
     const target = items.find((a) => a.id === id);
     if (!target || target.startDate === dayIso) return;
     const before = { startDate: target.startDate, endDate: target.endDate };
@@ -307,6 +359,119 @@ export function CalendarMonth({
         setError(res.message);
       }
     });
+  }
+
+  /** Drag one edge onto a day: that edge moves, the other stays put. */
+  function performResizeEdge(id: string, mode: "start" | "end", dayIso: string) {
+    const target = items.find((a) => a.id === id);
+    if (!target) return;
+    if (dayIso === (mode === "end" ? target.endDate : target.startDate)) return;
+    const before = { startDate: target.startDate, endDate: target.endDate, durationDays: target.durationDays };
+
+    setItems((prev) =>
+      prev.map((a) => {
+        if (a.id !== id) return a;
+        if (mode === "end") {
+          return { ...a, endDate: parse(dayIso) < parse(a.startDate) ? a.startDate : dayIso };
+        }
+        return { ...a, startDate: parse(dayIso) > parse(a.endDate) ? a.endDate : dayIso };
+      })
+    );
+    setError(null);
+    setConflictNotice(null);
+
+    startTransition(async () => {
+      const res =
+        mode === "end"
+          ? await resizeAssignmentToEnd({ assignmentId: id, variationId, isoDate: dayIso })
+          : await resizeAssignmentFromStart({ assignmentId: id, variationId, isoDate: dayIso });
+      if (res.ok) {
+        setItems((prev) =>
+          prev.map((a) =>
+            a.id === id
+              ? { ...a, startDate: res.startDate, endDate: res.endDate, durationDays: res.durationDays }
+              : a
+          )
+        );
+        if (res.conflicts.length > 0) {
+          setConflictNotice({ movedLabel: target.label, conflicts: res.conflicts });
+        }
+      } else {
+        setItems((prev) => prev.map((a) => (a.id === id ? { ...a, ...before } : a)));
+        setError(res.message);
+      }
+    });
+  }
+
+  /** Precise duration entry from the block popover — same edit, typed input instead of a drag. */
+  function performResizeDuration(id: string, days: number) {
+    const target = items.find((a) => a.id === id);
+    if (!target || days === target.durationDays) return;
+    const before = { endDate: target.endDate, durationDays: target.durationDays };
+
+    setItems((prev) => prev.map((a) => (a.id === id ? { ...a, durationDays: days } : a)));
+    setError(null);
+    setConflictNotice(null);
+
+    startTransition(async () => {
+      const res = await resizeAssignmentDuration({ assignmentId: id, variationId, durationDays: days });
+      if (res.ok) {
+        setItems((prev) =>
+          prev.map((a) =>
+            a.id === id
+              ? { ...a, startDate: res.startDate, endDate: res.endDate, durationDays: res.durationDays }
+              : a
+          )
+        );
+        if (res.conflicts.length > 0) {
+          setConflictNotice({ movedLabel: target.label, conflicts: res.conflicts });
+        }
+      } else {
+        setItems((prev) => prev.map((a) => (a.id === id ? { ...a, ...before } : a)));
+        setError(res.message);
+      }
+    });
+  }
+
+  /** The popover's delete button: unschedule, same soft semantics as the List view's. */
+  function performDelete(id: string) {
+    const target = items.find((a) => a.id === id);
+    if (!target) return;
+    setItems((prev) => prev.filter((a) => a.id !== id));
+    setError(null);
+    setConflictNotice(null);
+
+    startTransition(async () => {
+      const res = await unassignAssignmentTyped({ assignmentId: id, variationId });
+      if (!res.ok) {
+        // The unschedule didn't actually happen — put the block back.
+        setItems((prev) => [...prev, target]);
+        setError(res.message);
+      }
+    });
+  }
+
+  function onDrop(dayIso: string, e: React.DragEvent) {
+    setHoverDay(null);
+
+    // The drawer sets this MIME type on drag start; it's how a brand-new
+    // placement is told apart from an existing bar being moved, without any
+    // shared React state between this component and the drawer.
+    const requirementId = e.dataTransfer.getData(UNSCHEDULED_DRAG_TYPE);
+    if (requirementId) {
+      onDropUnscheduled(requirementId, dayIso);
+      return;
+    }
+
+    const current = drag;
+    setDrag(null);
+    if (!current) return;
+
+    if (current.mode === "move") {
+      performMove(current.id, dayIso);
+    } else {
+      performResizeEdge(current.id, current.mode, dayIso);
+    }
   }
 
   function renderMonth(monthKey: string) {
@@ -405,24 +570,60 @@ export function CalendarMonth({
                         const color = a.projectColor ? PROJECT_COLOR_HEX[a.projectColor] : "#8b5cf6";
                         cells.push(
                           <div key={a.id} style={{ gridColumn: `span ${seg.span}` }} className="px-1">
-                            <div
-                              draggable
-                              onDragStart={() => setDragId(a.id)}
-                              onDragEnd={() => {
-                                setDragId(null);
-                                setHoverDay(null);
-                              }}
-                              title={`${a.projectName} · ${a.label}\n${pretty(a.startDate)} – ${pretty(a.endDate)} · ${a.durationDays} production days\nDrag onto a day to move`}
-                              className={[
-                                "cursor-grab truncate px-2 py-0.5 text-[11px] font-medium text-white shadow-sm active:cursor-grabbing",
-                                seg.continuesLeft ? "rounded-l-none" : "rounded-l-full",
-                                seg.continuesRight ? "rounded-r-none" : "rounded-r-full",
-                                dragId === a.id ? "opacity-50" : "",
-                              ].join(" ")}
-                              style={{ backgroundColor: color }}
-                            >
-                              {seg.continuesLeft ? "… " : ""}
-                              {a.label}
+                            <div className="group relative">
+                              <div
+                                draggable
+                                onDragStart={() => setDrag({ id: a.id, mode: "move" })}
+                                onDragEnd={() => {
+                                  setDrag(null);
+                                  setHoverDay(null);
+                                }}
+                                onClick={(e) => openPopover(a.id, e.currentTarget)}
+                                title={`${a.projectName} · ${a.label}\n${pretty(a.startDate)} – ${pretty(a.endDate)} · ${a.durationDays} production days\nDrag to move, drag an edge to resize, click for details`}
+                                className={[
+                                  "cursor-grab truncate px-2 py-0.5 text-[11px] font-medium text-white shadow-sm active:cursor-grabbing",
+                                  seg.continuesLeft ? "rounded-l-none" : "rounded-l-full",
+                                  seg.continuesRight ? "rounded-r-none" : "rounded-r-full",
+                                  drag?.id === a.id ? "opacity-50" : "",
+                                ].join(" ")}
+                                style={{ backgroundColor: color }}
+                              >
+                                {seg.continuesLeft ? "… " : ""}
+                                {a.label}
+                              </div>
+
+                              {/* Resize handles only where a segment is the assignment's
+                                  true start/end — a mid-bar week-wrap segment has neither. */}
+                              {!seg.continuesLeft && (
+                                <span
+                                  draggable
+                                  onDragStart={(e) => {
+                                    e.stopPropagation();
+                                    setDrag({ id: a.id, mode: "start" });
+                                  }}
+                                  onDragEnd={() => {
+                                    setDrag(null);
+                                    setHoverDay(null);
+                                  }}
+                                  title="Drag to resize the start"
+                                  className="absolute left-0 top-0 h-full w-2 cursor-ew-resize opacity-0 group-hover:bg-black/20 group-hover:opacity-100"
+                                />
+                              )}
+                              {!seg.continuesRight && (
+                                <span
+                                  draggable
+                                  onDragStart={(e) => {
+                                    e.stopPropagation();
+                                    setDrag({ id: a.id, mode: "end" });
+                                  }}
+                                  onDragEnd={() => {
+                                    setDrag(null);
+                                    setHoverDay(null);
+                                  }}
+                                  title="Drag to resize the end"
+                                  className="absolute right-0 top-0 h-full w-2 cursor-ew-resize opacity-0 group-hover:bg-black/20 group-hover:opacity-100"
+                                />
+                              )}
                             </div>
                           </div>
                         );
@@ -460,6 +661,7 @@ export function CalendarMonth({
           >
             Today
           </button>
+          <ExportMenu variationId={variationId} projectId={projectId} />
         </div>
       </div>
 
@@ -493,6 +695,12 @@ export function CalendarMonth({
 
       <div
         ref={scrollRef}
+        // overflow-anchor: none — the browser's own scroll anchoring already
+        // tries to keep content stable when a month is prepended above the
+        // viewport, and it fights the explicit prependHeightBefore
+        // compensation above: both adjust scrollTop for the same insertion,
+        // double-counting the shift. One mechanism has to own this.
+        style={{ overflowAnchor: "none" }}
         className="max-h-[75vh] overflow-y-auto overscroll-contain rounded-2xl border border-border bg-surface"
       >
         <div className="sticky top-0 z-10 grid grid-cols-7 border-b border-border bg-surface-muted text-xs font-medium uppercase tracking-wide text-muted-foreground">
@@ -510,10 +718,41 @@ export function CalendarMonth({
         <div ref={bottomSentinelRef} />
       </div>
 
+      {popover &&
+        (() => {
+          const a = items.find((x) => x.id === popover.id);
+          if (!a) return null;
+          return (
+            <BlockPopover
+              projectName={a.projectName}
+              label={a.label}
+              startIso={a.startDate}
+              prettyRange={`${pretty(a.startDate)} – ${pretty(a.endDate)}`}
+              durationDays={a.durationDays}
+              top={popover.top}
+              left={popover.left}
+              busy={isPending}
+              onClose={() => setPopover(null)}
+              onMove={(isoDate) => {
+                setPopover(null);
+                performMove(a.id, isoDate);
+              }}
+              onResize={(days) => {
+                setPopover(null);
+                performResizeDuration(a.id, days);
+              }}
+              onDelete={() => {
+                setPopover(null);
+                performDelete(a.id);
+              }}
+            />
+          );
+        })()}
+
       <p className="mt-2 text-xs text-muted-foreground">
-        Drag a block onto a day to move it, or drag an item from the unscheduled list to place it.
-        Length in production days is preserved, and shaded days are skipped automatically. Scroll to
-        load more months.
+        Drag a block to move it, or drag either edge to resize — click a block for precise controls
+        or to remove it. Drag an item from the unscheduled list to place it. Length in production
+        days is preserved, and shaded days are skipped automatically. Scroll to load more months.
       </p>
 
       {items.length === 0 && (

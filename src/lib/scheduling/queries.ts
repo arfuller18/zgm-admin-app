@@ -347,3 +347,47 @@ export async function loadMonthGrid(input: {
 }
 
 export type MonthGridData = Awaited<ReturnType<typeof loadMonthGrid>>;
+
+/**
+ * Every placement in a variation, sorted for a schedule report — the read
+ * model behind CSV/XLSX/PDF export. Unlike `loadScheduleWindow` this has no
+ * date bounds: an export covers the whole schedule, not just whatever
+ * happens to be scrolled into view client-side.
+ */
+export async function loadAllAssignments(variationId: string, projectId?: string) {
+  const assignments = await prisma.scheduleAssignment.findMany({
+    where: { variationId, ...(projectId ? { projectId } : {}) },
+    orderBy: [{ startDate: "asc" }, { durationDays: "desc" }],
+    select: {
+      id: true,
+      startDate: true,
+      endDate: true,
+      durationDays: true,
+      projectId: true,
+      project: { select: { name: true, projectColor: true, priority: true } },
+      requirement: {
+        select: {
+          kind: true,
+          label: true,
+          unitProduction: { select: { name: true } },
+          eventType: { select: { name: true } },
+        },
+      },
+    },
+  });
+
+  return assignments.map((a) => ({
+    id: a.id,
+    startDate: a.startDate,
+    endDate: a.endDate,
+    durationDays: a.durationDays,
+    projectId: a.projectId,
+    projectName: a.project.name,
+    projectColor: a.project.projectColor,
+    projectPriority: a.project.priority,
+    kind: a.requirement.kind,
+    label: requirementLabel(a.requirement),
+  }));
+}
+
+export type ExportAssignmentRow = Awaited<ReturnType<typeof loadAllAssignments>>[number];

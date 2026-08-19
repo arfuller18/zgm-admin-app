@@ -582,6 +582,46 @@ export async function resizeAssignmentFromStart(input: {
   };
 }
 
+/**
+ * Typed duration resize for the calendar block popover — the precise-entry
+ * counterpart to dragging an edge. Same return shape as the edge-drag
+ * actions so the client reconciles it the same way.
+ */
+export async function resizeAssignmentDuration(input: {
+  assignmentId: string;
+  variationId: string;
+  durationDays: number;
+}): Promise<EdgeMoveResult> {
+  await requireUser();
+  const result = await run(() => assignments.resize(input.assignmentId, input.durationDays));
+  if (!result.ok) return { ok: false, message: result.message };
+  revalidateScheduling(input.variationId);
+  return {
+    ok: true,
+    startDate: formatScheduleDate(result.value.startDate),
+    endDate: formatScheduleDate(result.value.endDate),
+    durationDays: result.value.durationDays,
+    conflicts: await checkLocationConflicts(result.value),
+  };
+}
+
+/**
+ * Typed unassign for the calendar block popover's delete button. Same soft
+ * semantics as unassignAction (the requirement returns to unscheduled,
+ * nothing is destroyed) — typed so the client can remove the block from its
+ * own local state without a full page reload.
+ */
+export async function unassignAssignmentTyped(input: {
+  assignmentId: string;
+  variationId: string;
+}): Promise<{ ok: true } | { ok: false; message: string }> {
+  await requireUser();
+  const result = await run(() => assignments.unassign(input.assignmentId));
+  if (!result.ok) return result;
+  revalidateScheduling(input.variationId);
+  return { ok: true };
+}
+
 // ---------------------------------------------------------------------------
 // Merged Master preview — a visual "what would Master look like" for the
 // push form. Read-only, by construction: it calls the same previewMergedMaster

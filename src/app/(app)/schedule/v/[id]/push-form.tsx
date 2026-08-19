@@ -42,6 +42,11 @@ export function PushToMasterForm({
   const [scope, setScope] = useState<"ALL" | "SELECTED">("ALL");
   const [selected, setSelected] = useState<string[]>([]);
 
+  // Collapsed by default — this section's table can run long, and publishing
+  // isn't something most visits to a variation are here to do. The header
+  // stays informative either way, so collapsing costs nothing to check.
+  const [sectionOpen, setSectionOpen] = useState(false);
+
   // Visual preview — collapsed by default since it's a heavier render than
   // the table above and not everyone needs it every time. Reactive to the
   // same scope/selection controls rather than duplicating them.
@@ -97,23 +102,35 @@ export function PushToMasterForm({
 
   return (
     <section className="overflow-hidden rounded-2xl border-2 border-brand/30 bg-surface">
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-brand/5 px-5 py-3">
-        <div>
-          <h2 className="font-semibold">Publish to Master Calendar</h2>
-          <p className="text-sm text-muted-foreground">
-            {nothingToPush
-              ? "Nothing is scheduled in this variation yet."
-              : `${preview.totalIncoming} placement${preview.totalIncoming === 1 ? "" : "s"} across ${preview.projects.length} project${preview.projects.length === 1 ? "" : "s"}`}
-          </p>
+      <button
+        type="button"
+        onClick={() => setSectionOpen((v) => !v)}
+        className="flex w-full flex-wrap items-center justify-between gap-3 border-b border-border bg-brand/5 px-5 py-3 text-left hover:bg-brand/10"
+      >
+        <div className="flex items-center gap-2">
+          <span
+            aria-hidden
+            className={`text-xs text-muted-foreground transition-transform ${sectionOpen ? "rotate-90" : ""}`}
+          >
+            ▶
+          </span>
+          <div>
+            <h2 className="font-semibold">Publish to Master Calendar</h2>
+            <p className="text-sm text-muted-foreground">
+              {nothingToPush
+                ? "Nothing is scheduled in this variation yet."
+                : `${preview.totalIncoming} placement${preview.totalIncoming === 1 ? "" : "s"} across ${preview.projects.length} project${preview.projects.length === 1 ? "" : "s"}`}
+            </p>
+          </div>
         </div>
         {replacing.length > 0 && (
           <Badge tone="warning">
             {replacing.length} project{replacing.length === 1 ? "" : "s"} already on Master
           </Badge>
         )}
-      </div>
+      </button>
 
-      {!nothingToPush && (
+      {sectionOpen && !nothingToPush && (
         <form action={formAction} className="space-y-4 p-5">
           <input type="hidden" name="variationId" value={variationId} />
 

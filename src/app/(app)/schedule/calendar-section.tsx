@@ -65,6 +65,7 @@ export async function CalendarSection({
       assignments={[...assignmentsById.values()]}
       isWorkingDay={isWorkingDay}
       todayMonth={monthKey(new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1)))}
+      anchorMonth={monthKey(anchor)}
     />
   );
 }
