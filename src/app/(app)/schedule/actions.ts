@@ -17,7 +17,11 @@ import {
 } from "@/lib/scheduling/work-calendar";
 import type { ShiftUnit } from "@/lib/scheduling/work-calendar";
 import { loadWorkCalendarContext } from "@/lib/scheduling/context";
-import { requirementLabel, type ScheduleWindowAssignment } from "@/lib/scheduling/queries";
+import {
+  requirementLabel,
+  getAssignmentDisplay,
+  type ScheduleWindowAssignment,
+} from "@/lib/scheduling/queries";
 
 // Thin wrappers over src/lib/scheduling/*. No business logic lives here —
 // keeping it in the service layer is what lets the same code back a separate
@@ -449,6 +453,59 @@ async function checkLocationConflicts(assignment: {
     startDate: formatScheduleDate(r.startDate),
     endDate: formatScheduleDate(r.endDate),
   }));
+}
+
+export type AssignToDateResult =
+  | {
+      ok: true;
+      assignment: {
+        id: string;
+        startDate: string;
+        endDate: string;
+        durationDays: number;
+        projectId: string;
+        projectName: string;
+        projectColor: ScheduleWindowAssignment["projectColor"];
+        projectPriority: ScheduleWindowAssignment["projectPriority"];
+        kind: ScheduleWindowAssignment["kind"];
+        label: string;
+      };
+      conflicts: ScheduleConflictView[];
+    }
+  | { ok: false; message: string };
+
+/**
+ * Place an unscheduled requirement onto a date — the drawer's drag-onto-
+ * calendar action. Distinct from moveAssignmentToDate: there is no existing
+ * assignment to update, so the client needs the full row back (project
+ * name/color, label) to render a brand-new bar, not just resolved dates.
+ */
+export async function assignRequirementToDate(input: {
+  requirementId: string;
+  variationId: string;
+  isoDate: string;
+}): Promise<AssignToDateResult> {
+  await requireUser();
+  const result = await run(() =>
+    assignments.assign({
+      variationId: input.variationId,
+      requirementId: input.requirementId,
+      startDate: parseScheduleDate(input.isoDate),
+    })
+  );
+  if (!result.ok) return result;
+
+  const display = await getAssignmentDisplay(result.value.id);
+  revalidateScheduling(input.variationId);
+  return {
+    ok: true,
+    assignment: {
+      ...display,
+      startDate: formatScheduleDate(display.startDate),
+      endDate: formatScheduleDate(display.endDate),
+    },
+    conflicts: await checkLocationConflicts(result.value),
+  };
 }
 
 /**

@@ -3,7 +3,12 @@ import { requireUser } from "@/lib/session";
 import { Badge } from "@/components/ui/badge";
 import { LinkButton } from "@/components/ui/button";
 import { getMasterVariation } from "@/lib/scheduling/variations";
-import { loadWorkspace, flattenWorkspaceAssignments, listSchedulableProjects } from "@/lib/scheduling/queries";
+import {
+  loadWorkspace,
+  flattenWorkspaceAssignments,
+  listSchedulableProjects,
+  unscheduledItems,
+} from "@/lib/scheduling/queries";
 import { listPublications } from "@/lib/scheduling/master";
 import { ScheduleWorkspace } from "../workspace";
 import { ShiftControls } from "../shift-modal";
@@ -12,6 +17,7 @@ import { CalendarSection } from "../calendar-section";
 import { ViewControls } from "../view-controls";
 import { ManageProjects } from "../manage-projects";
 import { ManageMaster } from "./manage-master";
+import { UnscheduledDrawer } from "../unscheduled-drawer";
 
 // The Master Calendar. Same planning surface underneath, deliberately
 // different framing on top: this is the operational schedule, not a scenario.
@@ -96,12 +102,15 @@ export default async function MasterCalendarPage({
       </div>
 
       {view === "calendar" && (
-        <CalendarSection
-          variationId={master.id}
-          month={month}
-          projectId={projectId}
-          basePath="/schedule/master"
-        />
+        <>
+          <UnscheduledDrawer items={unscheduledItems(data, master.includedProjectIds)} />
+          <CalendarSection
+            variationId={master.id}
+            month={month}
+            projectId={projectId}
+            basePath="/schedule/master"
+          />
+        </>
       )}
       {view === "timeline" && (
         <TimelineSection

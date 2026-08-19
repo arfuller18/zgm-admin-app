@@ -222,3 +222,82 @@ export function flattenWorkspaceAssignments(data: WorkspaceData) {
 }
 
 export type FlatWorkspaceAssignment = ReturnType<typeof flattenWorkspaceAssignments>[number];
+
+/**
+ * One placement's full display row, by id — the same shape
+ * loadScheduleWindow returns, so a brand-new assignment (dragging an
+ * unscheduled item onto the calendar creates one with no prior row to
+ * update) can be merged into a client's existing item list without a
+ * separate field mapping to keep in sync.
+ */
+export async function getAssignmentDisplay(assignmentId: string) {
+  const a = await prisma.scheduleAssignment.findUniqueOrThrow({
+    where: { id: assignmentId },
+    select: {
+      id: true,
+      startDate: true,
+      endDate: true,
+      durationDays: true,
+      projectId: true,
+      project: { select: { name: true, projectColor: true, priority: true } },
+      requirement: {
+        select: {
+          kind: true,
+          label: true,
+          unitProduction: { select: { name: true } },
+          eventType: { select: { name: true } },
+        },
+      },
+    },
+  });
+  return {
+    id: a.id,
+    startDate: a.startDate,
+    endDate: a.endDate,
+    durationDays: a.durationDays,
+    projectId: a.projectId,
+    projectName: a.project.name,
+    projectColor: a.project.projectColor,
+    projectPriority: a.project.priority,
+    kind: a.requirement.kind,
+    label: requirementLabel(a.requirement),
+  };
+}
+
+/**
+ * Unscheduled requirements for a variation's included projects only — the
+ * drawer's contents. "Unscheduled" here means specifically "no placement in
+ * this variation," not unscheduled everywhere: the same requirement can be
+ * placed in one scenario and still sit in another's drawer, which is
+ * exactly the point of variation isolation.
+ */
+export interface UnscheduledItem {
+  requirementId: string;
+  projectId: string;
+  projectName: string;
+  projectColor: WorkspaceProject["projectColor"];
+  label: string;
+  durationDays: number;
+  kind: WorkspaceRequirement["kind"];
+}
+
+export function unscheduledItems(data: WorkspaceData, includedProjectIds: string[]): UnscheduledItem[] {
+  const scope = new Set(includedProjectIds);
+  const out: UnscheduledItem[] = [];
+  for (const p of data.projects) {
+    if (!scope.has(p.id)) continue;
+    for (const r of p.schedulingRequirements) {
+      if (r.assignments.length > 0) continue;
+      out.push({
+        requirementId: r.id,
+        projectId: p.id,
+        projectName: p.name,
+        projectColor: p.projectColor,
+        label: requirementLabel(r),
+        durationDays: r.durationDays,
+        kind: r.kind,
+      });
+    }
+  }
+  return out.sort((a, b) => a.projectName.localeCompare(b.projectName) || a.label.localeCompare(b.label));
+}

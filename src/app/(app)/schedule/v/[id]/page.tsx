@@ -5,7 +5,12 @@ import { Badge } from "@/components/ui/badge";
 import { ConfirmSubmitButton } from "@/components/ui/confirm-submit-button";
 import { VARIATION_STATUS_LABEL, VARIATION_STATUS_TONE } from "@/lib/display";
 import { getVariation } from "@/lib/scheduling/variations";
-import { loadWorkspace, flattenWorkspaceAssignments, listSchedulableProjects } from "@/lib/scheduling/queries";
+import {
+  loadWorkspace,
+  flattenWorkspaceAssignments,
+  listSchedulableProjects,
+  unscheduledItems,
+} from "@/lib/scheduling/queries";
 import { previewPush } from "@/lib/scheduling/master";
 import { ScheduleWorkspace } from "../../workspace";
 import { ShiftControls } from "../../shift-modal";
@@ -13,6 +18,7 @@ import { TimelineSection } from "../../timeline-section";
 import { CalendarSection } from "../../calendar-section";
 import { ViewControls } from "../../view-controls";
 import { ManageProjects } from "../../manage-projects";
+import { UnscheduledDrawer } from "../../unscheduled-drawer";
 import { PushToMasterForm } from "./push-form";
 import { deleteVariationAction } from "../../actions";
 
@@ -97,12 +103,15 @@ export default async function VariationPage({
       </div>
 
       {view === "calendar" && (
-        <CalendarSection
-          variationId={variation.id}
-          month={month}
-          projectId={projectId}
-          basePath={`/schedule/v/${variation.id}`}
-        />
+        <>
+          <UnscheduledDrawer items={unscheduledItems(data, variation.includedProjectIds)} />
+          <CalendarSection
+            variationId={variation.id}
+            month={month}
+            projectId={projectId}
+            basePath={`/schedule/v/${variation.id}`}
+          />
+        </>
       )}
       {view === "timeline" && (
         <TimelineSection

@@ -4,7 +4,8 @@ import { useMemo, useState, useTransition } from "react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { PROJECT_COLOR_HEX } from "@/lib/display";
-import { moveAssignmentToDate, type ScheduleConflictView } from "./actions";
+import { moveAssignmentToDate, assignRequirementToDate, type ScheduleConflictView } from "./actions";
+import { UNSCHEDULED_DRAG_TYPE } from "./unscheduled-drawer";
 import type { ScheduleWindowAssignment } from "@/lib/scheduling/queries";
 
 // Interactive month calendar. Multi-day placements render as continuous bars
@@ -129,10 +130,42 @@ export function CalendarMonth({
   const weeks = useMemo(() => buildWeeks(monthStart), [monthIso]); // eslint-disable-line react-hooks/exhaustive-deps
   const todayIso = fmt(new Date());
 
-  function onDrop(dayIso: string) {
+  /**
+   * A brand-new placement from the unscheduled drawer, not an existing bar
+   * being moved. No prior row to reconcile — the item simply doesn't exist
+   * in `items` until the server confirms it, so there's nothing to guess
+   * optimistically beyond showing the pending state.
+   */
+  function onDropUnscheduled(requirementId: string, dayIso: string) {
+    setError(null);
+    setConflictNotice(null);
+    startTransition(async () => {
+      const res = await assignRequirementToDate({ requirementId, variationId, isoDate: dayIso });
+      if (res.ok) {
+        setItems((prev) => [...prev, res.assignment]);
+        if (res.conflicts.length > 0) {
+          setConflictNotice({ movedLabel: res.assignment.label, conflicts: res.conflicts });
+        }
+      } else {
+        setError(res.message);
+      }
+    });
+  }
+
+  function onDrop(dayIso: string, e: React.DragEvent) {
+    setHoverDay(null);
+
+    // The drawer sets this MIME type on drag start; it's how a brand-new
+    // placement is told apart from an existing bar being moved, without any
+    // shared React state between this component and the drawer.
+    const requirementId = e.dataTransfer.getData(UNSCHEDULED_DRAG_TYPE);
+    if (requirementId) {
+      onDropUnscheduled(requirementId, dayIso);
+      return;
+    }
+
     const id = dragId;
     setDragId(null);
-    setHoverDay(null);
     if (!id) return;
 
     const target = items.find((a) => a.id === id);
@@ -276,7 +309,7 @@ export function CalendarMonth({
                         setHoverDay(iso);
                       }}
                       onDragLeave={() => setHoverDay((h) => (h === iso ? null : h))}
-                      onDrop={() => onDrop(iso)}
+                      onDrop={(e) => onDrop(iso, e)}
                       className={[
                         "min-h-11 border-r border-border px-2 py-1.5 last:border-r-0",
                         // Non-production days are shaded so a planner can see
