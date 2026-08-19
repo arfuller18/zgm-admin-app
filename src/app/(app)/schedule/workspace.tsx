@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Input, Select } from "@/components/ui/input";
+import { Input } from "@/components/ui/input";
 import { PROJECT_COLOR_HEX, REQUIREMENT_STATUS_LABEL, REQUIREMENT_STATUS_TONE } from "@/lib/display";
 import { formatScheduleDate } from "@/lib/scheduling/work-calendar";
 import { requirementLabel, type WorkspaceData } from "@/lib/scheduling/queries";
@@ -9,7 +9,6 @@ import {
   moveAssignmentAction,
   resizeAssignmentAction,
   unassignAction,
-  applyShiftAction,
 } from "./actions";
 
 // The planning surface, shared by the Master Calendar and every variation.
@@ -238,59 +237,5 @@ function RequirementRow({
         </div>
       ))}
     </li>
-  );
-}
-
-/** Shift every placement in a schedule by a fixed amount. */
-export function ShiftControls({
-  variationId,
-  projects,
-}: {
-  variationId: string;
-  projects: { id: string; name: string }[];
-}) {
-  return (
-    <details className="rounded-2xl border border-border bg-surface">
-      <summary className="cursor-pointer list-none px-4 py-3 font-medium hover:bg-surface-muted">
-        Push schedule by a number of days
-      </summary>
-      <form action={applyShiftAction} className="flex flex-wrap items-end gap-3 border-t border-border p-4">
-        <input type="hidden" name="variationId" value={variationId} />
-        <div>
-          <label className="mb-1 block text-xs text-muted-foreground" htmlFor="shift-amount">
-            Amount (negative moves earlier)
-          </label>
-          <Input id="shift-amount" name="amount" type="number" defaultValue={14} className="!w-28" />
-        </div>
-        <div>
-          <label className="mb-1 block text-xs text-muted-foreground" htmlFor="shift-unit">
-            Counted in
-          </label>
-          <Select id="shift-unit" name="unit" defaultValue="CALENDAR_DAYS" className="!w-44">
-            <option value="CALENDAR_DAYS">Calendar days</option>
-            <option value="PRODUCTION_DAYS">Production days</option>
-          </Select>
-        </div>
-        <div>
-          <label className="mb-1 block text-xs text-muted-foreground" htmlFor="shift-project">
-            Limit to project (optional)
-          </label>
-          <Select id="shift-project" name="projectIds" defaultValue="" className="!w-56">
-            <option value="">Everything in this schedule</option>
-            {projects.map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.name}
-              </option>
-            ))}
-          </Select>
-        </div>
-        <Button type="submit" variant="outline">
-          Apply shift
-        </Button>
-        <p className="w-full text-xs text-muted-foreground">
-          Durations are preserved — a five-day block stays five production days wherever it lands.
-        </p>
-      </form>
-    </details>
   );
 }

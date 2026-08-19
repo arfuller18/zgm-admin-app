@@ -3,9 +3,10 @@ import { requireUser } from "@/lib/session";
 import { Badge } from "@/components/ui/badge";
 import { LinkButton } from "@/components/ui/button";
 import { getMasterVariation } from "@/lib/scheduling/variations";
-import { loadWorkspace } from "@/lib/scheduling/queries";
+import { loadWorkspace, flattenWorkspaceAssignments } from "@/lib/scheduling/queries";
 import { listPublications } from "@/lib/scheduling/master";
-import { ScheduleWorkspace, ShiftControls } from "../workspace";
+import { ScheduleWorkspace } from "../workspace";
+import { ShiftControls } from "../shift-modal";
 import { TimelineSection } from "../timeline-section";
 import { CalendarSection } from "../calendar-section";
 import { ViewControls } from "../view-controls";
@@ -103,6 +104,7 @@ export default async function MasterCalendarPage({
           <ShiftControls
             variationId={master.id}
             projects={data.projects.map((p) => ({ id: p.id, name: p.name }))}
+            assignments={flattenWorkspaceAssignments(data)}
           />
           <ScheduleWorkspace
             variationId={master.id}

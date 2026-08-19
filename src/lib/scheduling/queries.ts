@@ -2,6 +2,7 @@
 // same shapes can back a calendar, a timeline, or an API response later.
 
 import { prisma } from "../prisma";
+import { formatScheduleDate } from "./work-calendar";
 
 /**
  * Everything one variation needs, grouped by project.
@@ -171,3 +172,40 @@ export async function loadScheduleWindow(input: {
 }
 
 export type ScheduleWindowAssignment = Awaited<ReturnType<typeof loadScheduleWindow>>[number];
+
+/**
+ * Flatten a workspace into one row per placed assignment, for UI that needs
+ * to pick individual placements (the bulk-shift scope selector) rather than
+ * walk the project → requirement → assignment tree. Server-side only, same
+ * as everything else in this module — the caller serialises what it needs
+ * into a Client Component, not this function itself.
+ */
+export function flattenWorkspaceAssignments(data: WorkspaceData) {
+  const out: {
+    id: string;
+    projectId: string;
+    projectName: string;
+    label: string;
+    startDate: string;
+    endDate: string;
+    durationDays: number;
+  }[] = [];
+  for (const p of data.projects) {
+    for (const r of p.schedulingRequirements) {
+      for (const a of r.assignments) {
+        out.push({
+          id: a.id,
+          projectId: p.id,
+          projectName: p.name,
+          label: requirementLabel(r),
+          startDate: formatScheduleDate(a.startDate),
+          endDate: formatScheduleDate(a.endDate),
+          durationDays: a.durationDays,
+        });
+      }
+    }
+  }
+  return out.sort((x, y) => x.startDate.localeCompare(y.startDate));
+}
+
+export type FlatWorkspaceAssignment = ReturnType<typeof flattenWorkspaceAssignments>[number];

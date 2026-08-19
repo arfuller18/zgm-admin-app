@@ -209,24 +209,99 @@ export async function unassignAction(formData: FormData) {
   revalidateScheduling(str(formData, "variationId"));
 }
 
-export async function applyShiftAction(formData: FormData) {
+/**
+ * The four ways to scope a bulk shift, serialisable across the client/server
+ * boundary (dates as ISO strings — `assignments.ShiftScope` wants real Dates,
+ * so `toServiceScope` below is the one place that converts).
+ */
+export type ShiftScopeInput =
+  | { kind: "ENTIRE_VARIATION" }
+  | { kind: "SELECTED_PROJECTS"; projectIds: string[] }
+  | { kind: "SELECTED_ASSIGNMENTS"; assignmentIds: string[] }
+  | { kind: "DATE_RANGE"; from: string; to: string };
+
+function toServiceScope(scope: ShiftScopeInput): assignments.ShiftScope {
+  if (scope.kind === "DATE_RANGE") {
+    return { kind: "DATE_RANGE", from: parseScheduleDate(scope.from), to: parseScheduleDate(scope.to) };
+  }
+  return scope;
+}
+
+export interface ShiftPreviewRowView {
+  assignmentId: string;
+  projectName: string;
+  label: string;
+  fromStart: string;
+  fromEnd: string;
+  toStart: string;
+  toEnd: string;
+  durationDays: number;
+}
+
+export type ShiftPreviewResult =
+  | { ok: true; rows: ShiftPreviewRowView[] }
+  | { ok: false; message: string };
+
+export type ShiftApplyResult = { ok: true; moved: number } | { ok: false; message: string };
+
+function shiftRowsToView(rows: Awaited<ReturnType<typeof assignments.previewShift>>): ShiftPreviewRowView[] {
+  return rows.map((r) => ({
+    assignmentId: r.assignmentId,
+    projectName: r.projectName,
+    label: r.label,
+    fromStart: formatScheduleDate(r.from.startDate),
+    fromEnd: formatScheduleDate(r.from.endDate),
+    toStart: formatScheduleDate(r.to.startDate),
+    toEnd: formatScheduleDate(r.to.endDate),
+    durationDays: r.durationDays,
+  }));
+}
+
+/** What a shift would do. No write path — same preview-before-consequence
+ * pattern as pushToMaster. */
+export async function previewShiftAction(input: {
+  variationId: string;
+  scope: ShiftScopeInput;
+  amount: number;
+  unit: ShiftUnit;
+}): Promise<ShiftPreviewResult> {
   await requireUser();
-  const variationId = str(formData, "variationId");
-  const amount = int(formData, "amount");
-  if (!variationId || amount === null) return;
-
-  const unit = (str(formData, "unit") ?? "CALENDAR_DAYS") as ShiftUnit;
-  const projectIds = formData.getAll("projectIds").map(String).filter(Boolean);
-
-  await run(() =>
-    assignments.applyShift({
-      variationId,
-      scope: projectIds.length > 0 ? { kind: "SELECTED_PROJECTS", projectIds } : { kind: "ENTIRE_VARIATION" },
-      amount,
-      unit,
+  const result = await run(() =>
+    assignments.previewShift({
+      variationId: input.variationId,
+      scope: toServiceScope(input.scope),
+      amount: input.amount,
+      unit: input.unit,
     })
   );
-  revalidateScheduling(variationId);
+  if (!result.ok) return result;
+  return { ok: true, rows: shiftRowsToView(result.value) };
+}
+
+/**
+ * Apply a previously previewed shift. Takes the same scope/amount/unit the
+ * client already ran through previewShiftAction — the preview rows already
+ * on screen are the confirmation of what moved, so this only needs to report
+ * the count and whether it succeeded.
+ */
+export async function applyShiftTyped(input: {
+  variationId: string;
+  scope: ShiftScopeInput;
+  amount: number;
+  unit: ShiftUnit;
+}): Promise<ShiftApplyResult> {
+  await requireUser();
+  const result = await run(() =>
+    assignments.applyShift({
+      variationId: input.variationId,
+      scope: toServiceScope(input.scope),
+      amount: input.amount,
+      unit: input.unit,
+    })
+  );
+  if (!result.ok) return result;
+  revalidateScheduling(input.variationId);
+  return { ok: true, moved: result.value.moved };
 }
 
 // ---------------------------------------------------------------------------

@@ -5,9 +5,10 @@ import { Badge } from "@/components/ui/badge";
 import { ConfirmSubmitButton } from "@/components/ui/confirm-submit-button";
 import { VARIATION_STATUS_LABEL, VARIATION_STATUS_TONE } from "@/lib/display";
 import { getVariation } from "@/lib/scheduling/variations";
-import { loadWorkspace } from "@/lib/scheduling/queries";
+import { loadWorkspace, flattenWorkspaceAssignments } from "@/lib/scheduling/queries";
 import { previewPush } from "@/lib/scheduling/master";
-import { ScheduleWorkspace, ShiftControls } from "../../workspace";
+import { ScheduleWorkspace } from "../../workspace";
+import { ShiftControls } from "../../shift-modal";
 import { TimelineSection } from "../../timeline-section";
 import { CalendarSection } from "../../calendar-section";
 import { ViewControls } from "../../view-controls";
@@ -105,6 +106,7 @@ export default async function VariationPage({
           <ShiftControls
             variationId={variation.id}
             projects={data.projects.map((p) => ({ id: p.id, name: p.name }))}
+            assignments={flattenWorkspaceAssignments(data)}
           />
           <ScheduleWorkspace variationId={variation.id} data={data} />
         </>
