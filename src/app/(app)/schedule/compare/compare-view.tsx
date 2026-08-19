@@ -1,22 +1,14 @@
 "use client";
 
-import { useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Select } from "@/components/ui/input";
-import { CalendarMonth, type CalendarMonthHandle } from "../calendar-month";
+import { CalendarMonth } from "../calendar-month";
 import type { loadCalendarSectionData } from "../calendar-section";
 
 type PaneData = Awaited<ReturnType<typeof loadCalendarSectionData>>;
 type Target = { id: string; name: string; kind: "MASTER" | "VARIATION" };
 
-/**
- * Owns the one piece plain URL-driven navigation can't: syncing scroll
- * between two independently-scrolling CalendarMonth instances. Each pane
- * reports the month it lands on after a real user scroll; this just forwards
- * that to the other pane's own scrollToMonth. See CalendarMonth's
- * isProgrammaticScroll comment for why that report only fires for scrolling
- * the user actually did, which is what keeps this from ping-ponging.
- */
+/** Two independently-scrolling calendars, side by side. */
 export function CompareView({
   targets,
   leftId,
@@ -31,8 +23,6 @@ export function CompareView({
   right: PaneData;
 }) {
   const router = useRouter();
-  const leftRef = useRef<CalendarMonthHandle>(null);
-  const rightRef = useRef<CalendarMonthHandle>(null);
 
   function navigate(next: { left?: string; right?: string }) {
     const params = new URLSearchParams({ left: next.left ?? leftId, right: next.right ?? rightId });
@@ -49,11 +39,7 @@ export function CompareView({
           onChange={(id) => navigate({ left: id })}
         />
         <div className="mt-3">
-          <CalendarMonth
-            ref={leftRef}
-            {...left}
-            onVisibleMonthChange={(monthKey) => rightRef.current?.scrollToMonth(monthKey)}
-          />
+          <CalendarMonth {...left} />
         </div>
       </div>
 
@@ -65,11 +51,7 @@ export function CompareView({
           onChange={(id) => navigate({ right: id })}
         />
         <div className="mt-3">
-          <CalendarMonth
-            ref={rightRef}
-            {...right}
-            onVisibleMonthChange={(monthKey) => leftRef.current?.scrollToMonth(monthKey)}
-          />
+          <CalendarMonth {...right} />
         </div>
       </div>
     </div>

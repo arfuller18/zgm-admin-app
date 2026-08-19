@@ -4,11 +4,11 @@ import { getMasterVariation, listScheduleTargets } from "@/lib/scheduling/variat
 import { loadCalendarSectionData } from "../calendar-section";
 import { CompareView } from "./compare-view";
 
-// Two schedules, side by side, scrolled together. Reuses the exact same
-// calendar (CalendarMonth) each single-schedule page uses — a comparison
-// view earns its keep by being the same tool in two places, not a simplified
-// read-only echo of it, so dragging, resizing, and the block popover all
-// work here too, on either side.
+// Two schedules, side by side. Reuses the exact same calendar (CalendarMonth)
+// each single-schedule page uses — a comparison view earns its keep by being
+// the same tool in two places, not a simplified read-only echo of it, so
+// dragging, resizing, and the block popover all work here too, on either
+// side.
 
 export default async function CompareSchedulesPage({
   searchParams,
@@ -43,8 +43,7 @@ export default async function CompareSchedulesPage({
         </Link>
         <h1 className="mt-3 text-2xl font-bold tracking-tight">Compare schedules</h1>
         <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
-          Master or any variation, side by side. Scroll either one and the other follows to the
-          same month.
+          Master or any variation, side by side.
         </p>
       </div>
 

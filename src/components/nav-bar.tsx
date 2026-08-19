@@ -12,7 +12,6 @@ const ADMIN_NAV_LINKS = [
   // from Admin directly — nobody should have to enter a planning scenario to
   // see what ZGM is currently doing.
   { href: "/schedule/master", label: "Master Calendar" },
-  { href: "/schedule/compare", label: "Compare" },
   { href: "/people", label: "People" },
   { href: "/locations", label: "Locations" },
 ];
