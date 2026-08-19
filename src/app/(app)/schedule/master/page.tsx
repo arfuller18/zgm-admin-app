@@ -2,15 +2,9 @@ import { requireUser } from "@/lib/session";
 import { Badge } from "@/components/ui/badge";
 import { LinkButton } from "@/components/ui/button";
 import { getMasterVariation } from "@/lib/scheduling/variations";
-import {
-  loadWorkspace,
-  flattenWorkspaceAssignments,
-  listSchedulableProjects,
-  unscheduledItems,
-} from "@/lib/scheduling/queries";
+import { loadWorkspace, listSchedulableProjects, unscheduledItems } from "@/lib/scheduling/queries";
 import { listPublications } from "@/lib/scheduling/master";
 import { ScheduleWorkspace } from "../workspace";
-import { ShiftControls } from "../shift-modal";
 import { TimelineSection } from "../timeline-section";
 import { CalendarSection } from "../calendar-section";
 import { ViewControls } from "../view-controls";
@@ -125,19 +119,15 @@ export default async function MasterCalendarPage({
         />
       )}
 
+      {/* No bulk-shift tool here, on any view — Master takes no direct edits
+          at all (see the read-only calendar above); a schedule-wide push is
+          exactly the kind of change that belongs in a variation first. */}
       {view === "list" && (
-        <>
-          <ShiftControls
-            variationId={master.id}
-            projects={includedProjects}
-            assignments={flattenWorkspaceAssignments(data)}
-          />
-          <ScheduleWorkspace
-            variationId={master.id}
-            data={data}
-            readOnlyNotice="Changes here take effect immediately"
-          />
-        </>
+        <ScheduleWorkspace
+          variationId={master.id}
+          data={data}
+          readOnlyNotice="Changes here take effect immediately"
+        />
       )}
 
       <ManageMaster includedProjects={scheduledProjects} />

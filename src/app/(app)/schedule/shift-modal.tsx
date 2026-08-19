@@ -197,6 +197,28 @@ export function ShiftControls({
 
           {scopeKind === "SELECTED_PROJECTS" && (
             <div className="flex flex-wrap gap-1.5">
+              {projects.length > 0 &&
+                (() => {
+                  const allChecked = projects.every((p) => selectedProjects.includes(p.id));
+                  return (
+                    <label
+                      className={`flex cursor-pointer items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${
+                        allChecked ? "bg-brand text-brand-foreground" : "bg-surface-muted hover:bg-border"
+                      }`}
+                    >
+                      <input
+                        type="checkbox"
+                        className="sr-only"
+                        checked={allChecked}
+                        onChange={(e) => {
+                          setSelectedProjects(e.target.checked ? projects.map((p) => p.id) : []);
+                          invalidate();
+                        }}
+                      />
+                      All
+                    </label>
+                  );
+                })()}
               {projects.map((p) => {
                 const checked = selectedProjects.includes(p.id);
                 return (

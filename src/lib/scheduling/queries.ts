@@ -87,6 +87,22 @@ export async function listSchedulableProjects() {
   });
 }
 
+/**
+ * Projects actually in active production planning — everything except
+ * paused, wrapped, or archived. Narrower than listSchedulableProjects()
+ * (which only excludes archived, since a paused or wrapped project can
+ * still have real placements worth filtering the calendar by); this is
+ * for pickers where offering a stalled show as something to bulk-shift
+ * would be actively misleading, like the "Push schedule" scope picker.
+ */
+export async function listActiveSchedulableProjects() {
+  return prisma.project.findMany({
+    where: { currentStatus: { notIn: ["PAUSED", "WRAPPED", "ARCHIVED"] } },
+    orderBy: { name: "asc" },
+    select: { id: true, name: true, projectColor: true },
+  });
+}
+
 /** Counts for the scheduling hub. */
 export async function loadSchedulingOverview() {
   const master = await prisma.scheduleVariation.findFirst({ where: { kind: "MASTER" } });

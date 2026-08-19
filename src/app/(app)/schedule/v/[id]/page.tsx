@@ -8,6 +8,7 @@ import {
   loadWorkspace,
   flattenWorkspaceAssignments,
   listSchedulableProjects,
+  listActiveSchedulableProjects,
   unscheduledItems,
 } from "@/lib/scheduling/queries";
 import { previewPush } from "@/lib/scheduling/master";
@@ -39,12 +40,16 @@ export default async function VariationPage({
   // the variation workspace.
   if (variation.kind === "MASTER") redirect("/schedule/master");
 
-  const [data, preview, allProjects] = await Promise.all([
+  const [data, preview, allProjects, activeProjects] = await Promise.all([
     loadWorkspace(id),
     previewPush({ variationId: id }),
     listSchedulableProjects(),
+    listActiveSchedulableProjects(),
   ]);
   const includedProjects = allProjects.filter((p) => variation.includedProjectIds.includes(p.id));
+  const activeIncludedProjects = activeProjects.filter((p) =>
+    variation.includedProjectIds.includes(p.id)
+  );
 
   return (
     <div className="space-y-6">
@@ -99,12 +104,19 @@ export default async function VariationPage({
       </div>
 
       {view === "calendar" && (
-        <div className="flex items-start gap-4">
-          <UnscheduledDrawer items={unscheduledItems(data, variation.includedProjectIds)} />
-          <div className="min-w-0 flex-1">
-            <CalendarSection variationId={variation.id} month={month} projectId={projectId} />
+        <>
+          <ShiftControls
+            variationId={variation.id}
+            projects={activeIncludedProjects}
+            assignments={flattenWorkspaceAssignments(data)}
+          />
+          <div className="flex items-start gap-4">
+            <UnscheduledDrawer items={unscheduledItems(data, variation.includedProjectIds)} />
+            <div className="min-w-0 flex-1">
+              <CalendarSection variationId={variation.id} month={month} projectId={projectId} />
+            </div>
           </div>
-        </div>
+        </>
       )}
       {view === "timeline" && (
         <TimelineSection
@@ -116,16 +128,7 @@ export default async function VariationPage({
         />
       )}
 
-      {view === "list" && (
-        <>
-          <ShiftControls
-            variationId={variation.id}
-            projects={includedProjects}
-            assignments={flattenWorkspaceAssignments(data)}
-          />
-          <ScheduleWorkspace variationId={variation.id} data={data} />
-        </>
-      )}
+      {view === "list" && <ScheduleWorkspace variationId={variation.id} data={data} />}
     </div>
   );
 }
